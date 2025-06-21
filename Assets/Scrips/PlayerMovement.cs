@@ -5,7 +5,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Transform GroundCheck;
+    public Transform WallCheck; 
     public LayerMask GroundLayer;
+    public LayerMask WallLayer; 
 
     private float horizontal;
     public float speed = 8f;
@@ -13,9 +15,22 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
     private bool movementDisabled = false;
 
-    private void Update()
+    public float wallCheckRadius = 0.2f;
+    private bool isTouchingWall = false;
+    public float Horizontal
     {
-        rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+        get => horizontal;
+    }
+    private void FixedUpdate()
+    {
+        isTouchingWall = Physics2D.OverlapCircle(WallCheck.position, wallCheckRadius, WallLayer);
+
+        float targetHorizontalVelocity = horizontal * speed;
+        if (isTouchingWall && !IsGrounded())
+        {
+            targetHorizontalVelocity = Mathf.Lerp(rb.linearVelocity.x, 0f, 0.5f); 
+        }
+        rb.linearVelocity = new Vector2(targetHorizontalVelocity, rb.linearVelocity.y);
 
         if (!isFacingRight && horizontal > 0f)
         {
@@ -40,20 +55,19 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
             }
         }
-
     }
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(GroundCheck.position, 0.2f, GroundLayer);
+        return Physics2D.OverlapCircle(GroundCheck.position, 0.3f, GroundLayer);
     }
 
     private void Flip()
     {
         isFacingRight = !isFacingRight;
-        Vector3 localscale = transform.localScale;
-        localscale.x *= -1f;
-        transform.localScale = localscale;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -64,4 +78,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos() // Remove on final build, not useful for gameplay
+    {
+        if (WallCheck != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(WallCheck.position, wallCheckRadius);
+        }
+    }
 }
