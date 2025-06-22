@@ -175,6 +175,18 @@ PrefabInstance:
       propertyPath: detectDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6850813238294134051, guid: 4828212fc778fe24092ad7b50ff15567, type: 3}
+      propertyPath: WallCheck
+      value: 
+      objectReference: {fileID: 770118002}
+    - target: {fileID: 6850813238294134051, guid: 4828212fc778fe24092ad7b50ff15567, type: 3}
+      propertyPath: WallLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850813238294134051, guid: 4828212fc778fe24092ad7b50ff15567, type: 3}
+      propertyPath: GroundLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 8755915450968915413, guid: 4828212fc778fe24092ad7b50ff15567, type: 3}
       propertyPath: m_Layer
       value: 0
