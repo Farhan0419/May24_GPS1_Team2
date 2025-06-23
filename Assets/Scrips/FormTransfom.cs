@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using System.Linq;
+using System.Collections;
 
 public class FormTransform : MonoBehaviour
 {
@@ -25,18 +26,23 @@ public class FormTransform : MonoBehaviour
 
     private string[] stationTag = { "showerStation", "redPaintStation", "bluePaintStation" };
 
-    private int layerMask;
+    private int layerStation;
+    private int layerGround;
 
     private PlayerMovement playerMovement;
 
-    private Vector2 direction;
+    private Vector2 playerDirection;
+
+    private Vector2 stationPosition;
 
     [SerializeField] private bool debugMode = true;
 
 
-
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // GET & SET METHODS
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    // give to any script to block all actions when player is changing forms
     public bool IsPaint
     {
         get => isPaint;
@@ -53,12 +59,20 @@ public class FormTransform : MonoBehaviour
         set => stationTag = value;
     }
 
-
-    // Events & functions
-
-    private void Awake()
+    // give to FarHan so that the player can walk to this station.
+    public Vector2 StationPosition
     {
-        layerMask = LayerMask.GetMask("Station");
+        get => stationPosition;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Events & functions
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    private void Start()
+    {
+        layerStation = LayerMask.GetMask("Station");
+        layerGround = LayerMask.GetMask("Platform");
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
 
@@ -70,12 +84,9 @@ public class FormTransform : MonoBehaviour
     private void OnEnable()
     {
         paintFormAction = InputSystem.actions.FindAction("Paint");
-        Debug.Log(paintFormAction);
-        Debug.Log(isNearStation);
 
         if (paintFormAction != null)
         {
-            if (debugMode) Debug.Log("F is pressed");
             paintFormAction.performed += paintForm_performed;
             paintFormAction.canceled += paintForm_canceled;
         }
@@ -93,48 +104,77 @@ public class FormTransform : MonoBehaviour
 
     private void paintForm_performed(InputAction.CallbackContext context)
     {
-        if (!isNearStation) return;
-
-        isPaint = true;
-
-        // If player is in the same color/state as the station, still can use or not?
+        if (!isNearStation || isPaint) return;
 
         if (nearStationTag == stationTag[0])
         {
+            if (currentForm == formState.neutral) return;
+
             currentForm = formState.neutral;
+
         }
         else if (nearStationTag == stationTag[1])
         {
+            if (currentForm == formState.red) return;
+
             currentForm = formState.red;
         }
         else if (nearStationTag == stationTag[2])
         {
+            if (currentForm == formState.blue) return;
+
             currentForm = formState.blue;
         }
 
-        if (debugMode) Debug.Log("Painting");
-        if (debugMode) Debug.Log(currentForm);
+        isPaint = true;
+
+        // Invoke function to run to the station's position
+        // Change the render order of the character to be behind the paint station
+        // add activating the animation of paint station
+
+        if (debugMode)
+        {
+            Debug.Log(stationPosition);
+            Debug.Log("Painting");
+            Debug.Log(currentForm);
+        }
+    }
+
+    IEnumerator durationPainting()
+    {
+        yield return new WaitForSeconds(3f);
+        isPaint = false;
     }
 
     private void paintForm_canceled(InputAction.CallbackContext context)
     {
-        // i think the isPaint part needed to be control by a couroutine based on how long the player is in the station
-        // or control in a separate script for accuracy?
-        isPaint = false;
+        if(isPaint == true)
+        {
+            // Problem of calling it too many times as well
+            // Need to be control by the station script to toggle isPaint = false
+            // coroutine is temporary only
+            StartCoroutine(durationPainting());
 
-        if (debugMode) Debug.Log("Painting Done");
+            // Change the render order of the character to be infront the paint station
+
+            if (debugMode) Debug.Log("Painting Done");
+        }
+        else
+        {
+            if (debugMode) Debug.Log("Nothing's Happening");
+        }
     }
 
     private void detectNearestStation()
     {
         if(playerMovement.Horizontal != 0)
         {
-            direction = new Vector2(playerMovement.Horizontal, 0);
+            playerDirection = new Vector2(playerMovement.Horizontal, 0);
         }
 
-        RaycastHit2D hitStation = Physics2D.Raycast(transform.position, direction, detectDistance, layerMask);
+        RaycastHit2D hitStation = Physics2D.Raycast(transform.position, playerDirection, detectDistance, layerStation);
 
-        if (debugMode) Debug.DrawRay(transform.position, direction * detectDistance, Color.green);
+        if (debugMode) Debug.DrawRay(transform.position, playerDirection * detectDistance, Color.green);
 
         if (hitStation.collider != null)
         {
@@ -146,6 +186,29 @@ public class FormTransform : MonoBehaviour
             {
                 isNearStation = true;
                 nearStationTag = hitObjectTag;
+   
+                RaycastHit2D hitStationPosition = Physics2D.Raycast(hitStation.point, Vector2.down, Mathf.Infinity, layerGround);
+
+                // "Bounds" returns an axis-aligned bounding box (AABB) in world space
+                // "Extends" gives you half the size of the box on each axis
+                float playerHeightOffset = GetComponent<Collider2D>().bounds.extents.y;
+
+                stationPosition = new Vector2 (hitStationPosition.point.x, hitStationPosition.point.y + playerHeightOffset);
+
+                if (debugMode)
+                {
+                    // Create a cross on the station to highlight the hit
+                    Debug.DrawLine(hitStation.point + Vector2.up * 0.2f, hitStation.point - Vector2.up * 0.2f, Color.red, 1f);
+                    Debug.DrawLine(hitStation.point + Vector2.right * 0.2f, hitStation.point - Vector2.right * 0.2f, Color.red, 1f);
+
+                    // Create a line towards the ground collider
+                    Debug.DrawRay(hitStation.point, Vector2.down, Color.magenta);
+
+                    // Create a cross on the ground to highlight the hit
+                    Debug.DrawLine(hitStationPosition.point + Vector2.up * 0.2f, hitStationPosition.point - Vector2.up * 0.2f, Color.red, 1f);
+                    Debug.DrawLine(hitStationPosition.point + Vector2.right * 0.2f, hitStationPosition.point - Vector2.right * 0.2f, Color.red, 1f);
+                }
+
             }
             else
             {
