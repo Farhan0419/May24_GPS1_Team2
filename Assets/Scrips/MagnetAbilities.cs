@@ -20,7 +20,7 @@ public class MagnetAbilities : MonoBehaviour
     // Would there be more than one redgie in one scene?
         // if yes, do u allow transfer of force from one magnetic object to another?
 
-    // would the raycast be able to pass through walls / ground?
+    // would the interaction be able to pass through walls / ground even if its kinda horizontally alined??
    
 
     private InputAction interactMagneticObjects;
