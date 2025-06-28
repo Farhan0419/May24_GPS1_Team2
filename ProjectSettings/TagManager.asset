@@ -5,13 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - platform
-<<<<<<< Updated upstream
   - showerStation
   - redPaintStation
   - bluePaintStation
-=======
-  - Redgie
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
