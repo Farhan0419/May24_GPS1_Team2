@@ -8,6 +8,8 @@ TagManager:
   - showerStation
   - redPaintStation
   - bluePaintStation
+  - Redgie
+  - blueMagneticPlatform
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - UI
   - Platform
   - Station
-  - 
+  - MagneticObjects
   - 
   - 
   - 
