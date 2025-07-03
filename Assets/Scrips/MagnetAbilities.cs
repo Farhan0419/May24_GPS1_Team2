@@ -135,6 +135,10 @@ public class MagnetAbilities : MonoBehaviour
         if (isDetecting)
         {
             isInteracting = true;
+        } 
+        else
+        {
+            isInteracting = false;
         }
     }
 
@@ -148,6 +152,14 @@ public class MagnetAbilities : MonoBehaviour
         playerPosition = player.transform.position;
 
         hits = Physics2D.OverlapCircleAll(playerPosition, detectDistance, magneticObjects);
+
+        if(hits.Length == 0)
+        {
+            closestMagneticObjectPosition = 0;
+            closestMagneticObject = null;
+            isDetecting = false;
+            return;
+        }
 
         foreach (Collider2D hit in hits)
         {
@@ -228,8 +240,9 @@ public class MagnetAbilities : MonoBehaviour
             isTowardsPlayer = true;
         }
 
-        // movePosition doesnt react to gravity.... so how?
-        closestMagneticObjectRb.MovePosition(GetObjectMovePosition(isTowardsPlayer));
+        // use linearVecocity for continous movement
+        closestMagneticObjectRb.linearVelocity = new Vector2(-1 * 3, closestMagneticObjectRb.linearVelocity.y);
+        //closestMagneticObjectRb.MovePosition(GetObjectMovePosition(isTowardsPlayer));
     }
 
     private void OnDrawGizmos() 
@@ -248,6 +261,11 @@ public class MagnetAbilities : MonoBehaviour
         if (detectDistance < 1f)
         {
             detectDistance = 1f;
+        }
+
+        if (speedOfPushPullObjects < 0f)
+        {
+            speedOfPushPullObjects = 0.01f;
         }
     }
 

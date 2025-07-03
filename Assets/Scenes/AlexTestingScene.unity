@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dotProductThreshold: 0.6
-  detectDistance: 5
+  detectDistance: 10
   speedOfPushPullObjects: 0.1
   debugMode: 1
 --- !u!1 &1494645574
@@ -1650,7 +1650,9 @@ MonoBehaviour:
     m_Bits: 64
   speed: 8
   jumpPower: 8
+  LaunchPower: 50
   wallCheckRadius: 0.2
+  cameraSystem: {fileID: 0}
 --- !u!4 &6950422842042189660
 Transform:
   m_ObjectHideFlags: 0

@@ -359,7 +359,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      magnet_player_blue_form_0: -8052081215970942740
+      magnet_player_blue_form_1: -3334848646206752401
+      magnet_player_blue_form_2: 8874522496838608306
+      magnet_player_blue_form_3: -9041768266206758117
+      magnet_player_blue_form_4: -3685917659528464752
+      magnet_player_blue_form_5: 4807866050728739863
+      magnet_player_blue_form_6: -7867382118110700338
+      magnet_player_blue_form_7: -5709705973682462800
+      magnet_player_blue_form_8: -7617082501747863367
+      magnet_player_blue_form_9: -7895357203592158919
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

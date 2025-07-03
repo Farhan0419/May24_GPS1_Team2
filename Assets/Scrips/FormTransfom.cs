@@ -220,4 +220,12 @@ public class FormTransform : MonoBehaviour
             isNearStation = false;
         }
     }
+
+    private void OnValidate()
+    {
+        if (detectDistance < 1f)
+        {
+            detectDistance = 1f;
+        }
+    }
 }
