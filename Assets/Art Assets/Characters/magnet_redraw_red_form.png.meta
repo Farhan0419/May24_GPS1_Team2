@@ -359,7 +359,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      magnet_redraw_red_form_0: 1645000667433708828
+      magnet_redraw_red_form_1: -3247992611472138852
+      magnet_redraw_red_form_2: 5287183010553452227
+      magnet_redraw_red_form_3: -801309409495814672
+      magnet_redraw_red_form_4: -176529024444054137
+      magnet_redraw_red_form_5: -7008607831039061684
+      magnet_redraw_red_form_6: -8231417698222267693
+      magnet_redraw_red_form_7: 5800162308681260623
+      magnet_redraw_red_form_8: -6768716002794021752
+      magnet_redraw_red_form_9: -526342203936361798
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

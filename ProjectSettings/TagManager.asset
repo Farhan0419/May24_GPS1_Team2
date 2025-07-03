@@ -3,13 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags:
-  - platform
-  - showerStation
-  - redPaintStation
-  - bluePaintStation
-  - Redgie
-  - blueMagneticPlatform
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -17,11 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Platform
-  - Station
-  - MagneticObjects
-  - Pit
-  - RedPad
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
