@@ -4,7 +4,13 @@
 TagManager:
   serializedVersion: 3
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   tags: []
+=======
+  tags:
+  - Redgie
+  - platform
+>>>>>>> Stashed changes
 =======
   tags:
   - Redgie
@@ -18,7 +24,11 @@ TagManager:
   - Water
   - UI
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - 
+=======
+  - WALL
+>>>>>>> Stashed changes
 =======
   - WALL
 >>>>>>> Stashed changes
