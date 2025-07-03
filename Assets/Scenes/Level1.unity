@@ -1198,7 +1198,6 @@ MonoBehaviour:
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 --- !u!114 &705643071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1240,9 +1239,6 @@ CanvasGroup:
 =======
 --- !u!1 &1092432354
 >>>>>>> Stashed changes
-=======
---- !u!1 &1092432354
->>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1251,7 +1247,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   - component: {fileID: 1162802989}
   - component: {fileID: 1162802988}
   - component: {fileID: 1162802987}
@@ -1259,16 +1254,11 @@ GameObject:
   m_Layer: 5
   m_Name: Canvas
 =======
-=======
->>>>>>> Stashed changes
   - component: {fileID: 1092432355}
   - component: {fileID: 1092432357}
   - component: {fileID: 1092432356}
   m_Layer: 0
   m_Name: LaserBeam
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1276,13 +1266,8 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
 --- !u!114 &1162802986
 MonoBehaviour:
-=======
---- !u!4 &1092432355
-Transform:
->>>>>>> Stashed changes
 =======
 --- !u!4 &1092432355
 Transform:
@@ -1291,7 +1276,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 1162802985}
   m_Enabled: 1
@@ -1387,8 +1371,6 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 8659815829074844476}
   m_PrefabAsset: {fileID: 0}
 =======
-=======
->>>>>>> Stashed changes
   m_GameObject: {fileID: 1092432354}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -1469,9 +1451,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
 --- !u!1 &1353926861
 GameObject:
@@ -8385,16 +8364,12 @@ SceneRoots:
   - {fileID: 1845567251}
   - {fileID: 23147162}
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
   - {fileID: 5833406802451050406}
   - {fileID: 8659815829074844476}
   - {fileID: 3584040109685018985}
   - {fileID: 1930688833}
   - {fileID: 5227547414953523221}
   - {fileID: 165494503}
-=======
-  - {fileID: 517174739}
->>>>>>> Stashed changes
 =======
   - {fileID: 517174739}
 >>>>>>> Stashed changes
