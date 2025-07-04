@@ -26,7 +26,7 @@ public class FormTransform : MonoBehaviour
 
     private string[] stationTag = { "showerStation", "redPaintStation", "bluePaintStation" };
 
-    private int layerStation;
+    private int layerObjects;
     private int layerGround;
 
     private PlayerMovement playerMovement;
@@ -71,7 +71,7 @@ public class FormTransform : MonoBehaviour
 
     private void Start()
     {
-        layerStation = LayerMask.GetMask("Station");
+        layerObjects = LayerMask.GetMask("Station", "MagneticObjects");
         layerGround = LayerMask.GetMask("Platform");
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
     }
@@ -172,7 +172,7 @@ public class FormTransform : MonoBehaviour
             playerDirection = new Vector2(playerMovement.Horizontal, 0);
         }
 
-        RaycastHit2D hitStation = Physics2D.Raycast(transform.position, playerDirection, detectDistance, layerStation);
+        RaycastHit2D hitStation = Physics2D.Raycast(transform.position, playerDirection, detectDistance, layerObjects);
 
         if (debugMode) Debug.DrawRay(transform.position, playerDirection * detectDistance, Color.green);
 
