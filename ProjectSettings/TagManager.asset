@@ -11,6 +11,7 @@ TagManager:
   - Redgie
   - blueMagneticPlatform
   - Walll
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX

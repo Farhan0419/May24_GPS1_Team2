@@ -1,0 +1,481 @@
+fileFormatVersion: 2
+guid: a80dcae58fd90074c9cd556d918550b7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4037745320913614417
+    second: OneWayPlatInsController_0
+  - first:
+      213: 973586322856886732
+    second: OneWayPlatInsController_1
+  - first:
+      213: 8479216441813638786
+    second: OneWayPlatInsController_2
+  - first:
+      213: -6153379397520348075
+    second: OneWayPlatInsController_3
+  - first:
+      213: -7573499643346232999
+    second: OneWayPlatInsController_4
+  - first:
+      213: 6692552159296625864
+    second: OneWayPlatInsController_5
+  - first:
+      213: 3378129717772951759
+    second: OneWayPlatInsController_6
+  - first:
+      213: 6699727325537169027
+    second: OneWayPlatInsController_7
+  - first:
+      213: 3780000901571946037
+    second: OneWayPlatInsController_8
+  - first:
+      213: 5262375045008565545
+    second: OneWayPlatInsController_9
+  - first:
+      213: 8491861592207151318
+    second: OneWayPlatInsController_10
+  - first:
+      213: 8620890421163216100
+    second: OneWayPlatInsController_11
+  - first:
+      213: 273104275314857403
+    second: OneWayPlatInsController_12
+  - first:
+      213: -4388754637877004128
+    second: OneWayPlatInsController_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: OneWayPlatInsController_0
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 105
+        width: 49
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1563d8af9f3f80830800000000000000
+      internalID: 4037745320913614417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_1
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 124
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc140143a9fd28d00800000000000000
+      internalID: 973586322856886732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_2
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 123
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28e14f3dd6a3ca570800000000000000
+      internalID: 8479216441813638786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_3
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 77
+        width: 38
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55ca79a3a0eca9aa0800000000000000
+      internalID: -6153379397520348075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_4
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 101
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 959dcc3533685e690800000000000000
+      internalID: -7573499643346232999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_5
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 26
+        width: 179
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cc16afeab8b0ec50800000000000000
+      internalID: 6692552159296625864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_6
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 28
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc02c09841781ee20800000000000000
+      internalID: 3378129717772951759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_7
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 23
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38eee9281863afc50800000000000000
+      internalID: 6699727325537169027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_8
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 17
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5362adceac2457430800000000000000
+      internalID: 3780000901571946037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_9
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 29
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 925ad90e836b70940800000000000000
+      internalID: 5262375045008565545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_10
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 30
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d05a45502729d570800000000000000
+      internalID: 8491861592207151318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_11
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 16
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ec4001a92e83a770800000000000000
+      internalID: 8620890421163216100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_12
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 0
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb558c434e24ac300800000000000000
+      internalID: 273104275314857403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OneWayPlatInsController_13
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 2
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a83ef2d8e20813c0800000000000000
+      internalID: -4388754637877004128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      OneWayPlatInsController_0: 4037745320913614417
+      OneWayPlatInsController_1: 973586322856886732
+      OneWayPlatInsController_10: 8491861592207151318
+      OneWayPlatInsController_11: 8620890421163216100
+      OneWayPlatInsController_12: 273104275314857403
+      OneWayPlatInsController_13: -4388754637877004128
+      OneWayPlatInsController_2: 8479216441813638786
+      OneWayPlatInsController_3: -6153379397520348075
+      OneWayPlatInsController_4: -7573499643346232999
+      OneWayPlatInsController_5: 6692552159296625864
+      OneWayPlatInsController_6: 3378129717772951759
+      OneWayPlatInsController_7: 6699727325537169027
+      OneWayPlatInsController_8: 3780000901571946037
+      OneWayPlatInsController_9: 5262375045008565545
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
