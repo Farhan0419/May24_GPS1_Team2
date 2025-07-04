@@ -31,6 +31,8 @@ public class MagnetAbilities : MonoBehaviour
 
     private GameObject player;
 
+    private Rigidbody2D playerRB;
+
     private GameObject closestMagneticObject;
 
     private int magneticObjects;
@@ -47,15 +49,22 @@ public class MagnetAbilities : MonoBehaviour
 
     private Rigidbody2D closestMagneticObjectRb;
 
+    private float directionTowardsPlayer = 0;
+
     [SerializeField] private float dotProductThreshold = 0.6f;
 
-    [SerializeField] private float detectDistance = 5f;
+    [SerializeField] private float detectDistance = 10f;
 
-    [SerializeField] private float speedOfPushPullObjects = 0.1f;
+    [SerializeField] private float speedOfPushPullObjects = 5f;
 
     [SerializeField] private bool debugMode = true;
 
-    // this variable is for debugging purposes, to see what objects are being detected
+    [SerializeField] private float velocityThreshold = 0.01f;
+
+    [SerializeField] private float maxPlayerMass = 100f;
+
+    [SerializeField] private float minPlayerMass = 1f;
+
     private Collider2D[] hits;
 
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -79,6 +88,7 @@ public class MagnetAbilities : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
+        playerRB = player.GetComponent<Rigidbody2D>();
         magneticObjects = LayerMask.GetMask("MagneticObjects");
         playerMovement = player.GetComponent<PlayerMovement>();
         formTransform = player.GetComponent<FormTransform>();
@@ -93,8 +103,12 @@ public class MagnetAbilities : MonoBehaviour
     }
 
     private void Update()
-    {
-        detectMagneticObjects();
+    {   
+        if(Mathf.Abs(playerRB.linearVelocity.x) < velocityThreshold && Mathf.Abs(playerRB.linearVelocity.y) < velocityThreshold)
+        {
+            detectMagneticObjects();
+            //if (debugMode) Debug.Log("Not moving");
+        } 
     }
 
     private void OnEnable()
@@ -135,29 +149,61 @@ public class MagnetAbilities : MonoBehaviour
         if (isDetecting)
         {
             isInteracting = true;
+
+            // To avoid objects moving the player
+            playerRB.mass = maxPlayerMass;
+        } 
+        else
+        {
+            isInteracting = false;
+            playerRB.mass = minPlayerMass;
         }
     }
 
     private void interactMagneticObjects_canceled(InputAction.CallbackContext context)
     {
         isInteracting = false;
+        playerRB.mass = minPlayerMass;
     }
 
     private void detectMagneticObjects()
     {
         playerPosition = player.transform.position;
 
+        if (playerMovement.Horizontal != 0)
+        {
+            playerDirection = new Vector2(playerMovement.Horizontal, 0);
+        }
+
         hits = Physics2D.OverlapCircleAll(playerPosition, detectDistance, magneticObjects);
+
+        closestMagneticObjectPosition = 0;
+        closestMagneticObject = null;
+
+
+        if (debugMode)
+        {
+            // Get radian of cosine of angle then convert to degrees;
+            float offsetDegree = Mathf.Acos(dotProductThreshold) * Mathf.Rad2Deg;
+
+            // Convert the degrees to direction vectors
+            Vector2 leftDir = Quaternion.Euler(0, 0, offsetDegree) * playerDirection;
+            Vector2 rightDir = Quaternion.Euler(0, 0, -offsetDegree) * playerDirection;
+
+            Debug.DrawRay(playerPosition, leftDir * detectDistance, Color.blue);
+            Debug.DrawRay(playerPosition, rightDir * detectDistance, Color.blue);
+        }
+
+        if (hits.Length == 0)
+        {
+            isDetecting = false;
+            return;
+        }
 
         foreach (Collider2D hit in hits)
         {
 
             isDetecting = true;
-
-            if (playerMovement.Horizontal != 0)
-            {
-                playerDirection = new Vector2(playerMovement.Horizontal, 0);
-            }
 
             // gives a vector (distance & direction) that points from the player to the hit object. Then add normalize it to get the direction only
             Vector2 targetDirection = ((Vector2)hit.transform.position - playerPosition).normalized;
@@ -185,51 +231,40 @@ public class MagnetAbilities : MonoBehaviour
 
                 //if (debugMode) Debug.Log(closestMagneticObject);
             } 
-            else
-            {
-                closestMagneticObjectPosition = 0;
-                closestMagneticObject = null;
-                isDetecting = false;
-            }
-        }
-        
-
-        if (debugMode)
-        {
-            // Get radian of cosine of angle then convert to degrees;
-            float offsetDegree = Mathf.Acos(dotProductThreshold) * Mathf.Rad2Deg;
-
-            // Convert the degrees to direction vectors
-            Vector2 leftDir = Quaternion.Euler(0, 0, offsetDegree) * playerDirection;
-            Vector2 rightDir = Quaternion.Euler(0, 0, -offsetDegree) * playerDirection;
-
-            Debug.DrawRay(playerPosition, leftDir * detectDistance, Color.blue);
-            Debug.DrawRay(playerPosition, rightDir * detectDistance, Color.blue);
         }
     }
 
-    private Vector2 GetObjectMovePosition(bool isTowards)
+    private void changeDirectionMagneticObject(string ability)
     {
-        return Vector2.MoveTowards(closestMagneticObjectRb.position, playerPosition, isTowards ? speedOfPushPullObjects : -speedOfPushPullObjects);
+        if (ability == "pull")
+        {
+            directionTowardsPlayer = -(playerDirection.x);
+        }
+        else if (ability == "push")
+        {
+            directionTowardsPlayer = playerDirection.x;
+        }
     }
-    
+
     private void pushPullMagneticObject()
     {
         if (closestMagneticObject == null) return;
 
-        bool isTowardsPlayer = false;
-
         if (closestMagneticObject.tag.ToLower().Contains("red") && formTransform.CurrentForm == FormTransform.formState.blue)
         {
-            isTowardsPlayer = true;
+            changeDirectionMagneticObject("pull");
         }
         else if (closestMagneticObject.tag.ToLower().Contains("blue") && formTransform.CurrentForm == FormTransform.formState.red)
         {
-            isTowardsPlayer = true;
+            changeDirectionMagneticObject("pull");
+        }
+        else
+        {
+            changeDirectionMagneticObject("push");
         }
 
-        // movePosition doesnt react to gravity.... so how?
-        closestMagneticObjectRb.MovePosition(GetObjectMovePosition(isTowardsPlayer));
+        // use linearVecocity for continous movement
+        closestMagneticObjectRb.linearVelocity = new Vector2(directionTowardsPlayer * speedOfPushPullObjects, closestMagneticObjectRb.linearVelocity.y);
     }
 
     private void OnDrawGizmos() 
@@ -248,6 +283,11 @@ public class MagnetAbilities : MonoBehaviour
         if (detectDistance < 1f)
         {
             detectDistance = 1f;
+        }
+
+        if (speedOfPushPullObjects < 0f)
+        {
+            speedOfPushPullObjects = 0.01f;
         }
     }
 
