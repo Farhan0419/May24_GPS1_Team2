@@ -99,8 +99,13 @@ public class MagnetAbilities : MonoBehaviour
     }
 
     private void Update()
-    {   
-        if(Mathf.Abs(playerRB.linearVelocity.x) < velocityThreshold && Mathf.Abs(playerRB.linearVelocity.y) < velocityThreshold)
+    {
+        if (playerMovement.Horizontal != 0)
+        {
+            playerDirection = new Vector2(playerMovement.Horizontal, 0);
+        }
+
+        if (Mathf.Abs(playerRB.linearVelocity.x) < velocityThreshold && Mathf.Abs(playerRB.linearVelocity.y) < velocityThreshold)
         {
             detectMagneticObjects();
             //if (debugMode) Debug.Log("Not moving");
@@ -165,11 +170,6 @@ public class MagnetAbilities : MonoBehaviour
     private void detectMagneticObjects()
     {
         playerPosition = playerObjectDetector.transform.position;
-
-        if (playerMovement.Horizontal != 0)
-        {
-            playerDirection = new Vector2(playerMovement.Horizontal, 0);
-        }
 
         hits = Physics2D.OverlapCircleAll(playerPosition, detectDistance, magneticObjects);
 

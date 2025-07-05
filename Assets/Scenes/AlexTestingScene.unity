@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 216553828}
   - component: {fileID: 216553829}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: objectDetectee
   m_TagString: ObjectDetectee
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 932796578}
   - component: {fileID: 932796577}
   - component: {fileID: 932796576}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RedBlock (1)
   m_TagString: Redgie
   m_Icon: {fileID: 0}
@@ -957,7 +957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1151917687}
   - component: {fileID: 1151917688}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: objectDetectee
   m_TagString: ObjectDetectee
   m_Icon: {fileID: 0}
@@ -1027,7 +1027,7 @@ GameObject:
   - component: {fileID: 1309629659}
   - component: {fileID: 1309629658}
   - component: {fileID: 1309629657}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RedBlock (2)
   m_TagString: Redgie
   m_Icon: {fileID: 0}
@@ -1188,7 +1188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1315498033}
   - component: {fileID: 1315498034}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: objectDetectee
   m_TagString: ObjectDetectee
   m_Icon: {fileID: 0}
@@ -1279,7 +1279,7 @@ GameObject:
   - component: {fileID: 1494645576}
   - component: {fileID: 1494645575}
   - component: {fileID: 1494645578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RedBlock
   m_TagString: Redgie
   m_Icon: {fileID: 0}
@@ -1471,7 +1471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2085328182}
   - component: {fileID: 2085328183}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: objectDetectee
   m_TagString: ObjectDetectee
   m_Icon: {fileID: 0}
@@ -1541,7 +1541,7 @@ GameObject:
   - component: {fileID: 2118066005}
   - component: {fileID: 2118066004}
   - component: {fileID: 2118066003}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RedBlock (3)
   m_TagString: Redgie
   m_Icon: {fileID: 0}
