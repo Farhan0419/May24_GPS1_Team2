@@ -35,8 +35,13 @@ public class FormTransform : MonoBehaviour
 
     private Vector2 stationPosition;
 
-    [SerializeField] private bool debugMode = true;
+    private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private Sprite neutralCharSprite;
+    [SerializeField] private Sprite redCharSprite;
+    [SerializeField] private Sprite blueCharSprite;
+
+    [SerializeField] private bool debugMode = true;
 
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // GET & SET METHODS
@@ -74,6 +79,7 @@ public class FormTransform : MonoBehaviour
         layerObjects = LayerMask.GetMask("Station", "MagneticObjects");
         layerGround = LayerMask.GetMask("Platform");
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        spriteRenderer = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -111,6 +117,7 @@ public class FormTransform : MonoBehaviour
             if (currentForm == formState.neutral) return;
 
             currentForm = formState.neutral;
+            spriteRenderer.sprite = neutralCharSprite;
 
         }
         else if (nearStationTag == stationTag[1])
@@ -118,12 +125,14 @@ public class FormTransform : MonoBehaviour
             if (currentForm == formState.red) return;
 
             currentForm = formState.red;
+            spriteRenderer.sprite = redCharSprite;
         }
         else if (nearStationTag == stationTag[2])
         {
             if (currentForm == formState.blue) return;
 
             currentForm = formState.blue;
+            spriteRenderer.sprite = blueCharSprite;
         }
 
         isPaint = true;
