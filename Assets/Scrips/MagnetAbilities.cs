@@ -6,23 +6,6 @@ using System.Collections;
 
 public class MagnetAbilities : MonoBehaviour
 {
-    // Is the interact distance same as the interact distance with station?
-    // Can the player interact with the magnetic objects while moving?
-        // If so, player need to lock player direction while interacting, pushing no problem but pulling would be a problem.
-        // Need to lock the object interacting so that when another object is closer, dont switch interaction to another object
-            // Maybe put it into a separate layer? then  when stop interacting then switch to "MagneticObjects" layer
-    // Can player jump, and pull/push ?
-    // If player towards redgie, would he get blocked by him or walk through him?
-        // If he gets blocked, then the autoMove to paintStation would not work
-        // Farhan onGroundCheck needs to consider the magnetic objects as ground, so that the player can jump off of them.
-    // Would magnetic object be  react to gravity when pulling/pushing? or not they would just move in the direction of the player until let go then gravity affects it?
-
-    // Would there be more than one redgie in one scene?
-        // if yes, do u allow transfer of force from one magnetic object to another?
-
-    // would the interaction be able to pass through walls / ground even if its kinda horizontally alined??
-   
-
     private InputAction interactMagneticObjects;
 
     private bool isInteracting = false;
@@ -30,6 +13,8 @@ public class MagnetAbilities : MonoBehaviour
     private bool isDetecting = false;
 
     private GameObject player;
+
+    private GameObject playerObjectDetector;
 
     private Rigidbody2D playerRB;
 
@@ -50,6 +35,10 @@ public class MagnetAbilities : MonoBehaviour
     private Rigidbody2D closestMagneticObjectRb;
 
     private float directionTowardsPlayer = 0;
+
+    private float circleCastSize = 0.01f;
+
+    private int detectionObjects;
 
     [SerializeField] private float dotProductThreshold = 0.6f;
 
@@ -92,10 +81,13 @@ public class MagnetAbilities : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
+        playerObjectDetector = GameObject.FindWithTag("ObjectDetector");
         playerRB = player.GetComponent<Rigidbody2D>();
-        magneticObjects = LayerMask.GetMask("MagneticObjects");
         playerMovement = player.GetComponent<PlayerMovement>();
         formTransform = player.GetComponent<FormTransform>();
+
+        magneticObjects = LayerMask.GetMask("ObjectDetectee");
+        detectionObjects = LayerMask.GetMask("ObjectDetectee", "Platform");
     }
 
     private void FixedUpdate()
@@ -172,7 +164,7 @@ public class MagnetAbilities : MonoBehaviour
 
     private void detectMagneticObjects()
     {
-        playerPosition = player.transform.position;
+        playerPosition = playerObjectDetector.transform.position;
 
         if (playerMovement.Horizontal != 0)
         {
@@ -213,8 +205,6 @@ public class MagnetAbilities : MonoBehaviour
         foreach (Collider2D hit in hits)
         {
 
-            isDetecting = true;
-
             // gives a vector (distance & direction) that points from the player to the hit object. Then add normalize it to get the direction only
             Vector2 targetDirection = ((Vector2)hit.transform.position - playerPosition).normalized;
 
@@ -226,22 +216,40 @@ public class MagnetAbilities : MonoBehaviour
             {
                 float currentMagneticObjectPosition = Vector2.Distance(playerPosition, hit.gameObject.transform.position);
 
-                if (closestMagneticObjectPosition == 0)
-                {
-                    closestMagneticObjectPosition = currentMagneticObjectPosition;
-                    closestMagneticObject = hit.gameObject;
-                    closestMagneticObjectRb = closestMagneticObject.GetComponent<Rigidbody2D>();
-                    closestMagneticObjectRb.mass = maxObjectMass;
-                }
-                else if (closestMagneticObjectPosition > currentMagneticObjectPosition)
-                {
-                    closestMagneticObjectPosition = currentMagneticObjectPosition;
-                    closestMagneticObject = hit.gameObject;
-                    closestMagneticObjectRb = closestMagneticObject.GetComponent<Rigidbody2D>();
-                    closestMagneticObjectRb.mass = maxObjectMass;
-                }
+                RaycastHit2D objectHit = Physics2D.CircleCast(playerPosition, circleCastSize, targetDirection, detectDistance, detectionObjects);
 
-                //if (debugMode) Debug.Log(closestMagneticObject);
+                if (debugMode) Debug.DrawRay(playerPosition, targetDirection * detectDistance, Color.cyan);
+
+                if (objectHit.collider != null)
+                {
+                    if (objectHit.collider.tag == "ObjectDetectee")
+                    {
+                        if (closestMagneticObjectPosition == 0)
+                        {
+                            closestMagneticObjectPosition = currentMagneticObjectPosition;
+                            closestMagneticObject = hit.gameObject;
+                            closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
+                            closestMagneticObjectRb.mass = maxObjectMass;
+                            isDetecting = true;
+                        }
+                        else if (closestMagneticObjectPosition > currentMagneticObjectPosition)
+                        {
+                            closestMagneticObjectPosition = currentMagneticObjectPosition;
+                            closestMagneticObject = hit.gameObject;
+                            closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
+                            closestMagneticObjectRb.mass = maxObjectMass;
+                            isDetecting = true;
+                        }
+                    }
+                    else
+                    {
+                        //if (debugMode) Debug.Log(objectHit.collider.name);
+                    }
+                } 
+                else
+                {
+                    //if (debugMode) Debug.Log("collide null");
+                }
             }
         }
     }
@@ -262,11 +270,11 @@ public class MagnetAbilities : MonoBehaviour
     {
         if (closestMagneticObject == null) return;
 
-        if (closestMagneticObject.tag.ToLower().Contains("red") && formTransform.CurrentForm == FormTransform.formState.blue)
+        if (closestMagneticObject.transform.parent.tag.ToLower().Contains("red") && formTransform.CurrentForm == FormTransform.formState.blue)
         {
             changeDirectionMagneticObject("pull");
         }
-        else if (closestMagneticObject.tag.ToLower().Contains("blue") && formTransform.CurrentForm == FormTransform.formState.red)
+        else if (closestMagneticObject.transform.parent.tag.ToLower().Contains("blue") && formTransform.CurrentForm == FormTransform.formState.red)
         {
             changeDirectionMagneticObject("pull");
         }

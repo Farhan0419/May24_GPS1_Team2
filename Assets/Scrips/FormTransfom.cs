@@ -24,7 +24,7 @@ public class FormTransform : MonoBehaviour
     [SerializeField] private float detectDistance = 5f;
     private string nearStationTag;
 
-    private string[] stationTag = { "showerStation", "redPaintStation", "bluePaintStation" };
+    private string[] stationTag = { "ShowerStation", "RedPaintStation", "BluePaintStation" };
 
     private int layerObjects;
     private int layerGround;
