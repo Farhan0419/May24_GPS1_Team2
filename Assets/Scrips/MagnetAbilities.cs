@@ -65,6 +65,10 @@ public class MagnetAbilities : MonoBehaviour
 
     [SerializeField] private float minPlayerMass = 1f;
 
+    [SerializeField] private float maxObjectMass = 100f;
+
+    [SerializeField] private float minObjectMass = 1f;
+
     private Collider2D[] hits;
 
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -177,8 +181,14 @@ public class MagnetAbilities : MonoBehaviour
 
         hits = Physics2D.OverlapCircleAll(playerPosition, detectDistance, magneticObjects);
 
+        if (closestMagneticObjectRb)
+        {
+            closestMagneticObjectRb.mass = minObjectMass;
+        }
+
         closestMagneticObjectPosition = 0;
         closestMagneticObject = null;
+        closestMagneticObjectRb = null;
 
 
         if (debugMode)
@@ -221,16 +231,18 @@ public class MagnetAbilities : MonoBehaviour
                     closestMagneticObjectPosition = currentMagneticObjectPosition;
                     closestMagneticObject = hit.gameObject;
                     closestMagneticObjectRb = closestMagneticObject.GetComponent<Rigidbody2D>();
+                    closestMagneticObjectRb.mass = maxObjectMass;
                 }
                 else if (closestMagneticObjectPosition > currentMagneticObjectPosition)
                 {
                     closestMagneticObjectPosition = currentMagneticObjectPosition;
                     closestMagneticObject = hit.gameObject;
                     closestMagneticObjectRb = closestMagneticObject.GetComponent<Rigidbody2D>();
+                    closestMagneticObjectRb.mass = maxObjectMass;
                 }
 
                 //if (debugMode) Debug.Log(closestMagneticObject);
-            } 
+            }
         }
     }
 
@@ -262,6 +274,8 @@ public class MagnetAbilities : MonoBehaviour
         {
             changeDirectionMagneticObject("push");
         }
+
+        closestMagneticObjectRb.mass = minObjectMass;
 
         // use linearVecocity for continous movement
         closestMagneticObjectRb.linearVelocity = new Vector2(directionTowardsPlayer * speedOfPushPullObjects, closestMagneticObjectRb.linearVelocity.y);

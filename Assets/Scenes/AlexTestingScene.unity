@@ -1221,6 +1221,8 @@ MonoBehaviour:
   velocityThreshold: 0.01
   maxPlayerMass: 100
   minPlayerMass: 1
+  maxObjectMass: 100
+  minObjectMass: 1
 --- !u!1 &1494645574
 GameObject:
   m_ObjectHideFlags: 0
