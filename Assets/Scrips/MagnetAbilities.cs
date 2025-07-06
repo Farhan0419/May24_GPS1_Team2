@@ -6,6 +6,8 @@ using System.Collections;
 
 public class MagnetAbilities : MonoBehaviour
 {
+    // Bug - because of velocity, the block would take some time to stop, it would effect the indicator position as well, not aligned with the object position
+
     private InputAction interactMagneticObjects;
 
     private bool isInteracting = false;
@@ -28,7 +30,9 @@ public class MagnetAbilities : MonoBehaviour
 
     private Vector2 playerDirection;
 
-    private float closestMagneticObjectPosition;
+    private float closestMagneticObjectDistance;
+
+    private Vector2 closestMagneticObjectPosition;
 
     private FormTransform formTransform;
 
@@ -39,6 +43,8 @@ public class MagnetAbilities : MonoBehaviour
     private float circleCastSize = 0.01f;
 
     private int detectionObjects;
+
+    private GameObject currentIndicator;
 
     [SerializeField] private float dotProductThreshold = 0.6f;
 
@@ -58,6 +64,12 @@ public class MagnetAbilities : MonoBehaviour
 
     [SerializeField] private float minObjectMass = 1f;
 
+    [SerializeField] private GameObject eControls;
+
+    [SerializeField] private float indicatorYOffset = -5f;
+
+    [SerializeField] private float indicatorXOffset = 0f;
+
     private Collider2D[] hits;
 
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -72,6 +84,11 @@ public class MagnetAbilities : MonoBehaviour
     public bool IsInteracting
     {
         get => isInteracting;
+    }
+
+    public Vector2 ClosestMagneticObjectPosition
+    {
+        get => closestMagneticObjectPosition;
     }
 
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -105,11 +122,21 @@ public class MagnetAbilities : MonoBehaviour
             playerDirection = new Vector2(playerMovement.Horizontal, 0);
         }
 
+        // if player is not moving, then check for magnetic objects
         if (Mathf.Abs(playerRB.linearVelocity.x) < velocityThreshold && Mathf.Abs(playerRB.linearVelocity.y) < velocityThreshold)
         {
             detectMagneticObjects();
-            //if (debugMode) Debug.Log("Not moving");
         } 
+
+        if(isDetecting && !isInteracting && currentIndicator == null)
+        {
+            Vector2 indicatorPosition = new Vector2(closestMagneticObjectPosition.x + indicatorXOffset, closestMagneticObjectPosition.y + indicatorYOffset);
+            currentIndicator = Instantiate(eControls, indicatorPosition, Quaternion.identity);
+        }
+        else if ((!isDetecting || isInteracting)  && currentIndicator != null)
+        {
+            Destroy(currentIndicator);
+        }
     }
 
     private void OnEnable()
@@ -167,21 +194,37 @@ public class MagnetAbilities : MonoBehaviour
         playerRB.mass = minPlayerMass;
     }
 
+    private void setValuesOnDetection(Collider2D hit, float currentMagneticObjectDistance)
+    {
+        closestMagneticObjectDistance = currentMagneticObjectDistance;
+        closestMagneticObjectPosition = hit.gameObject.transform.position;
+        closestMagneticObject = hit.gameObject;
+        closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
+        closestMagneticObjectRb.mass = maxObjectMass;
+        isDetecting = true;
+    }
+
+    private void resetValuesOnDetection()
+    {
+        closestMagneticObjectDistance = 0;
+        closestMagneticObject = null;
+        closestMagneticObjectRb = null;
+        closestMagneticObjectPosition = Vector2.zero;
+    }
+
     private void detectMagneticObjects()
     {
         playerPosition = playerObjectDetector.transform.position;
 
         hits = Physics2D.OverlapCircleAll(playerPosition, detectDistance, magneticObjects);
 
+        // BUG - this one need to be set once, shouldnt be here
         if (closestMagneticObjectRb)
         {
             closestMagneticObjectRb.mass = minObjectMass;
         }
 
-        closestMagneticObjectPosition = 0;
-        closestMagneticObject = null;
-        closestMagneticObjectRb = null;
-
+        resetValuesOnDetection();
 
         if (debugMode)
         {
@@ -214,7 +257,7 @@ public class MagnetAbilities : MonoBehaviour
 
             if (dotProduct >= dotProductThreshold)
             {
-                float currentMagneticObjectPosition = Vector2.Distance(playerPosition, hit.gameObject.transform.position);
+                float currentMagneticObjectDistance = Vector2.Distance(playerPosition, hit.gameObject.transform.position);
 
                 RaycastHit2D objectHit = Physics2D.CircleCast(playerPosition, circleCastSize, targetDirection, detectDistance, detectionObjects);
 
@@ -224,32 +267,32 @@ public class MagnetAbilities : MonoBehaviour
                 {
                     if (objectHit.collider.tag == "ObjectDetectee")
                     {
-                        if (closestMagneticObjectPosition == 0)
+                        if (closestMagneticObjectDistance == 0)
                         {
-                            closestMagneticObjectPosition = currentMagneticObjectPosition;
-                            closestMagneticObject = hit.gameObject;
-                            closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
-                            closestMagneticObjectRb.mass = maxObjectMass;
-                            isDetecting = true;
+                            setValuesOnDetection(hit, currentMagneticObjectDistance);
                         }
-                        else if (closestMagneticObjectPosition > currentMagneticObjectPosition)
+                        else if (closestMagneticObjectDistance > currentMagneticObjectDistance)
                         {
-                            closestMagneticObjectPosition = currentMagneticObjectPosition;
-                            closestMagneticObject = hit.gameObject;
-                            closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
-                            closestMagneticObjectRb.mass = maxObjectMass;
-                            isDetecting = true;
+                            setValuesOnDetection(hit, currentMagneticObjectDistance);
                         }
                     }
                     else
                     {
+                        isDetecting = false;
+                        
                         //if (debugMode) Debug.Log(objectHit.collider.name);
                     }
                 } 
                 else
                 {
+                    isDetecting = false;
+
                     //if (debugMode) Debug.Log("collide null");
                 }
+            }
+            else
+            {
+                isDetecting = false;
             }
         }
     }

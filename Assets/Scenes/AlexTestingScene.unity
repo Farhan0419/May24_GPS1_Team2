@@ -1267,6 +1267,9 @@ MonoBehaviour:
   minPlayerMass: 1
   maxObjectMass: 100
   minObjectMass: 1
+  eControls: {fileID: 5521508550200204032, guid: 877c3889ef049d34496c49421ea1c2e7, type: 3}
+  indicatorYOffset: -2
+  indicatorXOffset: 0
 --- !u!1 &1494645574
 GameObject:
   m_ObjectHideFlags: 0
