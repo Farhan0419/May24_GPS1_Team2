@@ -11,6 +11,7 @@ public class Level1Script : MonoBehaviour
 
     void Update()
     {
+        // Input instructions -------------------------------------------------------------------------------------==
         var lastDevice = InputSystem.devices.FirstOrDefault(d => d.lastUpdateTime == InputSystem.devices.Max(d => d.lastUpdateTime));
 
         if (lastDevice != null)
@@ -40,5 +41,6 @@ public class Level1Script : MonoBehaviour
         {
             Debug.Log("No input device detected");
         }
+        // ------------------------------------------------------------------------------------------------------------
     }
 }

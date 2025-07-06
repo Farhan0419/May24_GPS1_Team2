@@ -5,6 +5,8 @@ public class RedgieScript : MonoBehaviour
     private Vector3 OriginalPos;
     public float LaunchPower = 20f;
     public Rigidbody2D rb;
+    private bool isJumping = false;
+    private float jumpTimer = 0;
     void Start()
     {
         OriginalPos = transform.position;
@@ -21,7 +23,23 @@ public class RedgieScript : MonoBehaviour
         else if (other.gameObject.layer == LayerMask.NameToLayer("RedPad"))
         {
             // jump pad
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, LaunchPower);
+            rb.linearVelocity = new Vector2(0f, LaunchPower);
+            isJumping = true;
         }
+    }
+    private void Update()
+    {
+        // ------ Red Pad --------//
+        if (isJumping)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y); // Blocking X movement so redgie doesnt jump sideways
+            jumpTimer += Time.deltaTime;
+        }
+        if (jumpTimer >= 1f)
+        {
+            isJumping = false;
+            jumpTimer = 0f;
+        }
+        // -----------------------//
     }
 }

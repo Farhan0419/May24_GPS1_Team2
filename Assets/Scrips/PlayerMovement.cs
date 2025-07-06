@@ -29,6 +29,11 @@ public class PlayerMovement : MonoBehaviour
     {
         get => horizontal;
     }
+
+    public bool getDirection()
+    {
+        return isFacingRight;
+    }
     private void Start()
     {
         formTransform = GetComponent<FormTransform>();
