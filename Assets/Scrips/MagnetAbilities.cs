@@ -32,7 +32,9 @@ public class MagnetAbilities : MonoBehaviour
 
     private float closestMagneticObjectDistance;
 
-    private Vector2 closestMagneticObjectPosition;
+    private Vector2 closestMagneticObjectPosition = Vector2.zero;
+
+    private Vector2 previousClosestMagneticObjectPosition = Vector2.zero;
 
     private FormTransform formTransform;
 
@@ -40,7 +42,6 @@ public class MagnetAbilities : MonoBehaviour
 
     private float directionTowardsPlayer = 0;
 
-    private float circleCastSize = 0.01f;
 
     private int detectionObjects;
 
@@ -52,7 +53,7 @@ public class MagnetAbilities : MonoBehaviour
 
     [SerializeField] private float speedOfPushPullObjects = 5f;
 
-    [SerializeField] private bool debugMode = true;
+    [SerializeField] private float circleCastSize = 0.01f;
 
     [SerializeField] private float velocityThreshold = 0.01f;
 
@@ -69,6 +70,8 @@ public class MagnetAbilities : MonoBehaviour
     [SerializeField] private float indicatorYOffset = -5f;
 
     [SerializeField] private float indicatorXOffset = 0f;
+
+    [SerializeField] private bool debugMode = true;
 
     private Collider2D[] hits;
 
@@ -196,12 +199,13 @@ public class MagnetAbilities : MonoBehaviour
 
     private void setValuesOnDetection(Collider2D hit, float currentMagneticObjectDistance)
     {
+        previousClosestMagneticObjectPosition = closestMagneticObjectPosition;
+
         closestMagneticObjectDistance = currentMagneticObjectDistance;
         closestMagneticObjectPosition = hit.gameObject.transform.position;
         closestMagneticObject = hit.gameObject;
         closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
         closestMagneticObjectRb.mass = maxObjectMass;
-        isDetecting = true;
     }
 
     private void resetValuesOnDetection()
@@ -224,7 +228,6 @@ public class MagnetAbilities : MonoBehaviour
             closestMagneticObjectRb.mass = minObjectMass;
         }
 
-        resetValuesOnDetection();
 
         if (debugMode)
         {
@@ -244,6 +247,10 @@ public class MagnetAbilities : MonoBehaviour
             isDetecting = false;
             return;
         }
+
+        resetValuesOnDetection();
+
+        bool foundValidObject = false;
 
         foreach (Collider2D hit in hits)
         {
@@ -267,34 +274,18 @@ public class MagnetAbilities : MonoBehaviour
                 {
                     if (objectHit.collider.tag == "ObjectDetectee")
                     {
-                        if (closestMagneticObjectDistance == 0)
+                        if (closestMagneticObjectDistance == 0 || closestMagneticObjectDistance > currentMagneticObjectDistance)
                         {
                             setValuesOnDetection(hit, currentMagneticObjectDistance);
                         }
-                        else if (closestMagneticObjectDistance > currentMagneticObjectDistance)
-                        {
-                            setValuesOnDetection(hit, currentMagneticObjectDistance);
-                        }
-                    }
-                    else
-                    {
-                        isDetecting = false;
-                        
-                        //if (debugMode) Debug.Log(objectHit.collider.name);
+
+                        foundValidObject = true;
                     }
                 } 
-                else
-                {
-                    isDetecting = false;
-
-                    //if (debugMode) Debug.Log("collide null");
-                }
-            }
-            else
-            {
-                isDetecting = false;
             }
         }
+
+        isDetecting = foundValidObject;
     }
 
     private void changeDirectionMagneticObject(string ability)

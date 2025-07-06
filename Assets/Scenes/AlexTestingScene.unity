@@ -1261,7 +1261,7 @@ MonoBehaviour:
   dotProductThreshold: 0.6
   detectDistance: 10
   speedOfPushPullObjects: 1
-  debugMode: 1
+  circleCastSize: 0.01
   velocityThreshold: 0.01
   maxPlayerMass: 100
   minPlayerMass: 1
@@ -1270,6 +1270,7 @@ MonoBehaviour:
   eControls: {fileID: 5521508550200204032, guid: 877c3889ef049d34496c49421ea1c2e7, type: 3}
   indicatorYOffset: -2
   indicatorXOffset: 0
+  debugMode: 1
 --- !u!1 &1494645574
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,6 +2058,9 @@ MonoBehaviour:
   neutralCharSprite: {fileID: -6308607571057329287, guid: f72d46c6f4b22be4d8735ffa63a2778f, type: 3}
   redCharSprite: {fileID: 1645000667433708828, guid: e48ce59391f0d844d8663cc534062a94, type: 3}
   blueCharSprite: {fileID: -8052081215970942740, guid: 68a565505c3d55648bb7cab807740f21, type: 3}
+  fControls: {fileID: 5555912421142601800, guid: f98d881539af8d04f9446e960626ba17, type: 3}
+  indicatorYOffset: -2
+  indicatorXOffset: 0.5
   debugMode: 1
 --- !u!1 &5204845665095627499
 GameObject:

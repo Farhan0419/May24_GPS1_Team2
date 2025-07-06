@@ -37,9 +37,17 @@ public class FormTransform : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private GameObject currentIndicator;
+
     [SerializeField] private Sprite neutralCharSprite;
     [SerializeField] private Sprite redCharSprite;
     [SerializeField] private Sprite blueCharSprite;
+
+    [SerializeField] private GameObject fControls;
+
+    [SerializeField] private float indicatorYOffset = -5f;
+
+    [SerializeField] private float indicatorXOffset = 0f;
 
     [SerializeField] private bool debugMode = true;
 
@@ -90,6 +98,16 @@ public class FormTransform : MonoBehaviour
     private void Update()
     {
         detectNearestStation();
+
+        if (isNearStation && !isPaint && currentIndicator == null)
+        {
+            Vector2 indicatorPosition = new Vector2(stationPosition.x + indicatorXOffset, stationPosition.y + indicatorYOffset);
+            currentIndicator = Instantiate(fControls, indicatorPosition, Quaternion.identity);
+        }
+        else if ((!isNearStation || isPaint) && currentIndicator != null)
+        {
+            Destroy(currentIndicator);
+        }
     }
 
     private void OnEnable()
