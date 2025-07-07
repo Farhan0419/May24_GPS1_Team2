@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8947055594095596430}
   m_Layer: 7
   m_Name: BluePaintStation
-  m_TagString: bluePaintStation
+  m_TagString: BluePaintStation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

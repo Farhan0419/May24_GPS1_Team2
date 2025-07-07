@@ -12,7 +12,7 @@ public class HydraulicPressGameObject : MonoBehaviour
     private Vector2 startPos;
     private bool isPressing = false;
     private bool isReturning = false;
-    public GameObject CrusherParticle;
+    //public GameObject CrusherParticle;
 
     [SerializeField] private PlayerDeath deathScript;
 
@@ -66,8 +66,8 @@ public class HydraulicPressGameObject : MonoBehaviour
     {
         if (isPressing && collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
-            deathScript.PlayerDead("Crusher");
+            deathScript.PlayerDead("Crush");
+            //Destroy(collision.gameObject);
 
         }
     }
@@ -79,15 +79,15 @@ public class HydraulicPressGameObject : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (IsTouchingGround())
-        {
-            CrusherParticle.SetActive(true);
-        }
-        else
-        {
-            CrusherParticle.SetActive(false);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (IsTouchingGround())
+    //    {
+    //        CrusherParticle.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        CrusherParticle.SetActive(false);
+    //    }
+    //}
 }

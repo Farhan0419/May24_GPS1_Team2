@@ -18273,6 +18273,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedPaintStation
       objectReference: {fileID: 0}
+    - target: {fileID: 294421056053733362, guid: 9537d3df6bde11b41b74a93f7dc80333, type: 3}
+      propertyPath: m_TagString
+      value: RedPaintStation
+      objectReference: {fileID: 0}
     - target: {fileID: 7186338132560860150, guid: 9537d3df6bde11b41b74a93f7dc80333, type: 3}
       propertyPath: m_LocalPosition.x
       value: 37.7304
