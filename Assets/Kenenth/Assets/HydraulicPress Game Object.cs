@@ -13,14 +13,29 @@ public class HydraulicPressGameObject : MonoBehaviour
     private bool isPressing = false;
     private bool isReturning = false;
     //public ParticleSystem CrusherParticle;
-
+    public float waitForBeforeStarting;
+    private float timer = 0;
+    private bool timerOn = true;
     [SerializeField] private PlayerDeath deathScript;
+    private PlayerMovement PlayerScript;
 
     private void Start()
     {
-        
         startPos = transform.position;
-        StartCoroutine(PressRoutine());
+        //StartCoroutine(PressRoutine());
+    }
+    private void Update()
+    {
+        if (timerOn)
+        {
+            timer += Time.deltaTime;
+        }
+        if (timer >= waitForBeforeStarting)
+        {
+            timerOn = false;
+            StartCoroutine(PressRoutine());
+            timer = 0;
+        }
     }
 
     private System.Collections.IEnumerator PressRoutine()
@@ -74,7 +89,8 @@ public class HydraulicPressGameObject : MonoBehaviour
         {
             deathScript.PlayerDead("Crush");
             //Destroy(collision.gameObject);
-
+            PlayerScript = collision.gameObject.GetComponent<PlayerMovement>();
+            PlayerScript.DisablePlayerMovement();
         }
     }
 
