@@ -3,7 +3,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using System.Linq;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
+using TMPro;
 using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
@@ -24,12 +25,12 @@ public class DialogueSystem : MonoBehaviour
 
     private InputAction nextConversation;
 
-    private Text dialogueText;
+    [SerializeField] private TextMeshProUGUI dialogueText;
 
-    private GameObject dialogueSystem;
+    [SerializeField] private GameObject dialogueSystem;
 
     [SerializeField] private float dialogueDetectionRadius = 5f;
-    [SerializeField] private GameObject dialogueBox;
+    //[SerializeField] private GameObject dialogueBox;
     [SerializeField] private float widthDialogueBox;
     [SerializeField] private float heightDialogueBox;
     [SerializeField] private float xDialogueBoxOffset;
@@ -50,6 +51,12 @@ public class DialogueSystem : MonoBehaviour
     private bool isInteracting;
 
     private bool isPressedOn = false;
+
+    private string sceneName;
+
+    private Collider2D hit;
+
+    private bool isConversationActive = false;
 
     private string[] firstConversations =  {
         "That was quite the entrance.", 
@@ -93,43 +100,45 @@ public class DialogueSystem : MonoBehaviour
     };
 
 
-    void Start()
+    private void Start()
     {
         layerPlayer = LayerMask.GetMask("Player");
-        dialogueText = GameObject.FindWithTag("Redgie").GetComponentInChildren<Text>();
+        //dialogueText = GameObject.FindWithTag("Redgie").GetComponentInChildren<Text>();
         magnetAbilities = GameObject.FindWithTag("Player").GetComponentInChildren<MagnetAbilities>();
 
         dialogueSystem.SetActive(false);
         dialogueText.text = "That was quite the entrance.";
 
         pressurePlateScript = GameObject.FindWithTag("PressurePlate").GetComponentInChildren<PressurePlateScript>();
-
+        sceneName = SceneManager.GetActiveScene().name;
     }
 
-    void Update()
+    private void Update()
     {
-        isInteracting = magnetAbilities.IsInteracting;
-        isPressedOn = pressurePlateScript.IsPressed;
-
-        firstDialogue("first");
-
-        if(!isRemarkDone && !isFirstConvoDone)
+        if(sceneName == "TestLevel1")
         {
-            dialogueText.text = remark;
+            isInteracting = magnetAbilities.IsInteracting;
+            isPressedOn = pressurePlateScript.IsPressed;
+
+            firstDialogue();
+
+            if (!isRemarkDone && isFirstConvoDone && isInteracting)
+            {
+
+                secondDialogue();
+            }
+
+            if(!isEndConvoDone && isRemarkDone && isFirstConvoDone && isPressedOn)
+            {
+                if (counter == 0)
+                {
+                    dialogueText.text = endConversations[0];
+                }
+
+                isConversationActive = true;
+                dialogueSystem.SetActive(true);
+            }
         }
-
-        if (!isRemarkDone && isFirstConvoDone && isInteracting)
-        {
-
-            secondDialogue();
-        }
-
-        if(!isEndConvoDone && isRemarkDone && isFirstConvoDone)
-        {
-            dialogueSystem.SetActive(true);
-        }
-
-
     }
 
     private void OnEnable()
@@ -154,14 +163,17 @@ public class DialogueSystem : MonoBehaviour
     }
 
     private void nextConversation_performed(InputAction.CallbackContext context)
-    {
+    { 
         if(!isFirstConvoDone)
         {
             showNextLine();
         } 
         else
         {
-            thirdDialogue();
+            if (isConversationActive)
+            {
+                thirdDialogue();
+            }
         }
     }
 
@@ -172,22 +184,15 @@ public class DialogueSystem : MonoBehaviour
 
     private void firstDialogue()
     {
+        //Debug.Log(isFirstConvoDone);
         if (!isFirstConvoDone)
         {
-            Collider2D hit = Physics2D.OverlapCircle(transform.position, dialogueDetectionRadius, layerPlayer);
+            hit = Physics2D.OverlapCircle(transform.position, dialogueDetectionRadius, layerPlayer);
 
             if (hit != null && hit.CompareTag("Player"))
             {
                 dialogueSystem.SetActive(true);
-
-                //isNearPlayer = true;
-                //Debug.Log("a");
             }
-            //else
-            //{
-            //    //Debug.Log("near");
-            //    //isNearPlayer = false;
-            //}
         }
     }
 
@@ -196,25 +201,30 @@ public class DialogueSystem : MonoBehaviour
         dialogueSystem.SetActive(true);
         dialogueText.text = remark;
         isRemarkDone = true;
-        StartCouroutine(disableDialogueSystem());
+        StartCoroutine(disableDialogueSystem());
     }
 
     IEnumerator disableDialogueSystem()
     {
+        Debug.Log("disable");
         yield return new WaitForSeconds(3f);
         dialogueSystem.SetActive(false);
+        Debug.Log("disabled3f");
     }
 
     private void thirdDialogue()
     {
-        int endConverLength = endConversations.length;
+        counter++;
+
+        int endConverLength = endConversations.Length;
 
         if (counter < endConverLength)
         {
-            dialogueText.text = endConverLength[counter];
+            dialogueText.text = endConversations[counter];
         }
         else
         {
+            isConversationActive = false;
             isEndConvoDone = true;
             counter = 0;
             dialogueSystem.SetActive(false);
@@ -226,7 +236,7 @@ public class DialogueSystem : MonoBehaviour
         counter++;
 
 
-        int firstConverLength = firstConversations.length;
+        int firstConverLength = firstConversations.Length;
 
         if (counter < firstConverLength)
         {
