@@ -24,9 +24,9 @@ public class FormTransform : MonoBehaviour
     [SerializeField] private float detectDistance = 5f;
     private string nearStationTag;
 
-    private string[] stationTag = { "showerStation", "redPaintStation", "bluePaintStation" };
+    private string[] stationTag = { "ShowerStation", "RedPaintStation", "BluePaintStation" };
 
-    private int layerStation;
+    private int layerObjects;
     private int layerGround;
 
     private PlayerMovement playerMovement;
@@ -35,8 +35,21 @@ public class FormTransform : MonoBehaviour
 
     private Vector2 stationPosition;
 
-    [SerializeField] private bool debugMode = true;
+    private SpriteRenderer spriteRenderer;
 
+    private GameObject currentIndicator;
+
+    [SerializeField] private Sprite neutralCharSprite;
+    [SerializeField] private Sprite redCharSprite;
+    [SerializeField] private Sprite blueCharSprite;
+
+    [SerializeField] private GameObject fControls;
+
+    [SerializeField] private float indicatorYOffset = -5f;
+
+    [SerializeField] private float indicatorXOffset = 0f;
+
+    [SerializeField] private bool debugMode = true;
 
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // GET & SET METHODS
@@ -65,20 +78,36 @@ public class FormTransform : MonoBehaviour
         get => stationPosition;
     }
 
+    public bool IsNearStation
+    {
+        get => isNearStation;
+    }
+
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // Events & functions
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     private void Start()
     {
-        layerStation = LayerMask.GetMask("Station");
+        layerObjects = LayerMask.GetMask("Station", "MagneticObjects");
         layerGround = LayerMask.GetMask("Platform");
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        spriteRenderer = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
         detectNearestStation();
+
+        if (isNearStation && !isPaint && currentIndicator == null)
+        {
+            Vector2 indicatorPosition = new Vector2(stationPosition.x + indicatorXOffset, stationPosition.y + indicatorYOffset);
+            currentIndicator = Instantiate(fControls, indicatorPosition, Quaternion.identity);
+        }
+        else if ((!isNearStation || isPaint) && currentIndicator != null)
+        {
+            Destroy(currentIndicator);
+        }
     }
 
     private void OnEnable()
@@ -111,6 +140,7 @@ public class FormTransform : MonoBehaviour
             if (currentForm == formState.neutral) return;
 
             currentForm = formState.neutral;
+            spriteRenderer.sprite = neutralCharSprite;
 
         }
         else if (nearStationTag == stationTag[1])
@@ -118,12 +148,14 @@ public class FormTransform : MonoBehaviour
             if (currentForm == formState.red) return;
 
             currentForm = formState.red;
+            spriteRenderer.sprite = redCharSprite;
         }
         else if (nearStationTag == stationTag[2])
         {
             if (currentForm == formState.blue) return;
 
             currentForm = formState.blue;
+            spriteRenderer.sprite = blueCharSprite;
         }
 
         isPaint = true;
@@ -172,7 +204,7 @@ public class FormTransform : MonoBehaviour
             playerDirection = new Vector2(playerMovement.Horizontal, 0);
         }
 
-        RaycastHit2D hitStation = Physics2D.Raycast(transform.position, playerDirection, detectDistance, layerStation);
+        RaycastHit2D hitStation = Physics2D.Raycast(transform.position, playerDirection, detectDistance, layerObjects);
 
         if (debugMode) Debug.DrawRay(transform.position, playerDirection * detectDistance, Color.green);
 
@@ -218,6 +250,14 @@ public class FormTransform : MonoBehaviour
         } else
         {
             isNearStation = false;
+        }
+    }
+
+    private void OnValidate()
+    {
+        if (detectDistance < 1f)
+        {
+            detectDistance = 1f;
         }
     }
 }

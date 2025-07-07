@@ -4,12 +4,14 @@ public class CameraSystem : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Vector3 offset;
+    [SerializeField] private float DirectionOffset;
     [SerializeField] private float followSpeed = 15f;
     [SerializeField] private float defaultZoom = 5f;
     [SerializeField] private float zoomDuration = 1.0f;
     [SerializeField] private float minZoom = 2f;
     [SerializeField] private float maxZoom = 10f;
     [SerializeField] private BoundaryScript boundary;
+    [SerializeField] private PlayerMovement Playermovement;
 
     private Camera mainCamera;
     private float targetZoom;
@@ -33,6 +35,15 @@ public class CameraSystem : MonoBehaviour
         {
             Debug.LogError("Forgot to assign the boundary object in camera");
         }
+        // Direction Offset
+        if (Playermovement.getDirection())
+        {
+            offset = new Vector3(DirectionOffset, 0, 0);
+        }
+        else
+        {
+            offset = new Vector3(-DirectionOffset, 0, 0);
+        }
     }
 
     void FixedUpdate()
@@ -51,6 +62,16 @@ public class CameraSystem : MonoBehaviour
         transform.position = new Vector3(clampedPosition.x, clampedPosition.y, transform.position.z);
 
         UpdateZoom();
+
+        // Direction Offset
+        if (Playermovement.getDirection())
+        {
+            offset = new Vector3(DirectionOffset, 0, 0);
+        }
+        else
+        {
+            offset = new Vector3(-DirectionOffset, 0, 0);
+        }
     }
 
     public void EnterPuzzleZone(float zoomValue)

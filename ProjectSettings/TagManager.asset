@@ -5,12 +5,15 @@ TagManager:
   serializedVersion: 3
   tags:
   - platform
-  - showerStation
-  - redPaintStation
-  - bluePaintStation
   - Redgie
-  - blueMagneticPlatform
   - Walll
+  - OneWayPlatform
+  - ShowerStation
+  - RedPaintStation
+  - BluePaintStation
+  - BlueMagneticPlatform
+  - ObjectDetector
+  - ObjectDetectee
   layers:
   - Default
   - TransparentFX
@@ -25,6 +28,7 @@ TagManager:
   - RedPad
   - Player
   - WALL
+  - ObjectDetectee
   - 
   - 
   - 

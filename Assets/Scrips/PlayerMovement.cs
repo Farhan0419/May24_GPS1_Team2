@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -21,36 +22,56 @@ public class PlayerMovement : MonoBehaviour
 
     private FormTransform formTransform;
     public CameraSystem cameraSystem;
+
+    private GameObject OneWayPlatform;
+    [SerializeField] private BoxCollider2D PlayerCollider;
     public float Horizontal
     {
         get => horizontal;
     }
+
+    public bool getDirection()
+    {
+        return isFacingRight;
+    }
     private void Start()
     {
         formTransform = GetComponent<FormTransform>();
-        if (formTransform == null)
-        {
-            Debug.LogError("FormTransform component not found on this GameObject!");
-        }
+    }
+    public void DisablePlayerMovement()
+    {
+        movementDisabled = true;
+        rb.linearVelocity = Vector2.zero;
+    }
+    public void EnablePlayerMovement()
+    {
+        movementDisabled = false;
     }
     private void FixedUpdate()
     {
-        isTouchingWall = Physics2D.OverlapCircle(WallCheck.position, wallCheckRadius, WallLayer);
+        if (!movementDisabled)
+        {
+            isTouchingWall = Physics2D.OverlapCircle(WallCheck.position, wallCheckRadius, WallLayer);
 
-        float targetHorizontalVelocity = horizontal * speed;
-        if (isTouchingWall && !IsGrounded())
-        {
-            targetHorizontalVelocity = Mathf.Lerp(rb.linearVelocity.x, 0f, 0.5f);
-        }
-        rb.linearVelocity = new Vector2(targetHorizontalVelocity, rb.linearVelocity.y);
+            float targetHorizontalVelocity = horizontal * speed;
+            if (isTouchingWall && !IsGrounded())
+            {
+                targetHorizontalVelocity = Mathf.Lerp(rb.linearVelocity.x, 0f, 0.5f);
+            }
+            rb.linearVelocity = new Vector2(targetHorizontalVelocity, rb.linearVelocity.y);
 
-        if (!isFacingRight && horizontal > 0f)
-        {
-            Flip();
+            if (!isFacingRight && horizontal > 0f)
+            {
+                Flip();
+            }
+            else if (isFacingRight && horizontal < 0f)
+            {
+                Flip();
+            }
         }
-        else if (isFacingRight && horizontal < 0f)
+        else
         {
-            Flip();
+            rb.linearVelocity = Vector2.zero;
         }
     }
 
@@ -93,9 +114,9 @@ public class PlayerMovement : MonoBehaviour
     {
         return !IsGrounded();
     }
+    // Red Jump Pad
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Red Jump Pad
         if (other.gameObject.layer == LayerMask.NameToLayer("RedPad") && IsGrounded() && formTransform.CurrentForm == FormTransform.formState.red)
         {
             if (!IsLaunching())
@@ -137,5 +158,37 @@ public class PlayerMovement : MonoBehaviour
         {
             gamepad.SetMotorSpeeds(0f, 0f);
         }
+    }
+
+    // One Way platform
+    public void GoThroughBluePlatform()
+    {
+        if (OneWayPlatform != null)
+        {
+            StartCoroutine(DisableCollision());
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("OneWayPlatform"))
+        {
+            OneWayPlatform = collision.gameObject;
+            Debug.Log("Blue Platform detected");
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("OneWayPlatform"))
+        {
+            OneWayPlatform = null;
+        }
+    }
+
+    private IEnumerator DisableCollision()
+    {
+        BoxCollider2D platformCollider = OneWayPlatform.GetComponent<BoxCollider2D>();
+        Physics2D.IgnoreCollision(PlayerCollider, platformCollider);
+        yield return new WaitForSeconds(0.9f);
+        Physics2D.IgnoreCollision(PlayerCollider, platformCollider, false);
     }
 }
