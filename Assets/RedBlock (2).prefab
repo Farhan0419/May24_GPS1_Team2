@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5038110775198467428}
   - component: {fileID: 1286076896275138912}
   - component: {fileID: 2166738721469617440}
+  - component: {fileID: 5536007197896863606}
   m_Layer: 8
   m_Name: RedBlock (2)
   m_TagString: Redgie
@@ -163,6 +164,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5536007197896863606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3124692039141969425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69617f4abdd2b334594e3f8d77074d79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LaunchPower: 20
+  rb: {fileID: 0}
+  Ground:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &9171404854493019294
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7724759968133802704}
   - component: {fileID: 4018964792802479301}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: objectDetectee
   m_TagString: ObjectDetectee
   m_Icon: {fileID: 0}

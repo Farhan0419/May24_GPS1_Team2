@@ -98,6 +98,8 @@ public class MagnetAbilities : MonoBehaviour
     // Events & functions
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -108,6 +110,8 @@ public class MagnetAbilities : MonoBehaviour
 
         magneticObjects = LayerMask.GetMask("ObjectDetectee");
         detectionObjects = LayerMask.GetMask("ObjectDetectee", "Platform");
+        currentIndicator = Instantiate(eControls);
+        currentIndicator.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -126,21 +130,26 @@ public class MagnetAbilities : MonoBehaviour
         }
 
         // if player is not moving, then check for magnetic objects
-        if (Mathf.Abs(playerRB.linearVelocity.x) < velocityThreshold && Mathf.Abs(playerRB.linearVelocity.y) < velocityThreshold)
+        //if (Mathf.Abs(playerRB.linearVelocity.x) < velocityThreshold && Mathf.Abs(playerRB.linearVelocity.y) < velocityThreshold)
+        if(playerRB.linearVelocity.sqrMagnitude < velocityThreshold)
         {
             detectMagneticObjects();
         } 
 
-        if(isDetecting && !isInteracting && currentIndicator == null)
+        if(shouldShowIndicator())
         {
             Vector2 indicatorPosition = new Vector2(closestMagneticObjectPosition.x + indicatorXOffset, closestMagneticObjectPosition.y + indicatorYOffset);
-            currentIndicator = Instantiate(eControls, indicatorPosition, Quaternion.identity);
+            currentIndicator.transform.position = indicatorPosition;
+            currentIndicator.SetActive(true);
         }
-        else if ((!isDetecting || isInteracting)  && currentIndicator != null)
+        else
         {
-            Destroy(currentIndicator);
+            currentIndicator.SetActive(false);   
         }
     }
+
+    private bool shouldShowIndicator()=>isDetecting && !isInteracting;   
+    
 
     private void OnEnable()
     {
@@ -205,7 +214,7 @@ public class MagnetAbilities : MonoBehaviour
         closestMagneticObjectPosition = hit.gameObject.transform.position;
         closestMagneticObject = hit.gameObject;
         closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
-        closestMagneticObjectRb.mass = maxObjectMass;
+        //closestMagneticObjectRb.mass = maxObjectMass;
     }
 
     private void resetValuesOnDetection()
@@ -268,7 +277,7 @@ public class MagnetAbilities : MonoBehaviour
 
                 RaycastHit2D objectHit = Physics2D.CircleCast(playerPosition, circleCastSize, targetDirection, detectDistance, detectionObjects);
 
-                if (debugMode) Debug.DrawRay(playerPosition, targetDirection * detectDistance, Color.cyan);
+                if (debugMode) Debug.DrawRay(playerPosition, targetDirection * detectDistance, Color.cyan); 
 
                 if (objectHit.collider != null)
                 {
@@ -317,7 +326,7 @@ public class MagnetAbilities : MonoBehaviour
             changeDirectionMagneticObject("push");
         }
 
-        closestMagneticObjectRb.mass = minObjectMass;
+        //closestMagneticObjectRb.mass = minObjectMass;
 
         // use linearVecocity for continous movement
         closestMagneticObjectRb.linearVelocity = new Vector2(directionTowardsPlayer * speedOfPushPullObjects, closestMagneticObjectRb.linearVelocity.y);

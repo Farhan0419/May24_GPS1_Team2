@@ -6,10 +6,18 @@ public class RedgieScript : MonoBehaviour
     public float LaunchPower = 20f;
     public Rigidbody2D rb;
     private bool isJumping = false;
+    public bool isGrounded = false;
+    private bool isStuck;
+    public LayerMask Ground;
     private float jumpTimer = 0;
     void Start()
     {
         OriginalPos = transform.position;
+    }
+
+    public void setStuck()
+    {
+        isStuck = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -27,8 +35,44 @@ public class RedgieScript : MonoBehaviour
             isJumping = true;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("platform"))
+        {
+            isGrounded = true;
+            Debug.Log("Touching grass");
+        }
+        if (collision.gameObject.CompareTag("OneWayPlatform"))
+        {
+            isGrounded = true;
+            Debug.Log("Touching grass");
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("platform"))
+        {
+            isGrounded = false;
+        }
+        if (collision.gameObject.CompareTag("OneWayPlatform"))
+        {
+            isGrounded = false;
+        }
+    }
     private void Update()
     {
+        // ----- Freeze X movement while in the air --- //
+        if (!isGrounded || isStuck)
+        {
+            //rb.linearVelocity = new Vector2 (0f, rb.linearVelocity.y);
+            rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
+        }
+        else
+        {
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+        }
+
         // ------ Red Pad --------//
         if (isJumping)
         {

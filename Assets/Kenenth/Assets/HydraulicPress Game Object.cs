@@ -12,7 +12,7 @@ public class HydraulicPressGameObject : MonoBehaviour
     private Vector2 startPos;
     private bool isPressing = false;
     private bool isReturning = false;
-    //public GameObject CrusherParticle;
+    //public ParticleSystem CrusherParticle;
 
     [SerializeField] private PlayerDeath deathScript;
 
@@ -37,6 +37,12 @@ public class HydraulicPressGameObject : MonoBehaviour
                 yield return null;
             }
 
+            // ground touched, get ground contact and emiy particles
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
+
+            //ParticleSystem p = Instantiate(CrusherParticle);
+            //p.transform.position = hit.point;
+
             // Wait at bottom
             yield return new WaitForSeconds(waitTime);
 
@@ -58,7 +64,7 @@ public class HydraulicPressGameObject : MonoBehaviour
     private bool IsTouchingGround()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
-        return hit.collider != null;
+        return hit;
 
     }
 
