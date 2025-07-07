@@ -5,6 +5,11 @@ public class PressurePlateScript : MonoBehaviour
     [SerializeField] private ElevatorScript connectedElevator;
     private bool isPressed = false; // Might remove because no need
 
+    public bool IsPressed
+    {
+        get => isPressed;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Redgie") && !isPressed)
