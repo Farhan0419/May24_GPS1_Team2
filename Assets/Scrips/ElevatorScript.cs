@@ -29,7 +29,7 @@ public class ElevatorScript : MonoBehaviour
         SpriteRenderer doorRenderer = door.GetComponent<SpriteRenderer>();
 
         float doorHeight = doorRenderer.bounds.size.y;
-        float doorBottomOffset = doorHeight / 2f;
+        float doorBottomOffset = doorHeight - doorHeight;
 
         doorTargetPos = new Vector3(door.position.x, floor.position.y + doorBottomOffset, door.position.z);
     }
@@ -101,7 +101,7 @@ public class ElevatorScript : MonoBehaviour
         if (timer1running)
         {
             timer1 += Time.deltaTime;
-            if (timer1 >= .25f)
+            if (timer1 >= .12f)
             {
                 Timer1Stop();
             }

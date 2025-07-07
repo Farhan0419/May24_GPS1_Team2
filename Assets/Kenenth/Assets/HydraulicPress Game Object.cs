@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HydraulicPressGameObject : MonoBehaviour
@@ -11,13 +12,30 @@ public class HydraulicPressGameObject : MonoBehaviour
     private Vector2 startPos;
     private bool isPressing = false;
     private bool isReturning = false;
-
+    //public ParticleSystem CrusherParticle;
+    public float waitForBeforeStarting;
+    private float timer = 0;
+    private bool timerOn = true;
     [SerializeField] private PlayerDeath deathScript;
+    private PlayerMovement PlayerScript;
 
     private void Start()
     {
         startPos = transform.position;
-        StartCoroutine(PressRoutine());
+        //StartCoroutine(PressRoutine());
+    }
+    private void Update()
+    {
+        if (timerOn)
+        {
+            timer += Time.deltaTime;
+        }
+        if (timer >= waitForBeforeStarting)
+        {
+            timerOn = false;
+            StartCoroutine(PressRoutine());
+            timer = 0;
+        }
     }
 
     private System.Collections.IEnumerator PressRoutine()
@@ -33,6 +51,12 @@ public class HydraulicPressGameObject : MonoBehaviour
                 transform.position += Vector3.down * pressSpeed * Time.deltaTime;
                 yield return null;
             }
+
+            // ground touched, get ground contact and emiy particles
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
+
+            //ParticleSystem p = Instantiate(CrusherParticle);
+            //p.transform.position = hit.point;
 
             // Wait at bottom
             yield return new WaitForSeconds(waitTime);
@@ -55,15 +79,18 @@ public class HydraulicPressGameObject : MonoBehaviour
     private bool IsTouchingGround()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
-        return hit.collider != null;
+        return hit;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (isPressing && collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject);
-            //deathScript.PlayerDead("Crusher");
+            deathScript.PlayerDead("Crush");
+            //Destroy(collision.gameObject);
+            PlayerScript = collision.gameObject.GetComponent<PlayerMovement>();
+            PlayerScript.DisablePlayerMovement();
         }
     }
 
@@ -73,4 +100,16 @@ public class HydraulicPressGameObject : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * rayDistance);
     }
 
+
+    //private void Update()
+    //{
+    //    if (IsTouchingGround())
+    //    {
+    //        CrusherParticle.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        CrusherParticle.SetActive(false);
+    //    }
+    //}
 }

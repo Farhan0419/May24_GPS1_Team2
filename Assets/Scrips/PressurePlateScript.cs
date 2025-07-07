@@ -4,6 +4,7 @@ public class PressurePlateScript : MonoBehaviour
 {
     [SerializeField] private ElevatorScript connectedElevator;
     private bool isPressed = false; // Might remove because no need
+    private RedgieScript Redgie;
 
     public bool IsPressed
     {
@@ -15,7 +16,9 @@ public class PressurePlateScript : MonoBehaviour
         if (other.CompareTag("Redgie") && !isPressed)
         {
             isPressed = true;
+            Redgie = other.gameObject.GetComponent<RedgieScript>();
             connectedElevator.UnlockDoor();
+            Redgie.setStuck();
         }
     }
 }

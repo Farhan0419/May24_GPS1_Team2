@@ -29,6 +29,7 @@ TagManager:
   - Pit
   - RedPad
   - Player
+  - WALL
   - ObjectDetectee
   - 
   - 

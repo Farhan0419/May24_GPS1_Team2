@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -28,6 +29,11 @@ public class PlayerMovement : MonoBehaviour
     public float Horizontal
     {
         get => horizontal;
+    }
+
+    public bool getDirection()
+    {
+        return isFacingRight;
     }
     private void Start()
     {
@@ -169,6 +175,10 @@ public class PlayerMovement : MonoBehaviour
         {
             OneWayPlatform = collision.gameObject;
             Debug.Log("Blue Platform detected");
+        }
+        if (collision.gameObject.CompareTag("Walll"))
+        {
+            isTouchingWall = true;
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
