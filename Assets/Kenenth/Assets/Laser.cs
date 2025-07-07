@@ -1,12 +1,15 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
     public LayerMask layerToHit;     // Include "Wall" and "Player"
     public float maxDistance = 50f;
+    public GameObject EndVFX;
 
     private SpriteRenderer spriteRenderer;
     private float spriteUnitLength; // Width of the sprite in units (1 = 100 pixels at 100 PPU)
+   
 
     [SerializeField] private PlayerDeath deathScript;
 
@@ -21,6 +24,7 @@ public class Laser : MonoBehaviour
 
         // Calculate the original length of the sprite in world units
         spriteUnitLength = spriteRenderer.sprite.bounds.size.x;
+        
     }
 
     void Update()
@@ -47,8 +51,9 @@ public class Laser : MonoBehaviour
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 targetDistance = hit.distance;
+                
                 Destroy(hit.collider.gameObject);
-                //deathScript.PlayerDead("Laser");
+                deathScript.PlayerDead("Laser");
                 Debug.Log("HIT");
             }
         }

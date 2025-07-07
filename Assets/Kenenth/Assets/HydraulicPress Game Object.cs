@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HydraulicPressGameObject : MonoBehaviour
@@ -11,11 +12,13 @@ public class HydraulicPressGameObject : MonoBehaviour
     private Vector2 startPos;
     private bool isPressing = false;
     private bool isReturning = false;
+    public GameObject CrusherParticle;
 
     [SerializeField] private PlayerDeath deathScript;
 
     private void Start()
     {
+        
         startPos = transform.position;
         StartCoroutine(PressRoutine());
     }
@@ -56,6 +59,7 @@ public class HydraulicPressGameObject : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
         return hit.collider != null;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -63,7 +67,8 @@ public class HydraulicPressGameObject : MonoBehaviour
         if (isPressing && collision.gameObject.CompareTag("Player"))
         {
             Destroy(collision.gameObject);
-            //deathScript.PlayerDead("Crusher");
+            deathScript.PlayerDead("Crusher");
+
         }
     }
 
@@ -73,4 +78,16 @@ public class HydraulicPressGameObject : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * rayDistance);
     }
 
+
+    private void Update()
+    {
+        if (IsTouchingGround())
+        {
+            CrusherParticle.SetActive(true);
+        }
+        else
+        {
+            CrusherParticle.SetActive(false);
+        }
+    }
 }
