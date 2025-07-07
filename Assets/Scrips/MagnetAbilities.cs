@@ -148,7 +148,7 @@ public class MagnetAbilities : MonoBehaviour
         }
     }
 
-    private bool shouldShowIndicator()=>isDetecting && !isInteracting;   
+    private bool shouldShowIndicator()=>isDetecting && !isInteracting && formTransform.CurrentForm != FormTransform.formState.neutral;   
     
 
     private void OnEnable()
@@ -214,7 +214,7 @@ public class MagnetAbilities : MonoBehaviour
         closestMagneticObjectPosition = hit.gameObject.transform.position;
         closestMagneticObject = hit.gameObject;
         closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
-        //closestMagneticObjectRb.mass = maxObjectMass;
+        closestMagneticObjectRb.mass = maxObjectMass;
     }
 
     private void resetValuesOnDetection()

@@ -21155,13 +21155,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedPaintStation
       objectReference: {fileID: 0}
+    - target: {fileID: 6054774324605396414, guid: 9537d3df6bde11b41b74a93f7dc80333, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7186338132560860150, guid: 9537d3df6bde11b41b74a93f7dc80333, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.230621
       objectReference: {fileID: 0}
     - target: {fileID: 7186338132560860150, guid: 9537d3df6bde11b41b74a93f7dc80333, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.9796457
+      value: -7.67
       objectReference: {fileID: 0}
     - target: {fileID: 7186338132560860150, guid: 9537d3df6bde11b41b74a93f7dc80333, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21334,6 +21338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedPaintStation (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6054774324605396414, guid: 9537d3df6bde11b41b74a93f7dc80333, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7186338132560860150, guid: 9537d3df6bde11b41b74a93f7dc80333, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.951831
@@ -21500,25 +21508,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 1742399470}
     m_Modifications:
     - target: {fileID: 384461365449401101, guid: 0459aa07fbe1b4f429a69c759be4ad4e, type: 3}
-      propertyPath: waitTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 384461365449401101, guid: 0459aa07fbe1b4f429a69c759be4ad4e, type: 3}
-      propertyPath: pressSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 384461365449401101, guid: 0459aa07fbe1b4f429a69c759be4ad4e, type: 3}
       propertyPath: deathScript
       value: 
       objectReference: {fileID: 1651876932}
-    - target: {fileID: 384461365449401101, guid: 0459aa07fbe1b4f429a69c759be4ad4e, type: 3}
-      propertyPath: returnSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 384461365449401101, guid: 0459aa07fbe1b4f429a69c759be4ad4e, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 192
-      objectReference: {fileID: 0}
     - target: {fileID: 1828287090107905966, guid: 0459aa07fbe1b4f429a69c759be4ad4e, type: 3}
       propertyPath: m_Name
       value: r28nmgaqhyy11_0 (1)
@@ -21825,6 +21817,10 @@ PrefabInstance:
     - target: {fileID: 7310281583838900950, guid: 0b6dbeb21447174449c0e1b0ad163f40, type: 3}
       propertyPath: m_Name
       value: BluePaintStation
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581849730245191197, guid: 0b6dbeb21447174449c0e1b0ad163f40, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

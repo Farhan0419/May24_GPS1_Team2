@@ -115,7 +115,7 @@ public class DialogueSystem : MonoBehaviour
 
     private void Update()
     {
-        if(sceneName == "TestLevel1")
+        if(sceneName == "Level1")
         {
             isInteracting = magnetAbilities.IsInteracting;
             isPressedOn = pressurePlateScript.IsPressed;
@@ -184,7 +184,6 @@ public class DialogueSystem : MonoBehaviour
 
     private void firstDialogue()
     {
-        //Debug.Log(isFirstConvoDone);
         if (!isFirstConvoDone)
         {
             hit = Physics2D.OverlapCircle(transform.position, dialogueDetectionRadius, layerPlayer);

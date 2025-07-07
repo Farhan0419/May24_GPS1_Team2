@@ -175,11 +175,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aa157d8c326204188c90c2b79c75f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pressSpeed: 25
-  returnSpeed: 3
+  pressSpeed: 10
+  returnSpeed: 1.5
   waitTime: 0.5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192
   rayDistance: 0.1
+  waitForBeforeStarting: 0.5
   deathScript: {fileID: 0}
