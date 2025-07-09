@@ -571,13 +571,14 @@ MonoBehaviour:
   player: {fileID: 705643065}
   offset: {x: 0, y: 0, z: 0}
   DirectionOffset: 2.5
-  followSpeed: 35
+  followSpeed: 55
   defaultZoom: 5
   zoomDuration: 1
   minZoom: 2
   maxZoom: 10
   boundary: {fileID: 1340606986}
   Playermovement: {fileID: 705643069}
+  offsetTransitionSpeed: 3
 --- !u!1001 &523735423
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float wallCheckRadius = 0.2f;
     private bool isTouchingWall = false;
+    public bool isMoving = false;
 
     private FormTransform formTransform;
     public CameraSystem cameraSystem;
@@ -35,6 +36,10 @@ public class PlayerMovement : MonoBehaviour
     {
         return isFacingRight;
     }
+    public bool getMovement()
+    {
+        return isMoving;
+    }
     private void Start()
     {
         formTransform = GetComponent<FormTransform>();
@@ -43,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movementDisabled = true;
         rb.linearVelocity = Vector2.zero;
+        isMoving = false;
     }
     public void EnablePlayerMovement()
     {
@@ -60,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
                 targetHorizontalVelocity = Mathf.Lerp(rb.linearVelocity.x, 0f, 0.5f);
             }
             rb.linearVelocity = new Vector2(targetHorizontalVelocity, rb.linearVelocity.y);
+            isMoving = horizontal != 0 && Mathf.Abs(rb.linearVelocity.x) > 0.01f; // CHECK IF MOVING
 
             if (!isFacingRight && horizontal > 0f)
             {
@@ -73,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.linearVelocity = Vector2.zero;
+            isMoving = false;
         }
     }
 
