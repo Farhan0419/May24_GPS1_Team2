@@ -21,7 +21,7 @@ public class FormTransform : MonoBehaviour
 
     private formState currentForm;
 
-    [SerializeField] private float detectDistance = 5f;
+    [SerializeField] private float detectDistance = 2f;
     private string nearStationTag;
 
     private string[] stationTag = { "ShowerStation", "RedPaintStation", "BluePaintStation" };

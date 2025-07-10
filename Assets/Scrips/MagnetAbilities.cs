@@ -47,11 +47,11 @@ public class MagnetAbilities : MonoBehaviour
 
     private GameObject currentIndicator;
 
-    [SerializeField] private float dotProductThreshold = 0.6f;
+    [SerializeField] private float dotProductThreshold = 0.9f;
 
-    [SerializeField] private float detectDistance = 10f;
+    [SerializeField] private float detectDistance = 7f;
 
-    [SerializeField] private float speedOfPushPullObjects = 5f;
+    [SerializeField] private float speedOfPushPullObjects = 3f;
 
     [SerializeField] private float circleCastSize = 0.01f;
 
@@ -133,7 +133,7 @@ public class MagnetAbilities : MonoBehaviour
         }
     }
 
-    private bool allowToUseMagneticAbilities() => isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold;
+    private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold;
 
     private void Update()
     {
