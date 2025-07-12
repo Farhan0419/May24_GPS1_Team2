@@ -547,7 +547,8 @@ MonoBehaviour:
   blueCharSprite: {fileID: -8052081215970942740, guid: 68a565505c3d55648bb7cab807740f21, type: 3}
   fControls: {fileID: 5555912421142601800, guid: f98d881539af8d04f9446e960626ba17, type: 3}
   indicatorYOffset: -2.5
-  indicatorXOffset: 0
+  indicatorXOffsetFromLeft: 1.15
+  indicatorXOffsetFromRight: -1.03
   debugMode: 1
 --- !u!114 &453048144763993658
 MonoBehaviour:

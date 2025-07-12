@@ -76,17 +76,22 @@ public class RedgieScript : MonoBehaviour
 
         if (magnetAbilities.IsInteracting && groundCheck.IsGrounded && !isStuck)
         {
-            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-
             if (formTransform.CurrentForm == FormTransform.formState.red)
             {
+                rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
                 rb.mass = 1000f;
                 playerRB.mass = 1f;
             }
             else if (formTransform.CurrentForm == FormTransform.formState.blue)
             {
-                rb.mass = 1f;
-                playerRB.mass = 1000f;
+                if(playerRB.linearVelocity.sqrMagnitude > 0.01f)
+                {
+                    rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
+                }
+                else
+                {
+                    rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+                }
             }
 
         }
