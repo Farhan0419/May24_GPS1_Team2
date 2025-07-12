@@ -6,14 +6,24 @@ public class RedgieScript : MonoBehaviour
     public float LaunchPower = 20f;
     public Rigidbody2D rb;
     private bool isJumping = false;
-    public bool isGrounded = false;
     private bool isStuck;
     private float jumpTimer = 0;
-    private int groundContacts = 0; // Counter for ground colliders
+    private RedgieGroundCheck groundCheck;
+    private GameObject player;
+    private Rigidbody2D playerRB;
+    private MagnetAbilities magnetAbilities;
+    private FormTransform formTransform;
+
 
     void Start()
     {
         OriginalPos = transform.position;
+        groundCheck = GetComponentInChildren<RedgieGroundCheck>();
+
+        player = GameObject.FindWithTag("Player");
+        playerRB = player.GetComponent<Rigidbody2D>();
+        magnetAbilities = player.GetComponent<MagnetAbilities>();
+        formTransform = player.GetComponent<FormTransform>();
     }
 
     public void setStuck()
@@ -42,36 +52,10 @@ public class RedgieScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("platform") || collision.gameObject.CompareTag("OneWayPlatform"))
-        {
-            groundContacts++;
-            isGrounded = groundContacts > 0;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("platform") || collision.gameObject.CompareTag("OneWayPlatform"))
-        {
-            groundContacts--;
-            isGrounded = groundContacts > 0;
-        }
-    }
-
     private void Update()
     {
-        // Freeze X movement while in the air or stuck
-        if (!isGrounded || isStuck)
-        {
-            rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
-        }
-        else
-        {
-            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-        }
-
+        freezeXMovement();
+        freezeYMovement();
         // Red Pad jump logic
         if (isJumping)
         {
@@ -82,6 +66,49 @@ public class RedgieScript : MonoBehaviour
         {
             isJumping = false;
             jumpTimer = 0f;
+        }
+    }
+
+    private void freezeXMovement()
+    {
+        // Always Freeze X movement  if not interacting or not grounded or stuck
+        // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
+
+        if (magnetAbilities.IsInteracting && groundCheck.IsGrounded && !isStuck)
+        {
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+
+            if (formTransform.CurrentForm == FormTransform.formState.red)
+            {
+                rb.mass = 1000f;
+                playerRB.mass = 1f;
+            }
+            else if (formTransform.CurrentForm == FormTransform.formState.blue)
+            {
+                rb.mass = 1f;
+                playerRB.mass = 1000f;
+            }
+
+        }
+        else
+        {
+            rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
+            rb.mass = 1f;
+            playerRB.mass = 1f;
+        }
+    }
+
+    private void freezeYMovement()
+    {
+        // Always Freeze Y movement  if grounded and not stuck or jumping
+        // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
+        if (groundCheck.IsGrounded && !isStuck && !isJumping)
+        {
+            rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
+        }
+        else
+        {
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
         }
     }
 }
