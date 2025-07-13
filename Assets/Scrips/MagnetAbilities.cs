@@ -47,23 +47,23 @@ public class MagnetAbilities : MonoBehaviour
 
     private GameObject currentIndicator;
 
-    [SerializeField] private float dotProductThreshold = 0.6f;
+    [SerializeField] private float dotProductThreshold = 0.9f;
 
-    [SerializeField] private float detectDistance = 10f;
+    [SerializeField] private float detectDistance = 7f;
 
-    [SerializeField] private float speedOfPushPullObjects = 5f;
+    [SerializeField] private float speedOfPushPullObjects = 3f;
 
     [SerializeField] private float circleCastSize = 0.01f;
 
     [SerializeField] private float velocityThreshold = 0.01f;
 
-    [SerializeField] private float maxPlayerMass = 100f;
+    //[SerializeField] private float maxPlayerMass = 1000f;
 
-    [SerializeField] private float minPlayerMass = 1f;
+    //[SerializeField] private float minPlayerMass = 1f;
 
-    [SerializeField] private float maxObjectMass = 100f;
+    //[SerializeField] private float maxObjectMass = 100f;
 
-    [SerializeField] private float minObjectMass = 1f;
+    //[SerializeField] private float minObjectMass = 1f;
 
     [SerializeField] private GameObject eControls;
 
@@ -116,11 +116,24 @@ public class MagnetAbilities : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isInteracting)
+        // if player is not moving, then check for magnetic objects 
+        //if (Mathf.Abs(playerRB.linearVelocity.x) < velocityThreshold && Mathf.Abs(playerRB.linearVelocity.y) < velocityThreshold)
+        if (allowToUseMagneticAbilities())
         {
+            //Debug.Log("Player is moving");
             pushPullMagneticObject();
         }
+        else
+        {
+            if (closestMagneticObjectRb != null)
+            {
+                closestMagneticObjectRb.linearVelocity = new Vector2(Vector2.zero.x, closestMagneticObjectRb.linearVelocityY);
+            }
+            //Debug.Log("Player is not moving");
+        }
     }
+
+    private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold;
 
     private void Update()
     {
@@ -129,12 +142,7 @@ public class MagnetAbilities : MonoBehaviour
             playerDirection = new Vector2(playerMovement.Horizontal, 0);
         }
 
-        // if player is not moving, then check for magnetic objects
-        //if (Mathf.Abs(playerRB.linearVelocity.x) < velocityThreshold && Mathf.Abs(playerRB.linearVelocity.y) < velocityThreshold)
-        if(playerRB.linearVelocity.sqrMagnitude < velocityThreshold)
-        {
-            detectMagneticObjects();
-        } 
+        detectMagneticObjects(); 
 
         if(shouldShowIndicator())
         {
@@ -148,7 +156,18 @@ public class MagnetAbilities : MonoBehaviour
         }
     }
 
-    private bool shouldShowIndicator()=>isDetecting && !isInteracting && formTransform.CurrentForm != FormTransform.formState.neutral;   
+    private bool shouldShowIndicator()
+    {
+        if(closestMagneticObjectRb != null)
+        {
+            return isDetecting && closestMagneticObjectRb.linearVelocity.sqrMagnitude < velocityThreshold && formTransform.CurrentForm != FormTransform.formState.neutral;   
+        }
+        else
+        {
+            return false;
+        }
+
+    }
     
 
     private void OnEnable()
@@ -191,19 +210,19 @@ public class MagnetAbilities : MonoBehaviour
             isInteracting = true;
 
             // To avoid objects moving the player
-            playerRB.mass = maxPlayerMass;
+            //playerRB.mass = maxPlayerMass;
         } 
         else
         {
             isInteracting = false;
-            playerRB.mass = minPlayerMass;
+            //playerRB.mass = minPlayerMass;
         }
     }
 
     private void interactMagneticObjects_canceled(InputAction.CallbackContext context)
     {
         isInteracting = false;
-        playerRB.mass = minPlayerMass;
+        //playerRB.mass = minPlayerMass;
     }
 
     private void setValuesOnDetection(Collider2D hit, float currentMagneticObjectDistance)
@@ -214,7 +233,7 @@ public class MagnetAbilities : MonoBehaviour
         closestMagneticObjectPosition = hit.gameObject.transform.position;
         closestMagneticObject = hit.gameObject;
         closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
-        closestMagneticObjectRb.mass = maxObjectMass;
+        //closestMagneticObjectRb.mass = maxObjectMass;
     }
 
     private void resetValuesOnDetection()
@@ -232,10 +251,10 @@ public class MagnetAbilities : MonoBehaviour
         hits = Physics2D.OverlapCircleAll(playerPosition, detectDistance, magneticObjects);
 
         // BUG - this one need to be set once, shouldnt be here
-        if (closestMagneticObjectRb)
-        {
-            closestMagneticObjectRb.mass = minObjectMass;
-        }
+        //if (closestMagneticObjectRb)
+        //{
+        //    closestMagneticObjectRb.mass = minObjectMass;
+        //}
 
 
         if (debugMode)
