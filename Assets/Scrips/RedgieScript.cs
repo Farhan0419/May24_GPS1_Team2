@@ -13,6 +13,7 @@ public class RedgieScript : MonoBehaviour
     private Rigidbody2D playerRB;
     private MagnetAbilities magnetAbilities;
     private FormTransform formTransform;
+    private bool isTooCloseToPlayer;
 
 
     void Start()
@@ -54,6 +55,11 @@ public class RedgieScript : MonoBehaviour
 
     private void Update()
     {
+        isTooCloseToPlayer = GetComponentInChildren<RedgieTooClose>().IsTooClose;
+    }
+
+    private void FixedUpdate()
+    {
         freezeXMovement();
         freezeYMovement();
         // Red Pad jump logic
@@ -74,26 +80,28 @@ public class RedgieScript : MonoBehaviour
         // Always Freeze X movement  if not interacting or not grounded or stuck
         // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
 
-        if (magnetAbilities.IsInteracting && groundCheck.IsGrounded && !isStuck)
+        if (magnetAbilities.IsInteracting && groundCheck.IsGrounded && !isStuck && !isTooCloseToPlayer)
         {
             if (formTransform.CurrentForm == FormTransform.formState.red)
             {
                 rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-                rb.mass = 1000f;
-                playerRB.mass = 1f;
+                //rb.mass = 1000f;
+                //playerRB.mass = 1f;
             }
             else if (formTransform.CurrentForm == FormTransform.formState.blue)
             {
-                if(playerRB.linearVelocity.sqrMagnitude > 0.01f)
-                {
-                    rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
-                }
-                else
-                {
-                    rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-                }
+                rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+                //if (playerRB.linearVelocity.sqrMagnitude > 0.01f)
+                //{
+                //    rb.mass = 1000f;
+                //    playerRB.mass = 1f;
+                //}
+                //else
+                //{
+                //    rb.mass = 1f;
+                //    playerRB.mass = 1000f;
+                //}
             }
-
         }
         else
         {

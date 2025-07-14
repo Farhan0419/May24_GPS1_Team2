@@ -9,7 +9,7 @@ public class RedgieGroundCheck : MonoBehaviour
         get => isGrounded; 
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
 
@@ -19,7 +19,7 @@ public class RedgieGroundCheck : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
 

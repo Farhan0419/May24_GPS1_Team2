@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Size.y
-      value: 2.0336277
+      value: 1.95
       objectReference: {fileID: 0}
     - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Offset.x
@@ -31,6 +31,10 @@ PrefabInstance:
     - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2671082612535605348, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: m_Name
+      value: CollisionPrevention
       objectReference: {fileID: 0}
     - target: {fileID: 3124692039141969425, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Name
@@ -103,6 +107,10 @@ PrefabInstance:
     - target: {fileID: 5059834309362536154, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518620210848205888, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: m_Size.y
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 5536007197896863606, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: rb
