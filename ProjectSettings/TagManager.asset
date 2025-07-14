@@ -14,7 +14,6 @@ TagManager:
   - BlueMagneticPlatform
   - ObjectDetector
   - ObjectDetectee
-  - bluePaintStation
   - PressurePlate
   layers:
   - Default
@@ -31,7 +30,6 @@ TagManager:
   - Player
   - WALL
   - ObjectDetectee
-  - 
   - 
   - 
   - 

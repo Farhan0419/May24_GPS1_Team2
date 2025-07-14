@@ -6,7 +6,6 @@ public class RedgieScript : MonoBehaviour
     public float LaunchPower = 20f;
     public Rigidbody2D rb;
     private bool isJumping = false;
-    private bool isStuck;
     private float jumpTimer = 0;
     private RedgieGroundCheck groundCheck;
     private GameObject player;
@@ -25,11 +24,6 @@ public class RedgieScript : MonoBehaviour
         playerRB = player.GetComponent<Rigidbody2D>();
         magnetAbilities = player.GetComponent<MagnetAbilities>();
         formTransform = player.GetComponent<FormTransform>();
-    }
-
-    public void setStuck()
-    {
-        isStuck = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -77,45 +71,24 @@ public class RedgieScript : MonoBehaviour
 
     private void freezeXMovement()
     {
-        // Always Freeze X movement  if not interacting or not grounded or stuck
+        // Always Freeze X movement  if not interacting or not grounded or not too close to player
         // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
 
-        if (magnetAbilities.IsInteracting && groundCheck.IsGrounded && !isStuck && !isTooCloseToPlayer)
+        if (magnetAbilities.IsInteracting && groundCheck.IsGrounded && !isTooCloseToPlayer)
         {
-            if (formTransform.CurrentForm == FormTransform.formState.red)
-            {
-                rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-                //rb.mass = 1000f;
-                //playerRB.mass = 1f;
-            }
-            else if (formTransform.CurrentForm == FormTransform.formState.blue)
-            {
-                rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-                //if (playerRB.linearVelocity.sqrMagnitude > 0.01f)
-                //{
-                //    rb.mass = 1000f;
-                //    playerRB.mass = 1f;
-                //}
-                //else
-                //{
-                //    rb.mass = 1f;
-                //    playerRB.mass = 1000f;
-                //}
-            }
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         }
         else
         {
             rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
-            rb.mass = 1f;
-            playerRB.mass = 1f;
         }
     }
 
     private void freezeYMovement()
     {
-        // Always Freeze Y movement  if grounded and not stuck or jumping
+        // Always Freeze Y movement  if grounded or jumping
         // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
-        if (groundCheck.IsGrounded && !isStuck && !isJumping)
+        if (groundCheck.IsGrounded && !isJumping)
         {
             rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
         }

@@ -527,6 +527,7 @@ MonoBehaviour:
   jumpPower: 16.7
   LaunchPower: 12
   wallCheckRadius: 0.58
+  isMoving: 0
   cameraSystem: {fileID: 0}
   PlayerCollider: {fileID: 1852144890480461987}
 --- !u!114 &3021878682728651252
@@ -541,7 +542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb809e51950760849944e8a248f0fb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectDistance: 2
+  detectDistance: 2.5
   neutralCharSprite: {fileID: -6308607571057329287, guid: f72d46c6f4b22be4d8735ffa63a2778f, type: 3}
   redCharSprite: {fileID: 1645000667433708828, guid: e48ce59391f0d844d8663cc534062a94, type: 3}
   blueCharSprite: {fileID: -8052081215970942740, guid: 68a565505c3d55648bb7cab807740f21, type: 3}

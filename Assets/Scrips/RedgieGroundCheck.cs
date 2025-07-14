@@ -13,7 +13,7 @@ public class RedgieGroundCheck : MonoBehaviour
     {
         GameObject other = collision.gameObject;
 
-        if (other.CompareTag("platform") || other.CompareTag("OneWayPlatform") || other.CompareTag("Player"))
+        if (other.CompareTag("platform") || other.CompareTag("OneWayPlatform") || other.CompareTag("Player") || other.CompareTag("PressurePlate"))
         {
             isGrounded = true;
         }
@@ -23,7 +23,7 @@ public class RedgieGroundCheck : MonoBehaviour
     {
         GameObject other = collision.gameObject;
 
-        if (other.CompareTag("platform") || other.CompareTag("OneWayPlatform") || other.CompareTag("Player"))
+        if (other.CompareTag("platform") || other.CompareTag("OneWayPlatform") || other.CompareTag("Player") || other.CompareTag("PressurePlate"))
         {
             isGrounded = false;
         }
