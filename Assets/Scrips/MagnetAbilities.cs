@@ -111,19 +111,10 @@ public class MagnetAbilities : MonoBehaviour
     private void FixedUpdate()
     {
         // if player is not moving, then check for magnetic objects 
-        //if (Mathf.Abs(playerRB.linearVelocity.x) < velocityThreshold && Mathf.Abs(playerRB.linearVelocity.y) < velocityThreshold)
         if (allowToUseMagneticAbilities())
         {
-            //Debug.Log("Player is moving");
+            //Debug.Log("use magnetic abilities");
             pushPullMagneticObject();
-        }
-        else
-        {
-            if (closestMagneticObjectRb != null)
-            {
-                closestMagneticObjectRb.linearVelocity = new Vector2(Vector2.zero.x, closestMagneticObjectRb.linearVelocityY);
-            }
-            //Debug.Log("Player is not moving");
         }
     }
 
@@ -201,14 +192,7 @@ public class MagnetAbilities : MonoBehaviour
             return;
         }
 
-        if (isDetecting)
-        {
-            isInteracting = true;
-        } 
-        else
-        {
-            isInteracting = false;
-        }
+        isInteracting = isDetecting;
     }
 
     private void interactMagneticObjects_canceled(InputAction.CallbackContext context)
@@ -316,14 +300,22 @@ public class MagnetAbilities : MonoBehaviour
         isDetecting = foundValidObject;
     }
 
+    //TODO : implement enum for this
+    //enum MagnetAbilityType
+    //{ None,
+    //Pull,
+    //Push
+    //}
     private void changeDirectionMagneticObject(string ability)
     {
         if (ability == "pull")
         {
+            //Debug.Log("pull");
             directionTowardsPlayer = -(playerDirection.x);
         }
         else if (ability == "push")
         {
+            //Debug.Log("push");
             directionTowardsPlayer = playerDirection.x;
         }
     }
@@ -344,6 +336,8 @@ public class MagnetAbilities : MonoBehaviour
         {
             changeDirectionMagneticObject("push");
         }
+
+        //Debug.Log("USED");
 
         // use linearVecocity for continous movement
         closestMagneticObjectRb.linearVelocity = new Vector2(directionTowardsPlayer * speedOfPushPullObjects, closestMagneticObjectRb.linearVelocity.y);
