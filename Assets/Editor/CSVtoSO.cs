@@ -1,0 +1,52 @@
+using UnityEngine;
+using UnityEditor;
+using System.IO;
+//using System.Diagnostics;
+using System.Text;
+
+public class CSVtoSO
+{
+    private static string dialogueFilePath = "/Editor/CSV/Test/Level1Room1_2.txt";
+    private static int counter = 0;
+
+    [MenuItem("Utilities/Generate Dialogue")]
+
+    public static void GenerateDialogue()
+    {
+        string[] allLines = File.ReadAllLines(Application.dataPath + dialogueFilePath, new UTF8Encoding(true));
+
+        Dialogue dialogue = ScriptableObject.CreateInstance<Dialogue>();
+
+
+        foreach (string line in allLines)
+        {
+            Debug.Log(line);
+          
+
+            string[] columns = line.Split('\t');
+
+            if (columns.Length > 0)
+            {
+                dialogue.dialogueType.Add(columns[0].Trim());
+            }
+
+            if (columns.Length > 2)
+            {
+                dialogue.dialogueLines1.Add(columns[2].Trim());
+            }
+
+            if (columns.Length > 3)
+            {
+                dialogue.dialogueLines2.Add(columns[3].Trim());
+            }
+
+            if (columns.Length > 4)
+            {
+                dialogue.dialogueLines3.Add(columns[4].Trim());
+            }
+        }
+
+        AssetDatabase.CreateAsset(dialogue, "Assets/ScriptableObjects/Dialogues/Dialogue.asset");
+        AssetDatabase.SaveAssets();
+    }
+}
