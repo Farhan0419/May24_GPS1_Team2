@@ -20,13 +20,16 @@ public class PlayerMovement : MonoBehaviour
 
     public float wallCheckRadius = 0.2f;
     private bool isTouchingWall = false;
-    public bool isMoving = false;
+    private bool isMoving = false;
 
     private FormTransform formTransform;
     public CameraSystem cameraSystem;
 
     private GameObject OneWayPlatform;
     [SerializeField] private BoxCollider2D PlayerCollider;
+
+    private YoffsetZoneScript yoffsetZoneScript;
+    private float Yoffset = 0;
     public float Horizontal
     {
         get => horizontal;
@@ -39,6 +42,10 @@ public class PlayerMovement : MonoBehaviour
     public bool getMovement()
     {
         return isMoving;
+    }
+    public float GetYoffset()
+    {
+        return Yoffset;
     }
     private void Start()
     {
@@ -133,6 +140,20 @@ public class PlayerMovement : MonoBehaviour
                 JumpPadLaunch();
             }
         }
+        if (other.gameObject.layer == LayerMask.NameToLayer("YoffsetZone"))
+        {
+            yoffsetZoneScript = other.GetComponent<YoffsetZoneScript>();
+            Yoffset = yoffsetZoneScript.getOffsetVal();
+        }
+    }
+    // Y offset Zone
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("YoffsetZone"))
+        {
+            yoffsetZoneScript = null;
+            Yoffset = 0;
+        }
     }
     private void JumpPadLaunch()
     {
@@ -182,7 +203,6 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("OneWayPlatform"))
         {
             OneWayPlatform = collision.gameObject;
-            Debug.Log("Blue Platform detected");
         }
         if (collision.gameObject.CompareTag("Walll"))
         {

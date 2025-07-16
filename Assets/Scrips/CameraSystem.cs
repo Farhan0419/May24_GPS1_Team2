@@ -23,7 +23,10 @@ public class CameraSystem : MonoBehaviour
 
     private float AimedOffset;
     private float CurrentXoffset;
+    private float AimedYOffset;
+    private float CurrentYoffset;
     [SerializeField] private float offsetTransitionSpeed;
+    [SerializeField] private float YoffsetTransitionSpeed;
 
     void Start()
     {
@@ -85,7 +88,18 @@ public class CameraSystem : MonoBehaviour
                 CurrentXoffset -= offsetTransitionSpeed * Time.deltaTime;
             }
         }
-        offset = new Vector3(CurrentXoffset, offset.y, offset.z);
+        // Y offset
+        AimedOffset = Playermovement.GetYoffset();
+        if (CurrentYoffset < AimedOffset)
+        {
+            CurrentYoffset += YoffsetTransitionSpeed * Time.deltaTime;
+        }
+        else if (CurrentYoffset > AimedOffset)
+        {
+            CurrentYoffset -= YoffsetTransitionSpeed * Time.deltaTime;
+        }
+
+        offset = new Vector3(CurrentXoffset, CurrentYoffset, offset.z);
     }
 
     public void EnterPuzzleZone(float zoomValue)
