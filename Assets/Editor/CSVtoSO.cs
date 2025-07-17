@@ -18,10 +18,10 @@ public class CSVtoSO
 
         foreach (string line in allLines)
         {
-            counter++;
           
-            if(counter == 1)
+            if(counter == 0)
             {
+                Debug.Log(line);
                 continue;
             }
 
@@ -32,6 +32,7 @@ public class CSVtoSO
                 dialogue.dialogueType.Add(columns[0].Trim());
             }
 
+            // maybe need to use recursion
             if (columns.Length > 2)
             {
                 dialogue.dialogueLines1.Add(columns[2].Trim('"'));
@@ -46,9 +47,15 @@ public class CSVtoSO
             {
                 dialogue.dialogueLines3.Add(columns[4].Trim('"'));
             }
+
+            counter++;
         }
 
         AssetDatabase.CreateAsset(dialogue, "Assets/ScriptableObjects/Dialogues/Dialogue.asset");
         AssetDatabase.SaveAssets();
     }
 }
+
+//create another function for dialogue system to called to split the dialogue lines into different sections from split(";")
+// once breaking the lines into sections, then check each line got "(enlarge font)" this text, then remove it from the line
+// Then the index for the line will be store, so that it knows which line to enlarge the font

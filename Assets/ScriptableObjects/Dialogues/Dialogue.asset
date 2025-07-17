@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   dialogueType:
-  - Type
   - Conversation
   - Remark
   - Conversation
   dialogueLines1:
-  - Conversation1
   - "Hello there, didn\u2019t realize there was anyone else down here.;We\u2019ll
     exchange pleasantries later. First, let\u2019s get out of here.;That puddle of
     blue paint will give you pulling powers.;It\u2019ll allow you to pull me down
