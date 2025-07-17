@@ -19,14 +19,14 @@ MonoBehaviour:
   - Conversation
   dialogueLines1:
   - Conversation1
-  - "\"Hello there, didn\uFFFDt realize there was anyone else down here.;We\uFFFDll
-    exchange pleasantries later. First, let\uFFFDs get out of here.;That puddle of
-    blue paint will give you pulling powers.;It\uFFFDll allow you to pull me down
-    from here.;I\uFFFDll sit on the pressure plate and unlock the elevator.;\""
-  - "\"See that? That\uFFFDs not just paint. That\uFFFDs power, baby!\""
-  - "\"Well done! One step closer to getting out of here.;Name\uFFFDs Redgie. Red
-    block. Big voice. Impeccable sitting abilities.;Engraving on your side says MagUnet,
-    I\uFFFDll call you that.;We\uFFFDre in the Scrap well station, the lowest factory
-    level.;Rock bottom means we can\uFFFDt fall, we\uFFFDll only rise.;\""
+  - "Hello there, didn\u2019t realize there was anyone else down here.;We\u2019ll
+    exchange pleasantries later. First, let\u2019s get out of here.;That puddle of
+    blue paint will give you pulling powers.;It\u2019ll allow you to pull me down
+    from here.;I\u2019ll sit on the pressure plate and unlock the elevator.;"
+  - "See that? That\u2019s not just paint. That\u2019s power, baby!"
+  - "Well done! One step closer to getting out of here.;Name\u2019s Redgie. Red block.
+    Big voice. Impeccable sitting abilities.;Engraving on your side says MagUnet,
+    I\u2019ll call you that.;We\u2019re in the Scrap well station, the lowest factory
+    level.;Rock bottom means we can\u2019t fall, we\u2019ll only rise.;"
   dialogueLines2: []
   dialogueLines3: []

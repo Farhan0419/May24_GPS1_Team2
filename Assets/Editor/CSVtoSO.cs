@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
-//using System.Diagnostics;
 using System.Text;
 
 public class CSVtoSO
 {
-    private static string dialogueFilePath = "/Editor/CSV/Test/Level1Room1_2.txt";
+    private static string dialogueFilePath = "/Editor/CSV/Test/Level1Room_test1.txt";
     private static int counter = 0;
 
     [MenuItem("Utilities/Generate Dialogue")]
@@ -17,11 +16,14 @@ public class CSVtoSO
 
         Dialogue dialogue = ScriptableObject.CreateInstance<Dialogue>();
 
-
         foreach (string line in allLines)
         {
-            Debug.Log(line);
+            counter++;
           
+            if(counter == 1)
+            {
+                continue;
+            }
 
             string[] columns = line.Split('\t');
 
@@ -32,17 +34,17 @@ public class CSVtoSO
 
             if (columns.Length > 2)
             {
-                dialogue.dialogueLines1.Add(columns[2].Trim());
+                dialogue.dialogueLines1.Add(columns[2].Trim('"'));
             }
 
             if (columns.Length > 3)
             {
-                dialogue.dialogueLines2.Add(columns[3].Trim());
+                dialogue.dialogueLines2.Add(columns[3].Trim('"'));
             }
 
             if (columns.Length > 4)
             {
-                dialogue.dialogueLines3.Add(columns[4].Trim());
+                dialogue.dialogueLines3.Add(columns[4].Trim('"'));
             }
         }
 
