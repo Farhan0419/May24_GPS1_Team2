@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -38,6 +39,19 @@ public class PlayerMovement : MonoBehaviour
         EnablePlayerMovement();
     }
 
+    private void OnEnable()
+    {
+        FormTransform.OnPlayerChangeForm += MoveToPaintStation;
+    }
+    private void OnDisable()
+    {
+        FormTransform.OnPlayerChangeForm -= MoveToPaintStation;
+    }
+    private void MoveToPaintStation(Vector2 location, Action callback)
+    {
+        // Your Logic
+        callback?.Invoke();
+    }
     public void DisablePlayerMovement()
     {
         movementDisabled = true;
