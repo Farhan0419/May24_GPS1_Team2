@@ -9,21 +9,21 @@ public class RedgieGroundCheck : MonoBehaviour
         get => isGrounded; 
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
 
-        if (other.CompareTag("platform") || other.CompareTag("OneWayPlatform") || other.CompareTag("Player"))
+        if (other.CompareTag("platform") || other.CompareTag("OneWayPlatform") || other.CompareTag("Player") || other.CompareTag("PressurePlate"))
         {
             isGrounded = true;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
 
-        if (other.CompareTag("platform") || other.CompareTag("OneWayPlatform") || other.CompareTag("Player"))
+        if (other.CompareTag("platform") || other.CompareTag("OneWayPlatform") || other.CompareTag("Player") || other.CompareTag("PressurePlate"))
         {
             isGrounded = false;
         }

@@ -1,34 +1,36 @@
+using System.Collections;
 using UnityEngine;
 
 public class RedgieScript : MonoBehaviour
 {
+
+    [SerializeField] public float LaunchPower = 20f;
+    [SerializeField] public bool DebugMode = true;
+
     private Vector3 OriginalPos;
-    public float LaunchPower = 20f;
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     private bool isJumping = false;
-    private bool isStuck;
-    private float jumpTimer = 0;
     private RedgieGroundCheck groundCheck;
     private GameObject player;
     private Rigidbody2D playerRB;
     private MagnetAbilities magnetAbilities;
     private FormTransform formTransform;
+    private RedgieTooClose rtc;
+
 
 
     void Start()
     {
         OriginalPos = transform.position;
         groundCheck = GetComponentInChildren<RedgieGroundCheck>();
+        rb = GetComponent<Rigidbody2D>();
 
         player = GameObject.FindWithTag("Player");
         playerRB = player.GetComponent<Rigidbody2D>();
         magnetAbilities = player.GetComponent<MagnetAbilities>();
         formTransform = player.GetComponent<FormTransform>();
-    }
 
-    public void setStuck()
-    {
-        isStuck = true;
+        rtc = GetComponentInChildren<RedgieTooClose>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,77 +39,65 @@ public class RedgieScript : MonoBehaviour
         {
             // Pit fall death
             transform.position = OriginalPos;
-            Debug.Log("Redgie fell into a pit and died, resetting to original position");
+            if(DebugMode) Debug.Log("Redgie fell into a pit and died, resetting to original position");
         }
         if (other.gameObject.layer == LayerMask.NameToLayer("RedPad"))
         {
-            // Jump pad
-            rb.linearVelocity = new Vector2(0f, LaunchPower);
-            isJumping = true;
+            if (transform.parent == null)
+            {
+                StartCoroutine(JumpRoutine(new Vector2(0f, LaunchPower)));
+            }
         }
         if (other.gameObject.CompareTag("Walll"))
         {
             transform.position = OriginalPos;
-            Debug.Log("Redgie got turned into a pancake, resetting to original position");
+            if (DebugMode) Debug.Log("Redgie got turned into a pancake, resetting to original position");
         }
     }
 
-    private void Update()
+    IEnumerator JumpRoutine(Vector2 jumpVel)
     {
-        freezeXMovement();
-        freezeYMovement();
-        // Red Pad jump logic
-        if (isJumping)
-        {
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y); // Block X movement so Redgie doesn't jump sideways
-            jumpTimer += Time.deltaTime;
-        }
-        if (jumpTimer >= 1f)
-        {
-            isJumping = false;
-            jumpTimer = 0f;
-        }
+        rb.linearVelocity = jumpVel;
+        float curGravScale = rb.gravityScale;
+        rb.gravityScale = 0.0f;
+        isJumping = true;
+
+        if (DebugMode) Debug.Log("jump");
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (curGravScale == 0) curGravScale = 1f;
+        rb.gravityScale = curGravScale;
+        isJumping = false;
+
+        if (DebugMode) Debug.Log("jumped");
     }
 
-    private void freezeXMovement()
+    private void FixedUpdate()
     {
-        // Always Freeze X movement  if not interacting or not grounded or stuck
+        checkIsXMovementFreeze();
+        checkIsYMovementFreeze();
+    }
+
+    private void checkIsXMovementFreeze()
+    {
+        // Always Freeze X movement  if not interacting or not grounded or not too close to player
         // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
-
-        if (magnetAbilities.IsInteracting && groundCheck.IsGrounded && !isStuck)
+        if (magnetAbilities.IsInteracting && groundCheck.IsGrounded && !rtc.IsTooClose)
         {
-            if (formTransform.CurrentForm == FormTransform.formState.red)
-            {
-                rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-                rb.mass = 1000f;
-                playerRB.mass = 1f;
-            }
-            else if (formTransform.CurrentForm == FormTransform.formState.blue)
-            {
-                if(playerRB.linearVelocity.sqrMagnitude > 0.01f)
-                {
-                    rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
-                }
-                else
-                {
-                    rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
-                }
-            }
-
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         }
         else
         {
             rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
-            rb.mass = 1f;
-            playerRB.mass = 1f;
         }
     }
 
-    private void freezeYMovement()
+    private void checkIsYMovementFreeze()
     {
-        // Always Freeze Y movement  if grounded and not stuck or jumping
+        // Always Freeze Y movement  if grounded or jumping
         // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
-        if (groundCheck.IsGrounded && !isStuck && !isJumping)
+        if (groundCheck.IsGrounded && !isJumping)
         {
             rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
         }
