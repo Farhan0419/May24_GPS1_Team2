@@ -144,13 +144,10 @@ public class FormTransform : MonoBehaviour
             {
                 case "ShowerStation":
                     return currentForm == formState.neutral ? false : true;
-                    break;
                 case "RedPaintStation":
                     return currentForm == formState.red ? false : true;
-                    break;
                 case "BluePaintStation":
                     return currentForm == formState.blue ? false : true;
-                    break;
             }
         }
         return false;

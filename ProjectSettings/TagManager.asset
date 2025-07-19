@@ -15,6 +15,7 @@ TagManager:
   - ObjectDetector
   - ObjectDetectee
   - PressurePlate
+  - Elevator
   layers:
   - Default
   - TransparentFX
