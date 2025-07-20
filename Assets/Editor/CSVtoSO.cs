@@ -5,7 +5,8 @@ using System.Text;
 
 public class CSVtoSO
 {
-    private static string dialogueFilePath = "/Editor/CSV/Test/Level1Room_test1.txt";
+    private static string fileName = "Level1Room1Real";
+    private static string dialogueFilePath = $"/Editor/CSV/{fileName}.txt";
     private static int counter = 0;
 
     [MenuItem("Utilities/Generate Dialogue")]
@@ -18,21 +19,21 @@ public class CSVtoSO
 
         foreach (string line in allLines)
         {
-          
-            if(counter == 0)
+            counter++;
+            if (counter == 1)
             {
-                Debug.Log(line);
                 continue;
             }
 
             string[] columns = line.Split('\t');
+            Debug.Log(line);
 
             if (columns.Length > 0)
             {
                 dialogue.dialogueType.Add(columns[0].Trim());
             }
-
-            // maybe need to use recursion
+ 
+            // Need recursive for more types of dialogue
             if (columns.Length > 2)
             {
                 dialogue.dialogueLines1.Add(columns[2].Trim('"'));
@@ -46,16 +47,11 @@ public class CSVtoSO
             if (columns.Length > 4)
             {
                 dialogue.dialogueLines3.Add(columns[4].Trim('"'));
-            }
-
-            counter++;
+            }           
         }
 
-        AssetDatabase.CreateAsset(dialogue, "Assets/ScriptableObjects/Dialogues/Dialogue.asset");
+        AssetDatabase.CreateAsset(dialogue, $"Assets/Resources/ScriptableObjects/Dialogues/{fileName}.asset");
         AssetDatabase.SaveAssets();
     }
 }
 
-//create another function for dialogue system to called to split the dialogue lines into different sections from split(";")
-// once breaking the lines into sections, then check each line got "(enlarge font)" this text, then remove it from the line
-// Then the index for the line will be store, so that it knows which line to enlarge the font
