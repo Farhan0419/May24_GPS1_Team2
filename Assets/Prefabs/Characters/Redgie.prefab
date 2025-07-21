@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Size.y
-      value: 1.95
+      value: 1.8609915
       objectReference: {fileID: 0}
     - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Offset.x
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Offset.y
-      value: -0.53389865
+      value: -0.48939443
       objectReference: {fileID: 0}
     - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -47,6 +47,14 @@ PrefabInstance:
     - target: {fileID: 3124692039141969425, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Name
       value: Redgie
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645582048644672601, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: m_Name
+      value: DialogueCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4645582048644672601, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5038110775198467428, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Sprite
@@ -129,7 +137,8 @@ PrefabInstance:
       value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 391463910125239620, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1103463f24cf13d4d91e42259981b242, type: 3}

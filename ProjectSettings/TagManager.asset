@@ -15,6 +15,7 @@ TagManager:
   - ObjectDetector
   - ObjectDetectee
   - PressurePlate
+  - DialogueCanvas
   layers:
   - Default
   - TransparentFX
@@ -31,6 +32,7 @@ TagManager:
   - WALL
   - ObjectDetectee
   - YoffsetZone
+  - 
   - 
   - 
   - 
