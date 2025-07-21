@@ -1,14 +1,19 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class PlayerDeath : MonoBehaviour
 {
     public CanvasGroup DeathScreen;
+    private PlayerMovement MovementScript;
     private string currentSceneName;
+    private float timer = 0f;
+    private bool GettingCrushedtimerOn = false;
 
     void Start()
     {
+        MovementScript = gameObject.GetComponent<PlayerMovement>();
         closeDeathScreen();
         currentSceneName = SceneManager.GetActiveScene().name;
         if (currentSceneName == null)
@@ -31,6 +36,10 @@ public class PlayerDeath : MonoBehaviour
         else if (causeOfDeath == "Pit")
         {
             Debug.Log("Player Died from falling into a pit");
+        }
+        else if (causeOfDeath == "GiantMagnet")
+        {
+            Debug.Log("Player got stuck in the Giant Blue magnet forever");
         }
 
     }
@@ -67,6 +76,26 @@ public class PlayerDeath : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Pit"))
         {
             PlayerDead("Pit");
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
+        {
+            GettingCrushedtimerOn = true;
+            MovementScript.DisablePlayerMovement();
+        }
+    }
+    private void Update()
+    {
+        if (GettingCrushedtimerOn)
+        {
+            timer += Time.deltaTime;
+            if (timer >= 4)
+            {
+                PlayerDead("GiantMagnet");
+                GettingCrushedtimerOn = false;
+            }
         }
     }
 }

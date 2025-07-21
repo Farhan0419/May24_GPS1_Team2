@@ -47,23 +47,17 @@ public class MagnetAbilities : MonoBehaviour
 
     private GameObject currentIndicator;
 
-    [SerializeField] private float dotProductThreshold = 0.6f;
+    private bool isTooCloseToRedgie;
 
-    [SerializeField] private float detectDistance = 10f;
+    [SerializeField] private float dotProductThreshold = 0.9f;
 
-    [SerializeField] private float speedOfPushPullObjects = 5f;
+    [SerializeField] private float detectDistance = 7f;
+
+    [SerializeField] private float speedOfPushPullObjects = 3f;
 
     [SerializeField] private float circleCastSize = 0.01f;
 
     [SerializeField] private float velocityThreshold = 0.01f;
-
-    [SerializeField] private float maxPlayerMass = 100f;
-
-    [SerializeField] private float minPlayerMass = 1f;
-
-    [SerializeField] private float maxObjectMass = 100f;
-
-    [SerializeField] private float minObjectMass = 1f;
 
     [SerializeField] private GameObject eControls;
 
@@ -108,19 +102,22 @@ public class MagnetAbilities : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
         formTransform = player.GetComponent<FormTransform>();
 
-        magneticObjects = LayerMask.GetMask("ObjectDetectee");
-        detectionObjects = LayerMask.GetMask("ObjectDetectee", "Platform");
+        magneticObjects = LayerMask.GetMask("MagneticObjects");
+        detectionObjects = LayerMask.GetMask("MagneticObjects", "Platform");
         currentIndicator = Instantiate(eControls);
         currentIndicator.SetActive(false);
     }
 
     private void FixedUpdate()
     {
-        if (isInteracting)
+        // if player is not moving, then check for magnetic objects 
+        if (allowToUseMagneticAbilities())
         {
             pushPullMagneticObject();
         }
     }
+
+    private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold && !isTooCloseToRedgie;
 
     private void Update()
     {
@@ -129,14 +126,12 @@ public class MagnetAbilities : MonoBehaviour
             playerDirection = new Vector2(playerMovement.Horizontal, 0);
         }
 
-        // if player is not moving, then check for magnetic objects
-        //if (Mathf.Abs(playerRB.linearVelocity.x) < velocityThreshold && Mathf.Abs(playerRB.linearVelocity.y) < velocityThreshold)
-        if(playerRB.linearVelocity.sqrMagnitude < velocityThreshold)
-        {
-            detectMagneticObjects();
-        } 
+        detectMagneticObjects();
 
-        if(shouldShowIndicator())
+        // Having this line here, because in the interactMagneticObjects_performed, it cannot check that change if isDetecting is false cuz it is executed once only when performed
+        if (!isDetecting) isInteracting = false;
+
+        if (shouldShowIndicator())
         {
             Vector2 indicatorPosition = new Vector2(closestMagneticObjectPosition.x + indicatorXOffset, closestMagneticObjectPosition.y + indicatorYOffset);
             currentIndicator.transform.position = indicatorPosition;
@@ -148,7 +143,19 @@ public class MagnetAbilities : MonoBehaviour
         }
     }
 
-    private bool shouldShowIndicator()=>isDetecting && !isInteracting;   
+    private bool shouldShowIndicator()
+    {
+        if(closestMagneticObjectRb != null)
+        {
+            return  (isDetecting && closestMagneticObjectRb.linearVelocity.sqrMagnitude < velocityThreshold && 
+                    formTransform.CurrentForm != FormTransform.formState.neutral && !isTooCloseToRedgie && 
+                    playerRB.linearVelocity.sqrMagnitude < velocityThreshold);   
+        }
+        else
+        {
+            return false;
+        }
+    }
     
 
     private void OnEnable()
@@ -186,24 +193,12 @@ public class MagnetAbilities : MonoBehaviour
             return;
         }
 
-        if (isDetecting)
-        {
-            isInteracting = true;
-
-            // To avoid objects moving the player
-            playerRB.mass = maxPlayerMass;
-        } 
-        else
-        {
-            isInteracting = false;
-            playerRB.mass = minPlayerMass;
-        }
+        isInteracting = isDetecting;
     }
 
     private void interactMagneticObjects_canceled(InputAction.CallbackContext context)
     {
         isInteracting = false;
-        playerRB.mass = minPlayerMass;
     }
 
     private void setValuesOnDetection(Collider2D hit, float currentMagneticObjectDistance)
@@ -211,10 +206,13 @@ public class MagnetAbilities : MonoBehaviour
         previousClosestMagneticObjectPosition = closestMagneticObjectPosition;
 
         closestMagneticObjectDistance = currentMagneticObjectDistance;
-        closestMagneticObjectPosition = hit.gameObject.transform.position;
-        closestMagneticObject = hit.gameObject;
+
+        GameObject objectDetectee = FindChildWithTag(hit.gameObject, "ObjectDetectee");
+
+        closestMagneticObject = objectDetectee;
+        closestMagneticObjectPosition = closestMagneticObject.transform.position;
         closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
-        //closestMagneticObjectRb.mass = maxObjectMass;
+        isTooCloseToRedgie = hit.gameObject.GetComponentInChildren<RedgieTooClose>().IsTooClose;
     }
 
     private void resetValuesOnDetection()
@@ -225,18 +223,24 @@ public class MagnetAbilities : MonoBehaviour
         closestMagneticObjectPosition = Vector2.zero;
     }
 
+    GameObject FindChildWithTag(GameObject parent, string tag)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            if (child.CompareTag(tag))
+            {
+                return child.gameObject;
+            }
+        }
+
+        return null;
+    }
+
     private void detectMagneticObjects()
     {
         playerPosition = playerObjectDetector.transform.position;
 
         hits = Physics2D.OverlapCircleAll(playerPosition, detectDistance, magneticObjects);
-
-        // BUG - this one need to be set once, shouldnt be here
-        if (closestMagneticObjectRb)
-        {
-            closestMagneticObjectRb.mass = minObjectMass;
-        }
-
 
         if (debugMode)
         {
@@ -281,7 +285,7 @@ public class MagnetAbilities : MonoBehaviour
 
                 if (objectHit.collider != null)
                 {
-                    if (objectHit.collider.tag == "ObjectDetectee")
+                    if (objectHit.collider.tag == "Redgie")
                     {
                         if (closestMagneticObjectDistance == 0 || closestMagneticObjectDistance > currentMagneticObjectDistance)
                         {
@@ -297,14 +301,22 @@ public class MagnetAbilities : MonoBehaviour
         isDetecting = foundValidObject;
     }
 
+    //TODO : implement enum for this
+    //enum MagnetAbilityType
+    //{ None,
+    //Pull,
+    //Push
+    //}
     private void changeDirectionMagneticObject(string ability)
     {
         if (ability == "pull")
         {
+            //Debug.Log("pull");
             directionTowardsPlayer = -(playerDirection.x);
         }
         else if (ability == "push")
         {
+            //Debug.Log("push");
             directionTowardsPlayer = playerDirection.x;
         }
     }
@@ -326,7 +338,7 @@ public class MagnetAbilities : MonoBehaviour
             changeDirectionMagneticObject("push");
         }
 
-        //closestMagneticObjectRb.mass = minObjectMass;
+        //Debug.Log("USED");
 
         // use linearVecocity for continous movement
         closestMagneticObjectRb.linearVelocity = new Vector2(directionTowardsPlayer * speedOfPushPullObjects, closestMagneticObjectRb.linearVelocity.y);

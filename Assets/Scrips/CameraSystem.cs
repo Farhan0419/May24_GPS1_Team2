@@ -21,6 +21,13 @@ public class CameraSystem : MonoBehaviour
     private float endZoom;
     private bool isZooming = false;
 
+    private float AimedOffset;
+    private float CurrentXoffset;
+    private float AimedYOffset;
+    private float CurrentYoffset;
+    [SerializeField] private float offsetTransitionSpeed;
+    [SerializeField] private float YoffsetTransitionSpeed;
+
     void Start()
     {
         mainCamera = GetComponent<Camera>();
@@ -35,14 +42,15 @@ public class CameraSystem : MonoBehaviour
         {
             Debug.LogError("Forgot to assign the boundary object in camera");
         }
+
         // Direction Offset
         if (Playermovement.getDirection())
         {
-            offset = new Vector3(DirectionOffset, 0, 0);
+            AimedOffset = 2.5f;
         }
         else
         {
-            offset = new Vector3(-DirectionOffset, 0, 0);
+            AimedOffset = -2.5f;
         }
     }
 
@@ -66,12 +74,32 @@ public class CameraSystem : MonoBehaviour
         // Direction Offset
         if (Playermovement.getDirection())
         {
-            offset = new Vector3(DirectionOffset, 0, 0);
+            AimedOffset = 2.5f;
+            if (Playermovement.getMovement() && CurrentXoffset <= AimedOffset)
+            {
+                CurrentXoffset += offsetTransitionSpeed * Time.deltaTime;
+            }
         }
         else
         {
-            offset = new Vector3(-DirectionOffset, 0, 0);
+            AimedOffset = -2.5f;
+            if (Playermovement.getMovement() && CurrentXoffset >= AimedOffset)
+            {
+                CurrentXoffset -= offsetTransitionSpeed * Time.deltaTime;
+            }
         }
+        // Y offset
+        AimedOffset = Playermovement.GetYoffset();
+        if (CurrentYoffset < AimedOffset)
+        {
+            CurrentYoffset += YoffsetTransitionSpeed * Time.deltaTime;
+        }
+        else if (CurrentYoffset > AimedOffset)
+        {
+            CurrentYoffset -= YoffsetTransitionSpeed * Time.deltaTime;
+        }
+
+        offset = new Vector3(CurrentXoffset, CurrentYoffset, offset.z);
     }
 
     public void EnterPuzzleZone(float zoomValue)

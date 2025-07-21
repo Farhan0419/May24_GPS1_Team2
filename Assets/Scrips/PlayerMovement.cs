@@ -1,15 +1,14 @@
+using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
+
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Transform GroundCheck;
-    public Transform WallCheck;
     public LayerMask GroundLayer;
-    public LayerMask WallLayer;
 
     private float horizontal;
     public float speed = 8f;
@@ -18,48 +17,61 @@ public class PlayerMovement : MonoBehaviour
     private bool movementDisabled = false;
     public float LaunchPower = 50f;
 
-    public float wallCheckRadius = 0.2f;
-    private bool isTouchingWall = false;
+    private bool isMoving = false;
+    public bool isFalling { get; private set; }
 
     private FormTransform formTransform;
-    public CameraSystem cameraSystem;
 
     private GameObject OneWayPlatform;
     [SerializeField] private BoxCollider2D PlayerCollider;
-    public float Horizontal
-    {
-        get => horizontal;
-    }
 
-    public bool getDirection()
-    {
-        return isFacingRight;
-    }
+    private YoffsetZoneScript yoffsetZoneScript;
+    private float Yoffset = 0;
+
+    public float Horizontal => horizontal;
+    public bool getDirection() => isFacingRight;
+    public bool getMovement() => isMoving;
+    public float GetYoffset() => Yoffset;
+
     private void Start()
     {
         formTransform = GetComponent<FormTransform>();
+        EnablePlayerMovement();
+    }
+
+    private void OnEnable()
+    {
+        FormTransform.OnPlayerChangeForm += MoveToPaintStation;
+    }
+    private void OnDisable()
+    {
+        FormTransform.OnPlayerChangeForm -= MoveToPaintStation;
+    }
+    private void MoveToPaintStation(Vector2 location, Action callback)
+    {
+        // Your Logic
+        callback?.Invoke();
     }
     public void DisablePlayerMovement()
     {
         movementDisabled = true;
         rb.linearVelocity = Vector2.zero;
+        isMoving = false;
+        isFalling = false;
     }
+
     public void EnablePlayerMovement()
     {
         movementDisabled = false;
     }
+
     private void FixedUpdate()
     {
         if (!movementDisabled)
         {
-            isTouchingWall = Physics2D.OverlapCircle(WallCheck.position, wallCheckRadius, WallLayer);
-
             float targetHorizontalVelocity = horizontal * speed;
-            if (isTouchingWall && !IsGrounded())
-            {
-                targetHorizontalVelocity = Mathf.Lerp(rb.linearVelocity.x, 0f, 0.5f);
-            }
             rb.linearVelocity = new Vector2(targetHorizontalVelocity, rb.linearVelocity.y);
+            isMoving = horizontal != 0 && Mathf.Abs(rb.linearVelocity.x) > 0.01f;
 
             if (!isFacingRight && horizontal > 0f)
             {
@@ -69,10 +81,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 Flip();
             }
+
+            isFalling = !IsGrounded() && rb.linearVelocity.y < -0.1f;
         }
         else
         {
             rb.linearVelocity = Vector2.zero;
+            isMoving = false;
+            isFalling = false;
         }
     }
 
@@ -84,16 +100,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
             }
-            else if (context.canceled && rb.linearVelocity.y > 0f)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
-            }
         }
     }
-
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(GroundCheck.position, 0.3f, GroundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(GroundCheck.position, Vector2.down, 0.3f, GroundLayer);
+        return hit.collider != null;
     }
 
     private void Flip()
@@ -111,11 +123,12 @@ public class PlayerMovement : MonoBehaviour
             horizontal = context.ReadValue<Vector2>().x;
         }
     }
+
     private bool IsLaunching()
     {
         return !IsGrounded();
     }
-    // Red Jump Pad
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("RedPad") && IsGrounded() && formTransform.CurrentForm == FormTransform.formState.red)
@@ -125,23 +138,29 @@ public class PlayerMovement : MonoBehaviour
                 JumpPadLaunch();
             }
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("YoffsetZone"))
+        {
+            yoffsetZoneScript = other.GetComponent<YoffsetZoneScript>();
+            Yoffset = yoffsetZoneScript.getOffsetVal();
+        }
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("YoffsetZone"))
+        {
+            yoffsetZoneScript = null;
+            Yoffset = 0;
+        }
+    }
+
     private void JumpPadLaunch()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, LaunchPower);
         TriggerControllerVibration();
     }
 
-    private void OnDrawGizmos() // Remove on final build, not useful for gameplay
-    {
-        if (WallCheck != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(WallCheck.position, wallCheckRadius);
-        }
-    }
-
-    // Funny controller vibration
     public void TriggerControllerVibration()
     {
         var gamepad = Gamepad.current;
@@ -152,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator StopVibration(Gamepad gamepad)
+    private IEnumerator StopVibration(Gamepad gamepad)
     {
         yield return new WaitForSeconds(0.3f);
         if (gamepad != null)
@@ -161,7 +180,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // One Way platform
     public void GoThroughBluePlatform()
     {
         if (OneWayPlatform != null)
@@ -169,18 +187,15 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(DisableCollision());
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("OneWayPlatform"))
         {
             OneWayPlatform = collision.gameObject;
-            Debug.Log("Blue Platform detected");
-        }
-        if (collision.gameObject.CompareTag("Walll"))
-        {
-            isTouchingWall = true;
         }
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("OneWayPlatform"))
@@ -195,5 +210,14 @@ public class PlayerMovement : MonoBehaviour
         Physics2D.IgnoreCollision(PlayerCollider, platformCollider);
         yield return new WaitForSeconds(0.9f);
         Physics2D.IgnoreCollision(PlayerCollider, platformCollider, false);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (GroundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(GroundCheck.position, GroundCheck.position + Vector3.down * 0.3f);
+        }
     }
 }

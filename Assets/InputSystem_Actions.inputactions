@@ -36,9 +36,9 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
@@ -63,7 +63,7 @@
                     "name": "Previous",
                     "type": "Button",
                     "id": "2776c80d-3c14-4091-8c56-d04ced07a2b0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -90,6 +90,15 @@
                     "name": "Paint",
                     "type": "Button",
                     "id": "a9a74e79-3e24-4aaa-9fb8-a3b99948282c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NextConversation",
+                    "type": "Button",
+                    "id": "c7be016c-0690-48bd-8311-00afd930d4ae",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -464,7 +473,7 @@
                     "name": "",
                     "id": "4f4649ac-64a8-4a73-af11-b3faef356a4d",
                     "path": "<Gamepad>/leftStick/down",
-                    "interactions": "",
+                    "interactions": "Hold(duration=1,pressPoint=1)",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Crouch",
@@ -474,8 +483,8 @@
                 {
                     "name": "",
                     "id": "36e52cba-0905-478e-a818-f4bfcb9f3b9a",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
+                    "path": "<Keyboard>/s",
+                    "interactions": "Hold(duration=1,pressPoint=1)",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Crouch",
@@ -490,6 +499,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Paint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "afe2ae60-253f-4a33-8931-6943d7e234eb",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "NextConversation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

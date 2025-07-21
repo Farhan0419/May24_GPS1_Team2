@@ -39,7 +39,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425160101037502547}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -126,7 +126,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849963742959060849}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 3021878682728651252}
   - component: {fileID: 453048144763993658}
   - component: {fileID: 4166238658015679069}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 3.5
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -527,6 +527,7 @@ MonoBehaviour:
   jumpPower: 16.7
   LaunchPower: 12
   wallCheckRadius: 0.58
+  isMoving: 0
   cameraSystem: {fileID: 0}
   PlayerCollider: {fileID: 1852144890480461987}
 --- !u!114 &3021878682728651252
@@ -541,13 +542,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb809e51950760849944e8a248f0fb64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectDistance: 5
+  detectDistance: 2.5
   neutralCharSprite: {fileID: -6308607571057329287, guid: f72d46c6f4b22be4d8735ffa63a2778f, type: 3}
   redCharSprite: {fileID: 1645000667433708828, guid: e48ce59391f0d844d8663cc534062a94, type: 3}
   blueCharSprite: {fileID: -8052081215970942740, guid: 68a565505c3d55648bb7cab807740f21, type: 3}
   fControls: {fileID: 5555912421142601800, guid: f98d881539af8d04f9446e960626ba17, type: 3}
-  indicatorYOffset: -2
-  indicatorXOffset: 0
+  indicatorYOffset: -2.5
+  indicatorXOffsetFromLeft: 1.15
+  indicatorXOffsetFromRight: -1.03
   debugMode: 1
 --- !u!114 &453048144763993658
 MonoBehaviour:
@@ -561,17 +563,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0877b055a4512d4087f1b71ae5525e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dotProductThreshold: 0.6
-  detectDistance: 10
-  speedOfPushPullObjects: 5
+  dotProductThreshold: 0.9
+  detectDistance: 7
+  speedOfPushPullObjects: 3
   circleCastSize: 0.01
   velocityThreshold: 0.01
-  maxPlayerMass: 100
-  minPlayerMass: 1
-  maxObjectMass: 100
-  minObjectMass: 1
   eControls: {fileID: 5521508550200204032, guid: 877c3889ef049d34496c49421ea1c2e7, type: 3}
-  indicatorYOffset: -2
+  indicatorYOffset: -2.5
   indicatorXOffset: 0
   debugMode: 1
 --- !u!114 &4166238658015679069

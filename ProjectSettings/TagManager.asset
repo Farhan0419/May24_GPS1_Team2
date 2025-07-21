@@ -14,6 +14,8 @@ TagManager:
   - BlueMagneticPlatform
   - ObjectDetector
   - ObjectDetectee
+  - PressurePlate
+  - Elevator
   layers:
   - Default
   - TransparentFX
@@ -29,9 +31,8 @@ TagManager:
   - Player
   - WALL
   - ObjectDetectee
-  - 
-  - 
-  - 
+  - YoffsetZone
+  - GiantBlueMagnet
   - 
   - 
   - 

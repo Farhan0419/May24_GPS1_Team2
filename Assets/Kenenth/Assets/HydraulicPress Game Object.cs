@@ -18,6 +18,7 @@ public class HydraulicPressGameObject : MonoBehaviour
     public float waitForBeforeStarting;
     private GameObject Player;
     [SerializeField] private PlayerDeath deathScript;
+    private PlayerMovement PlayerScript;
 
     Rigidbody2D rb2D;
     bool paused = false;
@@ -25,7 +26,6 @@ public class HydraulicPressGameObject : MonoBehaviour
 
     private IEnumerator Start() //Start can be a coroutine.
     {
-        
         startPos = transform.position;
         StartCoroutine(PressRoutine());
         rb2D = GetComponent<Rigidbody2D>();

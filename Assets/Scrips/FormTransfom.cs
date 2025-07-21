@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using System.Linq;
 using System.Collections;
+using System;
 
 public class FormTransform : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class FormTransform : MonoBehaviour
 
     private formState currentForm;
 
-    [SerializeField] private float detectDistance = 5f;
+    [SerializeField] private float detectDistance = 2f;
     private string nearStationTag;
 
     private string[] stationTag = { "ShowerStation", "RedPaintStation", "BluePaintStation" };
@@ -39,6 +40,12 @@ public class FormTransform : MonoBehaviour
 
     private GameObject currentIndicator;
 
+    private string currentColliderName;
+
+    private string[] colliderName = { "leftCollider", "rightCollider" };
+
+    private float indicatorXOffset = 0f;
+
     [SerializeField] private Sprite neutralCharSprite;
     [SerializeField] private Sprite redCharSprite;
     [SerializeField] private Sprite blueCharSprite;
@@ -47,9 +54,12 @@ public class FormTransform : MonoBehaviour
 
     [SerializeField] private float indicatorYOffset = -5f;
 
-    [SerializeField] private float indicatorXOffset = 0f;
+    [SerializeField] private float indicatorXOffsetFromLeft = 0f;
+    [SerializeField] private float indicatorXOffsetFromRight = 0f;
 
     [SerializeField] private bool debugMode = true;
+
+    public static event Action<Vector2, Action> OnPlayerChangeForm;
 
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // GET & SET METHODS
@@ -93,21 +103,54 @@ public class FormTransform : MonoBehaviour
         layerGround = LayerMask.GetMask("Platform");
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         spriteRenderer = GameObject.FindWithTag("Player").GetComponent<SpriteRenderer>();
+        currentIndicator = Instantiate(fControls);
+        currentIndicator.SetActive(false);
     }
 
     private void Update()
     {
         detectNearestStation();
 
-        if (isNearStation && !isPaint && currentIndicator == null)
+        if (showStationIndicator())
         {
+            if (playerDirection.x == 1 && currentColliderName == colliderName[0])
+            {
+                indicatorXOffset = indicatorXOffsetFromLeft;
+            }
+            else if (playerDirection.x == -1 && currentColliderName == colliderName[0])
+            {
+                indicatorXOffset = indicatorXOffsetFromLeft;
+            }
+            else
+            {
+                indicatorXOffset = indicatorXOffsetFromRight;
+            }
+
             Vector2 indicatorPosition = new Vector2(stationPosition.x + indicatorXOffset, stationPosition.y + indicatorYOffset);
-            currentIndicator = Instantiate(fControls, indicatorPosition, Quaternion.identity);
+            currentIndicator.transform.position = indicatorPosition;
+            currentIndicator.SetActive(true);
         }
-        else if ((!isNearStation || isPaint) && currentIndicator != null)
+        else
         {
-            Destroy(currentIndicator);
+            currentIndicator.SetActive(false);
         }
+    }
+
+    private bool showStationIndicator()
+    {
+        if(isNearStation && !isPaint)
+        {
+            switch (nearStationTag)
+            {
+                case "ShowerStation":
+                    return currentForm == formState.neutral ? false : true;
+                case "RedPaintStation":
+                    return currentForm == formState.red ? false : true;
+                case "BluePaintStation":
+                    return currentForm == formState.blue ? false : true;
+            }
+        }
+        return false;
     }
 
     private void OnEnable()
@@ -139,23 +182,19 @@ public class FormTransform : MonoBehaviour
         {
             if (currentForm == formState.neutral) return;
 
-            currentForm = formState.neutral;
-            spriteRenderer.sprite = neutralCharSprite;
-
+            changeForm(formState.neutral, neutralCharSprite);
         }
         else if (nearStationTag == stationTag[1])
         {
             if (currentForm == formState.red) return;
 
-            currentForm = formState.red;
-            spriteRenderer.sprite = redCharSprite;
+            changeForm(formState.red, redCharSprite);
         }
         else if (nearStationTag == stationTag[2])
         {
             if (currentForm == formState.blue) return;
 
-            currentForm = formState.blue;
-            spriteRenderer.sprite = blueCharSprite;
+            changeForm(formState.blue, blueCharSprite);
         }
 
         isPaint = true;
@@ -170,6 +209,15 @@ public class FormTransform : MonoBehaviour
             Debug.Log("Painting");
             Debug.Log(currentForm);
         }
+    }
+
+    private void changeForm(formState switchForm, Sprite switchSprite)
+    {
+        OnPlayerChangeForm?.Invoke(stationPosition, () =>
+        {
+            currentForm = switchForm;
+            spriteRenderer.sprite = switchSprite;
+        });
     }
 
     IEnumerator durationPainting()
@@ -218,7 +266,8 @@ public class FormTransform : MonoBehaviour
             {
                 isNearStation = true;
                 nearStationTag = hitObjectTag;
-   
+                currentColliderName = hitStation.collider.name;
+
                 RaycastHit2D hitStationPosition = Physics2D.Raycast(hitStation.point, Vector2.down, Mathf.Infinity, layerGround);
 
                 // "Bounds" returns an axis-aligned bounding box (AABB) in world space

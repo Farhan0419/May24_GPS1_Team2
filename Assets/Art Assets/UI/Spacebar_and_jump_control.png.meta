@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: 52944399d24f66e4882f6eac756f2d5a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7246673133913645619
+    second: Spacebar_and_jump_control_0
+  - first:
+      213: 8740610641056851515
+    second: Spacebar_and_jump_control_1
+  - first:
+      213: 985591961008404300
+    second: Spacebar_and_jump_control_2
+  - first:
+      213: -279106783246054517
+    second: Spacebar_and_jump_control_3
+  - first:
+      213: -5152940309683695629
+    second: Spacebar_and_jump_control_4
+  - first:
+      213: -3017647477536936165
+    second: Spacebar_and_jump_control_5
+  - first:
+      213: 1574006442973210078
+    second: Spacebar_and_jump_control_6
+  - first:
+      213: -6541444785764244043
+    second: Spacebar_and_jump_control_7
+  - first:
+      213: -4935893842909436867
+    second: Spacebar_and_jump_control_8
+  - first:
+      213: 9184744496395215687
+    second: Spacebar_and_jump_control_9
+  - first:
+      213: 6249236770457301273
+    second: Spacebar_and_jump_control_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Spacebar_and_jump_control_0
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 261
+        width: 1123
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcdd5b1ed25ae6b90800000000000000
+      internalID: -7246673133913645619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spacebar_and_jump_control_1
+      rect:
+        serializedVersion: 2
+        x: 1575
+        y: 398
+        width: 262
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b36613c7113ec4970800000000000000
+      internalID: 8740610641056851515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spacebar_and_jump_control_2
+      rect:
+        serializedVersion: 2
+        x: 1599
+        y: 309
+        width: 239
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c47f269aaa68dad00800000000000000
+      internalID: 985591961008404300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spacebar_and_jump_control_3
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 132
+        width: 66
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8b87320cd9602cf0800000000000000
+      internalID: -279106783246054517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spacebar_and_jump_control_4
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 132
+        width: 55
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ff038cf6141d78b0800000000000000
+      internalID: -5152940309683695629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spacebar_and_jump_control_5
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 132
+        width: 31
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1fae0c7b992f16d0800000000000000
+      internalID: -3017647477536936165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spacebar_and_jump_control_6
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 132
+        width: 55
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed5289b358ef7d510800000000000000
+      internalID: 1574006442973210078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spacebar_and_jump_control_7
+      rect:
+        serializedVersion: 2
+        x: 1599
+        y: 147
+        width: 35
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b5e0ba10ae1835a0800000000000000
+      internalID: -6541444785764244043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spacebar_and_jump_control_8
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 146
+        width: 51
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d34685c83be208bb0800000000000000
+      internalID: -4935893842909436867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spacebar_and_jump_control_9
+      rect:
+        serializedVersion: 2
+        x: 1705
+        y: 146
+        width: 80
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7436c54e474c67f70800000000000000
+      internalID: 9184744496395215687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spacebar_and_jump_control_10
+      rect:
+        serializedVersion: 2
+        x: 1794
+        y: 128
+        width: 55
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 911ba6c9bbfb9b650800000000000000
+      internalID: 6249236770457301273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Spacebar_and_jump_control_0: -7246673133913645619
+      Spacebar_and_jump_control_1: 8740610641056851515
+      Spacebar_and_jump_control_10: 6249236770457301273
+      Spacebar_and_jump_control_2: 985591961008404300
+      Spacebar_and_jump_control_3: -279106783246054517
+      Spacebar_and_jump_control_4: -5152940309683695629
+      Spacebar_and_jump_control_5: -3017647477536936165
+      Spacebar_and_jump_control_6: 1574006442973210078
+      Spacebar_and_jump_control_7: -6541444785764244043
+      Spacebar_and_jump_control_8: -4935893842909436867
+      Spacebar_and_jump_control_9: 9184744496395215687
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
