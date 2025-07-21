@@ -27,7 +27,6 @@ public class HydraulicPressGameObject : MonoBehaviour
     private IEnumerator Start() //Start can be a coroutine.
     {
         startPos = transform.position;
-        StartCoroutine(PressRoutine());
         rb2D = GetComponent<Rigidbody2D>();
         yield return StartCoroutine(WaitThenPress(waitForBeforeStarting));
 
