@@ -83,51 +83,7 @@ public class Level1room1DialogueSystem : DialogueSystem
 
         dialogueCanvas.SetActive(false);
 
-        loadDialogueAsset();
-    }
-
-    private void loadDialogueAsset()
-    {
-        gameData = Resources.Load<Dialogue>(scriptableObjectFile);
-
-        if (gameData != null)
-        {
-            int numberOfDialogues = gameData.dialogueLines1.ToArray().Length;
-
-            for (int i = 0; i < numberOfDialogues; i++)
-            {
-                string[] currentDialogue = DialogueTools.DisplayableDialogue(gameData.dialogueLines1[i]);
-
-                usableDialogue[i] = currentDialogue;
-
-                int linesInDialogue = currentDialogue.Length;
-
-                indexKeywordsUsableDialogue[i] = DialogueTools.CheckForKeyWords(ref currentDialogue, sizeKeyword).ToArray();
-            }
-
-            if (isDebug)
-            {
-                foreach (KeyValuePair<int, int[]> entry in indexKeywordsUsableDialogue)
-                {
-                    Debug.Log($"Key: {entry.Key}, Value: {entry.Value}");
-
-                    foreach (int lineIndex in entry.Value)
-                    {
-                        Debug.Log(lineIndex);
-                    }
-                }
-
-                foreach (KeyValuePair<int, string[]> entry in usableDialogue)
-                {
-                    Debug.Log($"Key: {entry.Key}, Value: {entry.Value}");
-
-                    foreach (string line in entry.Value)
-                    {
-                        Debug.Log(line);
-                    }
-                }
-            }
-        }
+        DialogueTools.loadDialogueAsset(usableDialogue, indexKeywordsUsableDialogue, scriptableObjectFile);
     }
 
     private void Update()
@@ -188,75 +144,11 @@ public class Level1room1DialogueSystem : DialogueSystem
     private void initializeDialogueValues()
     {
         //dialogueText.text = usableDialogue[dialogueState][0];
-        setTextCustomization();
+        DialogueTools.setTextCustomization(dialogueText, indexKeywordsUsableDialogue, dialogueCounter);
         dialogueCounter++;
         toTriggerDialogue = false;
         dialogueCanvas.SetActive(true);
         typingCoroutine = StartCoroutine(TypeLetters(usableDialogue[dialogueState][0]));
-    }
-
-    private void ShowNextLine()
-    {
-        int dialogueLength = usableDialogue[dialogueState].Length;
-        typingCoroutine = null;
-
-        if (dialogueCounter < dialogueLength)
-        {
-            setTextCustomization();
-            string currentLine = usableDialogue[dialogueState][dialogueCounter];
-            typingCoroutine = StartCoroutine(TypeLetters(currentLine));
-
-            //dialogueText.text = usableDialogue[dialogueState][dialogueCounter];
-            dialogueCounter++;
-        }
-        else
-        {
-            dialogueState++;
-            dialogueCanvas.SetActive(false);
-            dialogueCounter = 0;
-            toTriggerDialogue = true;
-        }
-    }
-
-    private IEnumerator TypeLetters(string sentence)
-    {
-        dialogueText.text = "";
-
-        for (int i = 0; i < sentence.Length; i++)
-        {
-            dialogueText.text += sentence[i];
-            yield return new WaitForSeconds(delayBetweenWords);
-        }
-    }
-
-    private void setTextCustomization()
-    {
-        int lengthOfIndexKeywords = indexKeywordsUsableDialogue[dialogueState].Length;
-
-        if (lengthOfIndexKeywords > 0)
-        {
-            foreach (int index in indexKeywordsUsableDialogue[dialogueState])
-            {
-                if (dialogueCounter == index)
-                {
-                    Debug.Log(dialogueCounter);
-                    Debug.Log("bold");
-                    dialogueText.fontSize = enlargeTextSize;
-                    dialogueText.fontStyle = FontStyles.Bold;
-                }
-                else
-                {
-                    dialogueText.fontSize = normalTextSize;
-                    dialogueText.fontStyle = FontStyles.Normal;
-                }
-            }
-        }
-        else
-        {
-            dialogueText.fontSize = normalTextSize;
-            dialogueText.fontStyle = FontStyles.Normal;
-            Debug.Log("null");
-        }
     }
 
     private void OnDrawGizmos()
