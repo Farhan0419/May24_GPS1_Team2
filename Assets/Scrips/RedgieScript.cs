@@ -6,6 +6,8 @@ public class RedgieScript : MonoBehaviour
 
     [SerializeField] public float LaunchPower = 20f;
     [SerializeField] public bool DebugMode = true;
+    [SerializeField] public float jumpAirTime = 1f;
+    [SerializeField] public float redgieGravityScale = 1f;
 
     private Vector3 OriginalPos;
     private Rigidbody2D rb;
@@ -17,9 +19,7 @@ public class RedgieScript : MonoBehaviour
     private FormTransform formTransform;
     private RedgieTooClose rtc;
 
-
-
-    void Start()
+    private void Start()
     {
         OriginalPos = transform.position;
         groundCheck = GetComponentInChildren<RedgieGroundCheck>();
@@ -64,9 +64,9 @@ public class RedgieScript : MonoBehaviour
 
         if (DebugMode) Debug.Log("jump");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(jumpAirTime);
 
-        if (curGravScale == 0) curGravScale = 1f;
+        if (curGravScale == 0) curGravScale = redgieGravityScale;
         rb.gravityScale = curGravScale;
         isJumping = false;
 
@@ -104,6 +104,24 @@ public class RedgieScript : MonoBehaviour
         else
         {
             rb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
+        }
+    }
+
+    private void OnValidate()
+    {
+        if (LaunchPower < 1f)
+        {
+            LaunchPower = 1f;
+        }
+
+        if (jumpAirTime < 0.1f)
+        {
+            jumpAirTime = 0.1f;
+        }
+
+        if (redgieGravityScale < 0.1f)
+        {
+            redgieGravityScale = 1f;
         }
     }
 }

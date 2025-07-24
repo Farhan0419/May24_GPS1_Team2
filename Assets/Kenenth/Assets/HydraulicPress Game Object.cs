@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,108 +9,111 @@ public class HydraulicPressGameObject : MonoBehaviour
     public float waitTime = 0.5f;
     public LayerMask groundLayer; // Assign to Floor layer in Inspector
     public float rayDistance = 0.1f;
+    
 
     private Vector2 startPos;
     private bool isPressing = false;
     private bool isReturning = false;
     //public ParticleSystem CrusherParticle;
     public float waitForBeforeStarting;
-    private float timer = 0;
-    private bool timerOn = true;
+    private GameObject Player;
     [SerializeField] private PlayerDeath deathScript;
     private PlayerMovement PlayerScript;
 
-    private void Start()
+    Rigidbody2D rb2D;
+    bool paused = false;
+    Vector3 curDirection;
+
+    private IEnumerator Start() //Start can be a coroutine.
     {
         startPos = transform.position;
-        //StartCoroutine(PressRoutine());
+        rb2D = GetComponent<Rigidbody2D>();
+        yield return StartCoroutine(WaitThenPress(waitForBeforeStarting));
+
+        
     }
+
     private void Update()
     {
-        if (timerOn)
+        if (paused) return;
+
+        if(isPressing)
         {
-            timer += Time.deltaTime;
+            Debug.Log($"IsTouchingGround = {IsTouchingGround(out _)}");
+            if (IsTouchingGround(out Vector2 hitPoint))
+            {
+                rb2D.linearVelocity = Vector2.zero;
+                rb2D.MovePosition(hitPoint);
+                paused = true;
+                StartCoroutine(WaitThenReturn(waitTime));
+            }
         }
-        if (timer >= waitForBeforeStarting)
+        else
         {
-            timerOn = false;
-            StartCoroutine(PressRoutine());
-            timer = 0;
+            // THIS ASSUMES PRESSING DIRECTION IS DOWN!
+            // WILL FAIL IF PRESSING DIRECTION IS UPWARD!
+            bool reachedHeight = rb2D.position.y >= startPos.y;
+            if(reachedHeight)
+            { 
+                paused = true;
+                rb2D.linearVelocity = Vector2.zero;
+                rb2D.MovePosition(startPos);
+                StartCoroutine(WaitThenPress(waitTime));
+            }
         }
+        
     }
 
-    private System.Collections.IEnumerator PressRoutine()
+    IEnumerator WaitThenReturn(float duration)
     {
-        while (true)
-        {
-            // Press down until it hits the ground
-            isPressing = true;
-            isReturning = false;
-
-            while (!IsTouchingGround())
-            {
-                transform.position += Vector3.down * pressSpeed * Time.deltaTime;
-                yield return null;
-            }
-
-            // ground touched, get ground contact and emiy particles
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
-
-            //ParticleSystem p = Instantiate(CrusherParticle);
-            //p.transform.position = hit.point;
-
-            // Wait at bottom
-            yield return new WaitForSeconds(waitTime);
-
-            // Return up
-            isPressing = false;
-            isReturning = true;
-
-            while (Vector2.Distance(transform.position, startPos) > 0.01f)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, startPos, returnSpeed * Time.deltaTime);
-                yield return null;
-            }
-
-            // Wait at top
-            yield return new WaitForSeconds(waitTime);
-        }
+        yield return new WaitForSeconds(duration);
+        isPressing = false;
+        curDirection = Vector3.up;
+        rb2D.linearVelocity = curDirection * returnSpeed;
+        paused = false;
     }
 
-    private bool IsTouchingGround()
+    IEnumerator WaitThenPress(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isPressing = true;
+        curDirection = Vector3.down;
+        rb2D.linearVelocity = curDirection * pressSpeed;
+        paused = false;
+    }
+
+    
+
+    private bool IsTouchingGround(out Vector2 hitPoint)
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
+        if (hit) hitPoint = hit.point;
+        else hitPoint = default;
         return hit;
-
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (isPressing && collision.gameObject.CompareTag("Player"))
-        {
-            deathScript.PlayerDead("Crush");
-            //Destroy(collision.gameObject);
-            PlayerScript = collision.gameObject.GetComponent<PlayerMovement>();
-            PlayerScript.DisablePlayerMovement();
-        }
-    }
+    
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * rayDistance);
+
     }
 
+    // Allow CrushZone to check if the press is currently pressing
+    public bool IsPressing()
+    {
+        return isPressing;
+    }
 
-    //private void Update()
-    //{
-    //    if (IsTouchingGround())
-    //    {
-    //        CrusherParticle.SetActive(true);
-    //    }
-    //    else
-    //    {
-    //        CrusherParticle.SetActive(false);
-    //    }
-    //}
+    public bool IsReturning() => !isPressing;
+
+    // Centralized player kill logic
+    public void KillPlayer(GameObject player)
+    {
+        deathScript.PlayerDead("Crush");
+        PlayerScript = player.GetComponent<PlayerMovement>();
+        PlayerScript.DisablePlayerMovement();
+    }
 }

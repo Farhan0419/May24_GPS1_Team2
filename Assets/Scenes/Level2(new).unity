@@ -11739,7 +11739,7 @@ CompositeCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -11917,7 +11917,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7e5ae3e13a2f441428ef3d96239966db, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -12895,7 +12895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1828287090107905966, guid: 0459aa07fbe1b4f429a69c759be4ad4e, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 9077733833628214987, guid: 0459aa07fbe1b4f429a69c759be4ad4e, type: 3}
       propertyPath: m_LocalScale.x
@@ -13166,7 +13166,11 @@ PrefabInstance:
       objectReference: {fileID: 1107515544}
     - target: {fileID: 7168779483956280351, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: WallLayer.m_Bits
-      value: 64
+      value: 4416
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168779483956280351, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
+      propertyPath: GroundLayer.m_Bits
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 7599139921022890678, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: m_LocalPosition.y

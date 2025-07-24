@@ -113,7 +113,6 @@ public class MagnetAbilities : MonoBehaviour
         // if player is not moving, then check for magnetic objects 
         if (allowToUseMagneticAbilities())
         {
-            //Debug.Log("use magnetic abilities");
             pushPullMagneticObject();
         }
     }
@@ -127,9 +126,12 @@ public class MagnetAbilities : MonoBehaviour
             playerDirection = new Vector2(playerMovement.Horizontal, 0);
         }
 
-        detectMagneticObjects(); 
+        detectMagneticObjects();
 
-        if(shouldShowIndicator())
+        // Having this line here, because in the interactMagneticObjects_performed, it cannot check that change if isDetecting is false cuz it is executed once only when performed
+        if (!isDetecting) isInteracting = false;
+
+        if (shouldShowIndicator())
         {
             Vector2 indicatorPosition = new Vector2(closestMagneticObjectPosition.x + indicatorXOffset, closestMagneticObjectPosition.y + indicatorYOffset);
             currentIndicator.transform.position = indicatorPosition;
@@ -153,7 +155,6 @@ public class MagnetAbilities : MonoBehaviour
         {
             return false;
         }
-
     }
     
 

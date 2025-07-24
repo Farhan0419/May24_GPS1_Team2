@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using System.Linq;
 using System.Collections;
+using System;
 
 public class FormTransform : MonoBehaviour
 {
@@ -57,6 +58,8 @@ public class FormTransform : MonoBehaviour
     [SerializeField] private float indicatorXOffsetFromRight = 0f;
 
     [SerializeField] private bool debugMode = true;
+
+    public static event Action<Vector2, Action> OnPlayerChangeForm;
 
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // GET & SET METHODS
@@ -141,13 +144,10 @@ public class FormTransform : MonoBehaviour
             {
                 case "ShowerStation":
                     return currentForm == formState.neutral ? false : true;
-                    break;
                 case "RedPaintStation":
                     return currentForm == formState.red ? false : true;
-                    break;
                 case "BluePaintStation":
                     return currentForm == formState.blue ? false : true;
-                    break;
             }
         }
         return false;
@@ -182,23 +182,19 @@ public class FormTransform : MonoBehaviour
         {
             if (currentForm == formState.neutral) return;
 
-            currentForm = formState.neutral;
-            spriteRenderer.sprite = neutralCharSprite;
-
+            changeForm(formState.neutral, neutralCharSprite);
         }
         else if (nearStationTag == stationTag[1])
         {
             if (currentForm == formState.red) return;
 
-            currentForm = formState.red;
-            spriteRenderer.sprite = redCharSprite;
+            changeForm(formState.red, redCharSprite);
         }
         else if (nearStationTag == stationTag[2])
         {
             if (currentForm == formState.blue) return;
 
-            currentForm = formState.blue;
-            spriteRenderer.sprite = blueCharSprite;
+            changeForm(formState.blue, blueCharSprite);
         }
 
         isPaint = true;
@@ -213,6 +209,15 @@ public class FormTransform : MonoBehaviour
             Debug.Log("Painting");
             Debug.Log(currentForm);
         }
+    }
+
+    private void changeForm(formState switchForm, Sprite switchSprite)
+    {
+        OnPlayerChangeForm?.Invoke(stationPosition, () =>
+        {
+            currentForm = switchForm;
+            spriteRenderer.sprite = switchSprite;
+        });
     }
 
     IEnumerator durationPainting()
