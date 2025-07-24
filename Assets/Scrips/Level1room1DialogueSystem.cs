@@ -7,8 +7,14 @@ using System.Collections;
 
 public class Level1room1DialogueSystem : DialogueSystem
 {
+    // [Refactor] need to move some of these variables to DialogueSystem.cs in the future
+    // [Bug] press c too quickly 
+    // [Bug] set sorting order for dialogue canvas that player is always on top of dialogue canvas, the other objects are behind the dialogue canvas
+    // [Bug] invoke event when the type is Conversation
+    // [Bug] type is remark then no need to press c to continue, just show the text for a few seconds.
+    // [Bug] if currently dialogue remark is being displayed, what if conversation is triggered?
 
-	private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level1Room1Real";
+    private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level1Room1Real";
 	private string sizeKeyword = "(enlarge font)";
 	[SerializeField] private bool isDebug = true;
 
@@ -65,7 +71,8 @@ public class Level1room1DialogueSystem : DialogueSystem
     {
         if (dialogueCanvas.activeSelf)
         {
-            ShowNextLine();
+            ShowNextLine(ref usableDialogue, ref typingCoroutine, ref dialogueCounter, ref dialogueText, ref dialogueState, 
+                ref dialogueCanvas, ref toTriggerDialogue, delayBetweenWords, ToTypeLetters);
         }
     }
 
@@ -83,7 +90,7 @@ public class Level1room1DialogueSystem : DialogueSystem
 
         dialogueCanvas.SetActive(false);
 
-        DialogueTools.loadDialogueAsset(usableDialogue, indexKeywordsUsableDialogue, scriptableObjectFile);
+        DialogueTools.LoadDialogueAsset(ref usableDialogue, scriptableObjectFile, isDebug);
     }
 
     private void Update()
@@ -144,11 +151,27 @@ public class Level1room1DialogueSystem : DialogueSystem
     private void initializeDialogueValues()
     {
         //dialogueText.text = usableDialogue[dialogueState][0];
-        DialogueTools.setTextCustomization(dialogueText, indexKeywordsUsableDialogue, dialogueCounter);
+        //DialogueTools.setTextCustomization(dialogueText, indexKeywordsUsableDialogue, dialogueCounter);
         dialogueCounter++;
         toTriggerDialogue = false;
         dialogueCanvas.SetActive(true);
-        typingCoroutine = StartCoroutine(TypeLetters(usableDialogue[dialogueState][0]));
+        ToTypeLetters(usableDialogue[dialogueState][0]);    
+    }
+
+    private void ToTypeLetters(string msg)
+    {
+        typingCoroutine = StartCoroutine(TypeLetters(msg, dialogueText, delayBetweenWords));
+    }
+
+    private IEnumerator TypeLetters(string sentence, TextMeshProUGUI dialogueText, float delayBetweenWords)
+    {
+        dialogueText.text = "";
+
+        for (int i = 0; i < sentence.Length; i++)
+        {
+            dialogueText.text += sentence[i];
+            yield return new WaitForSeconds(delayBetweenWords);
+        }
     }
 
     private void OnDrawGizmos()
