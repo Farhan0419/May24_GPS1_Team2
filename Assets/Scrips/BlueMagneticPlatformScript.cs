@@ -36,7 +36,7 @@ public class BlueMagneticPlatformScript : MonoBehaviour
         {
             timer += Time.fixedDeltaTime;
 
-            if(timer >= waitBeforeStrMov)
+            if(timer >= durationBeforeReturning)
             {
                 Vector2 newPosition = Vector2.MoveTowards(transform.position, OriginalPos, returnSpeed * Time.fixedDeltaTime);
                 rb.MovePosition(newPosition);
@@ -88,9 +88,9 @@ public class BlueMagneticPlatformScript : MonoBehaviour
             travelDistance = 1f;
         }
 
-        if (waitBeforeStrMov < 1f)
+        if (durationBeforeReturning < 1f)
         {
-            waitBeforeStrMov = 1f;
+            durationBeforeReturning = 1f;
         }
 
         if (returnSpeed <= 0f)
