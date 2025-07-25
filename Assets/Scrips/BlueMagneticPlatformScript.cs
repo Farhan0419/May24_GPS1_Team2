@@ -2,78 +2,100 @@ using UnityEngine;
 
 public class BlueMagneticPlatformScript : MonoBehaviour
 {
-    private Vector3 OriginalPos;
-    private bool timerOn = false;
-    private bool returning = false;
-    private float timer = 0f;
-    public float waitBeforeStrMov = 3f;
-    public float returnSpeed = 2f;
+    private Vector2 OriginalPos;
     private Rigidbody2D rb;
-    [SerializeField] private GameObject objectDetectee;
+    private MagnetAbilities magnetAbilities;
+    private MagneticObjectTooClose rtc;
+    private bool hasTravelMaxDistance = false;
+    private bool isResettingPlatform = false;
+    private float timer = 0f;
+
+    [SerializeField] private float travelDistance = 1.0f;
+    [SerializeField] public float waitBeforeStrMov = 3f;
+    [SerializeField] public float returnSpeed = 2f;
 
     void Start()
     {
         OriginalPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
-        if (objectDetectee != null)
-        {
-            objectDetectee.SetActive(true);
-        }
+
+        magnetAbilities = GameObject.FindWithTag("Player").GetComponent<MagnetAbilities>();
+        rtc = GetComponentInChildren<MagneticObjectTooClose>();
     }
 
-    private void TimerOff()
+    void Update()
     {
-        timerOn = false;
-        timer = 0f;
+        checkDistanceTravelled();
     }
 
     private void FixedUpdate()
     {
-        // Timer logic
-        if (timerOn)
+        checkIsXMovementFreeze();
+
+        if(rb.linearVelocity == Vector2.zero && (Vector2)transform.position != OriginalPos)
         {
             timer += Time.fixedDeltaTime;
-            if (timer >= waitBeforeStrMov)
+
+            if(timer >= waitBeforeStrMov)
             {
-                TimerOff();
-                returning = true;
+                Vector2 newPosition = Vector2.MoveTowards(transform.position, OriginalPos, returnSpeed * Time.fixedDeltaTime);
+                rb.MovePosition(newPosition);
+                isResettingPlatform = true;
             }
+        } 
+        else
+        {
+            isResettingPlatform = false;
+            timer = 0f;
+        }
+    }
+
+    // [Bug] if maxdistance , toggle off the control indicator
+
+    private void checkIsXMovementFreeze()
+    {
+        if ((magnetAbilities.IsInteracting && !rtc.IsTooClose && !hasTravelMaxDistance) || (isResettingPlatform && !rtc.IsTooClose))
+        {
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+        }
+        else if(hasTravelMaxDistance && !isResettingPlatform)
+        {
+            rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
+        }
+        else
+        {
+            rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
+        }
+    }
+
+    private void checkDistanceTravelled()
+    {
+        if (Mathf.Abs(transform.position.x - OriginalPos.x) >= travelDistance)
+        {
+            hasTravelMaxDistance = true;
+            rb.linearVelocity = Vector2.zero;
+        }
+        else
+        {
+            hasTravelMaxDistance = false;
+        }
+    }
+
+    private void OnValidate()
+    {
+        if (travelDistance < 1f)
+        {
+            travelDistance = 1f;
         }
 
-        // Check if platform is moving or not
-        if (rb.linearVelocity != Vector2.zero && transform.position != OriginalPos)
+        if (waitBeforeStrMov < 1f)
         {
-            TimerOff();
-            returning = false;
-        }
-        else if (rb.linearVelocity == Vector2.zero && transform.position != OriginalPos && !returning)
-        {
-            if (!timerOn)
-            {
-                timerOn = true;
-                if (objectDetectee != null)
-                {
-                    objectDetectee.SetActive(false);
-                }
-            }
+            waitBeforeStrMov = 1f;
         }
 
-        // Move platform back to original position if returning
-        if (returning)
+        if (returnSpeed <= 0f)
         {
-            Vector3 newPosition = Vector2.MoveTowards(transform.position, OriginalPos, returnSpeed * Time.fixedDeltaTime);
-            rb.MovePosition(newPosition);
-
-            if (Vector3.Distance(transform.position, OriginalPos) < 0.01f)
-            {
-                returning = false;
-                rb.linearVelocity = Vector2.zero; 
-                transform.position = OriginalPos; 
-                if (objectDetectee != null)
-                {
-                    objectDetectee.SetActive(true);
-                }
-            }
+            returnSpeed = 0.1f;
         }
     }
 }

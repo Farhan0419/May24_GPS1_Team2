@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RedgieTooClose : MonoBehaviour
+public class MagneticObjectTooClose : MonoBehaviour
 {
     public bool isTooClose = false;
 
