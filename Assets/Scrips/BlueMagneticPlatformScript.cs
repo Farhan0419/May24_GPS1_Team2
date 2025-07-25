@@ -11,7 +11,7 @@ public class BlueMagneticPlatformScript : MonoBehaviour
     private float timer = 0f;
 
     [SerializeField] private float travelDistance = 1.0f;
-    [SerializeField] public float waitBeforeStrMov = 3f;
+    [SerializeField] public float durationBeforeReturning = 3f;
     [SerializeField] public float returnSpeed = 2f;
 
     void Start()
