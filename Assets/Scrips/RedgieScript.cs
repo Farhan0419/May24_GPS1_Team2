@@ -16,8 +16,7 @@ public class RedgieScript : MonoBehaviour
     private GameObject player;
     private Rigidbody2D playerRB;
     private MagnetAbilities magnetAbilities;
-    private FormTransform formTransform;
-    private RedgieTooClose rtc;
+    private MagneticObjectTooClose rtc;
 
     private void Start()
     {
@@ -28,9 +27,8 @@ public class RedgieScript : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerRB = player.GetComponent<Rigidbody2D>();
         magnetAbilities = player.GetComponent<MagnetAbilities>();
-        formTransform = player.GetComponent<FormTransform>();
 
-        rtc = GetComponentInChildren<RedgieTooClose>();
+        rtc = GetComponentInChildren<MagneticObjectTooClose>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

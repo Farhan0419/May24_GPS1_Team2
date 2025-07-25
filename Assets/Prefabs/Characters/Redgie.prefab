@@ -133,6 +133,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5905942282246432011}
     - target: {fileID: 9171404854493019294, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: m_Name
+      value: ObjectDetectee
+      objectReference: {fileID: 0}
+    - target: {fileID: 9171404854493019294, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}

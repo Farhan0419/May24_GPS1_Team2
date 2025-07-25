@@ -6,7 +6,6 @@ using System.Collections;
 
 public class MagnetAbilities : MonoBehaviour
 {
-    // Bug - because of velocity, the block would take some time to stop, it would effect the indicator position as well, not aligned with the object position
 
     private InputAction interactMagneticObjects;
 
@@ -34,8 +33,6 @@ public class MagnetAbilities : MonoBehaviour
 
     private Vector2 closestMagneticObjectPosition = Vector2.zero;
 
-    private Vector2 previousClosestMagneticObjectPosition = Vector2.zero;
-
     private FormTransform formTransform;
 
     private Rigidbody2D closestMagneticObjectRb;
@@ -47,7 +44,7 @@ public class MagnetAbilities : MonoBehaviour
 
     private GameObject currentIndicator;
 
-    private bool isTooCloseToRedgie;
+    private bool isTooCloseToMagneticObject;
 
     [SerializeField] private float dotProductThreshold = 0.9f;
 
@@ -117,7 +114,9 @@ public class MagnetAbilities : MonoBehaviour
         }
     }
 
-    private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold && !isTooCloseToRedgie;
+    //[Bug] what is the range of the blue floating magnetic platform that the player can keep on pulling?
+
+    private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold && !isTooCloseToMagneticObject;
 
     private void Update()
     {
@@ -148,7 +147,7 @@ public class MagnetAbilities : MonoBehaviour
         if(closestMagneticObjectRb != null)
         {
             return  (isDetecting && closestMagneticObjectRb.linearVelocity.sqrMagnitude < velocityThreshold && 
-                    formTransform.CurrentForm != FormTransform.formState.neutral && !isTooCloseToRedgie && 
+                    formTransform.CurrentForm != FormTransform.formState.neutral && !isTooCloseToMagneticObject && 
                     playerRB.linearVelocity.sqrMagnitude < velocityThreshold);   
         }
         else
@@ -201,18 +200,18 @@ public class MagnetAbilities : MonoBehaviour
         isInteracting = false;
     }
 
-    private void setValuesOnDetection(Collider2D hit, float currentMagneticObjectDistance)
+    private void setValuesOnDetection(Collider2D hit, GameObject objectDetectee, float currentMagneticObjectDistance)
     {
-        previousClosestMagneticObjectPosition = closestMagneticObjectPosition;
-
         closestMagneticObjectDistance = currentMagneticObjectDistance;
 
-        GameObject objectDetectee = FindChildWithTag(hit.gameObject, "ObjectDetectee");
-
         closestMagneticObject = objectDetectee;
-        closestMagneticObjectPosition = closestMagneticObject.transform.position;
-        closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
-        isTooCloseToRedgie = hit.gameObject.GetComponentInChildren<RedgieTooClose>().IsTooClose;
+
+        if(closestMagneticObject != null)
+        {
+            closestMagneticObjectPosition = closestMagneticObject.transform.position;
+            closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
+            isTooCloseToMagneticObject = hit.gameObject.GetComponentInChildren<MagneticObjectTooClose>().IsTooClose;
+        }
     }
 
     private void resetValuesOnDetection()
@@ -269,12 +268,13 @@ public class MagnetAbilities : MonoBehaviour
         {
 
             // gives a vector (distance & direction) that points from the player to the hit object. Then add normalize it to get the direction only
-            Vector2 targetDirection = ((Vector2)hit.transform.position - playerPosition).normalized;
+            GameObject objectDetectee = FindChildWithTag(hit.gameObject, "ObjectDetectee");
+
+            Vector2 targetDirection = ((Vector2)objectDetectee.transform.position - playerPosition).normalized;
 
             float dotProduct = Vector2.Dot(playerDirection, targetDirection);
 
             //if (debugMode) Debug.Log($"Dot Product: {dotProduct}");
-
             if (dotProduct >= dotProductThreshold)
             {
                 float currentMagneticObjectDistance = Vector2.Distance(playerPosition, hit.gameObject.transform.position);
@@ -285,11 +285,11 @@ public class MagnetAbilities : MonoBehaviour
 
                 if (objectHit.collider != null)
                 {
-                    if (objectHit.collider.tag == "Redgie")
+                    if (objectHit.collider.tag == "Redgie" || objectHit.collider.tag == "BlueMagneticPlatform")
                     {
                         if (closestMagneticObjectDistance == 0 || closestMagneticObjectDistance > currentMagneticObjectDistance)
                         {
-                            setValuesOnDetection(hit, currentMagneticObjectDistance);
+                            setValuesOnDetection(hit, objectDetectee, currentMagneticObjectDistance);
                         }
 
                         foundValidObject = true;
