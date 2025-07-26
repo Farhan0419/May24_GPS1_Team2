@@ -5,7 +5,7 @@ public class BlueMagneticPlatformScript : MonoBehaviour
     private Vector2 OriginalPos;
     private Rigidbody2D rb;
     private MagnetAbilities magnetAbilities;
-    private MagneticObjectTooClose rtc;
+    private MagneticObjectTooClose motc;
     private bool hasTravelMaxDistance = false;
     private bool isResettingPlatform = false;
     private float timer = 0f;
@@ -20,7 +20,7 @@ public class BlueMagneticPlatformScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         magnetAbilities = GameObject.FindWithTag("Player").GetComponent<MagnetAbilities>();
-        rtc = GetComponentInChildren<MagneticObjectTooClose>();
+        motc = GetComponentInChildren<MagneticObjectTooClose>();
     }
 
     void Update()
@@ -51,10 +51,17 @@ public class BlueMagneticPlatformScript : MonoBehaviour
     }
 
     // [Bug] if maxdistance , toggle off the control indicator
+    // [Bug] player cannot stand on top of the platform if it is moving, player need to manually move
+    // [Bug] if player is too close to the redgie, then redgie will not move with the platform
+    // [Bug] Unmovable physics material apply to object , currently can still move abit.
+                // If increase friction then player cannot push/pull redgie
+                // if player is ontop of the object then player cannot because friction is too high
 
     private void checkIsXMovementFreeze()
     {
-        if ((magnetAbilities.IsInteracting && !rtc.IsTooClose && !hasTravelMaxDistance) || (isResettingPlatform && !rtc.IsTooClose))
+        // if resetting platform then it will push the player but if interacting then it will not push the player
+        // add (isResettingPlatform) && !motc.IsTooClose if resetting cannot push the player
+        if ((magnetAbilities.IsInteracting && !motc.IsTooClose && !hasTravelMaxDistance) || (isResettingPlatform))
         {
             rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         }

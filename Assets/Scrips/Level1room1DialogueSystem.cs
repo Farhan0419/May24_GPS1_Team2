@@ -10,9 +10,10 @@ public class Level1room1DialogueSystem : DialogueSystem
     // [Refactor] need to move some of these variables to DialogueSystem.cs in the future
     // [Bug] press c too quickly 
     // [Bug] set sorting order for dialogue canvas that player is always on top of dialogue canvas, the other objects are behind the dialogue canvas
-    // [Bug] invoke event when the type is Conversation
+    // [Bug] invoke event when the type is Conversation ??????????????????
     // [Bug] type is remark then no need to press c to continue, just show the text for a few seconds.
     // [Bug] if currently dialogue remark is being displayed, what if conversation is triggered?
+    // [Bug] align left dialogue text, not center
 
     private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level1Room1Real";
 	private string sizeKeyword = "(enlarge font)";

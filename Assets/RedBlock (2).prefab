@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da973e2f1cdc451419033412f7b7885c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTooClose: 0
+  currentObject: 
 --- !u!1 &3124692039141969425
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 55e41cfe5ecb1334287f118cc8cf8027, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -273,6 +273,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LaunchPower: 20
   DebugMode: 1
+  jumpAirTime: 1
+  redgieGravityScale: 1
 --- !u!1 &7709587838067728406
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f25fb393505c884bbd4d2cb1ad9055e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
+  debugMode: 1
 --- !u!1 &9171404854493019294
 GameObject:
   m_ObjectHideFlags: 0

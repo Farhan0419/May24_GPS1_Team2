@@ -16,7 +16,7 @@ public class RedgieScript : MonoBehaviour
     private GameObject player;
     private Rigidbody2D playerRB;
     private MagnetAbilities magnetAbilities;
-    private MagneticObjectTooClose rtc;
+    private MagneticObjectTooClose motc;
 
     private void Start()
     {
@@ -28,7 +28,7 @@ public class RedgieScript : MonoBehaviour
         playerRB = player.GetComponent<Rigidbody2D>();
         magnetAbilities = player.GetComponent<MagnetAbilities>();
 
-        rtc = GetComponentInChildren<MagneticObjectTooClose>();
+        motc = GetComponentInChildren<MagneticObjectTooClose>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -81,12 +81,34 @@ public class RedgieScript : MonoBehaviour
     {
         // Always Freeze X movement  if not interacting or not grounded or not too close to player
         // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
-        if (magnetAbilities.IsInteracting && groundCheck.IsGrounded && !rtc.IsTooClose)
+        if (magnetAbilities.IsInteracting && groundCheck.IsGrounded && !motc.IsTooClose)
         {
+            if (groundCheck.OnBlueMagneticPlatform)
+            {
+                transform.parent = groundCheck.BlueMagneticPlatform.transform;
+            }
+            else
+            {
+                transform.parent = null;
+            }
+
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+        }
+        else if (groundCheck.OnBlueMagneticPlatform && !motc.IsTooClose)
+        {
+            if (groundCheck.OnBlueMagneticPlatform)
+            {
+                transform.parent = groundCheck.BlueMagneticPlatform.transform;
+            }
+
             rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         }
         else
         {
+            if (!groundCheck.OnBlueMagneticPlatform)
+            {
+                transform.parent = null;
+            }
             rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
         }
     }
@@ -95,7 +117,7 @@ public class RedgieScript : MonoBehaviour
     {
         // Always Freeze Y movement  if grounded or jumping
         // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
-        if (groundCheck.IsGrounded && !isJumping)
+        if (groundCheck.IsGrounded && !isJumping && !groundCheck.OnBlueMagneticPlatform)
         {
             rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
         }

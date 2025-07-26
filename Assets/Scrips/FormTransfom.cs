@@ -21,7 +21,6 @@ public class FormTransform : MonoBehaviour
     private bool isNearStation = false;
 
     private formState currentForm;
-    //private formState previousForm;
 
     [SerializeField] private float detectDistance = 2f;
     private string nearStationTag;
@@ -76,12 +75,6 @@ public class FormTransform : MonoBehaviour
     {
         get => currentForm;
     }
-
-    //public formState PreviousForm
-    //{
-    //    get => previousForm;
-    //    set => previousForm = value;
-    //}
 
     public string[] StationTag
     {

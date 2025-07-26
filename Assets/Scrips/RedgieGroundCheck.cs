@@ -1,26 +1,72 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RedgieGroundCheck : MonoBehaviour
 {
-    public bool isGrounded = false;
+    private bool isGrounded = false;
 
     private int triggerCount = 0;
+
+    private bool onBlueMagneticPlatform = false;
+
+    private GameObject blueMagneticPlatform;
+
+    [SerializeField] private bool debugMode = true;
+
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------------
+    // GET & SET METHODS
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public bool IsGrounded
     {
         get => isGrounded; 
     }
 
+    public bool OnBlueMagneticPlatform
+    {
+        get => onBlueMagneticPlatform;
+    }
 
-    // bug on ground check
+    public GameObject BlueMagneticPlatform
+    {
+        get => blueMagneticPlatform;
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Events & functions
+    // -----------------------------------------------------------------------------------------------------------------------------------------------------------
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
 
-        if (other.CompareTag("platform") || other.CompareTag("OneWayPlatform") || other.CompareTag("Player") || other.CompareTag("PressurePlate") || other.CompareTag("Elevator"))
+        if (other != null)
+        {
+            setGrounded(true);
+
+            switch(other.tag)
+            {
+                case "BlueMagneticPlatform":
+                    onBlueMagneticPlatform = true;
+                    blueMagneticPlatform = other;
+                    break;
+                default:
+                    return;
+            }
+        }
+    }
+
+    private void setGrounded(bool value)
+    {
+        if(value)
         {
             triggerCount++;
-            isGrounded = true;
+            isGrounded = value;
+        }
+        else
+        {
+            triggerCount = 0;
+            isGrounded = value;
         }
     }
 
@@ -30,18 +76,19 @@ public class RedgieGroundCheck : MonoBehaviour
 
         triggerCount--;
 
-        if(triggerCount <= 0)
+        switch (other.tag)
         {
-            isGrounded = false;
-            triggerCount = 0; 
+            case "BlueMagneticPlatform":
+                onBlueMagneticPlatform = false;
+                blueMagneticPlatform = null;
+                break;
         }
 
-        //if (!other.CompareTag("platform") && !other.CompareTag("OneWayPlatform") && !other.CompareTag("Player") && !other.CompareTag("PressurePlate") && !other.CompareTag("Elevator"))
-        //{
-        //    isGrounded = false;
-        //}
+        if (triggerCount <= 0)
+        {
+            setGrounded(false);
+        }
 
-
-        Debug.Log($"Ground check exited: {other.name}, isGrounded: {isGrounded}");
+        if (debugMode) Debug.Log($"Ground check exited: {other.name}, isGrounded: {isGrounded}");
     }
 }

@@ -52,7 +52,7 @@ public class MagnetAbilities : MonoBehaviour
 
     [SerializeField] private float speedOfPushPullObjects = 3f;
 
-    [SerializeField] private float circleCastSize = 0.01f;
+    [SerializeField] private float circleCastSize = 0.6f;
 
     [SerializeField] private float velocityThreshold = 0.01f;
 
@@ -100,7 +100,7 @@ public class MagnetAbilities : MonoBehaviour
         formTransform = player.GetComponent<FormTransform>();
 
         magneticObjects = LayerMask.GetMask("MagneticObjects");
-        detectionObjects = LayerMask.GetMask("MagneticObjects", "Platform");
+        detectionObjects = LayerMask.GetMask("ObjectDetectee", "Platform");
         currentIndicator = Instantiate(eControls);
         currentIndicator.SetActive(false);
     }
@@ -113,8 +113,6 @@ public class MagnetAbilities : MonoBehaviour
             pushPullMagneticObject();
         }
     }
-
-    //[Bug] what is the range of the blue floating magnetic platform that the player can keep on pulling?
 
     private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold && !isTooCloseToMagneticObject;
 
@@ -235,6 +233,8 @@ public class MagnetAbilities : MonoBehaviour
         return null;
     }
 
+
+    // [bug] there is a bug where if hold E and swicthing the detection from one object to another, the first object still be interacted, holding E keep it going while the second object is being interacted....
     private void detectMagneticObjects()
     {
         playerPosition = playerObjectDetector.transform.position;
@@ -270,6 +270,12 @@ public class MagnetAbilities : MonoBehaviour
             // gives a vector (distance & direction) that points from the player to the hit object. Then add normalize it to get the direction only
             GameObject objectDetectee = FindChildWithTag(hit.gameObject, "ObjectDetectee");
 
+            if(objectDetectee == null)
+            {
+                if (debugMode) Debug.Log("No ObjectDetectee found in the hit object");
+                continue;
+            }
+
             Vector2 targetDirection = ((Vector2)objectDetectee.transform.position - playerPosition).normalized;
 
             float dotProduct = Vector2.Dot(playerDirection, targetDirection);
@@ -281,11 +287,11 @@ public class MagnetAbilities : MonoBehaviour
 
                 RaycastHit2D objectHit = Physics2D.CircleCast(playerPosition, circleCastSize, targetDirection, detectDistance, detectionObjects);
 
-                if (debugMode) Debug.DrawRay(playerPosition, targetDirection * detectDistance, Color.cyan); 
-
                 if (objectHit.collider != null)
                 {
-                    if (objectHit.collider.tag == "Redgie" || objectHit.collider.tag == "BlueMagneticPlatform")
+                    if (debugMode) Debug.DrawRay(playerPosition, targetDirection * detectDistance, Color.cyan); 
+
+                    if (objectHit.collider.tag == "ObjectDetectee")
                     {
                         if (closestMagneticObjectDistance == 0 || closestMagneticObjectDistance > currentMagneticObjectDistance)
                         {
@@ -294,7 +300,11 @@ public class MagnetAbilities : MonoBehaviour
 
                         foundValidObject = true;
                     }
-                } 
+                    else
+                    {
+                        if (debugMode) Debug.Log(objectHit.collider.tag);
+                    }
+                }
             }
         }
 

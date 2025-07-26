@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class MagneticObjectTooClose : MonoBehaviour
 {
-    public bool isTooClose = false;
+    private bool isTooClose = false;
+    [SerializeField] private string currentObject;
 
     public bool IsTooClose
     {
@@ -17,6 +18,12 @@ public class MagneticObjectTooClose : MonoBehaviour
         {
             isTooClose = true;
         }
+
+        if(currentObject == "BlueMagneticPlatform")
+        {
+            // collide with anything then the platform should stop moving
+            isTooClose = true;  
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -26,6 +33,14 @@ public class MagneticObjectTooClose : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isTooClose = false;
+        }
+
+        if (currentObject == "BlueMagneticPlatform")
+        {
+            if (other.CompareTag("platform"))
+            {
+                isTooClose = false;
+            }
         }
     }
 }
