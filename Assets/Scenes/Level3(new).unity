@@ -524,7 +524,7 @@ PrefabInstance:
     - target: {fileID: 1005607328829891870, guid: e7305dc4204dd4b45b96fbfd6d287e9a, type: 3}
       propertyPath: connectedElevator
       value: 
-      objectReference: {fileID: 1907366003}
+      objectReference: {fileID: 0}
     - target: {fileID: 6130915443900725726, guid: e7305dc4204dd4b45b96fbfd6d287e9a, type: 3}
       propertyPath: m_Name
       value: PressurePlate
@@ -647,10 +647,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1742399470}
     m_Modifications:
-    - target: {fileID: 4995249301781882943, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
-      propertyPath: pressSpeed
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 6976970367916423131, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
       propertyPath: m_Name
       value: r28nmgaqhyy11_0 (1)
@@ -36203,7 +36199,7 @@ CompositeCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -37631,6 +37627,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0459aa07fbe1b4f429a69c759be4ad4e, type: 3}
+--- !u!4 &1588300598 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3280399737517398585, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
+  m_PrefabInstance: {fileID: 525276486}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1631581562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37833,17 +37834,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c27411df696b73c4487ca0545a5fcc46, type: 3}
---- !u!114 &1907366003 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6074960894216150439, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
-  m_PrefabInstance: {fileID: 525276486}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a47be5c788ab4e4eb85b10681110169, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1927907008
 GameObject:
   m_ObjectHideFlags: 0
@@ -37964,7 +37954,7 @@ Transform:
   - {fileID: 1275424148}
   - {fileID: 991751361}
   - {fileID: 1524558776}
-  - {fileID: 2021783274}
+  - {fileID: 1588300598}
   - {fileID: 1577182479}
   - {fileID: 900820207}
   - {fileID: 2142403048}
@@ -38168,11 +38158,6 @@ Transform:
   - {fileID: 697370696}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &2021783274 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4379693248320581475, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
-  m_PrefabInstance: {fileID: 525276486}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2083244720 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9077733833628214987, guid: 0459aa07fbe1b4f429a69c759be4ad4e, type: 3}
@@ -38265,10 +38250,6 @@ PrefabInstance:
     - target: {fileID: 7168779483956280351, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: GroundLayer.m_Bits
       value: 320
-      objectReference: {fileID: 0}
-    - target: {fileID: 7599139921022890678, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.876
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
