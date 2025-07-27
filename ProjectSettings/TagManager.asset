@@ -15,6 +15,7 @@ TagManager:
   - ObjectDetector
   - ObjectDetectee
   - PressurePlate
+  - DialogueCanvas
   - Elevator
   layers:
   - Default
@@ -33,6 +34,7 @@ TagManager:
   - ObjectDetectee
   - YoffsetZone
   - GiantBlueMagnet
+  - 
   - 
   - 
   - 

@@ -180,7 +180,7 @@ MonoBehaviour:
   waitTime: 0.5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   rayDistance: 0.1
   waitForBeforeStarting: 0.5
   deathScript: {fileID: 0}

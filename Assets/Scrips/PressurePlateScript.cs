@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class PressurePlateScript : MonoBehaviour
 {
-    [SerializeField] private ElevatorScript connectedElevator;
-    private bool isPressed = false; // Might remove because no need
+    private ElevatorScript connectedElevator;
+    private GameObject ELevator;
+    private bool isPressed = false;
 
+    private void Start()
+    {
+        ELevator = GameObject.FindGameObjectWithTag("Elevator");
+        connectedElevator = ELevator.GetComponent<ElevatorScript>();
+    }
     public bool IsPressed
     {
         get => isPressed;
@@ -14,7 +20,6 @@ public class PressurePlateScript : MonoBehaviour
     {
         if (other.CompareTag("Redgie") && !isPressed)
         {
-            isPressed = true;
             connectedElevator.UnlockDoor();
         }
     }

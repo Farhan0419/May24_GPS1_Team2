@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288e0e3fe15771b44a8b00e693e4665d, type: 3}
+  m_Name: Level1Room1Real
+  m_EditorClassIdentifier: 
+  dialogueType:
+  - Conversation
+  - Remark
+  - Conversation
+  dialogueLines1:
+  - "Hello there, didn\u2019t realize there was anyone else down here.;Name\u2019s
+    Redgie. Red block. Big voice. Impeccable sitting abilities.;Engraving on your
+    side says MagUnet, is that your name?;\u2026..(enlarge font);You\u2019re not
+    much of a talker, are you?;Anyways\u2026..help me get down from here? Any ideas?"
+  - "That\u2019s your idea?!(enlarge font);Wait\u2026..I can feel myself being pulled
+    towards you."
+  - "Would you look at that? That opened the elevator door.;I\u2019ve been trying
+    to get that open for ages.;Thanks Mags, was starting to think I\u2019d rust down
+    here.;We\u2019re polar opposites, that\u2019s why we\u2019re made to stick together.;We\u2019re
+    in the Scrap well station, the lowest factory level.;Rock bottom means we can\u2019t
+    fall, we\u2019ll only rise!"
+  dialogueLines2: []
+  dialogueLines3: []
