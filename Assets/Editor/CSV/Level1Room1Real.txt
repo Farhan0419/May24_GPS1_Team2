@@ -1,4 +1,0 @@
-Type	Trigger	
-Conversation	MagUnet meets Redgie	"Hello there, didn’t realize there was anyone else down here.;Name’s Redgie. Red block. Big voice. Impeccable sitting abilities.;Engraving on your side says MagUnet, is that your name?;…..(enlarge font);You’re not much of a talker, are you?;Anyways…..help me get down from here? Any ideas?"
-Remark	MagUnet jumps into paint puddle	"That’s your idea?!(enlarge font);Wait…..I can feel myself being pulled towards you."
-Conversation	"When the exit door is opened and the level is completed"	"Would you look at that? That opened the elevator door.;I’ve been trying to get that open for ages.;Thanks Mags, was starting to think I’d rust down here.;We’re polar opposites, that’s why we’re made to stick together.;We’re in the Scrap well station, the lowest factory level.;Rock bottom means we can’t fall, we’ll only rise!"

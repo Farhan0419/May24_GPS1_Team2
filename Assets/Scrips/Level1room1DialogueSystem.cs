@@ -11,8 +11,9 @@ public class Level1room1DialogueSystem : DialogueSystem
 
     // [Bug] invoke event when the type is Conversation ??????????????????
     // [Bug] press c again to show full line, then press c again to show next line (type out)
+    // [Bug] stop player from walking when its conversation
 
-    private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level1Room1Real";
+    private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level 1, Room 1";
 
     //private string sizeKeyword = "(enlarge font)";
     //[SerializeField] private float normalTextSize = 5.5f;
@@ -23,7 +24,7 @@ public class Level1room1DialogueSystem : DialogueSystem
 
     private int layerPlayer;
     private Vector2 redgiePosition;
-    [SerializeField] private float dialogueDetectionRadius = 5f;
+    [SerializeField] private float dialogueDetectionRadius = 5f;  
 
     private void OnEnable()
     {
@@ -57,6 +58,16 @@ public class Level1room1DialogueSystem : DialogueSystem
                 ShowNextLine(ref usableDialogue, ref typingCoroutine, ref dialogueCounter, ref dialogueText, ref dialogueState,
                     ref dialogueCanvas, delayBetweenWords, ToTypeLetters);
             }
+        }
+    }
+
+    private void Awake()
+    {
+        audioSource = this.gameObject.AddComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            Debug.LogError("AudioSource component is missing on the DialogueSystem GameObject.");
         }
     }
 
@@ -166,6 +177,7 @@ public class Level1room1DialogueSystem : DialogueSystem
 
         for (int i = 0; i < sentence.Length; i++)
         {
+            PlayDialogueSound(dialogueText.text.Length, frequencyValue);
             dialogueText.text += sentence[i];
             yield return new WaitForSeconds(delayBetweenWords);
         }
@@ -183,5 +195,13 @@ public class Level1room1DialogueSystem : DialogueSystem
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(redgiePosition, dialogueDetectionRadius);
+    }
+
+    private void OnValidate()
+    {
+        if (dialogueDetectionRadius <= 0f)
+        {
+            dialogueDetectionRadius = 1f;
+        }
     }
 }

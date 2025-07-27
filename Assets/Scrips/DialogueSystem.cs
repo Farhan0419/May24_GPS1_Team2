@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 using UnityEngine.InputSystem;
+using Unity.Mathematics;
 
 public class DialogueSystem : MonoBehaviour
 {
@@ -35,9 +36,20 @@ public class DialogueSystem : MonoBehaviour
 
     protected HashSet<int> executedStates = new HashSet<int>();
 
+    [Header("Audio")]
+    [SerializeField] protected AudioClip dialogueTypingSoundClip;
+    [SerializeField] protected bool stopAudioSource = true;
+    [Range(1, 5)]
+    [SerializeField] protected int frequencyValue = 1;
+    [Range(-3, 3)]
+    [SerializeField] protected float minPitch = 0.5f;
+    [Range(-3, 3)]
+    [SerializeField] protected float maxPitch = 3f;
+    protected AudioSource audioSource;
+
     [SerializeField] protected bool isDebug = true;
 
-    public void ShowNextLine(ref Dictionary<int, string[]> usableDialogue, ref Coroutine typingCoroutine, ref int dialogueCounter, ref TextMeshProUGUI dialogueText, ref int dialogueState, ref GameObject dialogueCanvas, float delayBetweenWords, Action<string> callback)
+    protected void ShowNextLine(ref Dictionary<int, string[]> usableDialogue, ref Coroutine typingCoroutine, ref int dialogueCounter, ref TextMeshProUGUI dialogueText, ref int dialogueState, ref GameObject dialogueCanvas, float delayBetweenWords, Action<string> callback)
     {
         int dialogueLength = usableDialogue[dialogueState].Length;
         typingCoroutine = null;
@@ -53,6 +65,19 @@ public class DialogueSystem : MonoBehaviour
         {
             dialogueCanvas.SetActive(false);
             dialogueCounter = 0;
+        }
+    }
+
+    protected void PlayDialogueSound(int currentDisplayedCharacterCount, int frequencyValue)
+    {
+        if (currentDisplayedCharacterCount % frequencyValue == 0)
+        {
+            if (stopAudioSource)
+            {
+                audioSource.Stop();
+            }
+            audioSource.pitch = UnityEngine.Random.Range(minPitch, maxPitch);
+            audioSource.PlayOneShot(dialogueTypingSoundClip);
         }
     }
 }

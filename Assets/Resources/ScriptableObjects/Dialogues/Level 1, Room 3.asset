@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288e0e3fe15771b44a8b00e693e4665d, type: 3}
+  m_Name: Level 1, Room 3
+  m_EditorClassIdentifier: 
+  dialogueType:
+  - Remark
+  - Remark
+  - Conversation
+  dialogueLines1:
+  - "Uhhh\u2026..Mags? I don\u2019t wanna turn into a flat fridge magnet. "
+  - "Not blaming you\u2026but I\u2019m also not not blaming you. "
+  - "We\u2019re really doing this\u2026..I\u2019m finally leaving the junk heap!;And
+    it\u2019s all thanks to you.;You may be quiet, but your steps?;They\u2019re starting
+    to speak. Loudly. Clearly. Purposefully.;I waited forever, but you made forever
+    worth it.;Come on, let\u2019s go find out what\u2019s next! "
+  dialogueLines2: []
+  dialogueLines3: []

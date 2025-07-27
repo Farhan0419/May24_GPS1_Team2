@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288e0e3fe15771b44a8b00e693e4665d, type: 3}
+  m_Name: Level 2, Room 1
+  m_EditorClassIdentifier: 
+  dialogueType:
+  - Conversation
+  - Remark
+  - Remark
+  - Conversation
+  dialogueLines1:
+  - "Well you look clean, taken a shower huh?;Good thing too, after being in the
+    waste area.;You\u2019ve realised those big <color = blue>blue</color> magnets
+    love <color = red>red</color> things.;Shame we can\u2019t talk to them, it\u2019d
+    make things easier.;Let\u2019s figure this out, shall we? "
+  - 'We match again! '
+  - "\u2026..and now we don\u2019t. "
+  - "Room cleared! I\u2019d high five you if I had hands.;I guess I should tell you
+    about where we are.;We\u2019re in the <i>Polarity Sector</i>.;The highly secured
+    part of the facility, with deadly countermeasures.;But we\u2019re not gonna let
+    that stop us. "
+  dialogueLines2: []
+  dialogueLines3: []

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288e0e3fe15771b44a8b00e693e4665d, type: 3}
+  m_Name: Level 1, Room 2
+  m_EditorClassIdentifier: 
+  dialogueType:
+  - Conversation
+  - Remark
+  - Remark
+  - Conversation
+  dialogueLines1:
+  - "There you are, took you long enough.;Your jumping skills must be impeccable.;In
+    this room though, you gotta get me to jump too.;That <color = red>red</color>
+    pad could be useful.;Something tells me it\u2019s bouncy.   "
+  - "Ouch! That\u2019s gotta hurt."
+  - "<size=25><b>OWW!</b></size> Too bad I don\u2019t repel concrete. "
+  - "Nice! We make a great team. I\u2019m glad you\u2019re here.;It\u2019s been lonely
+    down here all on my own.;I\u2019ve been talking to the walls but they\u2019re
+    boring.;You\u2019re much more interesting Mags.;I\u2019m happy you found me.;We\u2019re
+    almost out of this trash heap, let\u2019s keep going. "
+  dialogueLines2: []
+  dialogueLines3: []
