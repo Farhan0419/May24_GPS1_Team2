@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private bool movementDisabled = false;
     public float LaunchPower = 50f;
 
-    public bool isMoving = false;
+    private bool isMoving = false;
     public bool isFalling { get; private set; }
 
     private FormTransform formTransform;

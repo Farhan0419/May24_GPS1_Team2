@@ -5,7 +5,7 @@ using System.Threading;
 
 public class PlayerDeath : MonoBehaviour
 {
-    public CanvasGroup DeathScreen;
+    //public CanvasGroup DeathScreen;
     private PlayerMovement MovementScript;
     private string currentSceneName;
     private float timer = 0f;
@@ -14,7 +14,7 @@ public class PlayerDeath : MonoBehaviour
     void Start()
     {
         MovementScript = gameObject.GetComponent<PlayerMovement>();
-        closeDeathScreen();
+        //closeDeathScreen();
         currentSceneName = SceneManager.GetActiveScene().name;
         if (currentSceneName == null)
         {
@@ -24,7 +24,7 @@ public class PlayerDeath : MonoBehaviour
 
     public void PlayerDead(string causeOfDeath)
     {
-        openDeathScreen();
+        //openDeathScreen();
         if (causeOfDeath == "Laser")
         {
             Debug.Log("Player Died from laser");
@@ -44,29 +44,29 @@ public class PlayerDeath : MonoBehaviour
 
     }
 
-    private void openDeathScreen()
-    {
-        DeathScreen.alpha = 1;
-        DeathScreen.interactable = true;
-        DeathScreen.blocksRaycasts = true;
-    }
+    //private void openDeathScreen()
+    //{
+    //    DeathScreen.alpha = 1;
+    //    DeathScreen.interactable = true;
+    //    DeathScreen.blocksRaycasts = true;
+    //}
 
-    private void closeDeathScreen()
-    {
-        DeathScreen.alpha = 0;
-        DeathScreen.interactable = false;
-        DeathScreen.blocksRaycasts = false;
-    }
+    //private void closeDeathScreen()
+    //{
+    //    DeathScreen.alpha = 0;
+    //    DeathScreen.interactable = false;
+    //    DeathScreen.blocksRaycasts = false;
+    //}
 
     public void RestartLevel()
     {
-        closeDeathScreen();
+        //closeDeathScreen();
         SceneManager.LoadScene(currentSceneName);
     }
 
     public void QuitLevel()
     {
-        closeDeathScreen();
+        //closeDeathScreen();
         SceneManager.LoadScene("MainMenu");
     }
 
