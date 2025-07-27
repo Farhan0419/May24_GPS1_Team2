@@ -12,6 +12,11 @@ public class Level1room1DialogueSystem : DialogueSystem
     // [Bug] invoke event when the type is Conversation ??????????????????
     // [Bug] press c again to show full line, then press c again to show next line (type out)
     // [Bug] stop player from walking when its conversation
+        // DisablePlayerMovement
+        //EnablePlayerMovement
+    // [Bug] the way the dialogue pops up -> implement it
+    //predictable dialogue -> consult with mr ken
+   // push today then inform farhan again about implementing the dialogue system for each room
 
     private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level 1, Room 1";
 
