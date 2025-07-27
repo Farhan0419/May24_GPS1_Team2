@@ -11,6 +11,9 @@ public class RedgieGroundCheck : MonoBehaviour
 
     private GameObject blueMagneticPlatform;
 
+    private string[] groundTags = { "platform", "OneWayPlatform", "Player", "PressurePlate", "Elevator", "BlueMagneticPlatform", 
+        "ShowerStation", "RedPaintStation", "BluePaintStation"};
+
     [SerializeField] private bool debugMode = true;
 
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -42,7 +45,13 @@ public class RedgieGroundCheck : MonoBehaviour
 
         if (other != null)
         {
-            setGrounded(true);
+            for(int i = 0; i < groundTags.Length; i++)
+            {
+                if(other.CompareTag(groundTags[i]))
+                {
+                    setGrounded(true);
+                }
+            }
 
             switch(other.tag)
             {

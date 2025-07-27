@@ -11,7 +11,7 @@ public class DialogueTools
 		return dialogues.Split(';');
 	}
 
-    public static void LoadDialogueAsset(ref Dictionary<int, string[]> usableDialogue, string scriptableObjectFile, bool isDebug)
+    public static void LoadDialogueAsset(ref Dictionary<int, string[]> usableDialogue, ref List<string> dialogueTypes, string scriptableObjectFile, bool isDebug)
     {
         Dialogue gameData = Resources.Load<Dialogue>(scriptableObjectFile);
 
@@ -25,7 +25,7 @@ public class DialogueTools
 
                 usableDialogue[i] = currentDialogue;
 
-                int linesInDialogue = currentDialogue.Length;
+                dialogueTypes.Add(gameData.dialogueType[i]);
 
                 //indexKeywordsUsableDialogue[i] = DialogueTools.CheckForKeyWords(ref currentDialogue, sizeKeyword).ToArray();
             }

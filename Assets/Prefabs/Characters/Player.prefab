@@ -305,7 +305,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -6308607571057329287, guid: f72d46c6f4b22be4d8735ffa63a2778f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -516,19 +516,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7398613907580208576}
   GroundCheck: {fileID: 7599139921022890678}
-  WallCheck: {fileID: 6548158872187765782}
   GroundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  WallLayer:
     serializedVersion: 2
     m_Bits: 64
   speed: 4.5
   jumpPower: 16.7
   LaunchPower: 12
-  wallCheckRadius: 0.58
-  isMoving: 0
-  cameraSystem: {fileID: 0}
   PlayerCollider: {fileID: 1852144890480461987}
 --- !u!114 &3021878682728651252
 MonoBehaviour:

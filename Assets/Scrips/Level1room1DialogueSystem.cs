@@ -8,47 +8,22 @@ using System.Collections;
 public class Level1room1DialogueSystem : DialogueSystem
 {
     // [Refactor] need to move some of these variables to DialogueSystem.cs in the future
-    // [Bug] press c too quickly 
-    // [Bug] set sorting order for dialogue canvas that player is always on top of dialogue canvas, the other objects are behind the dialogue canvas
+
     // [Bug] invoke event when the type is Conversation ??????????????????
-    // [Bug] type is remark then no need to press c to continue, just show the text for a few seconds.
-    // [Bug] if currently dialogue remark is being displayed, what if conversation is triggered?
-    // [Bug] align left dialogue text, not center
+    // [Bug] press c again to show full line, then press c again to show next line (type out)
 
     private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level1Room1Real";
-	private string sizeKeyword = "(enlarge font)";
-	[SerializeField] private bool isDebug = true;
 
-    private int layerPlayer;
-    private InputAction nextConversation;
-
-    [SerializeField] private TextMeshProUGUI dialogueText;
-
-    [SerializeField] private float normalTextSize = 5.5f;
-    [SerializeField] private float enlargeTextSize = 8f;
-
-    [SerializeField] private GameObject dialogueCanvas;
-
-    [SerializeField] private float dialogueDetectionRadius = 5f;
-
-    // this is unused, implement in the future
-    [SerializeField] private float widthDialogueBox;
-    [SerializeField] private float heightDialogueBox;
-    [SerializeField] private float xDialogueBoxOffset;
-    [SerializeField] private float yDialogueBoxOffset;
+    //private string sizeKeyword = "(enlarge font)";
+    //[SerializeField] private float normalTextSize = 5.5f;
+    //[SerializeField] private float enlargeTextSize = 8f;
 
     private FormTransform formTransform;
     private PressurePlateScript pressurePlateScript;
 
+    private int layerPlayer;
     private Vector2 redgiePosition;
-
-    private int dialogueCounter = 0;
-
-    private bool toTriggerDialogue = true;
-
-    [SerializeField] private float delayBetweenWords = 0.05f;
-
-    private Coroutine typingCoroutine;
+    [SerializeField] private float dialogueDetectionRadius = 5f;
 
     private void OnEnable()
     {
@@ -72,8 +47,16 @@ public class Level1room1DialogueSystem : DialogueSystem
     {
         if (dialogueCanvas.activeSelf)
         {
-            ShowNextLine(ref usableDialogue, ref typingCoroutine, ref dialogueCounter, ref dialogueText, ref dialogueState, 
-                ref dialogueCanvas, ref toTriggerDialogue, delayBetweenWords, ToTypeLetters);
+            if (dialogueType[dialogueState] == "Conversation")
+            {
+                if (typingCoroutine != null)
+                {
+                    StopCoroutine(typingCoroutine);
+                }
+
+                ShowNextLine(ref usableDialogue, ref typingCoroutine, ref dialogueCounter, ref dialogueText, ref dialogueState,
+                    ref dialogueCanvas, delayBetweenWords, ToTypeLetters);
+            }
         }
     }
 
@@ -91,7 +74,7 @@ public class Level1room1DialogueSystem : DialogueSystem
 
         dialogueCanvas.SetActive(false);
 
-        DialogueTools.LoadDialogueAsset(ref usableDialogue, scriptableObjectFile, isDebug);
+        DialogueTools.LoadDialogueAsset(ref usableDialogue, ref dialogueType, scriptableObjectFile, isDebug);
     }
 
     private void Update()
@@ -103,58 +86,71 @@ public class Level1room1DialogueSystem : DialogueSystem
             redgiePosition = currentRedgiePosition;
         }
 
-        if(toTriggerDialogue)
+        DialogueTriggers();
+
+        if (dialogueCanvas.activeSelf)
         {
-            switch (dialogueState)
+            if (dialogueType[dialogueState] == "Remark" && nextRemarkDialogue)
             {
-                case 0:
-                    FirstDialogue();
-                    break;
-
-                case 1:
-                    SecondDialogue();
-                    break;
-
-                case 2:
-                    ThirdDialogue();
-                    break;
+                nextRemarkDialogue = false;
+                ShowNextLine(ref usableDialogue, ref typingCoroutine, ref dialogueCounter, ref dialogueText, ref dialogueState,
+                    ref dialogueCanvas, delayBetweenWords, ToTypeLetters);
             }
         }
     }
 
+    private void DialogueTriggers()
+    {
+        FirstDialogue();
+        SecondDialogue();
+        ThirdDialogue();
+    }
+
     private void FirstDialogue()
     {
+        if (executedStates.Contains(0)) return;
+
         Collider2D hit = Physics2D.OverlapCircle(redgiePosition, dialogueDetectionRadius, layerPlayer);
 
         if (hit != null && hit.CompareTag("Player"))
         {
+            dialogueState = 0;
             initializeDialogueValues();
         }
-
     }
 
     private void SecondDialogue()
     {
-        if(formTransform.IsPaint)
+        if (executedStates.Contains(1)) return;
+
+        if (formTransform.IsPaint)
         {
+            dialogueState = 1;
             initializeDialogueValues();
         }
     }
 
     private void ThirdDialogue()
     {
+        if (executedStates.Contains(2)) return;
+
         if (pressurePlateScript.IsPressed)
         {
+            dialogueState = 2;
             initializeDialogueValues();
         }
     }
 
     private void initializeDialogueValues()
     {
-        //dialogueText.text = usableDialogue[dialogueState][0];
-        //DialogueTools.setTextCustomization(dialogueText, indexKeywordsUsableDialogue, dialogueCounter);
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+        }
+
+        executedStates.Add(dialogueState);
+        dialogueCounter = 0;
         dialogueCounter++;
-        toTriggerDialogue = false;
         dialogueCanvas.SetActive(true);
         ToTypeLetters(usableDialogue[dialogueState][0]);    
     }
@@ -173,6 +169,14 @@ public class Level1room1DialogueSystem : DialogueSystem
             dialogueText.text += sentence[i];
             yield return new WaitForSeconds(delayBetweenWords);
         }
+
+        if (dialogueType[dialogueState] == "Remark")
+        {
+            yield return new WaitForSeconds(delayBetweenRemarks);
+            nextRemarkDialogue = true;
+        }
+
+        typingCoroutine = null;
     }
 
     private void OnDrawGizmos()
