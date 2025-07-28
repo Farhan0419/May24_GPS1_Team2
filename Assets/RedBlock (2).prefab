@@ -448,6 +448,18 @@ PrefabInstance:
       value: DialogueSystem
       objectReference: {fileID: 0}
     - target: {fileID: 1822154736557317849, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822154736557317849, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822154736557317849, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822154736557317849, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -529,19 +541,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6836056558785282404, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 71.4847
+      value: 106.3688
       objectReference: {fileID: 0}
     - target: {fileID: 6836056558785282404, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 24.1285
+      value: 32.1548
       objectReference: {fileID: 0}
     - target: {fileID: 6836056558785282404, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.016
+      value: -0.0006
       objectReference: {fileID: 0}
     - target: {fileID: 6836056558785282404, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.5282
+      value: 2.7135
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

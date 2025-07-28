@@ -18,7 +18,9 @@ public class DialogueSystem : MonoBehaviour
     protected InputAction nextConversation;
 
     protected GameObject dialogueCanvas;
+    protected RectTransform dialogueCanvasRT;
     protected TextMeshProUGUI dialogueText;
+    protected PlayerMovement playerMovement;
 
     // this is unused, implement in the future
     protected float widthDialogueBox;
@@ -36,6 +38,14 @@ public class DialogueSystem : MonoBehaviour
 
     protected HashSet<int> executedStates = new HashSet<int>();
 
+    [Header("Dialogue Box")]
+    //protected GameObject target = dialogueCanvas;
+    protected Vector3 startScale = Vector3.zero;
+    [SerializeField] protected Vector3 endScale = new Vector3(1.2f, 1.2f, 1.5f);
+    [SerializeField] protected float dialoguePopDuration = 0.4f;
+    protected bool isDialogueReady = false;
+    protected bool isDialogueBoxScalingTrigger = false;
+
     [Header("Audio")]
     [SerializeField] protected AudioClip dialogueTypingSoundClip;
     [SerializeField] protected bool stopAudioSource = true;
@@ -49,22 +59,55 @@ public class DialogueSystem : MonoBehaviour
 
     [SerializeField] protected bool isDebug = true;
 
-    protected void ShowNextLine(ref Dictionary<int, string[]> usableDialogue, ref Coroutine typingCoroutine, ref int dialogueCounter, ref TextMeshProUGUI dialogueText, ref int dialogueState, ref GameObject dialogueCanvas, float delayBetweenWords, Action<string> callback)
+    protected void Awake()
+    {
+        audioSource = this.gameObject.AddComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            Debug.LogError("AudioSource component is missing on the DialogueSystem GameObject.");
+        }
+    }
+
+    protected void ShowNextLine(ref Dictionary<int, string[]> usableDialogue, ref Coroutine typingCoroutine, ref int dialogueCounter, ref TextMeshProUGUI dialogueText, ref int dialogueState, ref GameObject dialogueCanvas, float delayBetweenWords, Action<string> typeLetters, Action<Vector3, Vector3, string> scaleDialogueBox)
     {
         int dialogueLength = usableDialogue[dialogueState].Length;
         typingCoroutine = null;
 
         if (dialogueCounter < dialogueLength)
         {
+            if (dialogueType[dialogueState] == "Conversation")
+            {
+                //Debug.Log(dialogueCounter);
+                if(dialogueText.text != usableDialogue[dialogueState][(dialogueCounter-1)])
+                {
+                    //Debug.Log(dialogueText.text);
+                    //Debug.Log(usableDialogue[dialogueState][(dialogueCounter-1)]);
+                    // [Bug] cannot show full line when skip on last dialogueLine because of dialogueCounter < dialogueLength
+                    dialogueText.text = usableDialogue[dialogueState][(dialogueCounter-1)];
+                    return;
+                }  
+            }
+
             //DialogueTools.setTextCustomization(dialogueText, indexKeywordsUsableDialogue, dialogueCounter);
             string currentLine = usableDialogue[dialogueState][dialogueCounter];
             dialogueCounter++;
-            callback?.Invoke(currentLine); 
+            Debug.Log(dialogueCounter);
+            typeLetters?.Invoke(currentLine);
         }
         else
         {
-            dialogueCanvas.SetActive(false);
+            if (dialogueCanvas.activeSelf)
+            {
+                scaleDialogueBox?.Invoke(endScale, startScale, "");
+            }
+
             dialogueCounter = 0;
+
+            if (dialogueType[dialogueState] == "Conversation")
+            {
+                playerMovement.EnablePlayerMovement();
+            }
         }
     }
 

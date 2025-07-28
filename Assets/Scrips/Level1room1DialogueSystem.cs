@@ -4,19 +4,14 @@ using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class Level1room1DialogueSystem : DialogueSystem
 {
     // [Refactor] need to move some of these variables to DialogueSystem.cs in the future
 
     // [Bug] invoke event when the type is Conversation ??????????????????
-    // [Bug] press c again to show full line, then press c again to show next line (type out)
-    // [Bug] stop player from walking when its conversation
-        // DisablePlayerMovement
-        //EnablePlayerMovement
-    // [Bug] the way the dialogue pops up -> implement it
     //predictable dialogue -> consult with mr ken
-   // push today then inform farhan again about implementing the dialogue system for each room
 
     private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level 1, Room 1";
 
@@ -29,9 +24,9 @@ public class Level1room1DialogueSystem : DialogueSystem
 
     private int layerPlayer;
     private Vector2 redgiePosition;
-    [SerializeField] private float dialogueDetectionRadius = 5f;  
+    [SerializeField] private float dialogueDetectionRadius = 5f;
 
-    private void OnEnable()
+    protected void OnEnable()
     {
         nextConversation = InputSystem.actions.FindAction("NextConversation");
         if (nextConversation != null)
@@ -40,7 +35,7 @@ public class Level1room1DialogueSystem : DialogueSystem
         }
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         if (nextConversation != null)
         {
@@ -49,9 +44,9 @@ public class Level1room1DialogueSystem : DialogueSystem
         }
     }
 
-    private void nextConversation_performed(InputAction.CallbackContext context)
+    protected void nextConversation_performed(InputAction.CallbackContext context)
     {
-        if (dialogueCanvas.activeSelf)
+        if (dialogueCanvas.activeSelf && isDialogueReady)
         {
             if (dialogueType[dialogueState] == "Conversation")
             {
@@ -61,18 +56,8 @@ public class Level1room1DialogueSystem : DialogueSystem
                 }
 
                 ShowNextLine(ref usableDialogue, ref typingCoroutine, ref dialogueCounter, ref dialogueText, ref dialogueState,
-                    ref dialogueCanvas, delayBetweenWords, ToTypeLetters);
+                    ref dialogueCanvas, delayBetweenWords, ToTypeLetters, ToScaleDialogueBox);
             }
-        }
-    }
-
-    private void Awake()
-    {
-        audioSource = this.gameObject.AddComponent<AudioSource>();
-
-        if (audioSource == null)
-        {
-            Debug.LogError("AudioSource component is missing on the DialogueSystem GameObject.");
         }
     }
 
@@ -80,8 +65,10 @@ public class Level1room1DialogueSystem : DialogueSystem
 	{
         layerPlayer = LayerMask.GetMask("Player");
         formTransform = GameObject.FindWithTag("Player").GetComponentInChildren<FormTransform>();
+        playerMovement = GameObject.FindWithTag("Player").GetComponentInChildren<PlayerMovement>();
 
         dialogueCanvas = GameObject.FindWithTag("DialogueCanvas");
+        dialogueCanvasRT = dialogueCanvas.GetComponentInChildren<Canvas>().gameObject.GetComponent<RectTransform>(); ;
         dialogueText = GameObject.FindWithTag("DialogueCanvas").GetComponentInChildren<TextMeshProUGUI>();
 
         pressurePlateScript = GameObject.FindWithTag("PressurePlate").GetComponentInChildren<PressurePlateScript>();
@@ -104,19 +91,24 @@ public class Level1room1DialogueSystem : DialogueSystem
 
         DialogueTriggers();
 
-        if (dialogueCanvas.activeSelf)
+        if (dialogueCanvas.activeSelf && isDialogueReady)
         {
             if (dialogueType[dialogueState] == "Remark" && nextRemarkDialogue)
             {
                 nextRemarkDialogue = false;
                 ShowNextLine(ref usableDialogue, ref typingCoroutine, ref dialogueCounter, ref dialogueText, ref dialogueState,
-                    ref dialogueCanvas, delayBetweenWords, ToTypeLetters);
+                    ref dialogueCanvas, delayBetweenWords, ToTypeLetters, ToScaleDialogueBox);
             }
         }
     }
 
     private void DialogueTriggers()
     {
+        if (isDialogueBoxScalingTrigger)
+        {
+            ToScaleDialogueBox(startScale, endScale, "popin");
+        }
+
         FirstDialogue();
         SecondDialogue();
         ThirdDialogue();
@@ -168,7 +160,13 @@ public class Level1room1DialogueSystem : DialogueSystem
         dialogueCounter = 0;
         dialogueCounter++;
         dialogueCanvas.SetActive(true);
-        ToTypeLetters(usableDialogue[dialogueState][0]);    
+        isDialogueBoxScalingTrigger = true;
+        ToTypeLetters(usableDialogue[dialogueState][0]);
+
+        if (dialogueType[dialogueState] == "Conversation")
+        {
+            playerMovement.DisablePlayerMovement();
+        }
     }
 
     private void ToTypeLetters(string msg)
@@ -194,6 +192,67 @@ public class Level1room1DialogueSystem : DialogueSystem
         }
 
         typingCoroutine = null;
+    }
+
+    private void ToScaleDialogueBox(Vector3 startScale, Vector3 endScale, string condition)
+    {
+        isDialogueBoxScalingTrigger = false;
+        if(isDialogueReady && condition == "popin")  return;
+        StartCoroutine(ScaleDialogueBox(dialogueCanvasRT, startScale, endScale, dialoguePopDuration, condition));
+    }
+
+    private float EaseInBack(float x)
+    {
+        float c1 = 1.70158f;
+        float c3 = c1 + 1f;
+
+        return 1 + c3 * Mathf.Pow(x - 1, 3) + c1 * Mathf.Pow(x - 1, 2);
+    }
+
+    private float EaseOutBack(float x)
+    {
+        float c1 = 1.70158f;
+        float c3 = c1 + 1f;
+
+        return c3 * x * x * x - c1 * x * x;
+    }
+
+    // [refactor] a mistake to use coroutine, just normal function and let Update() execute it until the scaling is done
+    private IEnumerator ScaleDialogueBox(RectTransform target, Vector3 startScale, Vector3 endScale, float duration, string condition)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+
+            float easedT;
+
+            if (condition == "popin")
+            {
+                easedT = EaseInBack(t);
+            }
+            else
+            {
+                easedT = EaseOutBack(t);
+            }
+
+            target.localScale = Vector3.LerpUnclamped(startScale, endScale, easedT);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        target.localScale = endScale;
+        if (condition == "popin")
+        {
+            isDialogueReady = true;
+        }
+        else
+        {
+            isDialogueReady = false;
+            dialogueCanvas.SetActive(false);
+        }
+
     }
 
     private void OnDrawGizmos()
