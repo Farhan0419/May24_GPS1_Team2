@@ -15,10 +15,6 @@ public class Level1room1DialogueSystem : DialogueSystem
 
     private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level 1, Room 1";
 
-    //private string sizeKeyword = "(enlarge font)";
-    //[SerializeField] private float normalTextSize = 5.5f;
-    //[SerializeField] private float enlargeTextSize = 8f;
-
     private FormTransform formTransform;
     private PressurePlateScript pressurePlateScript;
 

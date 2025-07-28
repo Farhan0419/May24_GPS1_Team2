@@ -26,22 +26,10 @@ public class DialogueTools
                 usableDialogue[i] = currentDialogue;
 
                 dialogueTypes.Add(gameData.dialogueType[i]);
-
-                //indexKeywordsUsableDialogue[i] = DialogueTools.CheckForKeyWords(ref currentDialogue, sizeKeyword).ToArray();
             }
 
             if (isDebug)
             {
-                //foreach (KeyValuePair<int, int[]> entry in indexKeywordsUsableDialogue)
-                //{
-                //    Debug.Log($"Key: {entry.Key}, Value: {entry.Value}");
-
-                //    foreach (int lineIndex in entry.Value)
-                //    {
-                //        Debug.Log(lineIndex);
-                //    }
-                //}
-
                 foreach (KeyValuePair<int, string[]> entry in usableDialogue)
                 {
                     Debug.Log($"Key: {entry.Key}, Value: {entry.Value}");

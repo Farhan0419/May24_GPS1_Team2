@@ -38,8 +38,11 @@ public class DialogueSystem : MonoBehaviour
 
     protected HashSet<int> executedStates = new HashSet<int>();
 
+    //private string sizeKeyword = "(enlarge font)";
+    //[SerializeField] private float normalTextSize = 5.5f;
+    //[SerializeField] private float enlargeTextSize = 8f;
+
     [Header("Dialogue Box")]
-    //protected GameObject target = dialogueCanvas;
     protected Vector3 startScale = Vector3.zero;
     [SerializeField] protected Vector3 endScale = new Vector3(1.2f, 1.2f, 1.5f);
     [SerializeField] protected float dialoguePopDuration = 0.4f;
