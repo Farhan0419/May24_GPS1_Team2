@@ -15,9 +15,13 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
     private bool movementDisabled = false;
     public float LaunchPower = 50f;
+    [SerializeField] private float pullPower = 20f;
 
     private bool isMoving = false;
     public bool isFalling { get; private set; }
+
+    private bool isInGiantMagnet = false;
+    private bool isGettingCrushed;
 
     private FormTransform formTransform;
 
@@ -44,14 +48,11 @@ public class PlayerMovement : MonoBehaviour
     public bool getDirection() => isFacingRight;
     public bool getMovement() => isMoving;
     public float GetYoffset() => Yoffset;
+    public bool getIsGettingCrushed() => isGettingCrushed;
 
     private void Start()
     {
         crouchAction = InputSystem.actions.FindAction("Crouch");
-        if (crouchAction == null)
-        {
-            Debug.Log("Crouch not assigned");
-        }
         animator = GetComponent<Animator>();
         formTransform = GetComponent<FormTransform>();
         Elevator = GameObject.FindGameObjectWithTag("Elevator");
@@ -179,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+
         // For animations
         // Moving
         if (isMoving == true)
@@ -250,6 +251,18 @@ public class PlayerMovement : MonoBehaviour
             isFalling = false;
         }
 
+        if (isInGiantMagnet)
+        {
+            if (rb.linearVelocityY < 2.7f)
+            {
+                rb.linearVelocityY += Time.deltaTime * pullPower;
+            }
+            else
+            {
+                rb.linearVelocityY = 2.7f;
+            }
+        }
+
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -309,6 +322,18 @@ public class PlayerMovement : MonoBehaviour
             yoffsetZoneScript = other.GetComponent<YoffsetZoneScript>();
             Yoffset = yoffsetZoneScript.getOffsetVal();
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
+        {
+            if (formTransform.CurrentForm == FormTransform.formState.red)
+            {
+                isInGiantMagnet = true;
+            }
+            else if (formTransform.CurrentForm == FormTransform.formState.blue)
+            {
+                isGettingCrushed = true;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -317,6 +342,11 @@ public class PlayerMovement : MonoBehaviour
         {
             yoffsetZoneScript = null;
             Yoffset = 0;
+        }
+        if (other.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
+        {
+            isInGiantMagnet = false;
+            isGettingCrushed = false;
         }
     }
 

@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: ceb9546fb38b12f4c9a34d96afa7db0d
+guid: dae7f8029f5cb58469ebaebd6c9b6eb7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6999939906866651835
-    second: Chains_0
+      213: -6551704489060998856
+    second: chains seamless final elevator_0
   - first:
-      213: -6968742210135179512
-    second: Chains_1
+      213: 1501117675047500160
+    second: chains seamless final elevator_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Chains_0
+      name: chains seamless final elevator_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 27
-        height: 174
+        width: 24
+        height: 298
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bb22edd0248c42160800000000000000
-      internalID: 6999939906866651835
+      spriteID: 831ef28ca7ba315a0800000000000000
+      internalID: -6551704489060998856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chains_1
+      name: chains seamless final elevator_1
       rect:
         serializedVersion: 2
-        x: 114
+        x: 116
         y: 0
-        width: 137
-        height: 174
+        width: 24
+        height: 298
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 80f3f91c1ed0a4f90800000000000000
-      internalID: -6968742210135179512
+      spriteID: 089344b729a05d410800000000000000
+      internalID: 1501117675047500160
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Chains_0: 6999939906866651835
-      Chains_1: -6968742210135179512
+      chains seamless final elevator_0: -6551704489060998856
+      chains seamless final elevator_1: 1501117675047500160
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

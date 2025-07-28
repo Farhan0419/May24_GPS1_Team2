@@ -7,13 +7,16 @@ public class PlayerDeath : MonoBehaviour
 {
     //public CanvasGroup DeathScreen;
     private PlayerMovement MovementScript;
+    private Transform PlayerTransform;
     private string currentSceneName;
     private float timer = 0f;
     private bool GettingCrushedtimerOn = false;
+    private float crushScale = 1f;
 
     void Start()
     {
         MovementScript = gameObject.GetComponent<PlayerMovement>();
+        PlayerTransform = gameObject.GetComponent<Transform>();
         //closeDeathScreen();
         currentSceneName = SceneManager.GetActiveScene().name;
         if (currentSceneName == null)
@@ -25,12 +28,14 @@ public class PlayerDeath : MonoBehaviour
     public void PlayerDead(string causeOfDeath)
     {
         //openDeathScreen();
+        MovementScript.DisablePlayerMovement();
         if (causeOfDeath == "Laser")
         {
             Debug.Log("Player Died from laser");
         }
         else if (causeOfDeath == "Crush")
         {
+            PlayerTransform.localScale = new Vector2(PlayerTransform.localScale.x, 0.2f);
             Debug.Log("Player Died from being Crushed");
         }
         else if (causeOfDeath == "Pit")
@@ -96,6 +101,22 @@ public class PlayerDeath : MonoBehaviour
                 PlayerDead("GiantMagnet");
                 GettingCrushedtimerOn = false;
             }
+        }
+        if (MovementScript.getIsGettingCrushed())
+        {
+            timer += Time.deltaTime;
+            crushScale -= Time.deltaTime * 0.15f;
+            PlayerTransform.localScale = new Vector2(PlayerTransform.localScale.x, crushScale);
+            if (timer >= 2)
+            {
+                PlayerDead("Crush");
+            }
+        }
+        else
+        {
+            crushScale = 1;
+            timer = 0;
+            PlayerTransform.localScale = new Vector2(PlayerTransform.localScale.x, 1);
         }
     }
 }

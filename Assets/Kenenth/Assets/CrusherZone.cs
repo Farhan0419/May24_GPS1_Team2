@@ -19,7 +19,6 @@ public class CrusherZone : MonoBehaviour
     {
         if (crusher != null && crusher.IsPressing() && collision.CompareTag("Player"))
         {
-            Debug.Log("Player is fucking dead");
             deathScript.PlayerDead("Crush");
             //crusher.KillPlayer(collision.gameObject);
             PlayerScript.DisablePlayerMovement();
