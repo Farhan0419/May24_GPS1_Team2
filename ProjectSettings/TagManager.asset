@@ -17,7 +17,6 @@ TagManager:
   - PressurePlate
   - DialogueCanvas
   - Elevator
-  - MagnetVFXPoint
   layers:
   - Default
   - TransparentFX
