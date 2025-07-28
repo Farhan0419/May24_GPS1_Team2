@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,9 +15,13 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
     private bool movementDisabled = false;
     public float LaunchPower = 50f;
+    [SerializeField] private float pullPower = 20f;
 
     private bool isMoving = false;
     public bool isFalling { get; private set; }
+
+    private bool isInGiantMagnet = false;
+    private bool isGettingCrushed;
 
     private FormTransform formTransform;
 
@@ -28,14 +31,32 @@ public class PlayerMovement : MonoBehaviour
     private YoffsetZoneScript yoffsetZoneScript;
     private float Yoffset = 0;
 
+    [Header("Coyote Time")]
+    [SerializeField] private float coyoteTime = 0.1f;
+    private float lastTimeGrounded;
+
+    private Vector2 raycastOffset = new Vector2(0.4f, 0);
+
+    private Animator animator;
+
+    private GameObject Elevator;
+    private ElevatorScript elevatorScript;
+
+    private InputAction crouchAction;
+
     public float Horizontal => horizontal;
     public bool getDirection() => isFacingRight;
     public bool getMovement() => isMoving;
     public float GetYoffset() => Yoffset;
+    public bool getIsGettingCrushed() => isGettingCrushed;
 
     private void Start()
     {
+        crouchAction = InputSystem.actions.FindAction("Crouch");
+        animator = GetComponent<Animator>();
         formTransform = GetComponent<FormTransform>();
+        Elevator = GameObject.FindGameObjectWithTag("Elevator");
+        elevatorScript = Elevator.GetComponent<ElevatorScript>();
         EnablePlayerMovement();
     }
 
@@ -43,15 +64,107 @@ public class PlayerMovement : MonoBehaviour
     {
         FormTransform.OnPlayerChangeForm += MoveToPaintStation;
     }
+
     private void OnDisable()
     {
         FormTransform.OnPlayerChangeForm -= MoveToPaintStation;
     }
+
+    // -- Move to paint station shenanigans ---------//
     private void MoveToPaintStation(Vector2 location, Action callback)
     {
-        // Your Logic
-        callback?.Invoke();
+        if (moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+        }
+        moveCoroutine = StartCoroutine(MoveToLocationRoutine(location, callback));
     }
+
+    private Coroutine moveCoroutine;
+
+    private IEnumerator MoveToLocationRoutine(Vector2 location, Action callback)
+    {
+        movementDisabled = true;
+
+        float targetX = location.x;
+        float threshold = 0.05f;
+        float autoMoveSpeed = 2f;
+
+        isMoving = true;
+
+        while (Mathf.Abs(transform.position.x - targetX) > threshold)
+        {
+            if ((targetX < transform.position.x && isFacingRight) || (targetX > transform.position.x && !isFacingRight))
+            {
+                Flip();
+            }
+
+            float step = autoMoveSpeed * Time.deltaTime;
+            transform.position = new Vector2(Mathf.MoveTowards(transform.position.x, targetX, step), transform.position.y);
+
+            yield return null;
+        }
+
+        isMoving = false;
+        transform.position = new Vector2(targetX, transform.position.y);
+
+        yield return new WaitForSeconds(1.2f); // Time for playing the splat animation -------------------------------------------------
+
+        callback?.Invoke(); // Form transforming ---------------------------------------------------------------------------------------
+        movementDisabled = false;
+        isMoving = false;
+        rb.linearVelocityX = 0;
+        horizontal = 0;
+    }
+    // -- Move to paint station shenanigans --(End)--//
+
+    // -- Move to Elevator shenanigans --------------//
+    public void MoveToElevator(Vector2 location)
+    {
+        if (moveElevatorCoroutine != null)
+        {
+            StopCoroutine(moveElevatorCoroutine);
+        }
+        moveElevatorCoroutine = StartCoroutine(MoveToElevatorRoutine(location));
+    }
+
+    private Coroutine moveElevatorCoroutine;
+
+    private IEnumerator MoveToElevatorRoutine(Vector2 location)
+    {
+        movementDisabled = true;
+
+        float targetX = location.x;
+        float threshold = 0.05f;
+        float autoMoveSpeed = 2f;
+
+        isMoving = true;
+
+        while (Mathf.Abs(transform.position.x - targetX) > threshold)
+        {
+            if ((targetX < transform.position.x && isFacingRight) || (targetX > transform.position.x && !isFacingRight))
+            {
+                Flip();
+            }
+
+            float step = autoMoveSpeed * Time.deltaTime;
+            transform.position = new Vector2(Mathf.MoveTowards(transform.position.x, targetX, step), transform.position.y);
+
+            yield return null;
+        }
+
+        isMoving = false;
+        transform.position = new Vector2(targetX, transform.position.y);
+
+        yield return new WaitForSeconds(.1f);
+
+        elevatorScript.StartElevatorCoroutine(); // Elevator Coroutine 
+        isMoving = false;
+        rb.linearVelocityX = 0;
+        horizontal = 0;
+    }
+
+    // -- Move to Elevator shenanigans (End)---------//
     public void DisablePlayerMovement()
     {
         movementDisabled = true;
@@ -67,6 +180,54 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        // For animations
+        // Moving
+        if (isMoving == true)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+        // Magnet form
+        if (formTransform.CurrentForm == FormTransform.formState.neutral)
+        {
+            animator.SetBool("isNeutral", true);
+            animator.SetBool("isRed", false);
+            animator.SetBool("isBlue", false);
+        }
+        else if (formTransform.CurrentForm == FormTransform.formState.red)
+        {
+            animator.SetBool("isNeutral", false);
+            animator.SetBool("isRed", true);
+            animator.SetBool("isBlue", false);
+        }
+        else if (formTransform.CurrentForm == FormTransform.formState.blue)
+        {
+            animator.SetBool("isNeutral", false);
+            animator.SetBool("isRed", false);
+            animator.SetBool("isBlue", true);
+        }
+        //Jumping
+        if (IsGrounded() == true)
+        {
+            animator.SetBool("isGrounded", true);
+        }
+        else
+        {
+            animator.SetBool("isGrounded", false);
+        }
+        if (isFalling == true)
+        {
+            animator.SetBool("isFalling", true);
+        }
+        else
+        {
+            animator.SetBool("isFalling", false);
+        }
+        //--------------------
         if (!movementDisabled)
         {
             float targetHorizontalVelocity = horizontal * speed;
@@ -74,38 +235,55 @@ public class PlayerMovement : MonoBehaviour
             isMoving = horizontal != 0 && Mathf.Abs(rb.linearVelocity.x) > 0.01f;
 
             if (!isFacingRight && horizontal > 0f)
-            {
                 Flip();
-            }
             else if (isFacingRight && horizontal < 0f)
-            {
                 Flip();
-            }
 
-            isFalling = !IsGrounded() && rb.linearVelocity.y < -0.1f;
+            bool grounded = IsGrounded();
+            if (grounded)
+                lastTimeGrounded = Time.time;
+
+            isFalling = !grounded && rb.linearVelocity.y < -0.1f;
         }
         else
         {
             rb.linearVelocity = Vector2.zero;
-            isMoving = false;
             isFalling = false;
         }
+
+        if (isInGiantMagnet)
+        {
+            if (rb.linearVelocityY < 2.7f)
+            {
+                rb.linearVelocityY += Time.deltaTime * pullPower;
+            }
+            else
+            {
+                rb.linearVelocityY = 2.7f;
+            }
+        }
+
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!movementDisabled)
+        if (!movementDisabled && context.performed)
         {
-            if (context.performed && IsGrounded())
+            bool canCoyoteJump = Time.time - lastTimeGrounded <= coyoteTime;
+            if (IsGrounded() || canCoyoteJump)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
             }
         }
     }
+
     private bool IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(GroundCheck.position, Vector2.down, 0.3f, GroundLayer);
-        return hit.collider != null;
+        Vector2 center = GroundCheck.position;
+        RaycastHit2D leftRay = Physics2D.Raycast(center - raycastOffset, Vector2.down, 0.3f, GroundLayer);
+        RaycastHit2D rightRay = Physics2D.Raycast(center + raycastOffset, Vector2.down, 0.3f, GroundLayer);
+
+        return leftRay.collider != null || rightRay.collider != null;
     }
 
     private void Flip()
@@ -144,6 +322,18 @@ public class PlayerMovement : MonoBehaviour
             yoffsetZoneScript = other.GetComponent<YoffsetZoneScript>();
             Yoffset = yoffsetZoneScript.getOffsetVal();
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
+        {
+            if (formTransform.CurrentForm == FormTransform.formState.red)
+            {
+                isInGiantMagnet = true;
+            }
+            else if (formTransform.CurrentForm == FormTransform.formState.blue)
+            {
+                isGettingCrushed = true;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -152,6 +342,11 @@ public class PlayerMovement : MonoBehaviour
         {
             yoffsetZoneScript = null;
             Yoffset = 0;
+        }
+        if (other.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
+        {
+            isInGiantMagnet = false;
+            isGettingCrushed = false;
         }
     }
 
@@ -217,7 +412,18 @@ public class PlayerMovement : MonoBehaviour
         if (GroundCheck != null)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(GroundCheck.position, GroundCheck.position + Vector3.down * 0.3f);
+            Vector3 leftOrigin = GroundCheck.position - new Vector3(0.4f, 0f, 0f);
+            Vector3 rightOrigin = GroundCheck.position + new Vector3(0.4f, 0f, 0f);
+            Gizmos.DrawLine(leftOrigin, leftOrigin + Vector3.down * 0.3f);
+            Gizmos.DrawLine(rightOrigin, rightOrigin + Vector3.down * 0.3f);
+        }
+    }
+    private void Update()
+    {
+        // For crouch
+        if (crouchAction.WasPerformedThisFrame())
+        {
+            GoThroughBluePlatform();
         }
     }
 }

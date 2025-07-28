@@ -3,12 +3,16 @@ using UnityEngine;
 public class CrusherZone : MonoBehaviour
 {
     private HydraulicPressGameObject crusher;
+    [SerializeField] private GameObject Player;
     [SerializeField] private PlayerDeath deathScript;
-    private PlayerMovement PlayerScript;
+    [SerializeField] private PlayerMovement PlayerScript;
 
     private void Start()
     {
         crusher = GetComponentInParent<HydraulicPressGameObject>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        deathScript = Player.GetComponent<PlayerDeath>();
+        PlayerScript = Player.GetComponent<PlayerMovement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,7 +21,6 @@ public class CrusherZone : MonoBehaviour
         {
             deathScript.PlayerDead("Crush");
             //crusher.KillPlayer(collision.gameObject);
-            PlayerScript = collision.gameObject.GetComponent<PlayerMovement>();
             PlayerScript.DisablePlayerMovement();
         }
     }

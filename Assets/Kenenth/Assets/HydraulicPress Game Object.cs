@@ -12,7 +12,7 @@ public class HydraulicPressGameObject : MonoBehaviour
     
 
     private Vector2 startPos;
-    private bool isPressing = false;
+    [SerializeField] private bool isPressing = false;
     private bool isReturning = false;
     //public ParticleSystem CrusherParticle;
     public float waitForBeforeStarting;
@@ -39,7 +39,7 @@ public class HydraulicPressGameObject : MonoBehaviour
 
         if(isPressing)
         {
-            Debug.Log($"IsTouchingGround = {IsTouchingGround(out _)}");
+            //Debug.Log($"IsTouchingGround = {IsTouchingGround(out _)}");
             if (IsTouchingGround(out Vector2 hitPoint))
             {
                 rb2D.linearVelocity = Vector2.zero;

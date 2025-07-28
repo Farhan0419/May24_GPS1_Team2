@@ -1,118 +1,88 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class ElevatorScript : MonoBehaviour
 {
     [SerializeField] private string nextSceneName;
     private bool isUnlocked = false;
-    private bool playerInRange = false;
-    private bool doorClosed = false;
+    private bool playerIn = false;
+    private GameObject Player;
+    private PlayerMovement PlayerObject;
+    private float doorMoveSpeed = 0.3f;
+    private float elevatorMoveSpeed = 1.2f;
+    [SerializeField] private float LevelTransitionSpeed = 2f;
 
-    public Transform floor;
-    public Transform door;
-    public float LevelTransitionDelay = 6f;
+    private GameObject Door1;
+    private GameObject Door2;
+    private GameObject Door3;
+    private GameObject Center;
+    private Vector2 CenterPos;
 
-    public float doorSpeed = 2f; // door closing speed
-    public float elevatorSpeed = 3f; // elevator going up speed
-    public float doorCloseDistance = 0.1f;
-    private Vector3 doorTargetPos;
-
-    private float timer1 = 0;
-    private bool timer1running = false;
-    public PlayerMovement PlayerObject;
-    private float timer2 = 0;
-    private bool timer2running = false;
+    private SpriteRenderer spriteRenderer;
+    public Sprite activated;
 
     private void Start()
     {
-        SpriteRenderer doorRenderer = door.GetComponent<SpriteRenderer>();
+        Door1 = transform.GetChild(0).gameObject;
+        Door2 = transform.GetChild(1).gameObject;
+        Door3 = transform.GetChild(2).gameObject;
+        Center = transform.GetChild(4).gameObject;
 
-        float doorHeight = doorRenderer.bounds.size.y;
-        float doorBottomOffset = doorHeight - doorHeight;
+        CenterPos = Center.transform.position;
 
-        doorTargetPos = new Vector3(door.position.x, floor.position.y + doorBottomOffset, door.position.z);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        Player = GameObject.FindGameObjectWithTag("Player");
+        PlayerObject = Player.GetComponent<PlayerMovement>();
+        UnlockDoor(); // TEMPORARY REMOVE SOON
     }
 
     public void UnlockDoor()
     {
         isUnlocked = true;
         Debug.Log("Redgie unlocked the Elevator");
+        spriteRenderer.sprite = activated;
     }
 
-    private void Timer1Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        timer1 = 0;
-        timer1running = true;
+        if (collision.CompareTag("Player"))
+        {
+            if (isUnlocked && !playerIn)
+            {
+                playerIn = true;
+                PlayerObject.MoveToElevator(CenterPos); 
+            }
+        }
     }
-    private void Timer1Stop()
+    public void StartElevatorCoroutine()
     {
-        timer1running = false;
-        PlayerObject.DisablePlayerMovement();
+        StartCoroutine(StartElevatorSequence());
     }
-    private void Timer2Start()
+    private IEnumerator StartElevatorSequence()
     {
-        timer2 = 0;
-        timer2running = true;
-    }
-    private void Timer2Stop()
-    {
-        timer2running = false;
+        Vector3 targetPos2 = new Vector3(0.131f, Door2.transform.localPosition.y, Door2.transform.localPosition.z);
+        Vector3 targetPos3 = new Vector3(-0.479f, Door3.transform.localPosition.y, Door3.transform.localPosition.z);
+
+        while (Vector3.Distance(Door2.transform.localPosition, targetPos2) > 0.001f || Vector3.Distance(Door3.transform.localPosition, targetPos3) > 0.001f)
+        {
+            Door2.transform.localPosition = Vector3.MoveTowards(Door2.transform.localPosition, targetPos2, doorMoveSpeed * Time.deltaTime);
+            Door3.transform.localPosition = Vector3.MoveTowards(Door3.transform.localPosition, targetPos3, doorMoveSpeed * 2 * Time.deltaTime);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        float elapsed = 0f;
+        while (elapsed < LevelTransitionSpeed)
+        {
+            transform.position += Vector3.up * elevatorMoveSpeed * Time.deltaTime;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
         SceneManager.LoadScene(nextSceneName);
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
-    }
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-        }
-    }
-
-    private void Update()
-    {
-        if (playerInRange && isUnlocked && !doorClosed)
-        {
-            door.position = Vector3.MoveTowards(door.position, doorTargetPos, doorSpeed * Time.deltaTime);
-            if (timer1 == 0)
-            {
-                Timer1Start();
-            }
-            if (timer2 == 0)
-            {
-                Timer2Start();
-            }
-            if (Vector3.Distance(door.position, doorTargetPos) < doorCloseDistance)
-            {
-                doorClosed = true;
-            }
-        }
-        if (doorClosed)
-        {
-            transform.position += Vector3.up * elevatorSpeed * Time.deltaTime;
-        }
-
-        if (timer1running)
-        {
-            timer1 += Time.deltaTime;
-            if (timer1 >= .12f)
-            {
-                Timer1Stop();
-            }
-        }
-        if (timer2running)
-        {
-            timer2 += Time.deltaTime;
-            if (timer2 >= LevelTransitionDelay)
-            {
-                Timer2Stop();
-            }
-        }
     }
 }

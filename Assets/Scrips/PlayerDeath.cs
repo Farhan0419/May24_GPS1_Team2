@@ -5,16 +5,19 @@ using System.Threading;
 
 public class PlayerDeath : MonoBehaviour
 {
-    public CanvasGroup DeathScreen;
+    //public CanvasGroup DeathScreen;
     private PlayerMovement MovementScript;
+    private Transform PlayerTransform;
     private string currentSceneName;
     private float timer = 0f;
     private bool GettingCrushedtimerOn = false;
+    private float crushScale = 1f;
 
     void Start()
     {
         MovementScript = gameObject.GetComponent<PlayerMovement>();
-        closeDeathScreen();
+        PlayerTransform = gameObject.GetComponent<Transform>();
+        //closeDeathScreen();
         currentSceneName = SceneManager.GetActiveScene().name;
         if (currentSceneName == null)
         {
@@ -24,13 +27,15 @@ public class PlayerDeath : MonoBehaviour
 
     public void PlayerDead(string causeOfDeath)
     {
-        openDeathScreen();
+        //openDeathScreen();
+        MovementScript.DisablePlayerMovement();
         if (causeOfDeath == "Laser")
         {
             Debug.Log("Player Died from laser");
         }
         else if (causeOfDeath == "Crush")
         {
+            PlayerTransform.localScale = new Vector2(PlayerTransform.localScale.x, 0.2f);
             Debug.Log("Player Died from being Crushed");
         }
         else if (causeOfDeath == "Pit")
@@ -44,29 +49,29 @@ public class PlayerDeath : MonoBehaviour
 
     }
 
-    private void openDeathScreen()
-    {
-        DeathScreen.alpha = 1;
-        DeathScreen.interactable = true;
-        DeathScreen.blocksRaycasts = true;
-    }
+    //private void openDeathScreen()
+    //{
+    //    DeathScreen.alpha = 1;
+    //    DeathScreen.interactable = true;
+    //    DeathScreen.blocksRaycasts = true;
+    //}
 
-    private void closeDeathScreen()
-    {
-        DeathScreen.alpha = 0;
-        DeathScreen.interactable = false;
-        DeathScreen.blocksRaycasts = false;
-    }
+    //private void closeDeathScreen()
+    //{
+    //    DeathScreen.alpha = 0;
+    //    DeathScreen.interactable = false;
+    //    DeathScreen.blocksRaycasts = false;
+    //}
 
     public void RestartLevel()
     {
-        closeDeathScreen();
+        //closeDeathScreen();
         SceneManager.LoadScene(currentSceneName);
     }
 
     public void QuitLevel()
     {
-        closeDeathScreen();
+        //closeDeathScreen();
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -96,6 +101,22 @@ public class PlayerDeath : MonoBehaviour
                 PlayerDead("GiantMagnet");
                 GettingCrushedtimerOn = false;
             }
+        }
+        if (MovementScript.getIsGettingCrushed())
+        {
+            timer += Time.deltaTime;
+            crushScale -= Time.deltaTime * 0.15f;
+            PlayerTransform.localScale = new Vector2(PlayerTransform.localScale.x, crushScale);
+            if (timer >= 2)
+            {
+                PlayerDead("Crush");
+            }
+        }
+        else
+        {
+            crushScale = 1;
+            timer = 0;
+            PlayerTransform.localScale = new Vector2(PlayerTransform.localScale.x, 1);
         }
     }
 }
