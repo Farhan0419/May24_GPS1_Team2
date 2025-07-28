@@ -12,6 +12,7 @@ public class Level1room1DialogueSystem : DialogueSystem
 
     // [Bug] invoke event when the type is Conversation ??????????????????
     // [Bug] change dialoge box design for conversation and remarks
+    // [Bug] red station that trigger dialogue 2 instead, if player interact with it
     //predictable dialogue -> consult with mr ken
 
     private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level 1, Room 1";
