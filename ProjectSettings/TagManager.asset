@@ -17,6 +17,7 @@ TagManager:
   - PressurePlate
   - DialogueCanvas
   - Elevator
+  - MagnetVFXPoint
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,6 @@ TagManager:
   - ObjectDetectee
   - YoffsetZone
   - GiantBlueMagnet
-  - 
   - 
   - 
   - 

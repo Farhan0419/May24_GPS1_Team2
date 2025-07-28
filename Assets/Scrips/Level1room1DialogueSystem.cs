@@ -11,6 +11,7 @@ public class Level1room1DialogueSystem : DialogueSystem
     // [Refactor] need to move some of these variables to DialogueSystem.cs in the future
 
     // [Bug] invoke event when the type is Conversation ??????????????????
+    // [Bug] change dialoge box design for conversation and remarks
     //predictable dialogue -> consult with mr ken
 
     private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level 1, Room 1";

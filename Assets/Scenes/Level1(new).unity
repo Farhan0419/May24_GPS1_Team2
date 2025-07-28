@@ -15204,6 +15204,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd39f86de6576f9489f7064f426be858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delayBetweenWords: 0.05
+  delayBetweenRemarks: 3
+  endScale: {x: 1.2, y: 1.2, z: 1.5}
+  dialoguePopDuration: 0.4
+  dialogueTypingSoundClip: {fileID: 0}
+  stopAudioSource: 1
+  frequencyValue: 1
+  minPitch: 0.5
+  maxPitch: 3
+  isDebug: 1
 --- !u!114 &1898305430 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6074960894216150439, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
@@ -16140,6 +16150,18 @@ PrefabInstance:
       propertyPath: cameraSystem
       value: 
       objectReference: {fileID: 519420033}
+    - target: {fileID: 7600017943949433921, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
+      propertyPath: m_Parameters.textureMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7600017943949433921, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 240e8cacc89b3854688ef0f956ec767e, type: 2}
+    - target: {fileID: 7600017943949433921, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
+      propertyPath: m_Parameters.textureScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8030128508220289870, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.845

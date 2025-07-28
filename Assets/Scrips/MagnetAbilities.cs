@@ -39,12 +39,13 @@ public class MagnetAbilities : MonoBehaviour
 
     private float directionTowardsPlayer = 0;
 
-
     private int detectionObjects;
 
     private GameObject currentIndicator;
 
     private bool isTooCloseToMagneticObject;
+
+    private MagnetVFX magnetVFX;
 
     [SerializeField] private float dotProductThreshold = 0.9f;
 
@@ -93,11 +94,11 @@ public class MagnetAbilities : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player");
         playerObjectDetector = GameObject.FindWithTag("ObjectDetector");
-        playerRB = player.GetComponent<Rigidbody2D>();
-        playerMovement = player.GetComponent<PlayerMovement>();
-        formTransform = player.GetComponent<FormTransform>();
+        playerRB = GetComponent<Rigidbody2D>();
+        playerMovement = GetComponent<PlayerMovement>();
+        formTransform = GetComponent<FormTransform>();
+        magnetVFX = GetComponent<MagnetVFX>();
 
         magneticObjects = LayerMask.GetMask("MagneticObjects");
         detectionObjects = LayerMask.GetMask("ObjectDetectee", "Platform");
@@ -209,6 +210,8 @@ public class MagnetAbilities : MonoBehaviour
             closestMagneticObjectPosition = closestMagneticObject.transform.position;
             closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
             isTooCloseToMagneticObject = hit.gameObject.GetComponentInChildren<MagneticObjectTooClose>().IsTooClose;
+
+            magnetVFX.Draw2DRay(transform.position, closestMagneticObject.transform.position, playerDirection, formTransform.CurrentForm, closestMagneticObject.transform.parent.tag);
         }
     }
 
@@ -289,7 +292,7 @@ public class MagnetAbilities : MonoBehaviour
 
                 if (objectHit.collider != null)
                 {
-                    if (debugMode) Debug.DrawRay(playerPosition, targetDirection * detectDistance, Color.cyan); 
+                    if (debugMode) Debug.DrawRay(playerPosition, targetDirection * detectDistance, Color.cyan);
 
                     if (objectHit.collider.tag == "ObjectDetectee")
                     {
@@ -304,7 +307,11 @@ public class MagnetAbilities : MonoBehaviour
                     {
                         if (debugMode) Debug.Log(objectHit.collider.tag);
                     }
-                }
+                }  
+            }
+            else
+            {
+                magnetVFX.Hide2DRay();
             }
         }
 
