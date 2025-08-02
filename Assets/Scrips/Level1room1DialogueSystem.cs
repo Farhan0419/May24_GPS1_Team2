@@ -8,12 +8,8 @@ using Unity.VisualScripting;
 
 public class Level1room1DialogueSystem : DialogueSystem
 {
-    // [Refactor] need to move some of these variables to DialogueSystem.cs in the future
-
-    // [Bug] invoke event when the type is Conversation ??????????????????
-    // [Bug] change dialoge box design for conversation and remarks
-    // [Bug] red station that trigger dialogue 2 instead, if player interact with it
-    //predictable dialogue -> consult with mr ken
+    // [Bug] render before displaying due to rich text
+    // [Feature] mr ken say can implement predictable dialogue
 
     private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level 1, Room 1";
 
@@ -56,6 +52,7 @@ public class Level1room1DialogueSystem : DialogueSystem
     {
         if (isDialogueBoxScalingTrigger)
         {
+            changeDialogueBoxes();
             ToScaleDialogueBox(startScale, endScale, "popin");
         }
 

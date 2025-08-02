@@ -128,6 +128,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5158254668639141666, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: m_Name
+      value: ConvoSpeechBubble
+      objectReference: {fileID: 0}
     - target: {fileID: 5518620210848205888, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Size.y
       value: 1.8
@@ -136,6 +140,14 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 5905942282246432011}
+    - target: {fileID: 8235860130957862953, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: m_Name
+      value: RemarkSpeechBubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758913946710598615, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: ebf4a071ee1110549aab3f2bfe556ed1, type: 3}
     - target: {fileID: 9171404854493019294, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Name
       value: ObjectDetectee

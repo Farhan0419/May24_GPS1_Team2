@@ -18,7 +18,10 @@ public class DialogueSystem : MonoBehaviour
     protected InputAction nextConversation;
 
     protected GameObject dialogueCanvas;
+    protected Canvas dialogueCanvasComponent;
     protected RectTransform dialogueCanvasRT;
+    protected GameObject conversationDialogueBox;
+    protected GameObject remarkDialogueBox;
     protected TextMeshProUGUI dialogueText;
     protected PlayerMovement playerMovement;
 
@@ -82,8 +85,12 @@ public class DialogueSystem : MonoBehaviour
 
         if(dialogueCanvas != null)
         {
-            dialogueCanvasRT = dialogueCanvas.GetComponentInChildren<Canvas>().GetComponent<RectTransform>(); ;
+            dialogueCanvasComponent = dialogueCanvas.GetComponentInChildren<Canvas>();
+            dialogueCanvasRT = dialogueCanvasComponent.GetComponent<RectTransform>(); ;
             dialogueText = GameObject.FindWithTag("DialogueCanvas").GetComponentInChildren<TextMeshProUGUI>();
+            conversationDialogueBox = GameObject.FindWithTag("ConvoSpeechBubble");
+            remarkDialogueBox = GameObject.FindWithTag("RemarkSpeechBubble");
+
             dialogueCanvas.SetActive(false);
         }
 
@@ -188,6 +195,33 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
+    protected void changeDialogueBoxes()
+    {
+        if (dialogueType[dialogueState] == "Conversation")
+        {
+            conversationDialogueBox.SetActive(true);
+            remarkDialogueBox.SetActive(false);
+        }
+        else if (dialogueType[dialogueState] == "Remark")
+        {
+            conversationDialogueBox.SetActive(false);
+            remarkDialogueBox.SetActive(true);
+        }
+    }
+
+    protected void setValuesBasedOnDialogueType()
+    {
+        if (dialogueType[dialogueState] == "Conversation")
+        {
+            dialogueCanvasComponent.sortingOrder = 1;
+            playerMovement.DisablePlayerMovement();
+        }
+        else if (dialogueType[dialogueState] == "Remark")
+        {
+            dialogueCanvasComponent.sortingOrder = 0;
+        }
+    }
+
     protected void PlayDialogueSound(int currentDisplayedCharacterCount, int frequencyValue)
     {
         if (currentDisplayedCharacterCount % frequencyValue == 0)
@@ -212,12 +246,8 @@ public class DialogueSystem : MonoBehaviour
         dialogueCounter = 0;
         dialogueCanvas.SetActive(true);
         isDialogueBoxScalingTrigger = true;
+        setValuesBasedOnDialogueType();
         ToTypeLetters(usableDialogue[dialogueState][dialogueCounter]);
-
-        if (dialogueType[dialogueState] == "Conversation")
-        {
-            playerMovement.DisablePlayerMovement();
-        }
     }
 
     protected void ToTypeLetters(string msg)
