@@ -21,6 +21,7 @@ public class PressurePlateScript : MonoBehaviour
         if (other.CompareTag("Redgie") && !isPressed)
         {
             connectedElevator.UnlockDoor();
+            isPressed = true;
         }
     }
 }

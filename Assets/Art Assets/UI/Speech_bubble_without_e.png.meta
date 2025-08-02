@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9ba8d7d6b1d77f448bb0567e94d19007
+guid: bc5e0647b4cb9ca4f885e74ce7078fcc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7125656686911360804
-    second: UI_middle_0
+      213: -2813156983144764835
+    second: Speech_bubble_without_e_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_middle_0
+      name: Speech_bubble_without_e_0
       rect:
         serializedVersion: 2
         x: 10
-        y: 0
-        width: 986
-        height: 500
+        y: 1
+        width: 987
+        height: 498
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 42f0dbed00b63e260800000000000000
-      internalID: 7125656686911360804
+      spriteID: d5a2f3ae0a8a5f8d0800000000000000
+      internalID: -2813156983144764835
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      UI_middle_0: 7125656686911360804
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
