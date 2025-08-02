@@ -47,6 +47,10 @@ public class MagnetAbilities : MonoBehaviour
 
     private MagnetVFX magnetVFX;
 
+    private string closestObjectType;
+
+    private string[] objectType = { "red", "blue" };
+
     [SerializeField] private float dotProductThreshold = 0.9f;
 
     [SerializeField] private float detectDistance = 7f;
@@ -84,6 +88,11 @@ public class MagnetAbilities : MonoBehaviour
     public Vector2 ClosestMagneticObjectPosition
     {
         get => closestMagneticObjectPosition;
+    }
+
+    public string ClosestObjectType
+    {
+        get => closestObjectType;
     }
 
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -211,6 +220,15 @@ public class MagnetAbilities : MonoBehaviour
             closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
             isTooCloseToMagneticObject = hit.gameObject.GetComponentInChildren<MagneticObjectTooClose>().IsTooClose;
 
+            if (closestMagneticObject.transform.parent.tag.ToLower().Contains(objectType[0]))
+            {
+                closestObjectType = objectType[0];
+            }
+            else if(closestMagneticObject.transform.parent.tag.ToLower().Contains(objectType[1]))
+            {
+                closestObjectType = objectType[1];
+            }
+
             magnetVFX.Draw2DRay(transform.position, closestMagneticObject.transform.position, playerDirection, formTransform.CurrentForm, closestMagneticObject.transform.parent.tag);
         }
     }
@@ -221,6 +239,7 @@ public class MagnetAbilities : MonoBehaviour
         closestMagneticObject = null;
         closestMagneticObjectRb = null;
         closestMagneticObjectPosition = Vector2.zero;
+        closestObjectType = null;
     }
 
     GameObject FindChildWithTag(GameObject parent, string tag)
@@ -342,11 +361,11 @@ public class MagnetAbilities : MonoBehaviour
     {
         if (closestMagneticObject == null) return;
 
-        if (closestMagneticObject.transform.parent.tag.ToLower().Contains("red") && formTransform.CurrentForm == FormTransform.formState.blue)
+        if (closestObjectType == objectType[0] && formTransform.CurrentForm == FormTransform.formState.blue)
         {
             changeDirectionMagneticObject("pull");
         }
-        else if (closestMagneticObject.transform.parent.tag.ToLower().Contains("blue") && formTransform.CurrentForm == FormTransform.formState.red)
+        else if (closestObjectType == objectType[1] && formTransform.CurrentForm == FormTransform.formState.red)
         {
             changeDirectionMagneticObject("pull");
         }
