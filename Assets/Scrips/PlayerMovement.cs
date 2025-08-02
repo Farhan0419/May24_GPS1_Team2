@@ -168,9 +168,11 @@ public class PlayerMovement : MonoBehaviour
     public void DisablePlayerMovement()
     {
         movementDisabled = true;
-        rb.linearVelocity = Vector2.zero;
+        rb.linearVelocityX = 0;
+        //rb.linearVelocity = Vector2.zero;
         isMoving = false;
-        isFalling = false;
+        //isFalling = false;
+        horizontal = 0;
     }
 
     public void EnablePlayerMovement()
@@ -247,8 +249,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;
-            isFalling = false;
+            rb.linearVelocityX = 0f;
+            //rb.linearVelocity = Vector2.zero;
+            //isFalling = false;
         }
 
         if (isInGiantMagnet)
