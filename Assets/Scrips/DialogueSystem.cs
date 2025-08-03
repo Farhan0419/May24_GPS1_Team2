@@ -53,6 +53,7 @@ public class DialogueSystem : MonoBehaviour
     protected bool isDialogueBoxScalingTrigger = false;
 
     protected bool isLineFullyShown = false;
+    protected int actualLineLength = 0;
 
     [Header("Audio")]
     [SerializeField] protected AudioClip dialogueTypingSoundClip;
@@ -135,7 +136,8 @@ public class DialogueSystem : MonoBehaviour
             {
                 if(!isLineFullyShown)
                 {
-                    dialogueText.text = currentLine;
+                    dialogueText.maxVisibleCharacters = currentLine.Length;
+                    //dialogueText.text = currentLine;
                     isLineFullyShown = true;
                     dialogueCounter++;
                 }
@@ -255,14 +257,36 @@ public class DialogueSystem : MonoBehaviour
         typingCoroutine = StartCoroutine(TypeLetters(msg, dialogueText, delayBetweenWords));
     }
 
+    //[Bug] showing first line twice, need to fix it
     private IEnumerator TypeLetters(string sentence, TextMeshProUGUI dialogueText, float delayBetweenWords)
     {
-        dialogueText.text = "";
+        dialogueText.maxVisibleCharacters = 0;
+        dialogueText.text = sentence;
+        dialogueText.ForceMeshUpdate();
+
+        bool isRichTextTag = false;
+        actualLineLength = 0;
 
         for (int i = 0; i < sentence.Length; i++)
         {
-            PlayDialogueSound(dialogueText.text.Length, frequencyValue);
-            dialogueText.text += sentence[i];
+            if (sentence[i] == '<' || isRichTextTag)
+            {
+                isRichTextTag = true;
+                if (sentence[i] == '>')
+                {
+                    isRichTextTag = false;
+                }
+                continue;
+            }
+
+            actualLineLength++;
+        }
+
+        for (int i = 0; i < actualLineLength; i++)
+        {
+            PlayDialogueSound(i, frequencyValue);
+            dialogueText.maxVisibleCharacters = i+1;
+
             yield return new WaitForSeconds(delayBetweenWords);
         }
 

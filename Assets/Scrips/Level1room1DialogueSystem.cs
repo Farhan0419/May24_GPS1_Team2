@@ -8,7 +8,6 @@ using Unity.VisualScripting;
 
 public class Level1room1DialogueSystem : DialogueSystem
 {
-    // [Bug] render before displaying due to rich text
     // [Feature] mr ken say can implement predictable dialogue
 
     private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level 1, Room 1";
