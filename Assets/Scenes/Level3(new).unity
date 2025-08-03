@@ -37645,14 +37645,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5668933772840930206, guid: eaf3c626662b1044fb35f089ca167ab4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 22.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 6118505530651834861, guid: eaf3c626662b1044fb35f089ca167ab4, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 22.78
-      objectReference: {fileID: 0}
     - target: {fileID: 7258378248085159482, guid: eaf3c626662b1044fb35f089ca167ab4, type: 3}
       propertyPath: m_Name
       value: Redgie
