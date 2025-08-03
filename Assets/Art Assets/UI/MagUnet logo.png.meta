@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MagUnet logo_0: -2956248401075746341
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
