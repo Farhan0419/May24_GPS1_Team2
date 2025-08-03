@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
+using System.Collections;
 using System.Linq;
 public class Level1Script : MonoBehaviour
 {
@@ -8,6 +10,23 @@ public class Level1Script : MonoBehaviour
     public GameObject MoveInsCon;
     public GameObject JumpInsKey;
     public GameObject JumpInsCon;
+    [SerializeField] GameObject invisiblePlatform;
+
+    private void Start()
+    {
+        DoAfterSeconds(1f, () => Destroy(invisiblePlatform));
+    }
+
+    public void DoAfterSeconds(float delay, Action callback)
+    {
+        StartCoroutine(DoAfterSecondsRoutine(delay, callback));
+    }
+
+    private IEnumerator DoAfterSecondsRoutine(float delay, Action callback)
+    {
+        yield return new WaitForSeconds(delay);
+        callback?.Invoke();
+    }
 
     void Update()
     {
