@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 1989905575637046773}
   - component: {fileID: 4166238658015679069}
   - component: {fileID: 5833315835531648799}
+  - component: {fileID: 7687932330856728318}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -504,6 +505,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c7be016c-0690-48bd-8311-00afd930d4ae
     m_ActionName: 'Player/NextConversation[/Keyboard/c]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7b7803e8-e5d5-4ad7-982a-49bfdd48eb33
+    m_ActionName: 'Player/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -527,11 +532,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   speed: 6.5
-  jumpPower: 16.7
+  jumpPower: 19
   LaunchPower: 27
   pullPower: 55
   PlayerCollider: {fileID: 1852144890480461987}
-  coyoteTime: 0.1
+  coyoteTime: 0.05
+  step1: {fileID: 8300000, guid: 77843497fad7dab4091a311767cd1fe0, type: 3}
+  step2: {fileID: 8300000, guid: c1e2c3cb678fab042a038f2432f036b1, type: 3}
+  step3: {fileID: 8300000, guid: 44a848bd62a273b43b438821a27401f3, type: 3}
+  jump: {fileID: 8300000, guid: 078a8759935a12042a025e29461c281e, type: 3}
+  land: {fileID: 8300000, guid: 7799471f9128aa9469f3ba022a204269, type: 3}
+  jumpPad: {fileID: 8300000, guid: 9e99cf4e0f2543b47b7b214c708ac96d, type: 3}
+  stepSpace: 0.3
 --- !u!114 &3021878682728651252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e8e57e65034904cb96c24921fde319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transition: {fileID: 11400000, guid: 057babd6f13132c449650d99e3c4e99c, type: 2}
 --- !u!95 &5833315835531648799
 Animator:
   serializedVersion: 7
@@ -611,7 +624,7 @@ Animator:
   m_GameObject: {fileID: 3265281061622752319}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 493519a1c850d694a89f979cbbb6f626, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -623,6 +636,103 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &7687932330856728318
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265281061622752319}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5670033753015585294
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using System.Collections;
+using EasyTransition;
 
 public class ElevatorScript : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class ElevatorScript : MonoBehaviour
     private bool playerIn = false;
     private GameObject Player;
     private PlayerMovement PlayerObject;
-    private float doorMoveSpeed = 0.3f;
+    [SerializeField] private float doorMoveSpeed = 0.3f;
     private float elevatorMoveSpeed = 1.2f;
     [SerializeField] private float LevelTransitionSpeed = 2f;
 
@@ -23,6 +23,13 @@ public class ElevatorScript : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public Sprite activated;
 
+    [SerializeField] private TransitionSettings transition;
+
+    private AudioSource audioSource;
+    [SerializeField] AudioClip doorClosing;
+    [SerializeField] AudioClip doorClosed;
+    [SerializeField] AudioClip goingUp;
+
     private void Start()
     {
         Door1 = transform.GetChild(0).gameObject;
@@ -33,7 +40,7 @@ public class ElevatorScript : MonoBehaviour
         CenterPos = Center.transform.position;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-
+        audioSource = GetComponent<AudioSource>();
         Player = GameObject.FindGameObjectWithTag("Player");
         PlayerObject = Player.GetComponent<PlayerMovement>();
         UnlockDoor(); // TEMPORARY REMOVE SOON
@@ -53,7 +60,7 @@ public class ElevatorScript : MonoBehaviour
             if (isUnlocked && !playerIn)
             {
                 playerIn = true;
-                PlayerObject.MoveToElevator(CenterPos); 
+                PlayerObject.MoveToElevator(CenterPos);
             }
         }
     }
@@ -66,6 +73,9 @@ public class ElevatorScript : MonoBehaviour
         Vector3 targetPos2 = new Vector3(0.131f, Door2.transform.localPosition.y, Door2.transform.localPosition.z);
         Vector3 targetPos3 = new Vector3(-0.479f, Door3.transform.localPosition.y, Door3.transform.localPosition.z);
 
+        audioSource.clip = doorClosing;
+        audioSource.Play();
+
         while (Vector3.Distance(Door2.transform.localPosition, targetPos2) > 0.001f || Vector3.Distance(Door3.transform.localPosition, targetPos3) > 0.001f)
         {
             Door2.transform.localPosition = Vector3.MoveTowards(Door2.transform.localPosition, targetPos2, doorMoveSpeed * Time.deltaTime);
@@ -73,16 +83,30 @@ public class ElevatorScript : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.2f);
+        audioSource.Stop();
+        audioSource.clip = doorClosed;
+        audioSource.Play();
+
+        yield return new WaitForSeconds(0.515f);
 
         float elapsed = 0f;
+        audioSource.clip = goingUp;
+        audioSource.Play();
+        
         while (elapsed < LevelTransitionSpeed)
         {
             transform.position += Vector3.up * elevatorMoveSpeed * Time.deltaTime;
             elapsed += Time.deltaTime;
             yield return null;
+            if (elapsed >= LevelTransitionSpeed - 1f)
+            {
+                LoadNextScene(nextSceneName);
+            }
         }
+    }
 
-        SceneManager.LoadScene(nextSceneName);
+    public void LoadNextScene(string sceneName)
+    {
+        TransitionManager.Instance().Transition(sceneName, transition, 0f);
     }
 }

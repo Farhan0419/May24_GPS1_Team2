@@ -5,11 +5,18 @@ public class PressurePlateScript : MonoBehaviour
     private ElevatorScript connectedElevator;
     private GameObject ELevator;
     private bool isPressed = false;
+    private SpriteRenderer spriteRenderer;
+    public Sprite activated;
+    private AudioSource audioSource;
+    [SerializeField] AudioClip activatedAud;
 
     private void Start()
     {
         ELevator = GameObject.FindGameObjectWithTag("Elevator");
         connectedElevator = ELevator.GetComponent<ElevatorScript>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = activatedAud;
     }
     public bool IsPressed
     {
@@ -20,7 +27,10 @@ public class PressurePlateScript : MonoBehaviour
     {
         if (other.CompareTag("Redgie") && !isPressed)
         {
+            isPressed = true;
             connectedElevator.UnlockDoor();
+            spriteRenderer.sprite = activated;
+            audioSource.Play();
         }
     }
 }

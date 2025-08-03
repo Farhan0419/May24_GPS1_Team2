@@ -1,33 +1,37 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Threading;
+using EasyTransition;
 
 public class PlayerDeath : MonoBehaviour
 {
-    //public CanvasGroup DeathScreen;
     private PlayerMovement MovementScript;
     private Transform PlayerTransform;
     private string currentSceneName;
     private float timer = 0f;
     private bool GettingCrushedtimerOn = false;
     private float crushScale = 1f;
+    private Animator animator;
+    [SerializeField] private TransitionSettings transition;
 
     void Start()
     {
         MovementScript = gameObject.GetComponent<PlayerMovement>();
         PlayerTransform = gameObject.GetComponent<Transform>();
-        //closeDeathScreen();
         currentSceneName = SceneManager.GetActiveScene().name;
-        if (currentSceneName == null)
-        {
-            Debug.LogWarning("Scene name not gathered");
-        }
+        animator = gameObject.GetComponent<Animator>();
+    }
+
+    public void Restart(string sceneName)
+    {
+        TransitionManager.Instance().Transition(sceneName, transition, 0f);
     }
 
     public void PlayerDead(string causeOfDeath)
     {
-        //openDeathScreen();
         MovementScript.DisablePlayerMovement();
         if (causeOfDeath == "Laser")
         {
@@ -35,7 +39,8 @@ public class PlayerDeath : MonoBehaviour
         }
         else if (causeOfDeath == "Crush")
         {
-            PlayerTransform.localScale = new Vector2(PlayerTransform.localScale.x, 0.2f);
+            PlayerTransform.localScale = new Vector2(2, 0.2f);
+            animator.speed = 0;
             Debug.Log("Player Died from being Crushed");
         }
         else if (causeOfDeath == "Pit")
@@ -46,38 +51,11 @@ public class PlayerDeath : MonoBehaviour
         {
             Debug.Log("Player got stuck in the Giant Blue magnet forever");
         }
-
-    }
-
-    //private void openDeathScreen()
-    //{
-    //    DeathScreen.alpha = 1;
-    //    DeathScreen.interactable = true;
-    //    DeathScreen.blocksRaycasts = true;
-    //}
-
-    //private void closeDeathScreen()
-    //{
-    //    DeathScreen.alpha = 0;
-    //    DeathScreen.interactable = false;
-    //    DeathScreen.blocksRaycasts = false;
-    //}
-
-    public void RestartLevel()
-    {
-        //closeDeathScreen();
-        SceneManager.LoadScene(currentSceneName);
-    }
-
-    public void QuitLevel()
-    {
-        //closeDeathScreen();
-        SceneManager.LoadScene("MainMenu");
+        DoAfterSeconds(2f, ()=> Restart(currentSceneName));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Pit death
         if (other.gameObject.layer == LayerMask.NameToLayer("Pit"))
         {
             PlayerDead("Pit");
@@ -118,5 +96,16 @@ public class PlayerDeath : MonoBehaviour
             timer = 0;
             PlayerTransform.localScale = new Vector2(PlayerTransform.localScale.x, 1);
         }
+    }
+
+    public void DoAfterSeconds(float delay, Action callback)
+    {
+        StartCoroutine(DoAfterSecondsRoutine(delay, callback));
+    }
+
+    private IEnumerator DoAfterSecondsRoutine(float delay, Action callback)
+    {
+        yield return new WaitForSeconds(delay);
+        callback?.Invoke();
     }
 }
