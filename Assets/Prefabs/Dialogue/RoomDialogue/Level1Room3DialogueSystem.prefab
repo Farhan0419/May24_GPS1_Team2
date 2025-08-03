@@ -48,9 +48,9 @@ MonoBehaviour:
   delayBetweenRemarks: 3
   endScale: {x: 1.2, y: 1.2, z: 1.5}
   dialoguePopDuration: 0.4
-  dialogueTypingSoundClip: {fileID: 8300000, guid: a175ce71103a75344b3be471942c208a, type: 3}
+  dialogueTypingSoundClip: {fileID: 8300000, guid: 38574aac79de6384689aa49ca6471156, type: 3}
   stopAudioSource: 1
   frequencyValue: 2
-  minPitch: 0.5
-  maxPitch: 3
+  minPitch: 0.73
+  maxPitch: 0.82
   isDebug: 1
