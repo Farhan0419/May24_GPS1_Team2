@@ -18,6 +18,21 @@ public class RedgieScript : MonoBehaviour
     private MagnetAbilities magnetAbilities;
     private MagneticObjectTooClose motc;
 
+    private Vector2 currentPosition;
+    private Vector2 lastPosition;
+    private Vector2 direction;
+
+    public bool IsJumping
+    {
+        get => isJumping;
+        set => isJumping = value;
+    }
+
+    public Vector2 Direction
+    {
+        get => direction;
+    }
+
     private void Start()
     {
         OriginalPos = transform.position;
@@ -66,13 +81,27 @@ public class RedgieScript : MonoBehaviour
 
         if (curGravScale == 0) curGravScale = redgieGravityScale;
         rb.gravityScale = curGravScale;
-        isJumping = false;
 
         if (DebugMode) Debug.Log("jumped");
     }
 
     private void FixedUpdate()
     {
+        currentPosition = transform.position;
+        if (currentPosition != lastPosition)
+        {
+            Vector2 currentDirection = currentPosition - lastPosition;
+
+            if(currentDirection.y != 0)
+            {
+                direction = currentDirection;
+                Debug.Log(direction.y);
+            }
+
+            lastPosition = currentPosition;
+        }
+
+
         checkIsXMovementFreeze();
         checkIsYMovementFreeze();
     }

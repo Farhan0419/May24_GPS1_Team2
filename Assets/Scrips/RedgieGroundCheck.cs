@@ -9,10 +9,15 @@ public class RedgieGroundCheck : MonoBehaviour
 
     private bool onBlueMagneticPlatform = false;
 
+    private bool onJumpPad = false;
+    private bool onLandFromJumpPad = false;
+
     private GameObject blueMagneticPlatform;
 
+    private RedgieScript redgieScript;
+
     private string[] groundTags = { "platform", "OneWayPlatform", "Player", "PressurePlate", "Elevator", "BlueMagneticPlatform", 
-        "ShowerStation", "RedPaintStation", "BluePaintStation"};
+        "ShowerStation", "RedPaintStation", "BluePaintStation", "RedJumpPad"};
 
     [SerializeField] private bool debugMode = true;
 
@@ -39,6 +44,11 @@ public class RedgieGroundCheck : MonoBehaviour
     // Events & functions
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    private void Start()
+    {
+        redgieScript = GetComponentInParent<RedgieScript>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
@@ -49,6 +59,10 @@ public class RedgieGroundCheck : MonoBehaviour
             {
                 if(other.CompareTag(groundTags[i]))
                 {
+                    if (redgieScript.Direction.y < 0)
+                    {
+                        redgieScript.IsJumping = false;
+                    }
                     setGrounded(true);
                 }
             }
@@ -58,6 +72,10 @@ public class RedgieGroundCheck : MonoBehaviour
                 case "BlueMagneticPlatform":
                     onBlueMagneticPlatform = true;
                     blueMagneticPlatform = other;
+                    break;
+                case "RedJumpPad":
+                    onJumpPad = true;
+                    onLandFromJumpPad = false;
                     break;
                 default:
                     return;
@@ -82,22 +100,39 @@ public class RedgieGroundCheck : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
-
-        triggerCount--;
-
-        switch (other.tag)
+        Debug.Log("grounded: " + other.name);
+        if (other != null)
         {
-            case "BlueMagneticPlatform":
-                onBlueMagneticPlatform = false;
-                blueMagneticPlatform = null;
-                break;
+            for (int i = 0; i < groundTags.Length; i++)
+            {
+                if (other.CompareTag(groundTags[i]))
+                {
+                    triggerCount--;
+                }
+            }
+
+            switch (other.tag)
+            {
+                case "BlueMagneticPlatform":
+                    onBlueMagneticPlatform = false;
+                    blueMagneticPlatform = null;
+                    break;
+                case "RedJumpPad":
+                    onJumpPad = false;
+                    onLandFromJumpPad = true;
+                    break;
+                default:
+                    return;
+            }
+
+            if (triggerCount <= 0)
+            {
+                Debug.Log("none");
+                setGrounded(false);
+            }
+
+            if (debugMode) Debug.Log($"Ground check exited: {other.name}, isGrounded: {isGrounded}");
         }
 
-        if (triggerCount <= 0)
-        {
-            setGrounded(false);
-        }
-
-        if (debugMode) Debug.Log($"Ground check exited: {other.name}, isGrounded: {isGrounded}");
     }
 }
