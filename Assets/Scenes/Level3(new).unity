@@ -38013,6 +38013,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pause Screen 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6153669157968181737, guid: 0f877ca1d5ede5644bc7c2bb462b4d66, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
