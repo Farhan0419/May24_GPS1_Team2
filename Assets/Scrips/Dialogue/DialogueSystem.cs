@@ -25,6 +25,8 @@ public class DialogueSystem : MonoBehaviour
     protected TextMeshProUGUI dialogueText;
     protected PlayerMovement playerMovement;
 
+    protected private Vector2 redgiePosition;
+
     // this is unused, implement in the future
     //protected float widthDialogueBox;
     //protected float heightDialogueBox;
@@ -81,6 +83,7 @@ public class DialogueSystem : MonoBehaviour
     protected virtual void Start()
     {
         playerMovement = GameObject.FindWithTag("Player").GetComponentInChildren<PlayerMovement>();
+        redgiePosition = GameObject.FindWithTag("Redgie").transform.position;
 
         dialogueCanvas = GameObject.FindWithTag("DialogueCanvas");
 
@@ -361,5 +364,15 @@ public class DialogueSystem : MonoBehaviour
             dialogueCanvas.SetActive(false);
         }
 
+    }
+
+    protected void TrackAndAssignRedgiePosition()
+    {
+        Vector2 currentRedgiePosition = GameObject.FindWithTag("Redgie").transform.position;
+
+        if (currentRedgiePosition != redgiePosition)
+        {
+            redgiePosition = currentRedgiePosition;
+        }
     }
 }

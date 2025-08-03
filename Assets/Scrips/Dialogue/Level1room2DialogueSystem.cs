@@ -6,41 +6,37 @@ using UnityEngine.UI;
 using System.Collections;
 using Unity.VisualScripting;
 
-public class Level1room1DialogueSystem : DialogueSystem
+public class Level1room2DialogueSystem : DialogueSystem
 {
-    // [Feature] mr ken say can implement predictable dialogue
-
-    private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level 1, Room 1";
+    private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level 1, Room 2";
 
     private FormTransform formTransform;
     private PressurePlateScript pressurePlateScript;
+    private RedgieGroundCheck redgieGroundCheck;
 
     private int layerPlayer;
-    private Vector2 redgiePosition;
+
     [SerializeField] private float dialogueDetectionRadius = 5f;
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
-	{
+    {
         layerPlayer = LayerMask.GetMask("Player");
         formTransform = GameObject.FindWithTag("Player").GetComponentInChildren<FormTransform>();
 
         pressurePlateScript = GameObject.FindWithTag("PressurePlate").GetComponentInChildren<PressurePlateScript>();
 
-        redgiePosition = GameObject.FindWithTag("Redgie").transform.position;
+        redgieGroundCheck = GameObject.FindWithTag("Redgie").GetComponentInChildren<RedgieGroundCheck>();
 
         DialogueTools.LoadDialogueAsset(ref usableDialogue, ref dialogueType, scriptableObjectFile, isDebug);
 
         base.Start();
     }
 
+    // Update is called once per frame
     private void Update()
     {
-        Vector2 currentRedgiePosition = GameObject.FindWithTag("Redgie").transform.position;
-
-        if(currentRedgiePosition != redgiePosition)
-        {
-            redgiePosition = currentRedgiePosition;
-        }
+        TrackAndAssignRedgiePosition();
 
         DialogueTriggers();
 
@@ -58,6 +54,7 @@ public class Level1room1DialogueSystem : DialogueSystem
         FirstDialogue();
         SecondDialogue();
         ThirdDialogue();
+        FourthDialogue();
     }
 
     private void FirstDialogue()
@@ -86,12 +83,23 @@ public class Level1room1DialogueSystem : DialogueSystem
 
     private void ThirdDialogue()
     {
-
         if (executedStates.Contains(2)) return;
+
+        if (redgieGroundCheck.OnLandFromJumpPad)
+        {
+            dialogueState = 2;
+            initializeDialogueValues();
+        }
+    }
+
+    private void FourthDialogue()
+    {
+
+        if (executedStates.Contains(3)) return;
 
         if (pressurePlateScript.IsPressed)
         {
-            dialogueState = 2;
+            dialogueState = 3;
             initializeDialogueValues();
         }
     }

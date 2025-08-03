@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -40,6 +41,11 @@ public class RedgieGroundCheck : MonoBehaviour
         get => blueMagneticPlatform;
     }
 
+    public bool OnLandFromJumpPad
+    {
+        get => onLandFromJumpPad;
+    }
+
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // Events & functions
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -62,6 +68,13 @@ public class RedgieGroundCheck : MonoBehaviour
                     if (redgieScript.Direction.y < 0)
                     {
                         redgieScript.IsJumping = false;
+
+                        if (onJumpPad)
+                        {
+                            onJumpPad = false;
+                            onLandFromJumpPad = true;
+                            StartCoroutine(ResetOnLandFromJumpPad());
+                        }
                     }
                     setGrounded(true);
                 }
@@ -75,7 +88,6 @@ public class RedgieGroundCheck : MonoBehaviour
                     break;
                 case "RedJumpPad":
                     onJumpPad = true;
-                    onLandFromJumpPad = false;
                     break;
                 default:
                     return;
@@ -117,10 +129,6 @@ public class RedgieGroundCheck : MonoBehaviour
                     onBlueMagneticPlatform = false;
                     blueMagneticPlatform = null;
                     break;
-                case "RedJumpPad":
-                    onJumpPad = false;
-                    onLandFromJumpPad = true;
-                    break;
                 default:
                     return;
             }
@@ -134,5 +142,11 @@ public class RedgieGroundCheck : MonoBehaviour
             if (debugMode) Debug.Log($"Ground check exited: {other.name}, isGrounded: {isGrounded}");
         }
 
+    }
+
+    IEnumerator ResetOnLandFromJumpPad()
+    {
+        yield return new WaitForSeconds(0.1f);
+        onLandFromJumpPad = false;
     }
 }
