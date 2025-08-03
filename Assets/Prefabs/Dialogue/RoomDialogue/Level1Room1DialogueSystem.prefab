@@ -44,14 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a9440c0d0637942ba2752fe92087ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDebug: 1
-  dialogueText: {fileID: 0}
-  normalTextSize: 5.5
-  enlargeTextSize: 8
-  dialogueCanvas: {fileID: 0}
-  dialogueDetectionRadius: 5
-  widthDialogueBox: 0
-  heightDialogueBox: 0
-  xDialogueBoxOffset: 0
-  yDialogueBoxOffset: 0
   delayBetweenWords: 0.05
+  delayBetweenRemarks: 3
+  endScale: {x: 1.2, y: 1.2, z: 1.5}
+  dialoguePopDuration: 0.4
+  dialogueTypingSoundClip: {fileID: 8300000, guid: 38574aac79de6384689aa49ca6471156, type: 3}
+  stopAudioSource: 1
+  frequencyValue: 2
+  minPitch: 0.73
+  maxPitch: 0.82
+  isDebug: 1
+  dialogueDetectionRadius: 5

@@ -11,7 +11,7 @@ public class DialogueTools
 		return dialogues.Split(';');
 	}
 
-    public static void LoadDialogueAsset(ref Dictionary<int, string[]> usableDialogue, string scriptableObjectFile, bool isDebug)
+    public static void LoadDialogueAsset(ref Dictionary<int, string[]> usableDialogue, ref List<string> dialogueTypes, string scriptableObjectFile, bool isDebug)
     {
         Dialogue gameData = Resources.Load<Dialogue>(scriptableObjectFile);
 
@@ -25,23 +25,11 @@ public class DialogueTools
 
                 usableDialogue[i] = currentDialogue;
 
-                int linesInDialogue = currentDialogue.Length;
-
-                //indexKeywordsUsableDialogue[i] = DialogueTools.CheckForKeyWords(ref currentDialogue, sizeKeyword).ToArray();
+                dialogueTypes.Add(gameData.dialogueType[i]);
             }
 
             if (isDebug)
             {
-                //foreach (KeyValuePair<int, int[]> entry in indexKeywordsUsableDialogue)
-                //{
-                //    Debug.Log($"Key: {entry.Key}, Value: {entry.Value}");
-
-                //    foreach (int lineIndex in entry.Value)
-                //    {
-                //        Debug.Log(lineIndex);
-                //    }
-                //}
-
                 foreach (KeyValuePair<int, string[]> entry in usableDialogue)
                 {
                     Debug.Log($"Key: {entry.Key}, Value: {entry.Value}");

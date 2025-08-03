@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Misc")]
     public Rigidbody2D rb;
     public Transform GroundCheck;
     public LayerMask GroundLayer;
@@ -15,11 +16,16 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
     private bool movementDisabled = false;
     public float LaunchPower = 50f;
+    [SerializeField] private float pullPower = 20f;
 
-    public bool isMoving = false;
+    private bool isMoving = false;
     public bool isFalling { get; private set; }
 
+    private bool isInGiantMagnet = false;
+    private bool isGettingCrushed;
+
     private FormTransform formTransform;
+    private MagnetAbilities magnetAbilities;
 
     private GameObject OneWayPlatform;
     [SerializeField] private BoxCollider2D PlayerCollider;
@@ -44,18 +50,27 @@ public class PlayerMovement : MonoBehaviour
     public bool getDirection() => isFacingRight;
     public bool getMovement() => isMoving;
     public float GetYoffset() => Yoffset;
+    public bool getIsGettingCrushed() => isGettingCrushed;
+
+    [Header("Audio")]
+    //Audio stuff
+    private AudioSource audioSource;
+    [SerializeField] AudioClip step1;
+    [SerializeField] AudioClip step2;
+    [SerializeField] AudioClip step3;
+    [SerializeField] AudioClip jump;
+    [SerializeField] AudioClip land;
+    [SerializeField] AudioClip jumpPad;
 
     private void Start()
     {
         crouchAction = InputSystem.actions.FindAction("Crouch");
-        if (crouchAction == null)
-        {
-            Debug.Log("Crouch not assigned");
-        }
         animator = GetComponent<Animator>();
         formTransform = GetComponent<FormTransform>();
+        magnetAbilities = GetComponent<MagnetAbilities>();
         Elevator = GameObject.FindGameObjectWithTag("Elevator");
         elevatorScript = Elevator.GetComponent<ElevatorScript>();
+        audioSource = GetComponent<AudioSource>();
         EnablePlayerMovement();
     }
 
@@ -167,9 +182,11 @@ public class PlayerMovement : MonoBehaviour
     public void DisablePlayerMovement()
     {
         movementDisabled = true;
-        rb.linearVelocity = Vector2.zero;
+        rb.linearVelocityX = 0;
+        //rb.linearVelocity = Vector2.zero;
         isMoving = false;
-        isFalling = false;
+        //isFalling = false;
+        horizontal = 0;
     }
 
     public void EnablePlayerMovement()
@@ -179,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+
         // For animations
         // Moving
         if (isMoving == true)
@@ -208,6 +225,40 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isNeutral", false);
             animator.SetBool("isRed", false);
             animator.SetBool("isBlue", true);
+        }
+        if (magnetAbilities.IsInteracting == true)
+        {
+            if (formTransform.CurrentForm == FormTransform.formState.red)
+            {
+                if (magnetAbilities.ClosestObjectType == "red")
+                {
+                    animator.SetBool("isPushing", true);
+                    animator.SetBool("isPulling", false);
+                }
+                else if (magnetAbilities.ClosestObjectType == "blue")
+                {
+                    animator.SetBool("isPulling", true);
+                    animator.SetBool("isPushing", false);
+                }
+            }
+            else if (formTransform.CurrentForm == FormTransform.formState.blue)
+            {
+                if (magnetAbilities.ClosestObjectType == "blue")
+                {
+                    animator.SetBool("isPushing", true);
+                    animator.SetBool("isPulling", false);
+                }
+                else if (magnetAbilities.ClosestObjectType == "red")
+                {
+                    animator.SetBool("isPulling", true);
+                    animator.SetBool("isPushing", false);
+                }
+            }
+        }
+        else if (magnetAbilities.IsInteracting == false)
+        {
+            animator.SetBool("isPushing", false);
+            animator.SetBool("isPulling", false);
         }
         //Jumping
         if (IsGrounded() == true)
@@ -246,8 +297,21 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;
-            isFalling = false;
+            rb.linearVelocityX = 0f;
+            //rb.linearVelocity = Vector2.zero;
+            //isFalling = false;
+        }
+
+        if (isInGiantMagnet)
+        {
+            if (rb.linearVelocityY < 2.7f)
+            {
+                rb.linearVelocityY += Time.deltaTime * pullPower;
+            }
+            else
+            {
+                rb.linearVelocityY = 2.7f;
+            }
         }
 
     }
@@ -260,6 +324,8 @@ public class PlayerMovement : MonoBehaviour
             if (IsGrounded() || canCoyoteJump)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
+                audioSource.clip = jump;
+                audioSource.Play();
             }
         }
     }
@@ -309,6 +375,18 @@ public class PlayerMovement : MonoBehaviour
             yoffsetZoneScript = other.GetComponent<YoffsetZoneScript>();
             Yoffset = yoffsetZoneScript.getOffsetVal();
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
+        {
+            if (formTransform.CurrentForm == FormTransform.formState.red)
+            {
+                isInGiantMagnet = true;
+            }
+            else if (formTransform.CurrentForm == FormTransform.formState.blue)
+            {
+                isGettingCrushed = true;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -318,12 +396,19 @@ public class PlayerMovement : MonoBehaviour
             yoffsetZoneScript = null;
             Yoffset = 0;
         }
+        if (other.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
+        {
+            isInGiantMagnet = false;
+            isGettingCrushed = false;
+        }
     }
 
     private void JumpPadLaunch()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, LaunchPower);
         TriggerControllerVibration();
+        audioSource.clip = jumpPad;
+        audioSource.Play();
     }
 
     public void TriggerControllerVibration()
@@ -388,6 +473,9 @@ public class PlayerMovement : MonoBehaviour
             Gizmos.DrawLine(rightOrigin, rightOrigin + Vector3.down * 0.3f);
         }
     }
+    private float stepTimer = 0;
+    [SerializeField] float stepSpace = .5f;
+    private bool fallsfxplayed = false;
     private void Update()
     {
         // For crouch
@@ -395,5 +483,53 @@ public class PlayerMovement : MonoBehaviour
         {
             GoThroughBluePlatform();
         }
+        // for audio
+        if (isFalling)
+        {
+            if (IsGrounded() && !fallsfxplayed)
+            {
+                fallsfxplayed = true;
+                audioSource.clip = land;
+                audioSource.Play();
+                DoAfterSeconds(0.5f, () => fallsfxplayed = false);
+            }
+        }
+        if (isMoving)
+        {
+            if (IsGrounded())
+            {
+                stepTimer += Time.deltaTime;
+                if (stepTimer >= stepSpace)
+                {
+                    stepTimer = 0;
+                    int rng = UnityEngine.Random.Range(0, 3);
+                    if (rng == 0)
+                    {
+                        audioSource.clip = step1;
+                    }
+                    else if (rng == 1)
+                    {
+                        audioSource.clip = step2;
+                    }
+                    else
+                    {
+                        audioSource.clip = step3;
+                    }
+                    audioSource.Play();
+                }
+            }
+        }
+    }
+
+    // Do after
+    public void DoAfterSeconds(float delay, Action callback)
+    {
+        StartCoroutine(DoAfterSecondsRoutine(delay, callback));
+    }
+
+    private IEnumerator DoAfterSecondsRoutine(float delay, Action callback)
+    {
+        yield return new WaitForSeconds(delay);
+        callback?.Invoke();
     }
 }

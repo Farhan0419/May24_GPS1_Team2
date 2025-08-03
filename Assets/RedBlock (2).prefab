@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da973e2f1cdc451419033412f7b7885c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTooClose: 0
+  currentObject: 
 --- !u!1 &3124692039141969425
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 55e41cfe5ecb1334287f118cc8cf8027, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -273,6 +273,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LaunchPower: 20
   DebugMode: 1
+  jumpAirTime: 1
+  redgieGravityScale: 1
 --- !u!1 &7709587838067728406
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f25fb393505c884bbd4d2cb1ad9055e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGrounded: 0
+  debugMode: 1
 --- !u!1 &9171404854493019294
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +448,18 @@ PrefabInstance:
       value: DialogueSystem
       objectReference: {fileID: 0}
     - target: {fileID: 1822154736557317849, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822154736557317849, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822154736557317849, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822154736557317849, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -505,6 +519,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4943782920336028439, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943782920336028439, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943782920336028439, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5150793284761133466, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -512,6 +538,14 @@ PrefabInstance:
     - target: {fileID: 5883663310719011296, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836056558785282404, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 106.3688
+      objectReference: {fileID: 0}
+    - target: {fileID: 6836056558785282404, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 32.1548
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

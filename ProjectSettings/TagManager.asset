@@ -17,6 +17,9 @@ TagManager:
   - PressurePlate
   - DialogueCanvas
   - Elevator
+  - ConvoSpeechBubble
+  - RemarkSpeechBubble
+  - RedJumpPad
   layers:
   - Default
   - TransparentFX
