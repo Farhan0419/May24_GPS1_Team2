@@ -22,6 +22,8 @@ public class RedgieScript : MonoBehaviour
     private Vector2 lastPosition;
     private Vector2 direction;
 
+    private bool hasRedgieRespawned = false;
+
     public bool IsJumping
     {
         get => isJumping;
@@ -31,6 +33,11 @@ public class RedgieScript : MonoBehaviour
     public Vector2 Direction
     {
         get => direction;
+    }
+
+    public bool HasRedgieRespawned
+    {
+        get => hasRedgieRespawned;
     }
 
     private void Start()
@@ -63,9 +70,20 @@ public class RedgieScript : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Walll"))
         {
-            transform.position = OriginalPos;
-            if (DebugMode) Debug.Log("Redgie got turned into a pancake, resetting to original position");
+            if (direction.y < 0)
+            {
+                rb.linearVelocity = Vector2.zero;
+                transform.position = OriginalPos;
+                hasRedgieRespawned = true;
+                StartCoroutine(ResetHasRedgieRespawned());
+                if (DebugMode) Debug.Log("Redgie got turned into a pancake, resetting to original position");
+            }
         }
+    }
+
+    IEnumerator ResetHasRedgieRespawned()
+    {   yield return new WaitForSeconds(0.1f);
+        hasRedgieRespawned = false;
     }
 
     IEnumerator JumpRoutine(Vector2 jumpVel)
@@ -95,7 +113,7 @@ public class RedgieScript : MonoBehaviour
             if(currentDirection.y != 0)
             {
                 direction = currentDirection;
-                Debug.Log(direction.y);
+                if (DebugMode) Debug.Log(direction.y);
             }
 
             lastPosition = currentPosition;

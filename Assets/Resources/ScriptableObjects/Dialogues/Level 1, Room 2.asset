@@ -19,8 +19,8 @@ MonoBehaviour:
   - Conversation
   dialogueLines1:
   - "There you are, took you long enough.;Your jumping skills must be impeccable.;In
-    this room though, you gotta get me to jump too.;That <color = red>red</color>
-    pad could be useful.;Something tells me it\u2019s bouncy.   "
+    this room though, you gotta get me to jump too.;That <color=red>red</color> pad
+    could be useful.;Something tells me it\u2019s bouncy.   "
   - "Ouch! That\u2019s gotta hurt."
   - "<size=8><b>OWW!</b></size> Too bad I don\u2019t repel concrete. "
   - "Nice! We make a great team. I\u2019m glad you\u2019re here.;It\u2019s been lonely

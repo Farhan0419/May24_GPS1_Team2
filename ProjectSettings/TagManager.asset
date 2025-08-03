@@ -19,6 +19,7 @@ TagManager:
   - Elevator
   - ConvoSpeechBubble
   - RemarkSpeechBubble
+  - RedJumpPad
   layers:
   - Default
   - TransparentFX

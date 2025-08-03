@@ -17,7 +17,7 @@ public class RedgieGroundCheck : MonoBehaviour
 
     private RedgieScript redgieScript;
 
-    private string[] groundTags = { "platform", "OneWayPlatform", "Player", "PressurePlate", "Elevator", "BlueMagneticPlatform", 
+    private string[] groundTags = { "platform", "OneWayPlatform", "Player", "Elevator", "BlueMagneticPlatform", 
         "ShowerStation", "RedPaintStation", "BluePaintStation", "RedJumpPad"};
 
     [SerializeField] private bool debugMode = true;
@@ -65,6 +65,7 @@ public class RedgieGroundCheck : MonoBehaviour
             {
                 if(other.CompareTag(groundTags[i]))
                 {
+                    if (debugMode) Debug.Log($"Ground check enter: {other.name}, isGrounded: {isGrounded}");
                     if (redgieScript.Direction.y < 0)
                     {
                         redgieScript.IsJumping = false;
@@ -112,7 +113,6 @@ public class RedgieGroundCheck : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
-        Debug.Log("grounded: " + other.name);
         if (other != null)
         {
             for (int i = 0; i < groundTags.Length; i++)
@@ -123,6 +123,14 @@ public class RedgieGroundCheck : MonoBehaviour
                 }
             }
 
+            if (triggerCount <= 0)
+            {
+                if (debugMode) Debug.Log("none");
+                setGrounded(false);
+            }
+
+            if (debugMode) Debug.Log($"Ground check exited: {other.name}, isGrounded: {isGrounded}");
+
             switch (other.tag)
             {
                 case "BlueMagneticPlatform":
@@ -132,14 +140,6 @@ public class RedgieGroundCheck : MonoBehaviour
                 default:
                     return;
             }
-
-            if (triggerCount <= 0)
-            {
-                Debug.Log("none");
-                setGrounded(false);
-            }
-
-            if (debugMode) Debug.Log($"Ground check exited: {other.name}, isGrounded: {isGrounded}");
         }
 
     }
