@@ -5,7 +5,7 @@ using System.Text;
 
 public class CSVtoSO
 {
-    private static string fileName = "Level 2, Room 1";
+    private static string fileName = "Level 1, Room 2";
     private static string dialogueFilePath = $"/Editor/CSV/{fileName}.tsv";
     private static int counter = 0;
 

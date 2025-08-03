@@ -157,6 +157,7 @@ public class DialogueSystem : MonoBehaviour
         else
         {
             dialogueCounter = 0;
+            isLineFullyShown = false;
             isDialogueReady = false;
 
             if (dialogueCanvas.activeSelf)
@@ -257,7 +258,6 @@ public class DialogueSystem : MonoBehaviour
         typingCoroutine = StartCoroutine(TypeLetters(msg, dialogueText, delayBetweenWords));
     }
 
-    //[Bug] showing first line twice, need to fix it
     private IEnumerator TypeLetters(string sentence, TextMeshProUGUI dialogueText, float delayBetweenWords)
     {
         dialogueText.maxVisibleCharacters = 0;

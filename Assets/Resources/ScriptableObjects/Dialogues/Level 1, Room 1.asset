@@ -19,9 +19,9 @@ MonoBehaviour:
   dialogueLines1:
   - "Hello there, didn\u2019t realize there was anyone else down here.;Name\u2019s
     Redgie. Red block. Big voice. Impeccable sitting abilities.;Engraving on your
-    side says MagUnet, is that your name?;<size=25>\u2026..</size>;You\u2019re not
+    side says MagUnet, is that your name?;<size=8>\u2026..</size>;You\u2019re not
     much of a talker, are you?;Anyways\u2026..help me get down from here? Any ideas?  "
-  - "<size=25><b>THAT'S YOUR IDEA?!</b></size>;Wait\u2026..I can feel myself being
+  - "<size=8><b>THAT'S YOUR IDEA?!</b></size>;Wait\u2026..I can feel myself being
     pulled towards you. "
   - "Would you look at that? That opened the elevator door.;I\u2019ve been trying
     to get that open for ages.;Thanks Mags, was starting to think I\u2019d rust down
