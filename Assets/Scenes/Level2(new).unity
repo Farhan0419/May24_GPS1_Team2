@@ -17954,6 +17954,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4227215721562487568, guid: d815a52d1e5b97c4d9e03f3263737111, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4764414011317597745, guid: d815a52d1e5b97c4d9e03f3263737111, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -17974,12 +17978,19 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6841251149598377624, guid: d815a52d1e5b97c4d9e03f3263737111, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8886512389390245783, guid: d815a52d1e5b97c4d9e03f3263737111, type: 3}
       propertyPath: m_Name
       value: Pause Screen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3012444363051881920, guid: d815a52d1e5b97c4d9e03f3263737111, type: 3}
+    - {fileID: 635108736670581241, guid: d815a52d1e5b97c4d9e03f3263737111, type: 3}
+    - {fileID: 5438718265162137679, guid: d815a52d1e5b97c4d9e03f3263737111, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d815a52d1e5b97c4d9e03f3263737111, type: 3}
