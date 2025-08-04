@@ -136,7 +136,11 @@ public class MagnetAbilities : MonoBehaviour
         detectMagneticObjects();
 
         // Having this line here, because in the interactMagneticObjects_performed, it cannot check that change if isDetecting is false cuz it is executed once only when performed
-        if (!isDetecting) isInteracting = false;
+        if (!isDetecting)
+        {
+            isInteracting = false;
+            magnetVFX.Hide2DRay();
+        }
 
         if (shouldShowIndicator())
         {
@@ -282,6 +286,7 @@ public class MagnetAbilities : MonoBehaviour
         if (hits.Length == 0)
         {
             isDetecting = false;
+            magnetVFX.Hide2DRay();
             return;
         }
 
@@ -330,10 +335,6 @@ public class MagnetAbilities : MonoBehaviour
                         if (debugMode) Debug.Log(objectHit.collider.tag);
                     }
                 }  
-            }
-            else
-            {
-                magnetVFX.Hide2DRay();
             }
         }
 
