@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class HydraulicPressGameObject : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class HydraulicPressGameObject : MonoBehaviour
     private Vector2 startPos;
     [SerializeField] private bool isPressing = false;
     private bool isReturning = false;
-    //public ParticleSystem CrusherParticle;
+    public ParticleSystem CrusherParticle;
     public float waitForBeforeStarting;
     private GameObject Player;
     [SerializeField] private PlayerDeath deathScript;
@@ -40,11 +41,19 @@ public class HydraulicPressGameObject : MonoBehaviour
         if(isPressing)
         {
             //Debug.Log($"IsTouchingGround = {IsTouchingGround(out _)}");
-            if (IsTouchingGround(out Vector2 hitPoint))
+            if (IsTouchingGround(out Vector2 hitPoint)) // rb2D touched ground
             {
                 rb2D.linearVelocity = Vector2.zero;
                 rb2D.MovePosition(hitPoint);
                 paused = true;
+
+                // spawn particle here
+                //ground touched, get ground contact and emit particles;
+                //RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
+
+                ParticleSystem p = Instantiate(CrusherParticle);
+                p.transform.position = hitPoint;
+
                 StartCoroutine(WaitThenReturn(waitTime));
             }
         }
@@ -86,7 +95,9 @@ public class HydraulicPressGameObject : MonoBehaviour
 
     private bool IsTouchingGround(out Vector2 hitPoint)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
+        float rayLength = Time.deltaTime * pressSpeed;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayLength, groundLayer);
+        Debug.DrawLine(transform.position, transform.position + Vector3.down * rayLength, Color.cyan);
         if (hit) hitPoint = hit.point;
         else hitPoint = default;
         return hit;

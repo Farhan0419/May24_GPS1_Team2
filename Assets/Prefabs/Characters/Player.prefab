@@ -509,6 +509,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7b7803e8-e5d5-4ad7-982a-49bfdd48eb33
     m_ActionName: 'Player/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 55aa85d5-4ff9-4cac-93c1-458b27c79bed
+    m_ActionName: 'UI/Brightness Lower[/Keyboard/leftArrow,/Keyboard/a]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8f94c408-494b-4cfc-8ed5-d676b463d06a
+    m_ActionName: 'UI/Brightness Higher[/Keyboard/d,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9c05af89-39bc-49d2-9e2d-7019859402d3
+    m_ActionName: 'UI/Escape Button[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -540,6 +552,10 @@ MonoBehaviour:
   step1: {fileID: 8300000, guid: 77843497fad7dab4091a311767cd1fe0, type: 3}
   step2: {fileID: 8300000, guid: c1e2c3cb678fab042a038f2432f036b1, type: 3}
   step3: {fileID: 8300000, guid: 44a848bd62a273b43b438821a27401f3, type: 3}
+  steps:
+  - {fileID: 8300000, guid: 77843497fad7dab4091a311767cd1fe0, type: 3}
+  - {fileID: 8300000, guid: c1e2c3cb678fab042a038f2432f036b1, type: 3}
+  - {fileID: 8300000, guid: 44a848bd62a273b43b438821a27401f3, type: 3}
   jump: {fileID: 8300000, guid: 078a8759935a12042a025e29461c281e, type: 3}
   land: {fileID: 8300000, guid: 7799471f9128aa9469f3ba022a204269, type: 3}
   jumpPad: {fileID: 8300000, guid: 9e99cf4e0f2543b47b7b214c708ac96d, type: 3}
