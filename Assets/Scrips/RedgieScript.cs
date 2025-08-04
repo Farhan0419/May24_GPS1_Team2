@@ -89,16 +89,11 @@ public class RedgieScript : MonoBehaviour
     IEnumerator JumpRoutine(Vector2 jumpVel)
     {
         rb.linearVelocity = jumpVel;
-        float curGravScale = rb.gravityScale;
-        rb.gravityScale = 0.0f;
         isJumping = true;
 
         if (DebugMode) Debug.Log("jump");
 
         yield return new WaitForSeconds(jumpAirTime);
-
-        if (curGravScale == 0) curGravScale = redgieGravityScale;
-        rb.gravityScale = curGravScale;
 
         if (DebugMode) Debug.Log("jumped");
     }
