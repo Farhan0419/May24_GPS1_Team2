@@ -70,7 +70,7 @@ public class RedgieScript : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Walll"))
         {
-            if (direction.y < 0)
+            if (direction.y < 0 && groundCheck.IsGrounded)
             {
                 rb.linearVelocity = Vector2.zero;
                 transform.position = OriginalPos;
