@@ -10,13 +10,14 @@ public class HydraulicPressGameObject : MonoBehaviour
     public float waitTime = 0.5f;
     public LayerMask groundLayer; // Assign to Floor layer in Inspector
     public float rayDistance = 0.1f;
-    
+    private bool notFirstpress = false;
+
 
     private Vector2 startPos;
     [SerializeField] private bool isPressing = false;
     private bool isReturning = false;
     public ParticleSystem CrusherParticle;
-    public float waitForBeforeStarting;
+    public float waitForBeforeStarting =1;
     private GameObject Player;
     [SerializeField] private PlayerDeath deathScript;
     private PlayerMovement PlayerScript;
@@ -27,6 +28,7 @@ public class HydraulicPressGameObject : MonoBehaviour
 
     private IEnumerator Start() //Start can be a coroutine.
     {
+        notFirstpress = false;
         startPos = transform.position;
         rb2D = GetComponent<Rigidbody2D>();
         yield return StartCoroutine(WaitThenPress(waitForBeforeStarting));
@@ -67,7 +69,10 @@ public class HydraulicPressGameObject : MonoBehaviour
                 paused = true;
                 rb2D.linearVelocity = Vector2.zero;
                 rb2D.MovePosition(startPos);
-                StartCoroutine(WaitThenPress(waitTime));
+                if (notFirstpress)
+                {
+                    StartCoroutine(WaitThenPress(waitTime));
+                }
             }
         }
         
@@ -89,9 +94,10 @@ public class HydraulicPressGameObject : MonoBehaviour
         curDirection = Vector3.down;
         rb2D.linearVelocity = curDirection * pressSpeed;
         paused = false;
+        notFirstpress = true;
     }
 
-    
+
 
     private bool IsTouchingGround(out Vector2 hitPoint)
     {

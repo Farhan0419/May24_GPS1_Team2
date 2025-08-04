@@ -43,7 +43,7 @@ public class ElevatorScript : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         Player = GameObject.FindGameObjectWithTag("Player");
         PlayerObject = Player.GetComponent<PlayerMovement>();
-        UnlockDoor(); // TEMPORARY REMOVE SOON
+        //UnlockDoor(); // TEMPORARY REMOVE SOON
     }
 
     public void UnlockDoor()

@@ -14,6 +14,7 @@ public class PlayerDeath : MonoBehaviour
     private float timer = 0f;
     private bool GettingCrushedtimerOn = false;
     private float crushScale = 1f;
+    private bool playerDead = false;
     private Animator animator;
     [SerializeField] private TransitionSettings transition;
 
@@ -23,6 +24,7 @@ public class PlayerDeath : MonoBehaviour
         PlayerTransform = gameObject.GetComponent<Transform>();
         currentSceneName = SceneManager.GetActiveScene().name;
         animator = gameObject.GetComponent<Animator>();
+        playerDead = false;
     }
 
     public void Restart(string sceneName)
@@ -32,6 +34,7 @@ public class PlayerDeath : MonoBehaviour
 
     public void PlayerDead(string causeOfDeath)
     {
+        playerDead = true;
         MovementScript.DisablePlayerMovement();
         if (causeOfDeath == "Laser")
         {
@@ -94,7 +97,10 @@ public class PlayerDeath : MonoBehaviour
         {
             crushScale = 1;
             timer = 0;
-            PlayerTransform.localScale = new Vector2(PlayerTransform.localScale.x, 1);
+            if (playerDead)
+            {
+                PlayerTransform.localScale = new Vector2(PlayerTransform.localScale.x, 1);
+            }
         }
     }
 
