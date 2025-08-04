@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CrusherZone : MonoBehaviour
 {
-    private HydraulicPressGameObject crusher;
+    [SerializeField] private HydraulicPressGameObject crusher;
     [SerializeField] private GameObject Player;
     [SerializeField] private PlayerDeath deathScript;
     [SerializeField] private PlayerMovement PlayerScript;

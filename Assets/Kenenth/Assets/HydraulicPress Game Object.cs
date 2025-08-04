@@ -49,10 +49,10 @@ public class HydraulicPressGameObject : MonoBehaviour
 
                 // spawn particle here
                 //ground touched, get ground contact and emit particles;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
+                //RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
 
                 ParticleSystem p = Instantiate(CrusherParticle);
-                p.transform.position = hit.point;
+                p.transform.position = hitPoint;
 
                 StartCoroutine(WaitThenReturn(waitTime));
             }
@@ -95,7 +95,9 @@ public class HydraulicPressGameObject : MonoBehaviour
 
     private bool IsTouchingGround(out Vector2 hitPoint)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayDistance, groundLayer);
+        float rayLength = Time.deltaTime * pressSpeed;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayLength, groundLayer);
+        Debug.DrawLine(transform.position, transform.position + Vector3.down * rayLength, Color.cyan);
         if (hit) hitPoint = hit.point;
         else hitPoint = default;
         return hit;

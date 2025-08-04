@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -58,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioClip step1;
     [SerializeField] AudioClip step2;
     [SerializeField] AudioClip step3;
+    [SerializeField] List<AudioClip> steps;
     [SerializeField] AudioClip jump;
     [SerializeField] AudioClip land;
     [SerializeField] AudioClip jumpPad;
@@ -407,8 +410,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, LaunchPower);
         TriggerControllerVibration();
-        audioSource.clip = jumpPad;
-        audioSource.Play();
+        //audioSource.clip = jumpPad;
+        //audioSource.Play();
+        audioSource.PlayOneShot(jumpPad);
     }
 
     public void TriggerControllerVibration()
@@ -496,6 +500,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (isMoving)
         {
+            /*
             if (IsGrounded())
             {
                 stepTimer += Time.deltaTime;
@@ -518,7 +523,14 @@ public class PlayerMovement : MonoBehaviour
                     audioSource.Play();
                 }
             }
+            */
         }
+    }
+
+    public void PlayFootstep()
+    {
+        int rng = UnityEngine.Random.Range(0, steps.Count);
+        audioSource.PlayOneShot(steps[rng]);
     }
 
     // Do after
