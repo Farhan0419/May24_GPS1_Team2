@@ -545,7 +545,7 @@ MonoBehaviour:
     m_Bits: 320
   speed: 6.5
   jumpPower: 19
-  LaunchPower: 27
+  LaunchPower: 28
   pullPower: 55
   PlayerCollider: {fileID: 1852144890480461987}
   coyoteTime: 0.05

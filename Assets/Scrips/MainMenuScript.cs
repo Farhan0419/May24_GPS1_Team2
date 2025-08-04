@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using EasyTransition;
 using UnityEngine.UI;
 using TMPro;
 
@@ -14,8 +15,14 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private float offscreenX = -2000f;
     [SerializeField] private float moveDuration = 1f;
     [SerializeField] private Ease easing = Ease.InOutQuad;
+    [SerializeField] private TransitionSettings transition;
 
-    private bool Started = false;  
+    private bool Started = false;
+
+    public void LoadNextScene(string sceneName)
+    {
+        TransitionManager.Instance().Transition(sceneName, transition, 2f);
+    }
 
     public void startGame()
     { 
@@ -33,7 +40,8 @@ public class MainMenuScript : MonoBehaviour
 
         transition.OnComplete(() =>
         {
-            SceneManager.LoadScene("Level1");
+            LoadNextScene("Level1(new)");
+            //SceneManager.LoadScene("Level1(new)");
         });
     }
 
