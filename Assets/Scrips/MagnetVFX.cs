@@ -4,74 +4,53 @@ public class MagnetVFX : MonoBehaviour
 {
     private Transform abilitiesVFXPoint;
     private LineRenderer abilitiesLineRenderer;
+    private MagnetAbilities magnetAbilities;
+
+    private bool isInteracting = false;
 
     [SerializeField] private Material circle;
     [SerializeField] private Material leftArrow;
     [SerializeField] private Material rightArrow;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         abilitiesLineRenderer = GetComponentInChildren<LineRenderer>();
         abilitiesVFXPoint = GetComponentInChildren<LineRenderer>().gameObject.transform;
+        magnetAbilities = GetComponent<MagnetAbilities>();
     }
 
+    private void Update()
+    {
+        isInteracting = magnetAbilities.IsInteracting;
+    }
 
-    // [bug] arrowdirection is not correct sometimes
     public void Draw2DRay(Vector2 start, Vector2 end, Vector2 playerDirection, FormTransform.formState currentForm, string objectTag)
     {
-        if (FormTransform.formState.neutral == currentForm)
+        if  (FormTransform.formState.neutral != currentForm && !isInteracting)
         {
             abilitiesLineRenderer.material = circle;
         }
-        else if (FormTransform.formState.red == currentForm)
+        else if (FormTransform.formState.red == currentForm && isInteracting)
         {
             if(objectTag.ToLower().Contains("red"))
             {
-                if (playerDirection.x < 0)
-                {
-                    abilitiesLineRenderer.material = leftArrow;
-                }
-                else if (playerDirection.x > 0)
-                {
-                    abilitiesLineRenderer.material = rightArrow;
-                }
+                abilitiesLineRenderer.material = rightArrow;
             }
             else if (objectTag.ToLower().Contains("blue"))
             {
-                if (playerDirection.x < 0)
-                {
-                    abilitiesLineRenderer.material = rightArrow;
-                }
-                else if (playerDirection.x > 0)
-                {
-                    abilitiesLineRenderer.material = leftArrow;
-                }
+                abilitiesLineRenderer.material = leftArrow;
             }
         }
-        else if (FormTransform.formState.blue == currentForm)
+        else if (FormTransform.formState.blue == currentForm && isInteracting)
         {
             if (objectTag.ToLower().Contains("red"))
             {
-                if (playerDirection.x < 0)
-                {
-                    abilitiesLineRenderer.material = rightArrow;
-                }
-                else if (playerDirection.x > 0)
-                {
-                    abilitiesLineRenderer.material = leftArrow;
-                }
+                abilitiesLineRenderer.material = leftArrow;
             }
             else if (objectTag.ToLower().Contains("blue"))
             {
-                if (playerDirection.x < 0)
-                {
-                    abilitiesLineRenderer.material = rightArrow;
-                }
-                else if (playerDirection.x > 0)
-                {
-                    abilitiesLineRenderer.material = leftArrow;
-                }
+                abilitiesLineRenderer.material = rightArrow;
             }
         }
 

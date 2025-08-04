@@ -229,7 +229,10 @@ public class MagnetAbilities : MonoBehaviour
                 closestObjectType = objectType[1];
             }
 
-            magnetVFX.Draw2DRay(transform.position, closestMagneticObject.transform.position, playerDirection, formTransform.CurrentForm, closestMagneticObject.transform.parent.tag);
+            if(formTransform.CurrentForm != FormTransform.formState.neutral)
+            {
+                magnetVFX.Draw2DRay(transform.position, closestMagneticObject.transform.position, playerDirection, formTransform.CurrentForm, closestMagneticObject.transform.parent.tag);
+            }
         }
     }
 
