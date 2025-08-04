@@ -563,7 +563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1594311578310938944}
   - component: {fileID: 7314658902258005251}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -875,12 +875,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a47be5c788ab4e4eb85b10681110169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Level2(new)
+  nextSceneName: TBC
   doorMoveSpeed: 0.5
   LevelTransitionSpeed: 6
   activated: {fileID: 21300000, guid: c6729f8460680d643a82249589197675, type: 3}
   transition: {fileID: 11400000, guid: 057babd6f13132c449650d99e3c4e99c, type: 2}
-  doorClosing: {fileID: 8300000, guid: 4ad9e8add9d62fa4c81883639b60ee73, type: 3}
+  doorClosing: {fileID: 8300000, guid: 7b3007a7162c8014188cbf16b56dc21c, type: 3}
   doorClosed: {fileID: 8300000, guid: 49d9f93a3ca342d46a958ee545f5c51b, type: 3}
   goingUp: {fileID: 8300000, guid: 7e105f6a923d8254c9a00471d366dde8, type: 3}
 --- !u!82 &7030157153933393033

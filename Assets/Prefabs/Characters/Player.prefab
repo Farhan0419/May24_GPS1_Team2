@@ -559,7 +559,6 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: 078a8759935a12042a025e29461c281e, type: 3}
   land: {fileID: 8300000, guid: 7799471f9128aa9469f3ba022a204269, type: 3}
   jumpPad: {fileID: 8300000, guid: 9e99cf4e0f2543b47b7b214c708ac96d, type: 3}
-  stepSpace: 0.3
 --- !u!114 &3021878682728651252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,10 +615,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleToObject: {fileID: 2100000, guid: be5d294caf1150c42a15904a994cec88, type: 2}
   circleToPlayer: {fileID: 2100000, guid: d2b48727e8cab7a499c5d4255f1191a2, type: 2}
-  leftArrowToObject: {fileID: 2100000, guid: eb24893434ba19245b76948b197dc1fd, type: 2}
   leftArrowToPlayer: {fileID: 2100000, guid: ca429ca2f33deb341a922cae35aeaf0e, type: 2}
   rightArrowToObject: {fileID: 2100000, guid: ae13bcc055752aa47967f99dc8aeab7a, type: 2}
-  rightArrowToPlayer: {fileID: 2100000, guid: fedb9a2d8b88a854a8e820eae686c01b, type: 2}
 --- !u!114 &4166238658015679069
 MonoBehaviour:
   m_ObjectHideFlags: 0

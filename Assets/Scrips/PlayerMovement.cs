@@ -477,8 +477,6 @@ public class PlayerMovement : MonoBehaviour
             Gizmos.DrawLine(rightOrigin, rightOrigin + Vector3.down * 0.3f);
         }
     }
-    private float stepTimer = 0;
-    [SerializeField] float stepSpace = .5f;
     private bool fallsfxplayed = false;
     private void Update()
     {
@@ -497,33 +495,6 @@ public class PlayerMovement : MonoBehaviour
                 audioSource.Play();
                 DoAfterSeconds(0.5f, () => fallsfxplayed = false);
             }
-        }
-        if (isMoving)
-        {
-            /*
-            if (IsGrounded())
-            {
-                stepTimer += Time.deltaTime;
-                if (stepTimer >= stepSpace)
-                {
-                    stepTimer = 0;
-                    int rng = UnityEngine.Random.Range(0, 3);
-                    if (rng == 0)
-                    {
-                        audioSource.clip = step1;
-                    }
-                    else if (rng == 1)
-                    {
-                        audioSource.clip = step2;
-                    }
-                    else
-                    {
-                        audioSource.clip = step3;
-                    }
-                    audioSource.Play();
-                }
-            }
-            */
         }
     }
 

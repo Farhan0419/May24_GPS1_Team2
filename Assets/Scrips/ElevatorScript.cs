@@ -13,6 +13,7 @@ public class ElevatorScript : MonoBehaviour
     [SerializeField] private float doorMoveSpeed = 0.3f;
     private float elevatorMoveSpeed = 1.2f;
     [SerializeField] private float LevelTransitionSpeed = 2f;
+    private GameObject audioPlayer;
 
     private GameObject Door1;
     private GameObject Door2;
@@ -26,6 +27,7 @@ public class ElevatorScript : MonoBehaviour
     [SerializeField] private TransitionSettings transition;
 
     private AudioSource audioSource;
+    private AmbienceScript ambience;
     [SerializeField] AudioClip doorClosing;
     [SerializeField] AudioClip doorClosed;
     [SerializeField] AudioClip goingUp;
@@ -36,6 +38,8 @@ public class ElevatorScript : MonoBehaviour
         Door2 = transform.GetChild(1).gameObject;
         Door3 = transform.GetChild(2).gameObject;
         Center = transform.GetChild(4).gameObject;
+        audioPlayer = GameObject.Find("MusicPlayer");
+        ambience = audioPlayer.GetComponent<AmbienceScript>();
 
         CenterPos = Center.transform.position;
 
@@ -92,7 +96,7 @@ public class ElevatorScript : MonoBehaviour
         float elapsed = 0f;
         audioSource.clip = goingUp;
         audioSource.Play();
-        
+
         while (elapsed < LevelTransitionSpeed)
         {
             transform.position += Vector3.up * elevatorMoveSpeed * Time.deltaTime;
@@ -108,5 +112,6 @@ public class ElevatorScript : MonoBehaviour
     public void LoadNextScene(string sceneName)
     {
         TransitionManager.Instance().Transition(sceneName, transition, 0f);
+        ambience.startTransition();
     }
 }

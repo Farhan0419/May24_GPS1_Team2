@@ -10,7 +10,10 @@ public class HydraulicPressGameObject : MonoBehaviour
     public float waitTime = 0.5f;
     public LayerMask groundLayer; // Assign to Floor layer in Inspector
     public float rayDistance = 0.1f;
-    
+    private bool notFirstpress = false;
+    //private AudioSource audioSource;
+    //[SerializeField] AudioClip aud;
+
 
     private Vector2 startPos;
     [SerializeField] private bool isPressing = false;
@@ -29,6 +32,7 @@ public class HydraulicPressGameObject : MonoBehaviour
     {
         startPos = transform.position;
         rb2D = GetComponent<Rigidbody2D>();
+        //audioSource = GetComponent<AudioSource>();  
         yield return StartCoroutine(WaitThenPress(waitForBeforeStarting));
 
         
@@ -53,6 +57,8 @@ public class HydraulicPressGameObject : MonoBehaviour
 
                 ParticleSystem p = Instantiate(CrusherParticle);
                 p.transform.position = hitPoint;
+
+                //audioSource.PlayOneShot(aud);
 
                 StartCoroutine(WaitThenReturn(waitTime));
             }
