@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      magnet_falling_0: 8260915821340207896
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
