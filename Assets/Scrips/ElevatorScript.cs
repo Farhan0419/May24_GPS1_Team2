@@ -30,6 +30,9 @@ public class ElevatorScript : MonoBehaviour
     [SerializeField] AudioClip doorClosed;
     [SerializeField] AudioClip goingUp;
 
+    private GameObject musicPlayer;
+    private AmbienceScript ambienceScript;
+
     private void Start()
     {
         Door1 = transform.GetChild(0).gameObject;
@@ -41,6 +44,8 @@ public class ElevatorScript : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+        musicPlayer = GameObject.Find("MusicPlayer");
+        ambienceScript = musicPlayer.GetComponent<AmbienceScript>();
         Player = GameObject.FindGameObjectWithTag("Player");
         PlayerObject = Player.GetComponent<PlayerMovement>();
         //UnlockDoor(); // TEMPORARY REMOVE SOON
