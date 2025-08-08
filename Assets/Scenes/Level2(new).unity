@@ -759,6 +759,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level1Room2DialogueSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 1159647012905567498, guid: fc1dedd12ae4e2f49bbfd9afb40b1603, type: 3}
+      propertyPath: dialogueCanvas
+      value: 
+      objectReference: {fileID: 1155929019}
     - target: {fileID: 4539893819942734065, guid: fc1dedd12ae4e2f49bbfd9afb40b1603, type: 3}
       propertyPath: m_LocalPosition.x
       value: 28.060894
@@ -17071,6 +17075,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaf3c626662b1044fb35f089ca167ab4, type: 3}
+--- !u!1 &1155929019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1125827439392480370, guid: eaf3c626662b1044fb35f089ca167ab4, type: 3}
+  m_PrefabInstance: {fileID: 1155929018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1312816882
 GameObject:
   m_ObjectHideFlags: 0

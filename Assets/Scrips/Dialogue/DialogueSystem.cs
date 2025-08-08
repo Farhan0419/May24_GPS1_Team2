@@ -16,7 +16,7 @@ public class DialogueSystem : MonoBehaviour
 
     protected InputAction nextConversation;
 
-    protected GameObject dialogueCanvas;
+    [SerializeField] protected GameObject dialogueCanvas;
     protected Canvas dialogueCanvasComponent;
     protected RectTransform dialogueCanvasRT;
     protected GameObject conversationDialogueBox;
@@ -93,8 +93,6 @@ public class DialogueSystem : MonoBehaviour
     {
         playerMovement = GameObject.FindWithTag("Player").GetComponentInChildren<PlayerMovement>();
         redgiePosition = GameObject.FindWithTag("Redgie").transform.position;
-
-        dialogueCanvas = GameObject.FindWithTag("DialogueCanvas");
 
         if(dialogueCanvas != null)
         {
