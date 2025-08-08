@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3453171143618799889}
   m_Layer: 0
   m_Name: Level1Room3DialogueSystem
-  m_TagString: Untagged
+  m_TagString: DialogueSystem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -80,6 +80,7 @@ public class MagnetVFX : MonoBehaviour
             }
         }
 
+        abilitiesLineRenderer.sortingOrder = 0;
         abilitiesLineRenderer.positionCount = 0;
         abilitiesLineRenderer.positionCount = 2;
         abilitiesLineRenderer.enabled = true;

@@ -20,6 +20,7 @@ TagManager:
   - ConvoSpeechBubble
   - RemarkSpeechBubble
   - RedJumpPad
+  - DialogueSystem
   layers:
   - Default
   - TransparentFX

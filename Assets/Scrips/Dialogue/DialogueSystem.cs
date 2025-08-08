@@ -69,6 +69,16 @@ public class DialogueSystem : MonoBehaviour
 
     [SerializeField] protected bool isDebug = true;
 
+    public bool IsDialogueReady
+    {
+        get => isDialogueReady;
+    }
+
+    public string DialogueType
+    {
+        get => dialogueType[dialogueState];
+    }
+
     protected void Awake()
     {
         audioSource = this.gameObject.AddComponent<AudioSource>();
