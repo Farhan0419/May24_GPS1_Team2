@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEditor;
 
 public class Pause : MonoBehaviour
 {
     [SerializeField] Canvas cvs;
-    //[SerializeField] Canvas SettingCanvas;
+    [SerializeField] private CanvasGroup pause;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject settingMenu;
     public static bool isPaused = false;
@@ -39,14 +40,17 @@ public class Pause : MonoBehaviour
         }
         else
         {
-            PauseB();
+            PauseB(pause, true);
         }
     }
 
 
-    public void PauseB()
+    public void PauseB(CanvasGroup Menu, bool visible)
     {
-        pauseMenu.SetActive(true);
+        
+        Menu.alpha = visible ? 1 : 0;
+        Menu.interactable = visible;
+        Menu.blocksRaycasts = visible; 
         Time.timeScale = 0f;
         isPaused = true;
         Debug.Log("IT WORKS");
@@ -61,7 +65,7 @@ public class Pause : MonoBehaviour
 
     public void Resume()
     {
-        pauseMenu.SetActive(false);
+        PauseB(pause, false);
         Time.timeScale = 1f;
         isPaused = false;
         Debug.Log("Game Resume");
@@ -76,8 +80,7 @@ public class Pause : MonoBehaviour
     public void Option()
     {
         Debug.Log("OPTION CHOSE");
-        settingMenu.SetActive(true);
-        
+
     }
 
 }

@@ -18,7 +18,7 @@ public class BrightnessController : MonoBehaviour
         {
             brightnessSlider.onValueChanged.AddListener(UpdateBrightness);
         }
-
+        
         UpdateBrightness(brightnessSlider.value);
     }
 
@@ -30,6 +30,9 @@ public class BrightnessController : MonoBehaviour
 
     private void OnDisable()
     {
+        PlayerPrefs.SetFloat("BrightnessValue", brightnessSlider.value); // Save when disabled
+        PlayerPrefs.Save();
+
         if (brightnessActionLower != null)
             brightnessActionLower = null;
 
@@ -53,6 +56,8 @@ public class BrightnessController : MonoBehaviour
             UpdateBrightness(brightnessSliderValue < 0F ? -brightnessSliderValue : brightnessSliderValue);
         }
         //Debug.Log($"brightnessSliderValue = {brightnessSliderValue}");
+
+
     }
 
     void UpdateBrightness(float value)
