@@ -26290,6 +26290,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5134126027152980542, guid: 006887611ccf49545857a6ad65513b63, type: 3}
+      propertyPath: dialogueCanvas
+      value: 
+      objectReference: {fileID: 2076276845}
     - target: {fileID: 7260708494175334869, guid: 006887611ccf49545857a6ad65513b63, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.542667
@@ -26609,6 +26613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd39f86de6576f9489f7064f426be858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueCanvas: {fileID: 0}
   delayBetweenWords: 0.05
   delayBetweenRemarks: 3
   endScale: {x: 1.2, y: 1.2, z: 1.5}
@@ -26767,6 +26772,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1874134888}
   m_SourcePrefab: {fileID: 100100000, guid: eaf3c626662b1044fb35f089ca167ab4, type: 3}
+--- !u!1 &2076276845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1125827439392480370, guid: eaf3c626662b1044fb35f089ca167ab4, type: 3}
+  m_PrefabInstance: {fileID: 2076276844}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2090435757
 GameObject:
   m_ObjectHideFlags: 0

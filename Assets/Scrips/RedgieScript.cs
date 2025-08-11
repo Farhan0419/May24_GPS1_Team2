@@ -24,6 +24,8 @@ public class RedgieScript : MonoBehaviour
 
     private bool hasRedgieRespawned = false;
 
+    private SpriteRenderer redgieSpriteRenderer;
+
     public bool IsJumping
     {
         get => isJumping;
@@ -51,6 +53,9 @@ public class RedgieScript : MonoBehaviour
         magnetAbilities = player.GetComponent<MagnetAbilities>();
 
         motc = GetComponentInChildren<MagneticObjectTooClose>();
+
+        redgieSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        redgieSpriteRenderer.sortingOrder = 1;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

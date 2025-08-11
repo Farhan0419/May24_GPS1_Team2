@@ -71,6 +71,8 @@ public class MagnetAbilities : MonoBehaviour
 
     private Collider2D[] hits;
 
+    private DialogueSystem dialogueSystem;
+
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // GET & SET METHODS
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -113,6 +115,8 @@ public class MagnetAbilities : MonoBehaviour
         detectionObjects = LayerMask.GetMask("ObjectDetectee", "Platform");
         currentIndicator = Instantiate(eControls);
         currentIndicator.SetActive(false);
+
+        dialogueSystem = GameObject.FindWithTag("DialogueSystem").GetComponent<DialogueSystem>();
     }
 
     private void FixedUpdate()
@@ -233,9 +237,13 @@ public class MagnetAbilities : MonoBehaviour
                 closestObjectType = objectType[1];
             }
 
-            if(formTransform.CurrentForm != FormTransform.formState.neutral)
+            if(formTransform.CurrentForm != FormTransform.formState.neutral && !isTooCloseToMagneticObject)
             {
                 magnetVFX.Draw2DRay(transform.position, closestMagneticObject.transform.position, playerDirection, formTransform.CurrentForm, closestMagneticObject.transform.parent.tag);
+            }
+            else
+            {
+                magnetVFX.Hide2DRay();
             }
         }
     }
@@ -266,6 +274,13 @@ public class MagnetAbilities : MonoBehaviour
     // [bug] there is a bug where if hold E and swicthing the detection from one object to another, the first object still be interacted, holding E keep it going while the second object is being interacted....
     private void detectMagneticObjects()
     {
+        if (dialogueSystem.IsDialogueReady && dialogueSystem.DialogueType == "Conversation")
+        {
+            isDetecting = false;
+            magnetVFX.Hide2DRay();
+            return;
+        }
+
         playerPosition = playerObjectDetector.transform.position;
 
         hits = Physics2D.OverlapCircleAll(playerPosition, detectDistance, magneticObjects);

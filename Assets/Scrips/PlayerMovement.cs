@@ -65,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioClip land;
     [SerializeField] AudioClip jumpPad;
 
+    private SpriteRenderer playerSpriteRenderer;
+
     private void Start()
     {
         crouchAction = InputSystem.actions.FindAction("Crouch");
@@ -74,6 +76,8 @@ public class PlayerMovement : MonoBehaviour
         Elevator = GameObject.FindGameObjectWithTag("Elevator");
         elevatorScript = Elevator.GetComponent<ElevatorScript>();
         audioSource = GetComponent<AudioSource>();
+        playerSpriteRenderer = GetComponent<SpriteRenderer>();
+        playerSpriteRenderer.sortingOrder = 1;
         EnablePlayerMovement();
     }
 

@@ -61,8 +61,6 @@ public class FormTransform : MonoBehaviour
 
     public static event Action<Vector2, Action> OnPlayerChangeForm;
 
-    //[bug] colliders for paint stations needed to be adjusted, same as control indicator position
-
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // GET & SET METHODS
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
