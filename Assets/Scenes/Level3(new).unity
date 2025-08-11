@@ -657,7 +657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3658231265657834001, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
       propertyPath: nextSceneName
-      value: TBC
+      value: Level4
       objectReference: {fileID: 0}
     - target: {fileID: 4379693248320581475, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -42618,8 +42618,8 @@ MonoBehaviour:
   maxZoom: 10
   boundary: {fileID: 483348654}
   Playermovement: {fileID: 1651876940}
-  offsetTransitionSpeed: 0
-  YoffsetTransitionSpeed: 0
+  offsetTransitionSpeed: 6
+  YoffsetTransitionSpeed: 1.2
 --- !u!114 &1107515545
 MonoBehaviour:
   m_ObjectHideFlags: 0

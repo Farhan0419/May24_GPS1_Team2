@@ -25,8 +25,8 @@ public class CameraSystem : MonoBehaviour
     private float CurrentXoffset;
     private float AimedYOffset;
     private float CurrentYoffset;
-    [SerializeField] private float offsetTransitionSpeed;
-    [SerializeField] private float YoffsetTransitionSpeed;
+    [SerializeField] private float offsetTransitionSpeed = 6f;
+    [SerializeField] private float YoffsetTransitionSpeed = 1.2f;
 
     void Start()
     {

@@ -11,10 +11,16 @@ public class Level1Script : MonoBehaviour
     public GameObject JumpInsKey;
     public GameObject JumpInsCon;
     [SerializeField] GameObject invisiblePlatform;
+    private PlayerMovement playerMovement;
+    private GameObject Player;
 
     private void Start()
     {
         DoAfterSeconds(1f, () => Destroy(invisiblePlatform));
+        Player = GameObject.FindGameObjectWithTag("Player");
+        playerMovement = Player.GetComponent<PlayerMovement>();
+        playerMovement.DisablePlayerMovement();
+        DoAfterSeconds(3f, () => playerMovement.EnablePlayerMovement());
     }
 
     public void DoAfterSeconds(float delay, Action callback)

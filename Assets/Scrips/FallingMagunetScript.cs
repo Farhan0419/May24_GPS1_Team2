@@ -32,7 +32,13 @@ public class FallingMagunetScript : MonoBehaviour
 
     void Update()
     {
-        if (rectTransform == null) return;
+        if (rectTransform == null)
+        {
+            return;
+        }
+
+        float tiltAngle = Mathf.Sin(Time.time * 2f) * 2f;
+        rectTransform.localRotation = Quaternion.Euler(0f, 0f, tiltAngle);
 
         if (isMoving)
         {

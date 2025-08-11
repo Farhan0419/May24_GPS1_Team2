@@ -112,6 +112,7 @@ public class ElevatorScript : MonoBehaviour
 
     public void LoadNextScene(string sceneName)
     {
+        ambienceScript.startTransitionFade();
         TransitionManager.Instance().Transition(sceneName, transition, 0f);
     }
 }
