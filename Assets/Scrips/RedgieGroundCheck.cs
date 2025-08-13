@@ -65,7 +65,7 @@ public class RedgieGroundCheck : MonoBehaviour
             {
                 if(other.CompareTag(groundTags[i]))
                 {
-                    if (debugMode) Debug.Log($"Ground check enter: {other.name}, isGrounded: {isGrounded}");
+                 
                     if (redgieScript.Direction.y < 0)
                     {
                         redgieScript.IsJumping = false;
@@ -78,6 +78,7 @@ public class RedgieGroundCheck : MonoBehaviour
                         }
                     }
                     setGrounded(true);
+                    if (debugMode) Debug.Log($"Ground check enter: {other.name}, isGrounded: {isGrounded}");
                 }
             }
 

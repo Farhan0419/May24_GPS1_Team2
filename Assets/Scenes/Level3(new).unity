@@ -657,7 +657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3658231265657834001, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
       propertyPath: nextSceneName
-      value: Level4
+      value: TBC
       objectReference: {fileID: 0}
     - target: {fileID: 4379693248320581475, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -43742,11 +43742,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3095243859992750116, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.04
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3095243859992750116, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.48
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 3095243859992750116, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: m_LocalPosition.z
@@ -43801,6 +43801,10 @@ PrefabInstance:
       value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 7168779483956280351, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
+      propertyPath: coyoteTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168779483956280351, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: cameraSystem
       value: 
       objectReference: {fileID: 1107515544}
@@ -43823,11 +43827,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1440558800162435947, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.09
+      value: 46.091
       objectReference: {fileID: 0}
     - target: {fileID: 1440558800162435947, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.794
+      value: -12.7925
       objectReference: {fileID: 0}
     - target: {fileID: 1440558800162435947, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -43864,6 +43868,10 @@ PrefabInstance:
     - target: {fileID: 5022359094853236282, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_Name
       value: OneWayPlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 5170515369249605533, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
+      propertyPath: m_UseColliderMask
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5779999485586274926, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_Size.x

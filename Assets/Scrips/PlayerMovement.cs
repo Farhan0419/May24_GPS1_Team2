@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isMoving = false;
     public bool isFalling { get; private set; }
+    [SerializeField]private int jumpCounter = 0;
 
     private bool isInGiantMagnet = false;
     private bool isGettingCrushed;
@@ -232,8 +233,8 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isNeutral", false);
             animator.SetBool("isRed", false);
             animator.SetBool("isBlue", true);
-        }
-        if (magnetAbilities.IsInteracting == true)
+        } 
+        if (magnetAbilities.IsInteracting == true && !isMoving)
         {
             if (formTransform.CurrentForm == FormTransform.formState.red)
             {
@@ -320,7 +321,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocityY = 2.7f;
             }
         }
-
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -328,9 +328,10 @@ public class PlayerMovement : MonoBehaviour
         if (!movementDisabled && context.performed)
         {
             bool canCoyoteJump = Time.time - lastTimeGrounded <= coyoteTime;
-            if (IsGrounded() || canCoyoteJump)
+            if ((IsGrounded() || canCoyoteJump) && jumpCounter == 0) 
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
+                jumpCounter++;
                 audioSource.clip = jump;
                 audioSource.Play();
             }
@@ -498,37 +499,15 @@ public class PlayerMovement : MonoBehaviour
             {
                 fallsfxplayed = true;
                 audioSource.clip = land;
+                jumpCounter = 0;
                 audioSource.Play();
-                DoAfterSeconds(0.5f, () => fallsfxplayed = false);
+                DoAfterSeconds(0.5f, () => setJump1SfxFalse());
             }
         }
-        if (isMoving)
-        {
-            /*
-            if (IsGrounded())
-            {
-                stepTimer += Time.deltaTime;
-                if (stepTimer >= stepSpace)
-                {
-                    stepTimer = 0;
-                    int rng = UnityEngine.Random.Range(0, 3);
-                    if (rng == 0)
-                    {
-                        audioSource.clip = step1;
-                    }
-                    else if (rng == 1)
-                    {
-                        audioSource.clip = step2;
-                    }
-                    else
-                    {
-                        audioSource.clip = step3;
-                    }
-                    audioSource.Play();
-                }
-            }
-            */
-        }
+    }
+    private void setJump1SfxFalse()
+    {
+        fallsfxplayed = false;
     }
 
     public void PlayFootstep()
