@@ -328,7 +328,7 @@ public class PlayerMovement : MonoBehaviour
         if (!movementDisabled && context.performed)
         {
             bool canCoyoteJump = Time.time - lastTimeGrounded <= coyoteTime;
-            if ((IsGrounded() || canCoyoteJump) && jumpCounter == 0) 
+            if (IsGrounded() || canCoyoteJump)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
                 jumpCounter++;
@@ -499,7 +499,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 fallsfxplayed = true;
                 audioSource.clip = land;
-                jumpCounter = 0;
                 audioSource.Play();
                 DoAfterSeconds(0.5f, () => setJump1SfxFalse());
             }
