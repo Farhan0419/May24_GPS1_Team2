@@ -93,12 +93,12 @@ public class FormTransform : MonoBehaviour
         get => isNearStation;
     }
 
-    public bool NearStationTag
+    public string NearStationTag
     {
         get => nearStationTag;
     }
 
-    public bool CurrentColliderName
+    public string CurrentColliderName
     {
         get => currentColliderName;
     }

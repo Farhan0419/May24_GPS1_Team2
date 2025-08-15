@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -48,6 +50,10 @@ public class PlayerMovement : MonoBehaviour
     private ElevatorScript elevatorScript;
 
     private InputAction crouchAction;
+
+    [SerializeField] private GameObject RedPaintSplat;
+    [SerializeField] private GameObject BluePaintSplat;
+    [SerializeField] private GameObject GreyPaintSplat;
 
     public float Horizontal => horizontal;
     public bool getDirection() => isFacingRight;
@@ -111,7 +117,9 @@ public class PlayerMovement : MonoBehaviour
         float targetX = location.x;
         float threshold = 0.05f;
         float autoMoveSpeed = 2f;
+        float splatLocation = 0f;
 
+        isFalling = false;
         isMoving = true;
 
         while (Mathf.Abs(transform.position.x - targetX) > threshold)
@@ -127,10 +135,87 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
+        if ((isFacingRight && formTransform.CurrentColliderName == "rightCollider") || (!isFacingRight && formTransform.CurrentColliderName == "leftCollider"))
+        {
+            Flip();
+        }
         isMoving = false;
         transform.position = new Vector2(targetX, transform.position.y);
 
-        yield return new WaitForSeconds(1.2f); // Time for playing the splat animation -------------------------------------------------
+        if (isFacingRight)
+        {
+            splatLocation = transform.position.x + 1.5f;
+        }
+        else
+        {
+            splatLocation = transform.position.x - 1.5f;
+        }
+
+        string paintSplatColor = "None";
+        // Animation Trigger
+        if (formTransform.CurrentForm == FormTransform.formState.neutral)
+        {
+            if (formTransform.NearStationTag == "RedPaintStation")
+            {
+                animator.SetTrigger("N2R");
+                paintSplatColor = "Red";
+            }
+            else if (formTransform.NearStationTag == "BluePaintStation")
+            {
+                animator.SetTrigger("N2B");
+                paintSplatColor = "Blue";
+            }
+        }
+        else if (formTransform.CurrentForm == FormTransform.formState.red)
+        {
+            if (formTransform.NearStationTag == "BluePaintStation")
+            {
+                animator.SetTrigger("R2B");
+                paintSplatColor = "Blue";
+            }
+            if (formTransform.NearStationTag == "GreyPaintStation")
+            {
+                animator.SetTrigger("R2N");
+                paintSplatColor = "Grey";
+            }
+        }
+        else if (formTransform.CurrentForm == FormTransform.formState.blue)
+        {
+            if (formTransform.NearStationTag == "RedPaintStation")
+            {
+                animator.SetTrigger("B2R");
+                paintSplatColor = "Red";
+            }
+            if (formTransform.NearStationTag == "GreyPaintStation")
+            {
+                animator.SetTrigger("B2N");
+                paintSplatColor = "Grey";
+            }
+        }
+        //----------------
+        float step2 = autoMoveSpeed * Time.deltaTime;
+        float yPos = transform.position.y + .45f;
+        while (transform.position.x != splatLocation)
+        {
+            transform.position = new Vector2(Mathf.MoveTowards(transform.position.x, splatLocation, step2), yPos);
+            yield return null;
+        }
+        transform.position = new Vector2(splatLocation, transform.position.y);
+        if (paintSplatColor == "Red")
+        {
+            Instantiate(RedPaintSplat, transform.position, transform.rotation);
+        }
+        else if (paintSplatColor == "Blue")
+        {
+            Instantiate(BluePaintSplat, transform.position, transform.rotation);
+        }
+        else if (paintSplatColor == "Grey")
+        {
+            Instantiate(GreyPaintSplat, transform.position, transform.rotation);
+        }
+        paintSplatColor = "None";
+
+        //yield return new WaitForSeconds(1.2f); // Time for playing the splat animation -------------------------------------------------
 
         callback?.Invoke(); // Form transforming ---------------------------------------------------------------------------------------
         movementDisabled = false;
@@ -160,6 +245,7 @@ public class PlayerMovement : MonoBehaviour
         float threshold = 0.05f;
         float autoMoveSpeed = 2f;
 
+        isFalling = false;
         isMoving = true;
 
         while (Mathf.Abs(transform.position.x - targetX) > threshold)
@@ -383,18 +469,6 @@ public class PlayerMovement : MonoBehaviour
             yoffsetZoneScript = other.GetComponent<YoffsetZoneScript>();
             Yoffset = yoffsetZoneScript.getOffsetVal();
         }
-
-        if (other.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
-        {
-            if (formTransform.CurrentForm == FormTransform.formState.red)
-            {
-                isInGiantMagnet = true;
-            }
-            else if (formTransform.CurrentForm == FormTransform.formState.blue)
-            {
-                isGettingCrushed = true;
-            }
-        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -404,11 +478,23 @@ public class PlayerMovement : MonoBehaviour
             yoffsetZoneScript = null;
             Yoffset = 0;
         }
-        if (other.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
+    }
+
+    public void setInsideBlueMag()
+    {
+        if (formTransform.CurrentForm == FormTransform.formState.red)
         {
-            isInGiantMagnet = false;
-            isGettingCrushed = false;
+            isInGiantMagnet = true;
         }
+        else if (formTransform.CurrentForm == FormTransform.formState.blue)
+        {
+            isGettingCrushed = true;
+        }
+    }
+    public void setOutsideBlueMag()
+    {
+        isInGiantMagnet = false;
+        isGettingCrushed = false;
     }
 
     private void JumpPadLaunch()
