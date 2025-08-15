@@ -170,7 +170,7 @@ public class FormTransform : MonoBehaviour
         if (paintFormAction != null)
         {
             paintFormAction.performed += paintForm_performed;
-           // paintFormAction.canceled += paintForm_canceled;
+            paintFormAction.canceled += paintForm_canceled;
         }
     }
 
@@ -179,7 +179,7 @@ public class FormTransform : MonoBehaviour
         if (paintFormAction != null)
         {
             paintFormAction.performed -= paintForm_performed;
-            //paintFormAction.canceled -= paintForm_canceled;
+            paintFormAction.canceled -= paintForm_canceled;
             paintFormAction = null;
         }
     }
@@ -230,30 +230,10 @@ public class FormTransform : MonoBehaviour
         });
     }
 
-    //IEnumerator durationPainting()
-    //{
-    //    yield return new WaitForSeconds(3f);
-    //    isPaint = false;
-    //}
-
-    //private void paintForm_canceled(InputAction.CallbackContext context)
-    //{
-    //    if(isPaint == true)
-    //    {
-    //        // Problem of calling it too many times as well
-    //        // Need to be control by the station script to toggle isPaint = false
-    //        // coroutine is temporary only
-    //        StartCoroutine(durationPainting());
-
-    //        // Change the render order of the character to be infront the paint station
-
-    //        if (debugMode) Debug.Log("Painting Done");
-    //    }
-    //    else
-    //    {
-    //        if (debugMode) Debug.Log("Nothing's Happening");
-    //    }
-    //}
+    private void paintForm_canceled(InputAction.CallbackContext context)
+    {
+        isPaint = false;
+    }
 
     private void detectNearestStation()
     {
