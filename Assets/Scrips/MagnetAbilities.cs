@@ -126,6 +126,10 @@ public class MagnetAbilities : MonoBehaviour
         {
             pushPullMagneticObject();
         }
+        else if (closestMagneticObjectRb != null)
+        {
+            closestMagneticObjectRb.linearVelocity = Vector2.zero;
+        }
     }
 
     private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold && !isTooCloseToMagneticObject;
