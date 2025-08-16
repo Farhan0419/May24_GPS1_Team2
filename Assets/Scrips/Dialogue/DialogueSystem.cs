@@ -21,6 +21,8 @@ public class DialogueSystem : MonoBehaviour
     protected RectTransform dialogueCanvasRT;
     protected GameObject conversationDialogueBox;
     protected GameObject remarkDialogueBox;
+    protected TextMeshProUGUI conversationDialogueText;
+    protected TextMeshProUGUI remarkDialogueText;
     protected TextMeshProUGUI dialogueText;
     protected PlayerMovement playerMovement;
 
@@ -98,9 +100,11 @@ public class DialogueSystem : MonoBehaviour
         {
             dialogueCanvasComponent = dialogueCanvas.GetComponentInChildren<Canvas>();
             dialogueCanvasRT = dialogueCanvasComponent.GetComponent<RectTransform>(); ;
-            dialogueText = GameObject.FindWithTag("DialogueCanvas").GetComponentInChildren<TextMeshProUGUI>();
             conversationDialogueBox = GameObject.FindWithTag("ConvoSpeechBubble");
             remarkDialogueBox = GameObject.FindWithTag("RemarkSpeechBubble");
+            conversationDialogueText = conversationDialogueBox.GetComponentInChildren<TextMeshProUGUI>();
+            remarkDialogueText = remarkDialogueBox.GetComponentInChildren<TextMeshProUGUI>();
+            
 
             dialogueCanvas.SetActive(false);
         }
@@ -147,7 +151,6 @@ public class DialogueSystem : MonoBehaviour
                 if(!isLineFullyShown)
                 {
                     dialogueText.maxVisibleCharacters = currentLine.Length;
-                    //dialogueText.text = currentLine;
                     isLineFullyShown = true;
                     dialogueCounter++;
                 }
@@ -200,6 +203,7 @@ public class DialogueSystem : MonoBehaviour
                 }
                 else if (dialogueType[dialogueState] == "Remark" && nextRemarkDialogue)
                 {
+
                     nextRemarkDialogue = false;
                     ShowNextLine(ref usableDialogue, ref typingCoroutine, ref dialogueCounter, ref dialogueText, ref dialogueState,
                         ref dialogueCanvas, delayBetweenWords, ToTypeLetters, ToScaleDialogueBox);
@@ -226,12 +230,12 @@ public class DialogueSystem : MonoBehaviour
     {
         if (dialogueType[dialogueState] == "Conversation")
         {
-            dialogueCanvasComponent.sortingOrder = 1;
+            dialogueCanvasComponent.sortingOrder = 3;
             playerMovement.DisablePlayerMovement();
         }
         else if (dialogueType[dialogueState] == "Remark")
         {
-            dialogueCanvasComponent.sortingOrder = 0;
+            dialogueCanvasComponent.sortingOrder = 1;
         }
     }
 
@@ -260,6 +264,16 @@ public class DialogueSystem : MonoBehaviour
         dialogueCanvas.SetActive(true);
         isDialogueBoxScalingTrigger = true;
         setValuesBasedOnDialogueType();
+
+        if(dialogueType[dialogueState] == "Conversation")
+        {
+            dialogueText = conversationDialogueText;
+        }
+        else if (dialogueType[dialogueState] == "Remark")
+        {
+            dialogueText = remarkDialogueText;
+        }
+
         ToTypeLetters(usableDialogue[dialogueState][dialogueCounter]);
     }
 

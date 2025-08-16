@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         elevatorScript = Elevator.GetComponent<ElevatorScript>();
         audioSource = GetComponent<AudioSource>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
-        playerSpriteRenderer.sortingOrder = 1;
+        playerSpriteRenderer.sortingOrder = 2;
         EnablePlayerMovement();
     }
 
