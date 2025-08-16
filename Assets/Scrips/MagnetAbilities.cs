@@ -126,7 +126,7 @@ public class MagnetAbilities : MonoBehaviour
         {
             pushPullMagneticObject();
         }
-        else if (closestMagneticObjectRb != null)
+        else if (closestMagneticObjectRb != null && isInteracting && playerRB.linearVelocity.sqrMagnitude > velocityThreshold)
         {
             closestMagneticObjectRb.linearVelocity = Vector2.zero;
         }
@@ -258,6 +258,7 @@ public class MagnetAbilities : MonoBehaviour
         closestMagneticObject = null;
         closestMagneticObjectRb = null;
         closestMagneticObjectPosition = Vector2.zero;
+
         closestObjectType = null;
     }
 
