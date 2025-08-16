@@ -132,7 +132,7 @@ public class MagnetAbilities : MonoBehaviour
         }
     }
 
-    private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold && !isTooCloseToMagneticObject;
+    private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold;
 
     private void Update()
     {

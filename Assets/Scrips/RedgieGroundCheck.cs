@@ -16,6 +16,7 @@ public class RedgieGroundCheck : MonoBehaviour
     private GameObject blueMagneticPlatform;
 
     private RedgieScript redgieScript;
+    private Rigidbody2D redgieRb;
 
     private string[] groundTags = { "platform", "OneWayPlatform", "Player", "Elevator", "BlueMagneticPlatform", 
         "ShowerStation", "RedPaintStation", "BluePaintStation", "RedJumpPad"};
@@ -53,6 +54,7 @@ public class RedgieGroundCheck : MonoBehaviour
     private void Start()
     {
         redgieScript = GetComponentInParent<RedgieScript>();
+        redgieRb = GetComponentInParent<Rigidbody2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -103,11 +105,13 @@ public class RedgieGroundCheck : MonoBehaviour
         {
             triggerCount++;
             isGrounded = value;
+            redgieRb.bodyType = RigidbodyType2D.Kinematic;
         }
         else
         {
             triggerCount = 0;
             isGrounded = value;
+            redgieRb.bodyType = RigidbodyType2D.Dynamic;
         }
     }
 
@@ -121,6 +125,7 @@ public class RedgieGroundCheck : MonoBehaviour
                 if (other.CompareTag(groundTags[i]))
                 {
                     triggerCount--;
+                    if (debugMode) Debug.Log($"Ground check exited: {other.name}, isGrounded: {isGrounded}");
                 }
             }
 
@@ -129,8 +134,6 @@ public class RedgieGroundCheck : MonoBehaviour
                 if (debugMode) Debug.Log("none");
                 setGrounded(false);
             }
-
-            if (debugMode) Debug.Log($"Ground check exited: {other.name}, isGrounded: {isGrounded}");
 
             switch (other.tag)
             {

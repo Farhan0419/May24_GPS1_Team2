@@ -93,6 +93,7 @@ public class RedgieScript : MonoBehaviour
 
     IEnumerator JumpRoutine(Vector2 jumpVel)
     {
+        rb.bodyType = RigidbodyType2D.Dynamic;
         rb.linearVelocity = jumpVel;
         isJumping = true;
 
@@ -113,7 +114,7 @@ public class RedgieScript : MonoBehaviour
             if(currentDirection.y != 0)
             {
                 direction = currentDirection;
-                if (DebugMode) Debug.Log(direction.y);
+                //if (DebugMode) Debug.Log(direction.y);
             }
 
             lastPosition = currentPosition;

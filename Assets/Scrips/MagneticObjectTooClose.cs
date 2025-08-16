@@ -5,6 +5,8 @@ public class MagneticObjectTooClose : MonoBehaviour
     private bool isTooClose = false;
     [SerializeField] private string currentObject;
 
+    private string[] objectTags = { "platform", "OneWayPlatform", "Player", "Elevator", "BlueMagneticPlatform", "Redgie"};
+
     public bool IsTooClose
     {
         get => isTooClose;
@@ -14,15 +16,14 @@ public class MagneticObjectTooClose : MonoBehaviour
     {
         GameObject other = collision.gameObject;
 
-        if (other.CompareTag("Player"))
-        {
-            isTooClose = true;
-        }
 
-        if(currentObject == "BlueMagneticPlatform")
+        for (int i = 0; i < objectTags.Length; i++)
         {
-            // collide with anything then the platform should stop moving
-            isTooClose = true;  
+            if (other.CompareTag(objectTags[i]))
+            {
+                isTooClose = true;
+
+            }
         }
     }
 
@@ -30,16 +31,12 @@ public class MagneticObjectTooClose : MonoBehaviour
     {
         GameObject other = collision.gameObject;
 
-        if (other.CompareTag("Player"))
+        for (int i = 0; i < objectTags.Length; i++)
         {
-            isTooClose = false;
-        }
-
-        if (currentObject == "BlueMagneticPlatform")
-        {
-            if (other.CompareTag("platform"))
+            if (other.CompareTag(objectTags[i]))
             {
                 isTooClose = false;
+
             }
         }
     }
