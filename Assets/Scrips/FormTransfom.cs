@@ -148,7 +148,7 @@ public class FormTransform : MonoBehaviour
 
     private bool showStationIndicator()
     {
-        if(isNearStation && !isPaint)
+        if(isNearStation && !isPaint && playerMovement.GetIsGrounded)
         {
             switch (nearStationTag)
             {
@@ -186,7 +186,7 @@ public class FormTransform : MonoBehaviour
 
     private void paintForm_performed(InputAction.CallbackContext context)
     {
-        if (!isNearStation || isPaint) return;
+        if (!isNearStation || isPaint || !playerMovement.GetIsGrounded) return;
 
         if (nearStationTag == stationTag[0])
         {

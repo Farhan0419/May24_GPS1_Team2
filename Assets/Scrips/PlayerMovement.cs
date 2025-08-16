@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Transform GroundCheck;
     public LayerMask GroundLayer;
+    private bool isGrounded = false;
 
     private float horizontal;
     public float speed = 8f;
@@ -60,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
     public bool getMovement() => isMoving;
     public float GetYoffset() => Yoffset;
     public bool getIsGettingCrushed() => isGettingCrushed;
+    public bool GetIsGrounded => isGrounded;
 
     [Header("Audio")]
     //Audio stuff
@@ -430,7 +432,9 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D leftRay = Physics2D.Raycast(center - raycastOffset, Vector2.down, 0.3f, GroundLayer);
         RaycastHit2D rightRay = Physics2D.Raycast(center + raycastOffset, Vector2.down, 0.3f, GroundLayer);
 
-        return leftRay.collider != null || rightRay.collider != null;
+        isGrounded = leftRay.collider != null || rightRay.collider != null;
+
+        return isGrounded;
     }
 
     private void Flip()
