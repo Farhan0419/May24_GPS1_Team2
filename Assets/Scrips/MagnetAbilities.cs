@@ -44,6 +44,7 @@ public class MagnetAbilities : MonoBehaviour
     private GameObject currentIndicator;
 
     private bool isTooCloseToMagneticObject;
+    private bool isPlayerTooCloseToMagneticObject;
 
     private MagnetVFX magnetVFX;
 
@@ -167,7 +168,7 @@ public class MagnetAbilities : MonoBehaviour
         if(closestMagneticObjectRb != null)
         {
             return  (isDetecting && closestMagneticObjectRb.linearVelocity.sqrMagnitude < velocityThreshold && 
-                    formTransform.CurrentForm != FormTransform.formState.neutral && !isTooCloseToMagneticObject && 
+                    formTransform.CurrentForm != FormTransform.formState.neutral && !isPlayerTooCloseToMagneticObject && 
                     playerRB.linearVelocity.sqrMagnitude < velocityThreshold);   
         }
         else
@@ -230,6 +231,7 @@ public class MagnetAbilities : MonoBehaviour
         {
             closestMagneticObjectPosition = closestMagneticObject.transform.position;
             closestMagneticObjectRb = closestMagneticObject.GetComponentInParent<Rigidbody2D>();
+            isPlayerTooCloseToMagneticObject = hit.gameObject.GetComponentInChildren<MagneticObjectTooClose>().IsPlayerTooClose;
             isTooCloseToMagneticObject = hit.gameObject.GetComponentInChildren<MagneticObjectTooClose>().IsTooClose;
 
             if (closestMagneticObject.transform.parent.tag.ToLower().Contains(objectType[0]))
@@ -241,7 +243,7 @@ public class MagnetAbilities : MonoBehaviour
                 closestObjectType = objectType[1];
             }
 
-            if(formTransform.CurrentForm != FormTransform.formState.neutral && !isTooCloseToMagneticObject)
+            if(formTransform.CurrentForm != FormTransform.formState.neutral && !isPlayerTooCloseToMagneticObject)
             {
                 magnetVFX.Draw2DRay(transform.position, closestMagneticObject.transform.position, playerDirection, formTransform.CurrentForm, closestMagneticObject.transform.parent.tag);
             }
@@ -379,29 +381,32 @@ public class MagnetAbilities : MonoBehaviour
             //Debug.Log("push");
             directionTowardsPlayer = playerDirection.x;
         }
+
+        // use linearVecocity for continous movement
+        closestMagneticObjectRb.linearVelocity = new Vector2(directionTowardsPlayer * speedOfPushPullObjects, closestMagneticObjectRb.linearVelocity.y);
     }
 
     private void pushPullMagneticObject()
     {
         if (closestMagneticObject == null) return;
 
-        if (closestObjectType == objectType[0] && formTransform.CurrentForm == FormTransform.formState.blue)
+        if (closestObjectType == objectType[0] && formTransform.CurrentForm == FormTransform.formState.blue && !isPlayerTooCloseToMagneticObject)
         {
             changeDirectionMagneticObject("pull");
         }
-        else if (closestObjectType == objectType[1] && formTransform.CurrentForm == FormTransform.formState.red)
+        else if (closestObjectType == objectType[1] && formTransform.CurrentForm == FormTransform.formState.red && !isPlayerTooCloseToMagneticObject)
         {
             changeDirectionMagneticObject("pull");
+        }
+        else if(!isTooCloseToMagneticObject)
+        {
+            Debug.Log("pushing");
+            changeDirectionMagneticObject("push");
         }
         else
         {
-            changeDirectionMagneticObject("push");
+            closestMagneticObjectRb.linearVelocity = Vector2.zero;
         }
-
-        //Debug.Log("USED");
-
-        // use linearVecocity for continous movement
-        closestMagneticObjectRb.linearVelocity = new Vector2(directionTowardsPlayer * speedOfPushPullObjects, closestMagneticObjectRb.linearVelocity.y);
     }
 
     private void OnDrawGizmos() 

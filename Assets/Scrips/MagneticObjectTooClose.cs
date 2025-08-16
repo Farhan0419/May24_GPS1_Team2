@@ -3,6 +3,7 @@ using UnityEngine;
 public class MagneticObjectTooClose : MonoBehaviour
 {
     private bool isTooClose = false;
+    private bool isPlayerTooClose = false;
     [SerializeField] private string currentObject;
 
     private string[] objectTags = { "platform", "OneWayPlatform", "Player", "Elevator", "BlueMagneticPlatform", "Redgie"};
@@ -10,6 +11,11 @@ public class MagneticObjectTooClose : MonoBehaviour
     public bool IsTooClose
     {
         get => isTooClose;
+    }
+
+    public bool IsPlayerTooClose
+    {
+        get => isPlayerTooClose;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -21,7 +27,14 @@ public class MagneticObjectTooClose : MonoBehaviour
         {
             if (other.CompareTag(objectTags[i]))
             {
-                isTooClose = true;
+                if (other.gameObject.tag == "Player")
+                {
+                    isPlayerTooClose = true;
+                }
+                else
+                {
+                    isTooClose = true;
+                }
 
             }
         }
@@ -35,7 +48,14 @@ public class MagneticObjectTooClose : MonoBehaviour
         {
             if (other.CompareTag(objectTags[i]))
             {
-                isTooClose = false;
+                if (other.gameObject.tag == "Player")
+                {
+                    isPlayerTooClose = false;
+                }
+                else
+                {
+                    isTooClose = false;
+                }
 
             }
         }

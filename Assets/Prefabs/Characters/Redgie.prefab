@@ -236,6 +236,10 @@ PrefabInstance:
       value: ConvoSpeechBubble
       objectReference: {fileID: 0}
     - target: {fileID: 5518620210848205888, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: m_Size.x
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518620210848205888, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Size.y
       value: 1.2140977
       objectReference: {fileID: 0}
