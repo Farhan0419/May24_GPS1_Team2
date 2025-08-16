@@ -399,7 +399,6 @@ public class MagnetAbilities : MonoBehaviour
         }
         else if(!isTooCloseToMagneticObject)
         {
-            Debug.Log("pushing");
             changeDirectionMagneticObject("push");
         }
         else

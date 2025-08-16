@@ -27,6 +27,8 @@ public class RedgieScript : MonoBehaviour
 
     private SpriteRenderer redgieSpriteRenderer;
 
+    private bool isPressurePlateActivated = false;
+
     public bool IsJumping
     {
         get => isJumping;
@@ -86,6 +88,10 @@ public class RedgieScript : MonoBehaviour
                 if (DebugMode) Debug.Log("Redgie got turned into a pancake, resetting to original position");
             }
         }
+        if (other.gameObject.CompareTag("PressurePlate"))
+        {
+            isPressurePlateActivated = true;
+        }
     }
 
     IEnumerator ResetHasRedgieRespawned()
@@ -131,7 +137,12 @@ public class RedgieScript : MonoBehaviour
     {
         // Always Freeze X movement  if not interacting or not grounded or not too close to player
         // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
-        if (magnetAbilities.IsInteracting && groundCheck.IsGrounded)
+
+        if(isPressurePlateActivated)
+        {
+            rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
+        }
+        else if (magnetAbilities.IsInteracting && groundCheck.IsGrounded)
         {
             if (groundCheck.OnBlueMagneticPlatform)
             {
@@ -142,7 +153,7 @@ public class RedgieScript : MonoBehaviour
                 transform.parent = null;
             }
 
-            if (formTransform.CurrentForm == FormTransform.formState.blue)
+            if (formTransform.CurrentForm == FormTransform.formState.blue && !motc.IsPlayerTooClose)
             {
                 rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
             }
