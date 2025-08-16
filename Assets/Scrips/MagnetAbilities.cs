@@ -168,8 +168,7 @@ public class MagnetAbilities : MonoBehaviour
         if(closestMagneticObjectRb != null)
         {
             return  (isDetecting && closestMagneticObjectRb.linearVelocity.sqrMagnitude < velocityThreshold && 
-                    formTransform.CurrentForm != FormTransform.formState.neutral && !isPlayerTooCloseToMagneticObject && 
-                    playerRB.linearVelocity.sqrMagnitude < velocityThreshold);   
+                    formTransform.CurrentForm != FormTransform.formState.neutral && playerRB.linearVelocity.sqrMagnitude < velocityThreshold);   
         }
         else
         {

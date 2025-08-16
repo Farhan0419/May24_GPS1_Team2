@@ -50,15 +50,6 @@ public class BlueMagneticPlatformScript : MonoBehaviour
         }
     }
 
-    // [Bug] if maxdistance , toggle off the control indicator platform
-    // [Bug] player cannot stand on top of the platform if it is moving, player need to manually move
-    // [Bug] if player is too close to the redgie, then redgie will not move with the platform
-    // maybe make redgie kinematic?
-    // [Bug] if player is too close to the redgie, then player will not be able to push/pull the redgie
-    // [Bug] Unmovable physics material apply to object , currently can still move abit.
-    // If increase friction then player cannot push/pull redgie
-    // if player is ontop of the object then player cannot because friction is too high
-
     private void checkIsXMovementFreeze()
     {
         // if resetting platform then it will push the player but if interacting then it will not push the player
