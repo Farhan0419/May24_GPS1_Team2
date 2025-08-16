@@ -139,10 +139,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2166738721469617440, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2671082612535605348, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Name
       value: CollisionPrevention
