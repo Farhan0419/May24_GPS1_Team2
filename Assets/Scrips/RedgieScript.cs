@@ -45,6 +45,11 @@ public class RedgieScript : MonoBehaviour
         get => hasRedgieRespawned;
     }
 
+    public bool IsPressurePlateActivated
+    {
+        get => isPressurePlateActivated;
+    }
+
     private void Start()
     {
         OriginalPos = transform.position;

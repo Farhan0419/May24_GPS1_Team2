@@ -151,15 +151,38 @@ public class MagnetAbilities : MonoBehaviour
             magnetVFX.Hide2DRay();
         }
 
-        if (shouldShowIndicator())
-        {
+        if(shouldShowIndicator())
+        { 
             Vector2 indicatorPosition = new Vector2(closestMagneticObjectPosition.x + indicatorXOffset, closestMagneticObjectPosition.y + indicatorYOffset);
             currentIndicator.transform.position = indicatorPosition;
-            currentIndicator.SetActive(true);
+
+            switch(closestMagneticObject.transform.parent.tag)
+            {
+                case "Redgie":
+                    if(closestMagneticObject.GetComponentInParent<RedgieScript>().IsPressurePlateActivated)
+                    {
+                        currentIndicator.SetActive(false);
+                    }
+                    else
+                    {
+                        currentIndicator.SetActive(true);
+                    }
+                    break;
+                case "BlueMagneticPlatform":
+                    if(closestMagneticObject.GetComponentInParent<BlueMagneticPlatformScript>().HasTravelMaxDistance)
+                    {
+                        currentIndicator.SetActive(false);
+                    }
+                    else
+                    {
+                        currentIndicator.SetActive(true);
+                    }
+                    break;
+            }
         }
         else
         {
-            currentIndicator.SetActive(false);   
+            currentIndicator.SetActive(false);
         }
     }
 
