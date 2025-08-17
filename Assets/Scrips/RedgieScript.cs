@@ -153,9 +153,16 @@ public class RedgieScript : MonoBehaviour
                 transform.parent = null;
             }
 
-            if (formTransform.CurrentForm == FormTransform.formState.blue && !motc.IsPlayerTooClose)
+            if (formTransform.CurrentForm == FormTransform.formState.blue)
             {
-                rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+                if (motc.IsPlayerTooClose)
+                {
+                    rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
+                }
+                else if (!motc.IsPlayerTooClose)
+                {
+                    rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+                }
             }
             else if(formTransform.CurrentForm == FormTransform.formState.red && !motc.IsTooClose)
             {
