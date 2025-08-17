@@ -93,6 +93,16 @@ public class FormTransform : MonoBehaviour
         get => isNearStation;
     }
 
+    public string NearStationTag
+    {
+        get => nearStationTag;
+    }
+
+    public string CurrentColliderName
+    {
+        get => currentColliderName;
+    }
+
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
     // Events & functions
     // -----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -138,7 +148,7 @@ public class FormTransform : MonoBehaviour
 
     private bool showStationIndicator()
     {
-        if(isNearStation && !isPaint)
+        if(isNearStation && !isPaint && playerMovement.GetIsGrounded)
         {
             switch (nearStationTag)
             {
@@ -176,7 +186,7 @@ public class FormTransform : MonoBehaviour
 
     private void paintForm_performed(InputAction.CallbackContext context)
     {
-        if (!isNearStation || isPaint) return;
+        if (!isNearStation || isPaint || !playerMovement.GetIsGrounded) return;
 
         if (nearStationTag == stationTag[0])
         {
@@ -220,29 +230,9 @@ public class FormTransform : MonoBehaviour
         });
     }
 
-    IEnumerator durationPainting()
-    {
-        yield return new WaitForSeconds(3f);
-        isPaint = false;
-    }
-
     private void paintForm_canceled(InputAction.CallbackContext context)
     {
-        if(isPaint == true)
-        {
-            // Problem of calling it too many times as well
-            // Need to be control by the station script to toggle isPaint = false
-            // coroutine is temporary only
-            StartCoroutine(durationPainting());
-
-            // Change the render order of the character to be infront the paint station
-
-            if (debugMode) Debug.Log("Painting Done");
-        }
-        else
-        {
-            if (debugMode) Debug.Log("Nothing's Happening");
-        }
+        isPaint = false;
     }
 
     private void detectNearestStation()

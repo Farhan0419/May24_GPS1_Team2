@@ -16,6 +16,7 @@ public class RedgieScript : MonoBehaviour
     private GameObject player;
     private Rigidbody2D playerRB;
     private MagnetAbilities magnetAbilities;
+    private FormTransform formTransform;
     private MagneticObjectTooClose motc;
 
     private Vector2 currentPosition;
@@ -25,6 +26,8 @@ public class RedgieScript : MonoBehaviour
     private bool hasRedgieRespawned = false;
 
     private SpriteRenderer redgieSpriteRenderer;
+
+    private bool isPressurePlateActivated = false;
 
     public bool IsJumping
     {
@@ -51,6 +54,7 @@ public class RedgieScript : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerRB = player.GetComponent<Rigidbody2D>();
         magnetAbilities = player.GetComponent<MagnetAbilities>();
+        formTransform = player.GetComponent<FormTransform>();
 
         motc = GetComponentInChildren<MagneticObjectTooClose>();
 
@@ -84,6 +88,10 @@ public class RedgieScript : MonoBehaviour
                 if (DebugMode) Debug.Log("Redgie got turned into a pancake, resetting to original position");
             }
         }
+        if (other.gameObject.CompareTag("PressurePlate"))
+        {
+            isPressurePlateActivated = true;
+        }
     }
 
     IEnumerator ResetHasRedgieRespawned()
@@ -93,6 +101,7 @@ public class RedgieScript : MonoBehaviour
 
     IEnumerator JumpRoutine(Vector2 jumpVel)
     {
+        rb.bodyType = RigidbodyType2D.Dynamic;
         rb.linearVelocity = jumpVel;
         isJumping = true;
 
@@ -113,7 +122,7 @@ public class RedgieScript : MonoBehaviour
             if(currentDirection.y != 0)
             {
                 direction = currentDirection;
-                if (DebugMode) Debug.Log(direction.y);
+                //if (DebugMode) Debug.Log(direction.y);
             }
 
             lastPosition = currentPosition;
@@ -128,7 +137,12 @@ public class RedgieScript : MonoBehaviour
     {
         // Always Freeze X movement  if not interacting or not grounded or not too close to player
         // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
-        if (magnetAbilities.IsInteracting && groundCheck.IsGrounded && !motc.IsTooClose)
+
+        if(isPressurePlateActivated)
+        {
+            rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
+        }
+        else if (magnetAbilities.IsInteracting && groundCheck.IsGrounded)
         {
             if (groundCheck.OnBlueMagneticPlatform)
             {
@@ -139,7 +153,14 @@ public class RedgieScript : MonoBehaviour
                 transform.parent = null;
             }
 
-            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+            if (formTransform.CurrentForm == FormTransform.formState.blue && !motc.IsPlayerTooClose)
+            {
+                rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+            }
+            else if(formTransform.CurrentForm == FormTransform.formState.red && !motc.IsTooClose)
+            {
+                rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+            }
         }
         else if (groundCheck.OnBlueMagneticPlatform && !motc.IsTooClose)
         {

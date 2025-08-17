@@ -12,7 +12,6 @@ public class PlayerDeath : MonoBehaviour
     private Transform PlayerTransform;
     private string currentSceneName;
     private float timer = 0f;
-    private bool GettingCrushedtimerOn = false;
     private float crushScale = 1f;
     private bool playerDead = false;
     private Animator animator;
@@ -39,6 +38,7 @@ public class PlayerDeath : MonoBehaviour
         if (causeOfDeath == "Laser")
         {
             Debug.Log("Player Died from laser");
+            animator.SetTrigger("Melt");
         }
         else if (causeOfDeath == "Crush")
         {
@@ -54,7 +54,7 @@ public class PlayerDeath : MonoBehaviour
         {
             Debug.Log("Player got stuck in the Giant Blue magnet forever");
         }
-        DoAfterSeconds(2f, ()=> Restart(currentSceneName));
+        DoAfterSeconds(0.6f, ()=> Restart(currentSceneName));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -68,21 +68,13 @@ public class PlayerDeath : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
         {
-            GettingCrushedtimerOn = true;
+            Debug.Log("Player Touch giant magnet");
             MovementScript.DisablePlayerMovement();
+            DoAfterSeconds(2f, () => PlayerDead("GiantMagnet"));
         }
     }
     private void Update()
     {
-        if (GettingCrushedtimerOn)
-        {
-            timer += Time.deltaTime;
-            if (timer >= 4)
-            {
-                PlayerDead("GiantMagnet");
-                GettingCrushedtimerOn = false;
-            }
-        }
         if (MovementScript.getIsGettingCrushed())
         {
             timer += Time.deltaTime;

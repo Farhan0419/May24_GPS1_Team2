@@ -5,6 +5,7 @@ public class MagnetVFX : MonoBehaviour
     private Transform abilitiesVFXPoint;
     private LineRenderer abilitiesLineRenderer;
     private MagnetAbilities magnetAbilities;
+    private Rigidbody2D playerRB;
 
     private bool isInteracting = false;
 
@@ -12,6 +13,7 @@ public class MagnetVFX : MonoBehaviour
     [SerializeField] private Material circleToPlayer;
     [SerializeField] private Material leftArrowToPlayer;
     [SerializeField] private Material rightArrowToObject;
+    [SerializeField] private float velocityThreshold = 0.01f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -19,6 +21,8 @@ public class MagnetVFX : MonoBehaviour
         abilitiesLineRenderer = GetComponentInChildren<LineRenderer>();
         abilitiesVFXPoint = GetComponentInChildren<LineRenderer>().gameObject.transform;
         magnetAbilities = GetComponent<MagnetAbilities>();
+
+        playerRB = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -36,9 +40,13 @@ public class MagnetVFX : MonoBehaviour
                 {
                     abilitiesLineRenderer.material = circleToObject;
                 }
-                else
+                else if(isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold)
                 {
                     abilitiesLineRenderer.material = rightArrowToObject;
+                }
+                else
+                {
+                    abilitiesLineRenderer.material = circleToObject;
                 }
             }
             else if (objectTag.ToLower().Contains("blue"))
@@ -47,9 +55,13 @@ public class MagnetVFX : MonoBehaviour
                 {
                     abilitiesLineRenderer.material = circleToPlayer;
                 }
-                else
+                else if (isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold)
                 {
                     abilitiesLineRenderer.material = leftArrowToPlayer;
+                }
+                else
+                {
+                    abilitiesLineRenderer.material = circleToObject;
                 }
             }
         }
@@ -61,9 +73,13 @@ public class MagnetVFX : MonoBehaviour
                 {
                     abilitiesLineRenderer.material = circleToPlayer;
                 }
-                else
+                else if (isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold)
                 {
                     abilitiesLineRenderer.material = leftArrowToPlayer;
+                }
+                else
+                {
+                    abilitiesLineRenderer.material = circleToObject;
                 }
             }
             else if (objectTag.ToLower().Contains("blue"))
@@ -72,10 +88,13 @@ public class MagnetVFX : MonoBehaviour
                 {
                     abilitiesLineRenderer.material = circleToObject;
                 }
-                else
+                else if (isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold)
                 {
-                    Debug.Log("blue blue");
                     abilitiesLineRenderer.material = rightArrowToObject;
+                }
+                else
+                {                     
+                    abilitiesLineRenderer.material = circleToObject;
                 }
             }
         }

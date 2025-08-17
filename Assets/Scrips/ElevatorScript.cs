@@ -48,7 +48,7 @@ public class ElevatorScript : MonoBehaviour
         ambienceScript = musicPlayer.GetComponent<AmbienceScript>();
         Player = GameObject.FindGameObjectWithTag("Player");
         PlayerObject = Player.GetComponent<PlayerMovement>();
-        //UnlockDoor(); // TEMPORARY REMOVE SOON
+        UnlockDoor(); // TEMPORARY REMOVE SOON
     }
 
     public void UnlockDoor()
@@ -112,6 +112,7 @@ public class ElevatorScript : MonoBehaviour
 
     public void LoadNextScene(string sceneName)
     {
+        ambienceScript.startTransitionFade();
         TransitionManager.Instance().Transition(sceneName, transition, 0f);
     }
 }

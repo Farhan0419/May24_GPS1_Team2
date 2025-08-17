@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 3.24
       objectReference: {fileID: 0}
+    - target: {fileID: 1949669451092068806, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2671082612535605348, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Name
       value: CollisionPrevention
@@ -228,8 +232,16 @@ PrefabInstance:
       value: ConvoSpeechBubble
       objectReference: {fileID: 0}
     - target: {fileID: 5518620210848205888, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: m_Size.x
+      value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518620210848205888, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Size.y
-      value: 1.8
+      value: 1.2140977
+      objectReference: {fileID: 0}
+    - target: {fileID: 5518620210848205888, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.22704872
       objectReference: {fileID: 0}
     - target: {fileID: 5536007197896863606, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: rb

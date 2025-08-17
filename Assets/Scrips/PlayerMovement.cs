@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Transform GroundCheck;
     public LayerMask GroundLayer;
+    private bool isGrounded = false;
 
     private float horizontal;
     public float speed = 8f;
@@ -22,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isMoving = false;
     public bool isFalling { get; private set; }
+    [SerializeField]private int jumpCounter = 0;
 
     private bool isInGiantMagnet = false;
     private bool isGettingCrushed;
@@ -48,11 +52,16 @@ public class PlayerMovement : MonoBehaviour
 
     private InputAction crouchAction;
 
+    [SerializeField] private GameObject RedPaintSplat;
+    [SerializeField] private GameObject BluePaintSplat;
+    [SerializeField] private GameObject GreyPaintSplat;
+
     public float Horizontal => horizontal;
     public bool getDirection() => isFacingRight;
     public bool getMovement() => isMoving;
     public float GetYoffset() => Yoffset;
     public bool getIsGettingCrushed() => isGettingCrushed;
+    public bool GetIsGrounded => isGrounded;
 
     [Header("Audio")]
     //Audio stuff
@@ -77,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         elevatorScript = Elevator.GetComponent<ElevatorScript>();
         audioSource = GetComponent<AudioSource>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
-        playerSpriteRenderer.sortingOrder = 1;
+        playerSpriteRenderer.sortingOrder = 2;
         EnablePlayerMovement();
     }
 
@@ -110,7 +119,9 @@ public class PlayerMovement : MonoBehaviour
         float targetX = location.x;
         float threshold = 0.05f;
         float autoMoveSpeed = 2f;
+        float splatLocation = 0f;
 
+        isFalling = false;
         isMoving = true;
 
         while (Mathf.Abs(transform.position.x - targetX) > threshold)
@@ -126,10 +137,87 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
+        if ((isFacingRight && formTransform.CurrentColliderName == "rightCollider") || (!isFacingRight && formTransform.CurrentColliderName == "leftCollider"))
+        {
+            Flip();
+        }
         isMoving = false;
         transform.position = new Vector2(targetX, transform.position.y);
 
-        yield return new WaitForSeconds(1.2f); // Time for playing the splat animation -------------------------------------------------
+        if (isFacingRight)
+        {
+            splatLocation = transform.position.x + 1.5f;
+        }
+        else
+        {
+            splatLocation = transform.position.x - 1.5f;
+        }
+
+        string paintSplatColor = "None";
+        // Animation Trigger
+        if (formTransform.CurrentForm == FormTransform.formState.neutral)
+        {
+            if (formTransform.NearStationTag == "RedPaintStation")
+            {
+                animator.SetTrigger("N2R");
+                paintSplatColor = "Red";
+            }
+            else if (formTransform.NearStationTag == "BluePaintStation")
+            {
+                animator.SetTrigger("N2B");
+                paintSplatColor = "Blue";
+            }
+        }
+        else if (formTransform.CurrentForm == FormTransform.formState.red)
+        {
+            if (formTransform.NearStationTag == "BluePaintStation")
+            {
+                animator.SetTrigger("R2B");
+                paintSplatColor = "Blue";
+            }
+            if (formTransform.NearStationTag == "GreyPaintStation")
+            {
+                animator.SetTrigger("R2N");
+                paintSplatColor = "Grey";
+            }
+        }
+        else if (formTransform.CurrentForm == FormTransform.formState.blue)
+        {
+            if (formTransform.NearStationTag == "RedPaintStation")
+            {
+                animator.SetTrigger("B2R");
+                paintSplatColor = "Red";
+            }
+            if (formTransform.NearStationTag == "GreyPaintStation")
+            {
+                animator.SetTrigger("B2N");
+                paintSplatColor = "Grey";
+            }
+        }
+        //----------------
+        float step2 = autoMoveSpeed * Time.deltaTime;
+        float yPos = transform.position.y + .45f;
+        while (transform.position.x != splatLocation)
+        {
+            transform.position = new Vector2(Mathf.MoveTowards(transform.position.x, splatLocation, step2), yPos);
+            yield return null;
+        }
+        transform.position = new Vector2(splatLocation, transform.position.y);
+        if (paintSplatColor == "Red")
+        {
+            Instantiate(RedPaintSplat, transform.position, transform.rotation);
+        }
+        else if (paintSplatColor == "Blue")
+        {
+            Instantiate(BluePaintSplat, transform.position, transform.rotation);
+        }
+        else if (paintSplatColor == "Grey")
+        {
+            Instantiate(GreyPaintSplat, transform.position, transform.rotation);
+        }
+        paintSplatColor = "None";
+
+        //yield return new WaitForSeconds(1.2f); // Time for playing the splat animation -------------------------------------------------
 
         callback?.Invoke(); // Form transforming ---------------------------------------------------------------------------------------
         movementDisabled = false;
@@ -159,6 +247,7 @@ public class PlayerMovement : MonoBehaviour
         float threshold = 0.05f;
         float autoMoveSpeed = 2f;
 
+        isFalling = false;
         isMoving = true;
 
         while (Mathf.Abs(transform.position.x - targetX) > threshold)
@@ -232,8 +321,8 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isNeutral", false);
             animator.SetBool("isRed", false);
             animator.SetBool("isBlue", true);
-        }
-        if (magnetAbilities.IsInteracting == true)
+        } 
+        if (magnetAbilities.IsInteracting == true && !isMoving)
         {
             if (formTransform.CurrentForm == FormTransform.formState.red)
             {
@@ -320,7 +409,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocityY = 2.7f;
             }
         }
-
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -331,6 +419,7 @@ public class PlayerMovement : MonoBehaviour
             if (IsGrounded() || canCoyoteJump)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
+                jumpCounter++;
                 audioSource.clip = jump;
                 audioSource.Play();
             }
@@ -343,7 +432,9 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D leftRay = Physics2D.Raycast(center - raycastOffset, Vector2.down, 0.3f, GroundLayer);
         RaycastHit2D rightRay = Physics2D.Raycast(center + raycastOffset, Vector2.down, 0.3f, GroundLayer);
 
-        return leftRay.collider != null || rightRay.collider != null;
+        isGrounded = leftRay.collider != null || rightRay.collider != null;
+
+        return isGrounded;
     }
 
     private void Flip()
@@ -382,18 +473,6 @@ public class PlayerMovement : MonoBehaviour
             yoffsetZoneScript = other.GetComponent<YoffsetZoneScript>();
             Yoffset = yoffsetZoneScript.getOffsetVal();
         }
-
-        if (other.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
-        {
-            if (formTransform.CurrentForm == FormTransform.formState.red)
-            {
-                isInGiantMagnet = true;
-            }
-            else if (formTransform.CurrentForm == FormTransform.formState.blue)
-            {
-                isGettingCrushed = true;
-            }
-        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -403,11 +482,23 @@ public class PlayerMovement : MonoBehaviour
             yoffsetZoneScript = null;
             Yoffset = 0;
         }
-        if (other.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
+    }
+
+    public void setInsideBlueMag()
+    {
+        if (formTransform.CurrentForm == FormTransform.formState.red)
         {
-            isInGiantMagnet = false;
-            isGettingCrushed = false;
+            isInGiantMagnet = true;
         }
+        else if (formTransform.CurrentForm == FormTransform.formState.blue)
+        {
+            isGettingCrushed = true;
+        }
+    }
+    public void setOutsideBlueMag()
+    {
+        isInGiantMagnet = false;
+        isGettingCrushed = false;
     }
 
     private void JumpPadLaunch()
@@ -499,36 +590,13 @@ public class PlayerMovement : MonoBehaviour
                 fallsfxplayed = true;
                 audioSource.clip = land;
                 audioSource.Play();
-                DoAfterSeconds(0.5f, () => fallsfxplayed = false);
+                DoAfterSeconds(0.5f, () => setJump1SfxFalse());
             }
         }
-        if (isMoving)
-        {
-            /*
-            if (IsGrounded())
-            {
-                stepTimer += Time.deltaTime;
-                if (stepTimer >= stepSpace)
-                {
-                    stepTimer = 0;
-                    int rng = UnityEngine.Random.Range(0, 3);
-                    if (rng == 0)
-                    {
-                        audioSource.clip = step1;
-                    }
-                    else if (rng == 1)
-                    {
-                        audioSource.clip = step2;
-                    }
-                    else
-                    {
-                        audioSource.clip = step3;
-                    }
-                    audioSource.Play();
-                }
-            }
-            */
-        }
+    }
+    private void setJump1SfxFalse()
+    {
+        fallsfxplayed = false;
     }
 
     public void PlayFootstep()

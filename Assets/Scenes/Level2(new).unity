@@ -16431,7 +16431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5779999485586274926, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_Size.y
-      value: 0.1
+      value: 0.11112319
       objectReference: {fileID: 0}
     - target: {fileID: 5779999485586274926, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_Offset.x
@@ -16439,7 +16439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5779999485586274926, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_Offset.y
-      value: -0.05
+      value: -0.045965724
       objectReference: {fileID: 0}
     - target: {fileID: 5978135660696643669, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16806,8 +16806,8 @@ MonoBehaviour:
   maxZoom: 10
   boundary: {fileID: 483348654}
   Playermovement: {fileID: 1651876940}
-  offsetTransitionSpeed: 0
-  YoffsetTransitionSpeed: 0
+  offsetTransitionSpeed: 6
+  YoffsetTransitionSpeed: 1.2
 --- !u!114 &1107515545
 MonoBehaviour:
   m_ObjectHideFlags: 0

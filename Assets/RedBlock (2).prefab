@@ -192,7 +192,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 55e41cfe5ecb1334287f118cc8cf8027, type: 2}
+  m_Material: {fileID: 6200000, guid: 7e5ae3e13a2f441428ef3d96239966db, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -482,14 +482,6 @@ PrefabInstance:
     - target: {fileID: 5883663310719011296, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6836056558785282404, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 106.3688
-      objectReference: {fileID: 0}
-    - target: {fileID: 6836056558785282404, guid: f96342ebadf51d945a3691e41f39dfeb, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 32.1548
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
