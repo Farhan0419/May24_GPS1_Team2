@@ -9,12 +9,14 @@ public class Laser : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private float spriteUnitLength; // Width of the sprite in units (1 = 100 pixels at 100 PPU)
-   
 
+    private GameObject Player;
     [SerializeField] private PlayerDeath deathScript;
 
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        deathScript = Player.GetComponent<PlayerDeath>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer == null)
         {
@@ -52,7 +54,7 @@ public class Laser : MonoBehaviour
             {
                 targetDistance = hit.distance;
                 
-                Destroy(hit.collider.gameObject);
+                //Destroy(hit.collider.gameObject);
                 deathScript.PlayerDead("Laser");
                 Debug.Log("HIT");
             }

@@ -10,6 +10,8 @@ public class PlayerDeath : MonoBehaviour
 {
     private PlayerMovement MovementScript;
     private Transform PlayerTransform;
+    private Rigidbody2D rb;
+    private BoxCollider2D col;
     private string currentSceneName;
     private float timer = 0f;
     private float crushScale = 1f;
