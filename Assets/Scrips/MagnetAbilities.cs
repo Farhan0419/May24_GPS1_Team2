@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using System.Linq;
 using System.Collections;
+using DG.Tweening;
 
 public class MagnetAbilities : MonoBehaviour
 {
@@ -305,7 +306,6 @@ public class MagnetAbilities : MonoBehaviour
     }
 
 
-    // [bug] there is a bug where if hold E and swicthing the detection from one object to another, the first object still be interacted, holding E keep it going while the second object is being interacted....
     private void detectMagneticObjects()
     {
         if (dialogueSystem.IsDialogueReady && dialogueSystem.DialogueType == "Conversation")
@@ -411,6 +411,7 @@ public class MagnetAbilities : MonoBehaviour
 
         // use linearVecocity for continous movement
         closestMagneticObjectRb.linearVelocity = new Vector2(directionTowardsPlayer * speedOfPushPullObjects, closestMagneticObjectRb.linearVelocity.y);
+        Camera.main.DOShakePosition(0.1f, 0.03f, 1, 10, false, ShakeRandomnessMode.Harmonic);
     }
 
     private void pushPullMagneticObject()
@@ -432,6 +433,7 @@ public class MagnetAbilities : MonoBehaviour
         else
         {
             closestMagneticObjectRb.linearVelocity = Vector2.zero;
+            Camera.main.DOShakePosition(0.1f, 0.03f, 1, 10, false, ShakeRandomnessMode.Harmonic);
         }
     }
 
