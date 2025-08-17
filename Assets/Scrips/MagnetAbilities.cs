@@ -122,18 +122,18 @@ public class MagnetAbilities : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // if player is not moving, then check for magnetic objects 
-        if (allowToUseMagneticAbilities())
+        if (closestMagneticObjectRb != null && isInteracting && playerMovement.getMovement())
+        {
+            isInteracting = false;
+            closestMagneticObjectRb.linearVelocity = Vector2.zero;
+        }
+        else if(allowToUseMagneticAbilities())
         {
             pushPullMagneticObject();
         }
-        else if (closestMagneticObjectRb != null && isInteracting && playerRB.linearVelocity.sqrMagnitude > velocityThreshold)
-        {
-            closestMagneticObjectRb.linearVelocity = Vector2.zero;
-        }
     }
 
-    private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold;
+    private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && !playerMovement.getMovement();
 
     private void Update()
     {
@@ -168,7 +168,7 @@ public class MagnetAbilities : MonoBehaviour
         if(closestMagneticObjectRb != null)
         {
             return  (isDetecting && closestMagneticObjectRb.linearVelocity.sqrMagnitude < velocityThreshold && 
-                    formTransform.CurrentForm != FormTransform.formState.neutral && playerRB.linearVelocity.sqrMagnitude < velocityThreshold);   
+                    formTransform.CurrentForm != FormTransform.formState.neutral && !playerMovement.getMovement());   
         }
         else
         {
@@ -218,6 +218,11 @@ public class MagnetAbilities : MonoBehaviour
     private void interactMagneticObjects_canceled(InputAction.CallbackContext context)
     {
         isInteracting = false;
+
+        if (closestMagneticObjectRb != null)
+        {
+            closestMagneticObjectRb.linearVelocity = Vector2.zero;
+        }
     }
 
     private void setValuesOnDetection(Collider2D hit, GameObject objectDetectee, float currentMagneticObjectDistance)
