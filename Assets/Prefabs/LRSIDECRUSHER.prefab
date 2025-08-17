@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8369883626227661243}
   - component: {fileID: 2190442635244461866}
-  - component: {fileID: 7788630743469527037}
+  - component: {fileID: 5312012431019747942}
   m_Layer: 0
   m_Name: CrushZone
   m_TagString: Untagged
@@ -79,7 +79,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.7289894, y: 0.8384742}
   m_EdgeRadius: 0
---- !u!114 &7788630743469527037
+--- !u!114 &5312012431019747942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,13 +88,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1067059461200914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27a8afe1ab80a1f41ae7f3ed87406e9e, type: 3}
+  m_Script: {fileID: 11500000, guid: d566e63e6451c55499e91d47a3ece48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crusher: {fileID: 0}
-  Player: {fileID: 0}
-  deathScript: {fileID: 0}
-  PlayerScript: {fileID: 0}
 --- !u!1 &6976970367916423131
 GameObject:
   m_ObjectHideFlags: 0

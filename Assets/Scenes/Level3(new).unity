@@ -941,6 +941,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 497304c4e2c08614e8f23655a68e3612, type: 3}
+--- !u!1 &588400613 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3265281061622752319, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
+  m_PrefabInstance: {fileID: 2094411133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &608920330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1043,6 +1048,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
+--- !u!114 &654015465 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4995249301781882943, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
+  m_PrefabInstance: {fileID: 1185361955}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8db7a44aac6b3e4a8d29cd8fc05118f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &697370695
 GameObject:
   m_ObjectHideFlags: 0
@@ -42826,6 +42842,14 @@ PrefabInstance:
       propertyPath: pressSpeed
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 5312012431019747942, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 588400613}
+    - target: {fileID: 5312012431019747942, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
+      propertyPath: crusher
+      value: 
+      objectReference: {fileID: 654015465}
     - target: {fileID: 6976970367916423131, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
       propertyPath: m_Name
       value: LRSIDECRUSHER
@@ -43167,7 +43191,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4166238658015679069, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
   m_PrefabInstance: {fileID: 2094411133}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 588400613}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4e8e57e65034904cb96c24921fde319, type: 3}
@@ -43183,7 +43207,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7168779483956280351, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
   m_PrefabInstance: {fileID: 2094411133}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 588400613}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87686b88d188f614eb3f00959e102956, type: 3}
