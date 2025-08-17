@@ -145,7 +145,7 @@ public class MagnetAbilities : MonoBehaviour
         detectMagneticObjects();
 
         // Having this line here, because in the interactMagneticObjects_performed, it cannot check that change if isDetecting is false cuz it is executed once only when performed
-        if (!isDetecting)
+        if (!isDetecting || formTransform.IsPaint)
         {
             isInteracting = false;
             magnetVFX.Hide2DRay();
@@ -270,7 +270,7 @@ public class MagnetAbilities : MonoBehaviour
                 closestObjectType = objectType[1];
             }
 
-            if(formTransform.CurrentForm != FormTransform.formState.neutral && !isPlayerTooCloseToMagneticObject)
+            if(formTransform.CurrentForm != FormTransform.formState.neutral && !isPlayerTooCloseToMagneticObject && !formTransform.IsPaint)
             {
                 magnetVFX.Draw2DRay(transform.position, closestMagneticObject.transform.position, playerDirection, formTransform.CurrentForm, closestMagneticObject.transform.parent.tag);
             }

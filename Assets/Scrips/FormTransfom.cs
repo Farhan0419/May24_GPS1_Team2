@@ -170,7 +170,6 @@ public class FormTransform : MonoBehaviour
         if (paintFormAction != null)
         {
             paintFormAction.performed += paintForm_performed;
-            paintFormAction.canceled += paintForm_canceled;
         }
     }
 
@@ -179,7 +178,6 @@ public class FormTransform : MonoBehaviour
         if (paintFormAction != null)
         {
             paintFormAction.performed -= paintForm_performed;
-            paintFormAction.canceled -= paintForm_canceled;
             paintFormAction = null;
         }
     }
@@ -227,12 +225,8 @@ public class FormTransform : MonoBehaviour
         {
             currentForm = switchForm;
             spriteRenderer.sprite = switchSprite;
+            isPaint = false;
         });
-    }
-
-    private void paintForm_canceled(InputAction.CallbackContext context)
-    {
-        isPaint = false;
     }
 
     private void detectNearestStation()
