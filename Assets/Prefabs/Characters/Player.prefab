@@ -550,7 +550,7 @@ MonoBehaviour:
   jumpCounter: 0
   PlayerCollider: {fileID: 1852144890480461987}
   coyoteTime: 0.05
-  RedPaintSplat: {fileID: 2794460299642301845, guid: b944bd8743489e9468cd89f4817d2693, type: 3}
+  RedPaintSplat: {fileID: 5066319124777655171, guid: b39da4116480fd84ba569441e2cfcb87, type: 3}
   BluePaintSplat: {fileID: 141646520245829282, guid: 8db4371988b8cce4d80e745d89182662, type: 3}
   GreyPaintSplat: {fileID: 0}
   step1: {fileID: 8300000, guid: 77843497fad7dab4091a311767cd1fe0, type: 3}
