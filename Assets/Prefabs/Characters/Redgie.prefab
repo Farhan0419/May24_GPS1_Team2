@@ -99,42 +99,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1007616437692020278, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_Size.x
-      value: 1.8613313
-      objectReference: {fileID: 0}
-    - target: {fileID: 1007616437692020278, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.019578516
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_Size.x
-      value: 1.8678415
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_Size.y
-      value: 1.9081808
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.020769477
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.46579975
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1286076896275138912, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 3.24
-      objectReference: {fileID: 0}
     - target: {fileID: 1949669451092068806, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
@@ -176,26 +140,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5059834309362536154, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.55529857
-      objectReference: {fileID: 0}
-    - target: {fileID: 5059834309362536154, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.55529857
-      objectReference: {fileID: 0}
-    - target: {fileID: 5059834309362536154, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.55529857
-      objectReference: {fileID: 0}
-    - target: {fileID: 5059834309362536154, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 5059834309362536154, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 5059834309362536154, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
@@ -231,30 +175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConvoSpeechBubble
       objectReference: {fileID: 0}
-    - target: {fileID: 5518620210848205888, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_Size.x
-      value: 2.091755
-      objectReference: {fileID: 0}
-    - target: {fileID: 5518620210848205888, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_Size.y
-      value: 0.9886391
-      objectReference: {fileID: 0}
-    - target: {fileID: 5518620210848205888, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.023102283
-      objectReference: {fileID: 0}
-    - target: {fileID: 5518620210848205888, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.33977807
-      objectReference: {fileID: 0}
     - target: {fileID: 5536007197896863606, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: rb
       value: 
       objectReference: {fileID: 5905942282246432011}
-    - target: {fileID: 7724759968133802704, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.439
-      objectReference: {fileID: 0}
     - target: {fileID: 8235860130957862953, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_Name
       value: RemarkSpeechBubble
