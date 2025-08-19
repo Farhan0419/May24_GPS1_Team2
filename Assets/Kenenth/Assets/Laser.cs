@@ -40,23 +40,27 @@ public class Laser : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.parent.position, direction, maxDistance, layerToHit);
         if (hit.collider != null)
         {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("WALL"))
-            {
-                targetDistance = hit.distance;
-            }
+            //if (hit.collider.gameObject.layer == LayerMask.NameToLayer("WALL"))
+            //{
+            //    targetDistance = hit.distance;
+            //}
 
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Platform"))
-            {
-                targetDistance = hit.distance;
-            }
+            //if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Platform"))
+            //{
+            //    targetDistance = hit.distance;
+            //}
 
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 targetDistance = hit.distance;
-                
+
                 //Destroy(hit.collider.gameObject);
                 deathScript.PlayerDead("Laser");
                 Debug.Log("HIT");
+            }
+            else
+            {
+                targetDistance = hit.distance;
             }
         }
 
