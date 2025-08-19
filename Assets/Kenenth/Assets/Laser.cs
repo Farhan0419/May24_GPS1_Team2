@@ -45,7 +45,7 @@ public class Laser : MonoBehaviour
                 targetDistance = hit.distance;
             }
 
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Default"))
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Platform"))
             {
                 targetDistance = hit.distance;
             }

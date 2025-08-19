@@ -57,6 +57,12 @@ public class RedgieGroundCheck : MonoBehaviour
         redgieRb = GetComponentInParent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+
+        Debug.Log(redgieRb.linearVelocity);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
@@ -106,6 +112,7 @@ public class RedgieGroundCheck : MonoBehaviour
             triggerCount++;
             isGrounded = value;
             redgieRb.bodyType = RigidbodyType2D.Kinematic;
+            redgieRb.linearVelocity = Vector2.zero;
         }
         else
         {
