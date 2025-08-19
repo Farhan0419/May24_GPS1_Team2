@@ -16,6 +16,7 @@ public class PlayerDeath : MonoBehaviour
     private float timer = 0f;
     private float crushScale = 1f;
     private bool playerDead = false;
+    [SerializeField] private float blueMagnetGracePeriod = .5f;
     private Animator animator;
     [SerializeField] private TransitionSettings transition;
 
@@ -82,7 +83,7 @@ public class PlayerDeath : MonoBehaviour
             timer += Time.deltaTime;
             crushScale -= Time.deltaTime * 0.15f;
             PlayerTransform.localScale = new Vector2(PlayerTransform.localScale.x, crushScale);
-            if (timer >= 2)
+            if (timer >= blueMagnetGracePeriod)
             {
                 PlayerDead("Crush");
             }
