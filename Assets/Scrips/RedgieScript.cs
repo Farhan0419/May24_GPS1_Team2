@@ -164,7 +164,7 @@ public class RedgieScript : MonoBehaviour
         // Always Freeze X movement  if not interacting or not grounded or not too close to player
         // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
 
-        if(isPressurePlateActivated)
+        if (isPressurePlateActivated)
         {
             rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
         }
@@ -190,7 +190,7 @@ public class RedgieScript : MonoBehaviour
                     rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
                 }
             }
-            else if(formTransform.CurrentForm == FormTransform.formState.red && !motc.IsTooClose)
+            else if (formTransform.CurrentForm == FormTransform.formState.red && !motc.IsTooClose)
             {
                 rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
             }
@@ -202,6 +202,10 @@ public class RedgieScript : MonoBehaviour
                 transform.parent = groundCheck.BlueMagneticPlatform.transform;
             }
 
+            rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
+        }
+        else if (isInBlueMagnet)
+        {
             rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         }
         else
@@ -218,7 +222,7 @@ public class RedgieScript : MonoBehaviour
     {
         // Always Freeze Y movement  if grounded or jumping
         // |= and &= is bitwise operator to add or remove a flag from the constraints, while ~ is bitwise NOT operator to invert the bits of the constraints
-        if (groundCheck.IsGrounded && !isJumping && !groundCheck.OnBlueMagneticPlatform)
+        if (groundCheck.IsGrounded && !isJumping && !groundCheck.OnBlueMagneticPlatform && !isInBlueMagnet)
         {
             rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
         }
