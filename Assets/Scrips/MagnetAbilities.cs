@@ -308,12 +308,12 @@ public class MagnetAbilities : MonoBehaviour
 
     private void detectMagneticObjects()
     {
-        if (dialogueSystem.IsDialogueReady && dialogueSystem.DialogueType == "Conversation")
-        {
-            isDetecting = false;
-            magnetVFX.Hide2DRay();
-            return;
-        }
+        //if (dialogueSystem.IsDialogueReady && dialogueSystem.DialogueType == "Conversation")
+        //{
+        //    isDetecting = false;
+        //    magnetVFX.Hide2DRay();
+        //    return;
+        //}
 
         playerPosition = playerObjectDetector.transform.position;
 

@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isFalling { get; private set; }
     [SerializeField]private int jumpCounter = 0;
 
-    private bool isInGiantMagnet = false;
+    [SerializeField] private bool isInGiantMagnet = false;
     private bool isGettingCrushed;
 
     private FormTransform formTransform;

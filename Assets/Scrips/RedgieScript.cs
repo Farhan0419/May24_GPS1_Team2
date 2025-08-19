@@ -29,6 +29,19 @@ public class RedgieScript : MonoBehaviour
 
     private bool isPressurePlateActivated = false;
 
+    private bool isInBlueMagnet = false;
+    [SerializeField] private float blueMagnetPull = 50f;
+    [SerializeField] private float maxPullSpeed = 2f;
+
+    public void setInsideBlueMag()
+    {
+        isInBlueMagnet = true;
+    }
+    public void setOutsideBlueMag()
+    {
+        isInBlueMagnet = false;
+    }
+
     public bool IsJumping
     {
         get => isJumping;
@@ -124,7 +137,7 @@ public class RedgieScript : MonoBehaviour
         {
             Vector2 currentDirection = currentPosition - lastPosition;
 
-            if(currentDirection.y != 0)
+            if (currentDirection.y != 0)
             {
                 direction = currentDirection;
                 //if (DebugMode) Debug.Log(direction.y);
@@ -136,6 +149,14 @@ public class RedgieScript : MonoBehaviour
 
         checkIsXMovementFreeze();
         checkIsYMovementFreeze();
+
+        if (isInBlueMagnet)
+        {
+            if (rb.linearVelocityY < maxPullSpeed)
+            {
+                rb.linearVelocityY += blueMagnetPull * Time.deltaTime;
+            }
+        }
     }
 
     private void checkIsXMovementFreeze()
