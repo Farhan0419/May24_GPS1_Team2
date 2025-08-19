@@ -25,7 +25,7 @@ public class FormTransform : MonoBehaviour
     [SerializeField] private float detectDistance = 2f;
     private string nearStationTag;
 
-    private string[] stationTag = { "ShowerStation", "RedPaintStation", "BluePaintStation" };
+    private string[] stationTag = { "GreyPaintStation", "RedPaintStation", "BluePaintStation" };
 
     private int layerObjects;
     private int layerGround;
@@ -152,7 +152,7 @@ public class FormTransform : MonoBehaviour
         {
             switch (nearStationTag)
             {
-                case "ShowerStation":
+                case "GreyPaintStation":
                     return currentForm == formState.neutral ? false : true;
                 case "RedPaintStation":
                     return currentForm == formState.red ? false : true;
