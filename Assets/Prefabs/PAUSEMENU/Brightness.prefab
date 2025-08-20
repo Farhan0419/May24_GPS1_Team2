@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6247287797432044470}
   - component: {fileID: 3542476548084117123}
   - component: {fileID: 1251856043670686102}
+  - component: {fileID: 5887443501541746604}
   m_Layer: 5
   m_Name: Brightness
   m_TagString: Untagged
@@ -102,6 +103,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5887443501541746604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373306675349954774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3679dd1dc8ed0494282fe730f5ab939b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightnessCanvas: {fileID: 6247287797432044470}
+  brightnessOverlay: {fileID: 6637104340575000143}
+  maxDarkness: 0.8
 --- !u!1 &1334340349378753311
 GameObject:
   m_ObjectHideFlags: 0

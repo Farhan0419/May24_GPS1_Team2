@@ -20,7 +20,7 @@ public class LRCRUSHERZONE : MonoBehaviour
     {
         if (crusher != null && crusher.IsPressing() && collision.CompareTag("Player"))
         {
-            deathScript.PlayerDead("Crush");
+            deathScript.PlayerDead("CrushSide");
             //crusher.KillPlayer(collision.gameObject);
             PlayerScript.DisablePlayerMovement();
         }

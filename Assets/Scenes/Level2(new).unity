@@ -404,6 +404,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &367464848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 373306675349954774, guid: 99142441846276146896d65cde1f9780, type: 3}
+  m_PrefabInstance: {fileID: 848379619836767259}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &367464852 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6247287797432044470, guid: 99142441846276146896d65cde1f9780, type: 3}
+  m_PrefabInstance: {fileID: 848379619836767259}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &367464853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367464848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3679dd1dc8ed0494282fe730f5ab939b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightnessCanvas: {fileID: 367464852}
+  brightnessOverlay: {fileID: 7363517583072392807}
+  maxDarkness: 0.8
 --- !u!1001 &373871540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17028,11 +17053,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 711557929968778993, guid: eaf3c626662b1044fb35f089ca167ab4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.91
+      value: 34.53
       objectReference: {fileID: 0}
     - target: {fileID: 711557929968778993, guid: eaf3c626662b1044fb35f089ca167ab4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.07
+      value: 6.77
       objectReference: {fileID: 0}
     - target: {fileID: 711557929968778993, guid: eaf3c626662b1044fb35f089ca167ab4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17467,11 +17492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3095243859992750116, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.02
+      value: 27.17
       objectReference: {fileID: 0}
     - target: {fileID: 3095243859992750116, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: 6.05
       objectReference: {fileID: 0}
     - target: {fileID: 3095243859992750116, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17721,7 +17746,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 373306675349954774, guid: 99142441846276146896d65cde1f9780, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 367464853}
   m_SourcePrefab: {fileID: 100100000, guid: 99142441846276146896d65cde1f9780, type: 3}
 --- !u!1001 &3189813820726221327
 PrefabInstance:
@@ -17804,10 +17832,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6109856999147933251, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109856999147933251, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109856999147933251, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6267165795152836456, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
       propertyPath: brightnessOverlay
       value: 
       objectReference: {fileID: 7363517583072392807}
+    - target: {fileID: 7115935087676872813, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115935087676872813, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8817803819836907687, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
       propertyPath: m_Name
       value: Pause Screen
