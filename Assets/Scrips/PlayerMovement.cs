@@ -74,6 +74,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioClip jump;
     [SerializeField] AudioClip land;
     [SerializeField] AudioClip jumpPad;
+    [SerializeField] AudioClip splat;
+    [SerializeField] AudioClip PullingSFX;
+    [SerializeField] AudioClip PushingSFX;
 
     private SpriteRenderer playerSpriteRenderer;
 
@@ -196,8 +199,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         //----------------
-        float step2 = autoMoveSpeed * Time.deltaTime;
-        float yPos = transform.position.y + .45f;
+        float step2 = autoMoveSpeed * Time.deltaTime * 1.3f;
+        float yPos = transform.position.y + .40f;
         while (transform.position.x != splatLocation)
         {
             transform.position = new Vector2(Mathf.MoveTowards(transform.position.x, splatLocation, step2), yPos);
@@ -217,6 +220,7 @@ public class PlayerMovement : MonoBehaviour
             Instantiate(GreyPaintSplat, transform.position, transform.rotation);
         }
         paintSplatColor = "None";
+        audioSource.PlayOneShot(splat);
 
         //yield return new WaitForSeconds(1.2f); // Time for playing the splat animation -------------------------------------------------
 
@@ -332,11 +336,19 @@ public class PlayerMovement : MonoBehaviour
                 {
                     animator.SetBool("isPushing", true);
                     animator.SetBool("isPulling", false);
+
+                    //audioSource.loop = true;
+                    //audioSource.clip = PushingSFX;
+                    //audioSource.Play();
                 }
                 else if (magnetAbilities.ClosestObjectType == "blue")
                 {
                     animator.SetBool("isPulling", true);
                     animator.SetBool("isPushing", false);
+
+                    //audioSource.loop = true;
+                    //audioSource.clip = PullingSFX;
+                    //audioSource.Play();
                 }
             }
             else if (formTransform.CurrentForm == FormTransform.formState.blue)
@@ -345,11 +357,19 @@ public class PlayerMovement : MonoBehaviour
                 {
                     animator.SetBool("isPushing", true);
                     animator.SetBool("isPulling", false);
+
+                    //audioSource.loop = true;
+                    //audioSource.clip = PushingSFX;
+                    //audioSource.Play();
                 }
                 else if (magnetAbilities.ClosestObjectType == "red")
                 {
                     animator.SetBool("isPulling", true);
                     animator.SetBool("isPushing", false);
+
+                    //audioSource.loop = true;
+                    //audioSource.clip = PullingSFX;
+                    //audioSource.Play();
                 }
             }
         }
@@ -357,6 +377,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isPushing", false);
             animator.SetBool("isPulling", false);
+            //audioSource.loop = false;
         }
         //Jumping
         if (IsGrounded() == true)

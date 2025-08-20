@@ -564,6 +564,9 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: 078a8759935a12042a025e29461c281e, type: 3}
   land: {fileID: 8300000, guid: 7799471f9128aa9469f3ba022a204269, type: 3}
   jumpPad: {fileID: 8300000, guid: 9e99cf4e0f2543b47b7b214c708ac96d, type: 3}
+  splat: {fileID: 8300000, guid: d6c699b04863ecc4d9152eeb0afd8eb5, type: 3}
+  PullingSFX: {fileID: 8300000, guid: 9a5db2ad602c09840a1ca25b746f2f4c, type: 3}
+  PushingSFX: {fileID: 8300000, guid: 0adfd9c142479d04d8d7bde6c79c2218, type: 3}
   stepSpace: 0.3
 --- !u!114 &3021878682728651252
 MonoBehaviour:
@@ -636,6 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e8e57e65034904cb96c24921fde319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blueMagnetGracePeriod: 0.5
   transition: {fileID: 11400000, guid: 057babd6f13132c449650d99e3c4e99c, type: 2}
 --- !u!95 &5833315835531648799
 Animator:

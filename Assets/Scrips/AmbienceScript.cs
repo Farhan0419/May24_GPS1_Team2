@@ -5,6 +5,7 @@ public class AmbienceScript : MonoBehaviour
     private AudioSource audiosource;
     private bool timerStart = true;
     private bool timerStart2 = false;
+    [SerializeField] private float maxVolume = 1f;    
     void Start()
     {
         audiosource = GetComponent<AudioSource>();
@@ -24,7 +25,7 @@ public class AmbienceScript : MonoBehaviour
         if (timerStart)
         {
             audiosource.volume += Time.deltaTime * .5f;
-            if (audiosource.volume >= 1)
+            if (audiosource.volume >= maxVolume)
             {
                 timerStart = false;
             }

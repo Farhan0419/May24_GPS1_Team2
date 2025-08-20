@@ -657,7 +657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3658231265657834001, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
       propertyPath: nextSceneName
-      value: TBC
+      value: Level4
       objectReference: {fileID: 0}
     - target: {fileID: 4379693248320581475, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -43744,7 +43744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7529949607777974474, guid: 000e70ad01a9b3b40b617313350721b4, type: 3}
       propertyPath: pressSpeed
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7529949607777974474, guid: 000e70ad01a9b3b40b617313350721b4, type: 3}
       propertyPath: returnSpeed
