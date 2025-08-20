@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MagneticObjectTooClose : MonoBehaviour
@@ -30,6 +31,10 @@ public class MagneticObjectTooClose : MonoBehaviour
                 if (other.gameObject.tag == "Player")
                 {
                     isPlayerTooClose = true;
+                }
+                else if (other.gameObject.tag == "Elevator" && this.transform.parent.CompareTag("Redgie"))
+                {
+                    isTooClose = false;
                 }
                 else
                 {
