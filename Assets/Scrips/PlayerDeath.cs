@@ -19,11 +19,13 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private float blueMagnetGracePeriod = .5f;
     private Animator animator;
     [SerializeField] private TransitionSettings transition;
+    private FormTransform formTransform;
 
     void Start()
     {
         MovementScript = gameObject.GetComponent<PlayerMovement>();
         PlayerTransform = gameObject.GetComponent<Transform>();
+        formTransform = gameObject.GetComponent<FormTransform>();
         currentSceneName = SceneManager.GetActiveScene().name;
         animator = gameObject.GetComponent<Animator>();
         playerDead = false;
@@ -45,9 +47,15 @@ public class PlayerDeath : MonoBehaviour
         }
         else if (causeOfDeath == "Crush")
         {
-            PlayerTransform.localScale = new Vector2(2, 0.2f);
+            PlayerTransform.localScale = new Vector2(1.5f, 0.2f);
             animator.speed = 0;
             Debug.Log("Player Died from being Crushed");
+        }
+        else if (causeOfDeath == "CrushSide")
+        {
+            PlayerTransform.localScale = new Vector2(0.2f, 1.5f);
+            animator.speed = 0;
+            Debug.Log("Player Died from being Crushed from the side");
         }
         else if (causeOfDeath == "Pit")
         {
@@ -69,11 +77,11 @@ public class PlayerDeath : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("GiantBlueMagnet") && formTransform.CurrentForm == FormTransform.formState.red)
         {
             Debug.Log("Player Touch giant magnet");
             MovementScript.DisablePlayerMovement();
-            DoAfterSeconds(2f, () => PlayerDead("GiantMagnet"));
+            DoAfterSeconds(1f, () => PlayerDead("GiantMagnet"));
         }
     }
     private void Update()
@@ -92,7 +100,7 @@ public class PlayerDeath : MonoBehaviour
         {
             crushScale = 1;
             timer = 0;
-            if (playerDead)
+            if (!playerDead)
             {
                 PlayerTransform.localScale = new Vector2(PlayerTransform.localScale.x, 1);
             }

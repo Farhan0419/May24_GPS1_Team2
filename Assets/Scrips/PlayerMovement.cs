@@ -282,6 +282,7 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocityX = 0;
         //rb.linearVelocity = Vector2.zero;
         isMoving = false;
+        isFalling = false;
         //isFalling = false;
         horizontal = 0;
     }
