@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7754012473641644669}
-  - component: {fileID: 708919870060714739}
+  - component: {fileID: 3829734416277808954}
   m_Layer: 0
-  m_Name: Level2Room1DialogueSystem
+  m_Name: Level2Room2DialogueSystem
   m_TagString: DialogueSystem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &708919870060714739
+--- !u!114 &3829734416277808954
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 617157421560970348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b552349fd88fca4a8e0117757e61248, type: 3}
+  m_Script: {fileID: 11500000, guid: b7c4f49c5e5eff24f888543c3b77de66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueCanvas: {fileID: 0}
