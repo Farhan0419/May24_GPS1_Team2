@@ -17,16 +17,14 @@ MonoBehaviour:
   - Remark
   - Conversation
   dialogueLines1:
-  - "Hello there, didn\u2019t realize there was anyone else down here.;Name\u2019s
-    Redgie. Red block. Big voice. Impeccable sitting abilities.;Engraving on your
-    side says MagUnet, is that your name?;<size=8>.....</size>;You\u2019re not much
-    of a talker, are you?;Anyways\u2026..help me get down from here? Any ideas?  "
-  - "<size=8><b>THAT'S YOUR IDEA?!</b></size>;Wait\u2026..I can feel myself being
-    pulled towards you. "
-  - "Would you look at that? That opened the elevator door.;I\u2019ve been trying
-    to get that open for ages.;Thanks Mags, was starting to think I\u2019d rust down
-    here.;We\u2019re polar opposites, that\u2019s why we\u2019re made to stick together.;We\u2019re
-    in the <i>Scrap well station</i>, the lowest factory level.;Rock bottom means
-    we can\u2019t fall, we\u2019ll only rise! "
+  - "Welcome, friend! Didn\u2019t realize there was anyone else down here.;Name\u2019s
+    <color=red>Redgie</color>. Red block. Big voice.;I am one of many units built
+    to guide.;See that plate on the ground? Help me onto it.;I have impeccable sitting
+    abilities. "
+  - I can feel myself being pulled towards you now.
+  - "Nicely done!;I guess I should tell you about this place.;You\u2019ve landed
+    in the <i>Scrap Well</i>, but don\u2019t despair<size=8>\u2026..</size>;You\u2019re
+    not trash, just misplaced, every magnet has a purpose.;You may yet find yours.;My
+    <b>friends</b> and I will show you the way."
   dialogueLines2: []
   dialogueLines3: []

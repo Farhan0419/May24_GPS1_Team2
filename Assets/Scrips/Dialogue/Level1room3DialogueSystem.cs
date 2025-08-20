@@ -20,7 +20,7 @@ public class Level1room3DialogueSystem : DialogueSystem
             nextConversation.performed += nextConversation_performed;
         }
 
-        HydraulicKillZone.OnEnteredHydraulicZone += FirstDialogue;
+        //HydraulicKillZone.OnEnteredHydraulicZone += OldFirstDialogue;
     }
 
     private void OnDisable()
@@ -31,7 +31,7 @@ public class Level1room3DialogueSystem : DialogueSystem
             nextConversation = null;
         }
 
-        HydraulicKillZone.OnEnteredHydraulicZone -= FirstDialogue;
+        //HydraulicKillZone.OnEnteredHydraulicZone -= OldFirstDialogue;
     }
 
     private void nextConversation_performed(InputAction.CallbackContext context)
@@ -69,15 +69,26 @@ public class Level1room3DialogueSystem : DialogueSystem
             ToScaleDialogueBox(startScale, endScale, "popin");
         }
 
+        FirstDialogue();
         SecondDialogue();
-        ThirdDialogue();
     }
 
-    private void FirstDialogue(bool redgieEntered)
+    //private void OldFirstDialogue(bool redgieEntered)
+    //{
+    //    if (executedStates.Contains(0)) return;
+
+    //    if(redgieEntered)
+    //    {
+    //        dialogueState = 0;
+    //        initializeDialogueValues();
+    //    }
+    //}
+
+    private void FirstDialogue()
     {
         if (executedStates.Contains(0)) return;
 
-        if(redgieEntered)
+        if(redgieScript.HasRedgieRespawned)
         {
             dialogueState = 0;
             initializeDialogueValues();
@@ -88,20 +99,9 @@ public class Level1room3DialogueSystem : DialogueSystem
     {
         if (executedStates.Contains(1)) return;
 
-        if(redgieScript.HasRedgieRespawned)
-        {
-            dialogueState = 1;
-            initializeDialogueValues();
-        }
-    }
-
-    private void ThirdDialogue()
-    {
-        if (executedStates.Contains(2)) return;
-
         if (pressurePlateScript.IsPressed)
         {
-            dialogueState = 2;
+            dialogueState = 1;
             initializeDialogueValues();
         }
     }

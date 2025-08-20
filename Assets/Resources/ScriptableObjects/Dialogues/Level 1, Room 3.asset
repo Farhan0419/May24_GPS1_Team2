@@ -14,14 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueType:
   - Remark
-  - Remark
   - Conversation
   dialogueLines1:
-  - "Uhhh\u2026..Mags? I don\u2019t wanna turn into a flat fridge magnet. "
-  - "Not blaming you\u2026but I\u2019m also not not blaming you. "
-  - "We\u2019re really doing this\u2026..I\u2019m finally leaving the junk heap!;And
-    it\u2019s all thanks to you.;You may be quiet, but your steps?;They\u2019re starting
-    to speak. Loudly. Clearly. Purposefully.;I waited forever, but you made forever
-    worth it.;Come on, let\u2019s go find out what\u2019s next! "
+  - "Not blaming you<size=8>\u2026..</size>but I\u2019m also not not blaming you."
+  - "The rejects thrown down here, the creations left incomplete<size=8>\u2026..</size>;Prototypes
+    that were too weak, others too strange.;But you<size=8>\u2026..</size>;You still
+    hold potential.;Repel upward, let nothing pull you back to scraps."
   dialogueLines2: []
   dialogueLines3: []

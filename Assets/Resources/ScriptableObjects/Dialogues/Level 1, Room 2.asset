@@ -18,14 +18,14 @@ MonoBehaviour:
   - Remark
   - Conversation
   dialogueLines1:
-  - "There you are, took you long enough.;Your jumping skills must be impeccable.;In
-    this room though, you gotta get me to jump too.;That <color=red>red</color> pad
-    could be useful.;Something tells me it\u2019s bouncy.   "
+  - "Hey there! You went through all of that?;Your jumping skills must be remarkable;Here
+    though, you gotta get me to jump too.;That <color=red>red</color> pad should
+    do the trick.;It\u2019s bouncy."
   - "Ouch! That\u2019s gotta hurt."
-  - "<size=8><b>OWW!</b></size> Too bad I don\u2019t repel concrete. "
-  - "Nice! We make a great team. I\u2019m glad you\u2019re here.;It\u2019s been lonely
-    down here all on my own.;I\u2019ve been talking to the walls but they\u2019re
-    boring.;You\u2019re much more interesting Mags.;I\u2019m happy you found me.;We\u2019re
-    almost out of this trash heap, let\u2019s keep going. "
+  - "Oww! Too bad I don\u2019t repel concrete."
+  - "Before you move on, you should know<size=8>\u2026..</size>;This factory once
+    gave every magnet a place.;Some held bridges, others lifted turbines, some built
+    for engines.;And when progress moved on, they left them here to rust.;Keep moving
+    forward, don\u2019t rust with them."
   dialogueLines2: []
   dialogueLines3: []

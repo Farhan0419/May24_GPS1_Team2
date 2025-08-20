@@ -1,0 +1,5 @@
+Type	Trigger	
+Conversation	MagUnet meets Redgie	Hey there! You went through all of that?;Your jumping skills must be remarkable;Here though, you gotta get me to jump too.;That <color=red>red</color> pad should do the trick.;It’s bouncy. 
+Remarks	MagUnet jumps into paint puddle	Ouch! That’s gotta hurt.
+Remarks	Redgie lands after being launched by the jump pad	Oww! Too bad I don’t repel concrete.
+End of room conversation	When the exit opens and the level is completed	Before you move on, you should know<size=8>…..</size>;This factory once gave every magnet a place.;Some held bridges, others lifted turbines, some built for engines.;And when progress moved on, they left them here to rust.;Keep moving forward, don’t rust with them. 
