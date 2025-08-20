@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool movementDisabled = false;
     public float LaunchPower = 50f;
     [SerializeField] private float pullPower = 20f;
+    [SerializeField] private float maxPullSpeed = 3.7f;
 
     private bool isMoving = false;
     public bool isFalling { get; private set; }
@@ -400,13 +401,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (isInGiantMagnet)
         {
-            if (rb.linearVelocityY < 2.7f)
+            if (rb.linearVelocityY < maxPullSpeed)
             {
                 rb.linearVelocityY += Time.deltaTime * pullPower;
             }
             else
             {
-                rb.linearVelocityY = 2.7f;
+                rb.linearVelocityY = maxPullSpeed;
             }
         }
     }

@@ -18,15 +18,14 @@ MonoBehaviour:
   - Remark
   - Conversation
   dialogueLines1:
-  - "Well you look clean, taken a shower huh?;Good thing too, after being in the
-    waste area.;You\u2019ve realised those big <color = blue>blue</color> magnets
-    love <color = red>red</color> things.;Shame we can\u2019t talk to them, it\u2019d
-    make things easier.;Let\u2019s figure this out, shall we? "
-  - 'We match again! '
-  - "\u2026..and now we don\u2019t. "
-  - "Room cleared! I\u2019d high five you if I had hands.;I guess I should tell you
-    about where we are.;We\u2019re in the <i>Polarity Sector</i>.;The highly secured
-    part of the facility, with deadly countermeasures.;But we\u2019re not gonna let
-    that stop us. "
+  - "Would you look at that? ;Nothing comes out of the scrap well.;By now, you\u2019ve
+    realised those big magnets love <color=red>red</color> things.;Shame we can\u2019t
+    talk to them, it\u2019d make things easier."
+  - We match again!
+  - "<size=8>\u2026..</size>and now we don\u2019t."
+  - "You\u2019ve entered the <i>Polarity Sector</i>. ;The highly secured part of
+    the facility, with deadly countermeasures.;These giant <color=blue>blue</color>
+    magnets? ;They were once used to power spacecraft docking clamps.;So you can
+    see why this place is heavily defended.;Stay sharp."
   dialogueLines2: []
   dialogueLines3: []

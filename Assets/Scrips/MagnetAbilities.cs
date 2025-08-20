@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using System.Linq;
 using System.Collections;
+using DG.Tweening;
 
 public class MagnetAbilities : MonoBehaviour
 {
@@ -122,18 +123,18 @@ public class MagnetAbilities : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // if player is not moving, then check for magnetic objects 
-        if (allowToUseMagneticAbilities())
+        if (closestMagneticObjectRb != null && isInteracting && playerMovement.getMovement())
+        {
+            isInteracting = false;
+            closestMagneticObjectRb.linearVelocity = Vector2.zero;
+        }
+        else if(allowToUseMagneticAbilities())
         {
             pushPullMagneticObject();
         }
-        else if (closestMagneticObjectRb != null && isInteracting && playerRB.linearVelocity.sqrMagnitude > velocityThreshold)
-        {
-            closestMagneticObjectRb.linearVelocity = Vector2.zero;
-        }
     }
 
-    private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && playerRB.linearVelocity.sqrMagnitude < velocityThreshold;
+    private bool allowToUseMagneticAbilities() => isDetecting && isInteracting && !playerMovement.getMovement();
 
     private void Update()
     {
@@ -145,21 +146,44 @@ public class MagnetAbilities : MonoBehaviour
         detectMagneticObjects();
 
         // Having this line here, because in the interactMagneticObjects_performed, it cannot check that change if isDetecting is false cuz it is executed once only when performed
-        if (!isDetecting)
+        if (!isDetecting || formTransform.IsPaint)
         {
             isInteracting = false;
             magnetVFX.Hide2DRay();
         }
 
-        if (shouldShowIndicator())
-        {
+        if(shouldShowIndicator())
+        { 
             Vector2 indicatorPosition = new Vector2(closestMagneticObjectPosition.x + indicatorXOffset, closestMagneticObjectPosition.y + indicatorYOffset);
             currentIndicator.transform.position = indicatorPosition;
-            currentIndicator.SetActive(true);
+
+            switch(closestMagneticObject.transform.parent.tag)
+            {
+                case "Redgie":
+                    if(closestMagneticObject.GetComponentInParent<RedgieScript>().IsPressurePlateActivated)
+                    {
+                        currentIndicator.SetActive(false);
+                    }
+                    else
+                    {
+                        currentIndicator.SetActive(true);
+                    }
+                    break;
+                case "BlueMagneticPlatform":
+                    if(closestMagneticObject.GetComponentInParent<BlueMagneticPlatformScript>().HasTravelMaxDistance)
+                    {
+                        currentIndicator.SetActive(false);
+                    }
+                    else
+                    {
+                        currentIndicator.SetActive(true);
+                    }
+                    break;
+            }
         }
         else
         {
-            currentIndicator.SetActive(false);   
+            currentIndicator.SetActive(false);
         }
     }
 
@@ -168,7 +192,7 @@ public class MagnetAbilities : MonoBehaviour
         if(closestMagneticObjectRb != null)
         {
             return  (isDetecting && closestMagneticObjectRb.linearVelocity.sqrMagnitude < velocityThreshold && 
-                    formTransform.CurrentForm != FormTransform.formState.neutral && playerRB.linearVelocity.sqrMagnitude < velocityThreshold);   
+                    formTransform.CurrentForm != FormTransform.formState.neutral && !playerMovement.getMovement());   
         }
         else
         {
@@ -218,6 +242,11 @@ public class MagnetAbilities : MonoBehaviour
     private void interactMagneticObjects_canceled(InputAction.CallbackContext context)
     {
         isInteracting = false;
+
+        if (closestMagneticObjectRb != null)
+        {
+            closestMagneticObjectRb.linearVelocity = Vector2.zero;
+        }
     }
 
     private void setValuesOnDetection(Collider2D hit, GameObject objectDetectee, float currentMagneticObjectDistance)
@@ -242,7 +271,7 @@ public class MagnetAbilities : MonoBehaviour
                 closestObjectType = objectType[1];
             }
 
-            if(formTransform.CurrentForm != FormTransform.formState.neutral && !isPlayerTooCloseToMagneticObject)
+            if(formTransform.CurrentForm != FormTransform.formState.neutral && !isPlayerTooCloseToMagneticObject && !formTransform.IsPaint)
             {
                 magnetVFX.Draw2DRay(transform.position, closestMagneticObject.transform.position, playerDirection, formTransform.CurrentForm, closestMagneticObject.transform.parent.tag);
             }
@@ -277,14 +306,16 @@ public class MagnetAbilities : MonoBehaviour
     }
 
 
-    // [bug] there is a bug where if hold E and swicthing the detection from one object to another, the first object still be interacted, holding E keep it going while the second object is being interacted....
     private void detectMagneticObjects()
     {
-        if (dialogueSystem.IsDialogueReady && dialogueSystem.DialogueType == "Conversation")
+        if(dialogueSystem != null)
         {
-            isDetecting = false;
-            magnetVFX.Hide2DRay();
-            return;
+            if (dialogueSystem.IsDialogueReady && dialogueSystem.DialogueType == "Conversation")
+            {
+                isDetecting = false;
+                magnetVFX.Hide2DRay();
+                return;
+            }
         }
 
         playerPosition = playerObjectDetector.transform.position;
@@ -383,6 +414,7 @@ public class MagnetAbilities : MonoBehaviour
 
         // use linearVecocity for continous movement
         closestMagneticObjectRb.linearVelocity = new Vector2(directionTowardsPlayer * speedOfPushPullObjects, closestMagneticObjectRb.linearVelocity.y);
+        Camera.main.DOShakePosition(0.1f, 0.03f, 1, 10, false, ShakeRandomnessMode.Harmonic);
     }
 
     private void pushPullMagneticObject()
@@ -404,6 +436,7 @@ public class MagnetAbilities : MonoBehaviour
         else
         {
             closestMagneticObjectRb.linearVelocity = Vector2.zero;
+            Camera.main.DOShakePosition(0.1f, 0.03f, 1, 10, false, ShakeRandomnessMode.Harmonic);
         }
     }
 

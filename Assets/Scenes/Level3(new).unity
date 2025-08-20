@@ -775,8 +775,12 @@ PrefabInstance:
       value: CRUSHER (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7529949607777974474, guid: 000e70ad01a9b3b40b617313350721b4, type: 3}
+      propertyPath: waitTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7529949607777974474, guid: 000e70ad01a9b3b40b617313350721b4, type: 3}
       propertyPath: pressSpeed
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1060,12 +1064,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 1742399470}
     m_Modifications:
     - target: {fileID: 4995249301781882943, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
+      propertyPath: waitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4995249301781882943, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
       propertyPath: pressSpeed
-      value: 15
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4995249301781882943, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
+      propertyPath: returnSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6976970367916423131, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
       propertyPath: m_Name
       value: LRSIDECRUSHER
+      objectReference: {fileID: 0}
+    - target: {fileID: 8218695155267941410, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.37
       objectReference: {fileID: 0}
     - target: {fileID: 8218695155267941410, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
       propertyPath: m_LocalPosition.y
@@ -42879,8 +42895,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4995249301781882943, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
+      propertyPath: waitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4995249301781882943, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
       propertyPath: pressSpeed
-      value: 15
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4995249301781882943, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
+      propertyPath: returnSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5312012431019747942, guid: a2646360feb8bc54580453e08a0d64da, type: 3}
       propertyPath: Player
@@ -43154,7 +43178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7529949607777974474, guid: 000e70ad01a9b3b40b617313350721b4, type: 3}
       propertyPath: pressSpeed
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -43610,7 +43634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7529949607777974474, guid: 000e70ad01a9b3b40b617313350721b4, type: 3}
       propertyPath: pressSpeed
-      value: 15
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -43676,7 +43700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5019968372949826811, guid: 000e70ad01a9b3b40b617313350721b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.99
+      value: 1.65
       objectReference: {fileID: 0}
     - target: {fileID: 5019968372949826811, guid: 000e70ad01a9b3b40b617313350721b4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -43715,12 +43739,16 @@ PrefabInstance:
       value: CRUSHER (3)
       objectReference: {fileID: 0}
     - target: {fileID: 7529949607777974474, guid: 000e70ad01a9b3b40b617313350721b4, type: 3}
+      propertyPath: waitTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7529949607777974474, guid: 000e70ad01a9b3b40b617313350721b4, type: 3}
       propertyPath: pressSpeed
-      value: 1
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7529949607777974474, guid: 000e70ad01a9b3b40b617313350721b4, type: 3}
       propertyPath: returnSpeed
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7529949607777974474, guid: 000e70ad01a9b3b40b617313350721b4, type: 3}
       propertyPath: groundLayer.m_Bits

@@ -21,6 +21,7 @@ TagManager:
   - RemarkSpeechBubble
   - RedJumpPad
   - DialogueSystem
+  - GreyPaintStation
   layers:
   - Default
   - TransparentFX

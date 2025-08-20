@@ -106,6 +106,7 @@ public class RedgieGroundCheck : MonoBehaviour
             triggerCount++;
             isGrounded = value;
             redgieRb.bodyType = RigidbodyType2D.Kinematic;
+            redgieRb.linearVelocity = Vector2.zero;
         }
         else
         {

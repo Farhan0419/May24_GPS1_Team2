@@ -14,6 +14,11 @@ public class BlueMagneticPlatformScript : MonoBehaviour
     [SerializeField] public float durationBeforeReturning = 3f;
     [SerializeField] public float returnSpeed = 2f;
 
+    public bool HasTravelMaxDistance
+    {
+        get => hasTravelMaxDistance;
+    }
+
     void Start()
     {
         OriginalPos = transform.position;

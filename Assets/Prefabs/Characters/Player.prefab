@@ -546,9 +546,14 @@ MonoBehaviour:
   speed: 6.5
   jumpPower: 19
   LaunchPower: 28
-  pullPower: 55
+  pullPower: 92
+  maxPullSpeed: 3.7
+  jumpCounter: 0
   PlayerCollider: {fileID: 1852144890480461987}
   coyoteTime: 0.05
+  RedPaintSplat: {fileID: 5066319124777655171, guid: b39da4116480fd84ba569441e2cfcb87, type: 3}
+  BluePaintSplat: {fileID: 141646520245829282, guid: 8db4371988b8cce4d80e745d89182662, type: 3}
+  GreyPaintSplat: {fileID: 5182402998174203603, guid: 7703be7c3e6d19247a4854b4a78d4ade, type: 3}
   step1: {fileID: 8300000, guid: 77843497fad7dab4091a311767cd1fe0, type: 3}
   step2: {fileID: 8300000, guid: c1e2c3cb678fab042a038f2432f036b1, type: 3}
   step3: {fileID: 8300000, guid: 44a848bd62a273b43b438821a27401f3, type: 3}
@@ -618,6 +623,7 @@ MonoBehaviour:
   circleToPlayer: {fileID: 2100000, guid: d2b48727e8cab7a499c5d4255f1191a2, type: 2}
   leftArrowToPlayer: {fileID: 2100000, guid: ca429ca2f33deb341a922cae35aeaf0e, type: 2}
   rightArrowToObject: {fileID: 2100000, guid: ae13bcc055752aa47967f99dc8aeab7a, type: 2}
+  velocityThreshold: 0.01
 --- !u!114 &4166238658015679069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,10 +906,6 @@ PrefabInstance:
     - target: {fileID: 1057188929627623772, guid: 5937caede17096a46a9d59630bb6a146, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1057188929627623772, guid: 5937caede17096a46a9d59630bb6a146, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.757
       objectReference: {fileID: 0}
     - target: {fileID: 1057188929627623772, guid: 5937caede17096a46a9d59630bb6a146, type: 3}
       propertyPath: m_LocalPosition.z

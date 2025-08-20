@@ -4969,7 +4969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerToHit:
     serializedVersion: 2
-    m_Bits: 6145
+    m_Bits: 2368
   maxDistance: 50
   EndVFX: {fileID: 0}
   deathScript: {fileID: 0}

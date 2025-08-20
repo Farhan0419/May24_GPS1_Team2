@@ -25,7 +25,7 @@ public class FormTransform : MonoBehaviour
     [SerializeField] private float detectDistance = 2f;
     private string nearStationTag;
 
-    private string[] stationTag = { "ShowerStation", "RedPaintStation", "BluePaintStation" };
+    private string[] stationTag = { "GreyPaintStation", "RedPaintStation", "BluePaintStation" };
 
     private int layerObjects;
     private int layerGround;
@@ -152,7 +152,7 @@ public class FormTransform : MonoBehaviour
         {
             switch (nearStationTag)
             {
-                case "ShowerStation":
+                case "GreyPaintStation":
                     return currentForm == formState.neutral ? false : true;
                 case "RedPaintStation":
                     return currentForm == formState.red ? false : true;
@@ -170,7 +170,6 @@ public class FormTransform : MonoBehaviour
         if (paintFormAction != null)
         {
             paintFormAction.performed += paintForm_performed;
-            paintFormAction.canceled += paintForm_canceled;
         }
     }
 
@@ -179,7 +178,6 @@ public class FormTransform : MonoBehaviour
         if (paintFormAction != null)
         {
             paintFormAction.performed -= paintForm_performed;
-            paintFormAction.canceled -= paintForm_canceled;
             paintFormAction = null;
         }
     }
@@ -227,12 +225,8 @@ public class FormTransform : MonoBehaviour
         {
             currentForm = switchForm;
             spriteRenderer.sprite = switchSprite;
+            isPaint = false;
         });
-    }
-
-    private void paintForm_canceled(InputAction.CallbackContext context)
-    {
-        isPaint = false;
     }
 
     private void detectNearestStation()
