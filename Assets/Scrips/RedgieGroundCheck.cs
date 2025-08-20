@@ -78,8 +78,8 @@ public class RedgieGroundCheck : MonoBehaviour
                             onLandFromJumpPad = true;
                             StartCoroutine(ResetOnLandFromJumpPad());
                         }
+                        setGrounded(true);  
                     }
-                    setGrounded(true);
                     if (debugMode) Debug.Log($"Ground check enter: {other.name}, isGrounded: {isGrounded}");
                 }
             }
@@ -106,7 +106,11 @@ public class RedgieGroundCheck : MonoBehaviour
             triggerCount++;
             isGrounded = value;
             redgieRb.bodyType = RigidbodyType2D.Kinematic;
-            redgieRb.linearVelocity = Vector2.zero;
+
+            if(!onLandFromJumpPad)
+            {
+                redgieRb.linearVelocity = Vector2.zero;
+            }
         }
         else
         {
