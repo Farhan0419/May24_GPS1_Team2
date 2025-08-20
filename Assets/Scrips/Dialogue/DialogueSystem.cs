@@ -95,8 +95,9 @@ public class DialogueSystem : MonoBehaviour
     {
         playerMovement = GameObject.FindWithTag("Player").GetComponentInChildren<PlayerMovement>();
         redgiePosition = GameObject.FindWithTag("Redgie").transform.position;
+        dialogueCanvas = GameObject.FindWithTag("DialogueCanvas");
 
-        if(dialogueCanvas != null)
+        if (dialogueCanvas != null)
         {
             dialogueCanvasComponent = dialogueCanvas.GetComponentInChildren<Canvas>();
             dialogueCanvasRT = dialogueCanvasComponent.GetComponent<RectTransform>(); ;

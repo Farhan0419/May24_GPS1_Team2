@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288e0e3fe15771b44a8b00e693e4665d, type: 3}
+  m_Name: Level 3
+  m_EditorClassIdentifier: 
+  dialogueType:
+  - Conversation
+  - Remark
+  - Conversation
+  dialogueLines1:
+  - "<size=8>NO TIME TO THINK, WE\u2019VE GOT TO MOVE!</size>;<size=8>AND BY \u2018WE\u2019,
+    I MEAN YOU!</size>"
+  - <size=8>HURRY! I LIKE BEING A SQUARE.</size>
+  - "Phew! Really had me going there.;You\u2019ve made it.;This is where me and my
+    friends must stay behind.;We belong here.;This factory had a purpose once<size=8>\u2026..</size>;Which
+    it clung to until it collapsed.;But you, <b>MagUnet</b>, you may create one that
+    endures.;You have the chance to choose, instead of being bound."
+  dialogueLines2: []
+  dialogueLines3: []

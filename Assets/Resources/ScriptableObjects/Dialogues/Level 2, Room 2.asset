@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288e0e3fe15771b44a8b00e693e4665d, type: 3}
+  m_Name: Level 2, Room 2
+  m_EditorClassIdentifier: 
+  dialogueType:
+  - Conversation
+  - Conversation
+  dialogueLines1:
+  - "Don\u2019t worry, this only tickles.;Perks of being a special guidance unit.;I\u2019ll
+    be fine, but you on the other hand<size=8>\u2026..</size>;Probably best to avoid
+    them.;Unless you want to be liquid metal."
+  - "When the factory was alive<size=8>\u2026..</size>;Those <color=blue>blue</color>
+    platforms used to ferry bearings for satellites;Now, they\u2019re trapped within
+    their own design.;Bound to the rigid purpose the factory gave them."
+  dialogueLines2: []
+  dialogueLines3: []

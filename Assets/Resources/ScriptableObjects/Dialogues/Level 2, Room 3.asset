@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288e0e3fe15771b44a8b00e693e4665d, type: 3}
+  m_Name: Level 2, Room 3
+  m_EditorClassIdentifier: 
+  dialogueType:
+  - Conversation
+  - Remark
+  - Conversation
+  dialogueLines1:
+  - "Whoa<size=8>\u2026..</size>;Looks like they threw every trick in the book here.;All
+    the lessons the other Redgies have taught you<size=8>\u2026..</size>;Now is the
+    time to use them."
+  - "Hey! I\u2019m not a glorified step stool<size=8>\u2026..</size>;<size=8>\u2026..</size>I
+    think. "
+  - "Excellent! Now here\u2019s my lesson for you<size=8>\u2026..</size>;This factory
+    lost its purpose when the world moved on.;Tools were built too narrowly to survive
+    change.;And without flexibility, purpose becomes a prison.;So remember this<size=8>\u2026..</size>;Perfection
+    means nothing if it cannot adapt."
+  dialogueLines2: []
+  dialogueLines3: []
