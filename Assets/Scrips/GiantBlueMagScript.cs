@@ -41,8 +41,9 @@ public class GiantBlueMagScript : MonoBehaviour
                 {
                     playerDetected = true;
                 }
-                if (hit.collider.CompareTag("Redgie"))
+                if (hit.collider.CompareTag("TopRedgie"))
                 {
+                    Debug.Log("Redgie detected by Giant Blue Mag Script");
                     redgieDetected = true;
                 }
             }
