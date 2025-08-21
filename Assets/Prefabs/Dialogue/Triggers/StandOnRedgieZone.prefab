@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8336825017847046681}
   m_Layer: 8
   m_Name: StandOnRedgieZone
-  m_TagString: Untagged
+  m_TagString: TopRedgie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
