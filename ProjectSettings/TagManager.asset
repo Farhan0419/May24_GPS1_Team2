@@ -22,6 +22,7 @@ TagManager:
   - RedJumpPad
   - DialogueSystem
   - GreyPaintStation
+  - TopRedgie
   layers:
   - Default
   - TransparentFX
