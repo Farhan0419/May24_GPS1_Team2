@@ -1,0 +1,741 @@
+fileFormatVersion: 2
+guid: 38929435d3c0f494488876eeed6dbb15
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6047283158549527101
+    second: logo testArtboard 2@300ppi_0
+  - first:
+      213: 7625364744100247176
+    second: logo testArtboard 2@300ppi_1
+  - first:
+      213: -7734090225973792837
+    second: logo testArtboard 2@300ppi_2
+  - first:
+      213: -5465421568875719633
+    second: logo testArtboard 2@300ppi_3
+  - first:
+      213: -6514725066228364703
+    second: logo testArtboard 2@300ppi_4
+  - first:
+      213: -4005646914158031186
+    second: logo testArtboard 2@300ppi_5
+  - first:
+      213: -1046330648336555784
+    second: logo testArtboard 2@300ppi_6
+  - first:
+      213: -8416415151342045390
+    second: logo testArtboard 2@300ppi_7
+  - first:
+      213: 6510876886976945110
+    second: logo testArtboard 2@300ppi_8
+  - first:
+      213: -194365202507484437
+    second: logo testArtboard 2@300ppi_9
+  - first:
+      213: -1670237844008242458
+    second: logo testArtboard 2@300ppi_10
+  - first:
+      213: 7256138078101209852
+    second: logo testArtboard 2@300ppi_11
+  - first:
+      213: -7103247648077408964
+    second: logo testArtboard 2@300ppi_12
+  - first:
+      213: -8852541429453001090
+    second: logo testArtboard 2@300ppi_13
+  - first:
+      213: 4749459329480890068
+    second: logo testArtboard 2@300ppi_14
+  - first:
+      213: -974919050758243577
+    second: logo testArtboard 2@300ppi_15
+  - first:
+      213: -5346238966959072547
+    second: logo testArtboard 2@300ppi_16
+  - first:
+      213: -6636775438603007074
+    second: logo testArtboard 2@300ppi_17
+  - first:
+      213: 2790516885163479567
+    second: logo testArtboard 2@300ppi_18
+  - first:
+      213: -1230623126430633726
+    second: logo testArtboard 2@300ppi_19
+  - first:
+      213: 4781426861833333550
+    second: logo testArtboard 2@300ppi_20
+  - first:
+      213: -8366419965828568595
+    second: logo testArtboard 2@300ppi_21
+  - first:
+      213: -4970845539420979785
+    second: logo testArtboard 2@300ppi_22
+  - first:
+      213: 5973937822677613230
+    second: logo testArtboard 2@300ppi_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_0
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 910
+        width: 855
+        height: 855
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c50476d10cb31ca0800000000000000
+      internalID: -6047283158549527101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_1
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 757
+        width: 822
+        height: 821
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 886f1e675dcb2d960800000000000000
+      internalID: 7625364744100247176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_2
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 468
+        width: 193
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbfe20c9aedfaa490800000000000000
+      internalID: -7734090225973792837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_3
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 467
+        width: 155
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2497674a0ce624b0800000000000000
+      internalID: -5465421568875719633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_4
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 467
+        width: 153
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16a002a911c0795a0800000000000000
+      internalID: -6514725066228364703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_5
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 467
+        width: 171
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eae88f9ba551968c0800000000000000
+      internalID: -4005646914158031186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_6
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 467
+        width: 230
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f0ab4ca1dfaa71f0800000000000000
+      internalID: -1046330648336555784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_7
+      rect:
+        serializedVersion: 2
+        x: 1013
+        y: 467
+        width: 197
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 237ba0e0303e23b80800000000000000
+      internalID: -8416415151342045390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_8
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 467
+        width: 172
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dbdf8858084b5a50800000000000000
+      internalID: 6510876886976945110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_9
+      rect:
+        serializedVersion: 2
+        x: 1394
+        y: 466
+        width: 50
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be238dbc0e97d4df0800000000000000
+      internalID: -194365202507484437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_10
+      rect:
+        serializedVersion: 2
+        x: 1454
+        y: 466
+        width: 154
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e27979b78f12d8e0800000000000000
+      internalID: -1670237844008242458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_11
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 65
+        width: 152
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf2886a232bf2b460800000000000000
+      internalID: 7256138078101209852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_12
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 291
+        width: 142
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3597b016e13c6d90800000000000000
+      internalID: -7103247648077408964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_13
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 71
+        width: 319
+        height: 367
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7e66020974752580800000000000000
+      internalID: -8852541429453001090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_14
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 97
+        width: 189
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d69fd0b81879e140800000000000000
+      internalID: 4749459329480890068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_15
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 72
+        width: 76
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70b3bc6e9446872f0800000000000000
+      internalID: -974919050758243577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_16
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 97
+        width: 191
+        height: 342
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dda9d023cf75ec5b0800000000000000
+      internalID: -5346238966959072547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_17
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 72
+        width: 78
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9bc708d6ef65e3a0800000000000000
+      internalID: -6636775438603007074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_18
+      rect:
+        serializedVersion: 2
+        x: 1085
+        y: 71
+        width: 78
+        height: 367
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0216ef7258e9b620800000000000000
+      internalID: 2790516885163479567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_19
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 367
+        width: 157
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 201b8b069c2fbeee0800000000000000
+      internalID: -1230623126430633726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_20
+      rect:
+        serializedVersion: 2
+        x: 1341
+        y: 71
+        width: 270
+        height: 367
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2b2613d56a0b5240800000000000000
+      internalID: 4781426861833333550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_21
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 65
+        width: 157
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de96d074e5184eb80800000000000000
+      internalID: -8366419965828568595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_22
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 229
+        width: 145
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bd3a7d8152040bb0800000000000000
+      internalID: -4970845539420979785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: logo testArtboard 2@300ppi_23
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 71
+        width: 159
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaa38f66cc0b7e250800000000000000
+      internalID: 5973937822677613230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      logo testArtboard 2@300ppi_0: -6047283158549527101
+      logo testArtboard 2@300ppi_1: 7625364744100247176
+      logo testArtboard 2@300ppi_10: -1670237844008242458
+      logo testArtboard 2@300ppi_11: 7256138078101209852
+      logo testArtboard 2@300ppi_12: -7103247648077408964
+      logo testArtboard 2@300ppi_13: -8852541429453001090
+      logo testArtboard 2@300ppi_14: 4749459329480890068
+      logo testArtboard 2@300ppi_15: -974919050758243577
+      logo testArtboard 2@300ppi_16: -5346238966959072547
+      logo testArtboard 2@300ppi_17: -6636775438603007074
+      logo testArtboard 2@300ppi_18: 2790516885163479567
+      logo testArtboard 2@300ppi_19: -1230623126430633726
+      logo testArtboard 2@300ppi_2: -7734090225973792837
+      logo testArtboard 2@300ppi_20: 4781426861833333550
+      logo testArtboard 2@300ppi_21: -8366419965828568595
+      logo testArtboard 2@300ppi_22: -4970845539420979785
+      logo testArtboard 2@300ppi_23: 5973937822677613230
+      logo testArtboard 2@300ppi_3: -5465421568875719633
+      logo testArtboard 2@300ppi_4: -6514725066228364703
+      logo testArtboard 2@300ppi_5: -4005646914158031186
+      logo testArtboard 2@300ppi_6: -1046330648336555784
+      logo testArtboard 2@300ppi_7: -8416415151342045390
+      logo testArtboard 2@300ppi_8: 6510876886976945110
+      logo testArtboard 2@300ppi_9: -194365202507484437
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

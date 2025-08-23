@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 863610848010433949}
   - component: {fileID: 613320625529993149}
   - component: {fileID: 7529949607777974474}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CRUSHER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
