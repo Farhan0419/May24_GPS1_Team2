@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using System.Threading;
 using EasyTransition;
 
 public class PlayerDeath : MonoBehaviour
@@ -65,7 +63,11 @@ public class PlayerDeath : MonoBehaviour
         {
             Debug.Log("Player got stuck in the Giant Blue magnet forever");
         }
-        DoAfterSeconds(0.6f, ()=> Restart(currentSceneName));
+        else
+        {
+            Debug.Log("Redgie Died in room 7");
+        }
+        DoAfterSeconds(0.6f, () => Restart(currentSceneName));
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -979,6 +979,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8fe9c905-8930-403b-bc98-c8b8e91fb95b",
+                    "path": "<VirtualMouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4faf7dc9-b979-4210-aa8c-e808e1ef89f5",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -1025,6 +1036,17 @@
                     "name": "",
                     "id": "1181093a-6386-47e0-83ab-3035e55acd44",
                     "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6604978a-1f64-4e88-bd33-30dfe90d9680",
+                    "path": "<VirtualMouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -1169,6 +1191,11 @@
                 {
                     "devicePath": "<Gamepad>",
                     "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<VirtualMouse>",
+                    "isOptional": true,
                     "isOR": false
                 }
             ]
