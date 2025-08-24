@@ -58,6 +58,8 @@ public class DialogueSystem : MonoBehaviour
     protected bool isLineFullyShown = false;
     protected int actualLineLength = 0;
 
+    public static event Action<bool> OnDialogueStateChange;
+
     [Header("Audio")]
     [SerializeField] protected AudioClip dialogueTypingSoundClip;
     [SerializeField] protected bool stopAudioSource = true;
@@ -388,6 +390,7 @@ public class DialogueSystem : MonoBehaviour
         {
             isDialogueReady = false;
             dialogueCanvas.SetActive(false);
+            OnDialogueStateChange?.Invoke(isDialogueReady);
         }
 
     }

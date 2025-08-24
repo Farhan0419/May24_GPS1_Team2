@@ -6,13 +6,20 @@ using UnityEngine.UI;
 using System.Collections;
 using Unity.VisualScripting;
 
-public class Level2room3DialogueSystem : DialogueSystem
+public class Level3room1DialogueSystem : DialogueSystem
 {
-    private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level 2, Room 3";
+    private string scriptableObjectFile = "ScriptableObjects/Dialogues/Level 3, Room 1";
     private int layerPlayer;
     private PressurePlateScript pressurePlateScript;
 
-    [SerializeField] private float dialogueDetectionRadius = 5f;
+    [SerializeField] private float dialogueDetectionRadiusWidth = 7.5f;
+    [SerializeField] private float dialogueDetectionRadiusHeight = 5f;
+
+    [SerializeField] private float dialogueDetectionPositionXOffset = 0f;
+    [SerializeField] private float dialogueDetectionPositionYOffset = 0f;
+
+    [SerializeField] private GameObject yOffsetCamZone;
+    [SerializeField] private GameObject GiantCrusher;
 
     private void OnEnable()
     {
@@ -22,7 +29,8 @@ public class Level2room3DialogueSystem : DialogueSystem
             nextConversation.performed += nextConversation_performed;
         }
 
-        StandOnRedgie.OnStandingRedgie += SecondDialogue;
+        DialogueSystem.OnDialogueStateChange += DestroyCamZone;
+        DialogueTriggerZone.OnPlayerEnterZone += SecondDialogue;
     }
 
     private void OnDisable()
@@ -33,7 +41,8 @@ public class Level2room3DialogueSystem : DialogueSystem
             nextConversation = null;
         }
 
-        StandOnRedgie.OnStandingRedgie -= SecondDialogue;
+        DialogueSystem.OnDialogueStateChange -= DestroyCamZone;
+        DialogueTriggerZone.OnPlayerEnterZone -= SecondDialogue;
     }
 
     private void nextConversation_performed(InputAction.CallbackContext context)
@@ -44,7 +53,6 @@ public class Level2room3DialogueSystem : DialogueSystem
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         layerPlayer = LayerMask.GetMask("Player");
@@ -79,7 +87,7 @@ public class Level2room3DialogueSystem : DialogueSystem
     {
         if (executedStates.Contains(0)) return;
 
-        Collider2D hit = Physics2D.OverlapCircle(redgiePosition, dialogueDetectionRadius, layerPlayer);
+        Collider2D hit = Physics2D.OverlapBox(new Vector2(redgiePosition.x + dialogueDetectionPositionXOffset, redgiePosition.y + dialogueDetectionPositionYOffset), new Vector2(dialogueDetectionRadiusWidth, dialogueDetectionRadiusHeight), 0, layerPlayer);
 
         if (hit != null && hit.CompareTag("Player"))
         {
@@ -88,11 +96,11 @@ public class Level2room3DialogueSystem : DialogueSystem
         }
     }
 
-    private void SecondDialogue(bool isStanding)
+    private void SecondDialogue(string zoneName, int zoneID)
     {
         if (executedStates.Contains(1)) return;
 
-        if(isStanding)
+        if(zoneName == "BluePaintStation" && zoneID == 1)
         {
             dialogueState = 1;
             initializeDialogueValues();
@@ -110,17 +118,31 @@ public class Level2room3DialogueSystem : DialogueSystem
         }
     }
 
+    private void DestroyCamZone(bool isDialogueReady)
+    {
+        if (!isDialogueReady)
+        {
+            Destroy(yOffsetCamZone);
+            GiantCrusher.GetComponent<GiantCrusherScript>().setStartPress = true;
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(redgiePosition, dialogueDetectionRadius);
+        Gizmos.DrawWireCube(new Vector2(redgiePosition.x + dialogueDetectionPositionXOffset, redgiePosition.y + dialogueDetectionPositionYOffset), new Vector3(dialogueDetectionRadiusWidth, dialogueDetectionRadiusHeight, Vector3.zero.z));
     }
 
     private void OnValidate()
     {
-        if (dialogueDetectionRadius <= 0f)
+        if (dialogueDetectionRadiusWidth <= 0f)
         {
-            dialogueDetectionRadius = 1f;
+            dialogueDetectionRadiusWidth = 1f;
+        }
+
+        if (dialogueDetectionRadiusHeight <= 0f)
+        {
+            dialogueDetectionRadiusHeight = 1f;
         }
     }
 }

@@ -94,4 +94,18 @@ public class Level2room2DialogueSystem : DialogueSystem
             initializeDialogueValues();
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(redgiePosition, dialogueDetectionRadius);
+    }
+
+    private void OnValidate()
+    {
+        if (dialogueDetectionRadius <= 0f)
+        {
+            dialogueDetectionRadius = 1f;
+        }
+    }
 }
