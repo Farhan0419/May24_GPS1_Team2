@@ -1370,6 +1370,34 @@ PrefabInstance:
       propertyPath: m_text
       value: CREDITS
       objectReference: {fileID: 0}
+    - target: {fileID: 7341009753572175306, guid: a35232699fd7da64881889da0ad66a09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341009753572175306, guid: a35232699fd7da64881889da0ad66a09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341009753572175306, guid: a35232699fd7da64881889da0ad66a09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1420156094}
+    - target: {fileID: 7341009753572175306, guid: a35232699fd7da64881889da0ad66a09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341009753572175306, guid: a35232699fd7da64881889da0ad66a09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CreditsOpen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341009753572175306, guid: a35232699fd7da64881889da0ad66a09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenuScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341009753572175306, guid: a35232699fd7da64881889da0ad66a09, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8589303488948649374, guid: a35232699fd7da64881889da0ad66a09, type: 3}
       propertyPath: m_Name
       value: CREDITS

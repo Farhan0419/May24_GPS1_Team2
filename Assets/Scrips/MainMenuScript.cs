@@ -25,23 +25,28 @@ public class MainMenuScript : MonoBehaviour
     }
 
     public void startGame()
-    { 
-        if (Started) return; 
+    {
+        if (Started) return;
         Started = true;
 
         Sequence transition = DOTween.Sequence();
 
         transition.Append(title.DOAnchorPosX(offscreenX, moveDuration).SetEase(easing));
 
-        foreach(RectTransform button in buttons)
+        foreach (RectTransform button in buttons)
         {
-            transition.Join(button.DOAnchorPosX(offscreenX,moveDuration).SetEase(easing));
+            transition.Join(button.DOAnchorPosX(offscreenX, moveDuration).SetEase(easing));
         }
 
         transition.OnComplete(() =>
         {
             LoadNextScene("Level1");
         });
+    }
+
+    public void CreditsOpen()
+    {
+        TransitionManager.Instance().Transition("CreditsScenes", transition, .2f);
     }
 
     public void closeGame()
