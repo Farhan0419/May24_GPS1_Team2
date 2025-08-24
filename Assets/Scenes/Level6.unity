@@ -33673,7 +33673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3658231265657834001, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
       propertyPath: nextSceneName
-      value: TBC
+      value: Level7
       objectReference: {fileID: 0}
     - target: {fileID: 4379693248320581475, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
       propertyPath: m_LocalPosition.x

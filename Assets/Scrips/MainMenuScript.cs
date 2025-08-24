@@ -40,8 +40,7 @@ public class MainMenuScript : MonoBehaviour
 
         transition.OnComplete(() =>
         {
-            LoadNextScene("Level1(new)");
-            //SceneManager.LoadScene("Level1(new)");
+            LoadNextScene("Level1");
         });
     }
 
