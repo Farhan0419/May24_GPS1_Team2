@@ -91,6 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d566e63e6451c55499e91d47a3ece48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crusher: {fileID: 0}
+  Player: {fileID: 0}
+  deathScript: {fileID: 0}
+  PlayerScript: {fileID: 0}
 --- !u!1 &6976970367916423131
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +108,7 @@ GameObject:
   - component: {fileID: 2983838025715204299}
   - component: {fileID: 7046034028928017068}
   - component: {fileID: 4995249301781882943}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LRSIDECRUSHER
   m_TagString: Walll
   m_Icon: {fileID: 0}
