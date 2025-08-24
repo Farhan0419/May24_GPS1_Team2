@@ -1,26 +1,27 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System;
 using System.Collections;
-using System.Linq;
 public class Level1Script : MonoBehaviour
 {
-
-    public GameObject MoveInsKey;
-    public GameObject MoveInsCon;
-    public GameObject JumpInsKey;
-    public GameObject JumpInsCon;
     [SerializeField] GameObject invisiblePlatform;
+    [SerializeField] BoxCollider2D trashbox;
     private PlayerMovement playerMovement;
     private GameObject Player;
+    private BoxCollider2D playerCollider;
+    private bool landed = false;
+
+    private AudioSource aud;
+    [SerializeField] AudioClip trash;
 
     private void Start()
     {
         DoAfterSeconds(1f, () => Destroy(invisiblePlatform));
         Player = GameObject.FindGameObjectWithTag("Player");
+        playerCollider = Player.GetComponent<BoxCollider2D>();
         playerMovement = Player.GetComponent<PlayerMovement>();
         playerMovement.DisablePlayerMovement();
         DoAfterSeconds(3f, () => playerMovement.EnablePlayerMovement());
+        aud = GetComponent<AudioSource>();
     }
 
     public void DoAfterSeconds(float delay, Action callback)
@@ -36,36 +37,13 @@ public class Level1Script : MonoBehaviour
 
     void Update()
     {
-        // Input instructions -------------------------------------------------------------------------------------==
-        var lastDevice = InputSystem.devices.FirstOrDefault(d => d.lastUpdateTime == InputSystem.devices.Max(d => d.lastUpdateTime));
-
-        if (lastDevice != null)
+        if (trashbox.IsTouching(playerCollider))
         {
-            if (lastDevice is Keyboard || lastDevice is Mouse)
+            if (!landed)
             {
-                MoveInsKey.SetActive(true);
-                MoveInsCon.SetActive(false);
-
-                JumpInsKey.SetActive(true);
-                JumpInsCon.SetActive(false);
-            }
-            else if (lastDevice is Gamepad)
-            {
-                MoveInsKey.SetActive(false);
-                MoveInsCon.SetActive(true);
-
-                JumpInsKey.SetActive(false);
-                JumpInsCon.SetActive(true);
-            }
-            else
-            {
-                Debug.Log("Using other device: " + lastDevice.name);
+                aud.PlayOneShot(trash);
+                landed = true;
             }
         }
-        else
-        {
-            Debug.Log("No input device detected");
-        }
-        // ------------------------------------------------------------------------------------------------------------
     }
 }

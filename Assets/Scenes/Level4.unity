@@ -1541,6 +1541,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14bf40721fa121e43a9188c6e2ad0e20, type: 3}
+--- !u!114 &736902495 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 708919870060714739, guid: 14bf40721fa121e43a9188c6e2ad0e20, type: 3}
+  m_PrefabInstance: {fileID: 736902494}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b552349fd88fca4a8e0117757e61248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &752924837
 GameObject:
   m_ObjectHideFlags: 0
@@ -21217,6 +21228,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Redgie
       objectReference: {fileID: 0}
+    - target: {fileID: 8611530789317339602, guid: eaf3c626662b1044fb35f089ca167ab4, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 736902495}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

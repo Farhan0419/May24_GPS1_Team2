@@ -16956,7 +16956,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 22
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 24
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -41463,8 +41463,8 @@ Tilemap:
     m_Data: {fileID: 1299775188, guid: de9e773df2f3c114fa324a95c7162f03, type: 3}
   - m_RefCount: 16
     m_Data: {fileID: -1728011585, guid: de9e773df2f3c114fa324a95c7162f03, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -839336070, guid: de9e773df2f3c114fa324a95c7162f03, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 691
     m_Data: {fileID: -1578267357, guid: de9e773df2f3c114fa324a95c7162f03, type: 3}
   - m_RefCount: 428
@@ -41505,8 +41505,8 @@ Tilemap:
     m_Data: {fileID: -992223024, guid: de9e773df2f3c114fa324a95c7162f03, type: 3}
   - m_RefCount: 22
     m_Data: {fileID: 53549850, guid: de9e773df2f3c114fa324a95c7162f03, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -839336070, guid: de9e773df2f3c114fa324a95c7162f03, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: 5441223297315994465, guid: de9e773df2f3c114fa324a95c7162f03, type: 3}
   m_TileMatrixArray:
@@ -41926,6 +41926,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca919125be4a43146816bb8a658a6ce6, type: 3}
+--- !u!114 &742682295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3453171143618799889, guid: ca919125be4a43146816bb8a658a6ce6, type: 3}
+  m_PrefabInstance: {fileID: 742682294}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efdd213e8bfb1141a697fdf26963eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &770731860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43119,6 +43130,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Redgie
       objectReference: {fileID: 0}
+    - target: {fileID: 8611530789317339602, guid: eaf3c626662b1044fb35f089ca167ab4, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 742682295}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
