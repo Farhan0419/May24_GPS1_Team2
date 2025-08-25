@@ -14,6 +14,8 @@ public class Level2room1DialogueSystem : DialogueSystem
     private PressurePlateScript pressurePlateScript;
 
     [SerializeField] private float dialogueDetectionRadius = 5f;
+    private string triggerZone;
+    private int triggerZoneID;
 
     private void OnEnable()
     {
@@ -22,6 +24,7 @@ public class Level2room1DialogueSystem : DialogueSystem
         {
             nextConversation.performed += nextConversation_performed;
         }
+        DialogueTriggerZone.OnPlayerEnterZone += SetDialogueZoneTrigger;
     }
 
     private void OnDisable()
@@ -31,6 +34,7 @@ public class Level2room1DialogueSystem : DialogueSystem
             nextConversation.performed -= nextConversation_performed;
             nextConversation = null;
         }
+        DialogueTriggerZone.OnPlayerEnterZone += SetDialogueZoneTrigger;
     }
 
     private void nextConversation_performed(InputAction.CallbackContext context)
@@ -93,22 +97,32 @@ public class Level2room1DialogueSystem : DialogueSystem
     {
         if (executedStates.Contains(1)) return;
 
-        if (formTransform.CurrentForm == FormTransform.formState.red)
+        if (SecondDialogueTrigger())
         {
             dialogueState = 1;
             initializeDialogueValues();
         }
     }
 
+    private bool SecondDialogueTrigger()
+    {
+        return (formTransform.CurrentForm == FormTransform.formState.red && triggerZone == "RedPaintStation" && triggerZoneID == 1);
+    }
+
     private void ThirdDialogue()
     {
         if (executedStates.Contains(2)) return;
 
-        if (formTransform.IsPaint && formTransform.NearStationTag == "GreyPaintStation")
+        if (ThirdDialogueTrigger())
         {
             dialogueState = 2;
             initializeDialogueValues();
         }
+    }
+
+    private bool ThirdDialogueTrigger()
+    {
+        return (formTransform.IsPaint && triggerZone == "GreyPaintStation" && triggerZoneID == 2);
     }
 
     private void FourthDialogue()
@@ -120,6 +134,12 @@ public class Level2room1DialogueSystem : DialogueSystem
             dialogueState = 3;
             initializeDialogueValues();
         }
+    }
+
+    private void SetDialogueZoneTrigger(string zoneName, int zoneID)
+    {
+        triggerZone = zoneName;
+        triggerZoneID = zoneID;
     }
 
     private void OnDrawGizmos()
