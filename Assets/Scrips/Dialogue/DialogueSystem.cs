@@ -21,6 +21,12 @@ public class DialogueSystem : MonoBehaviour
     protected RectTransform dialogueCanvasRT;
     protected GameObject conversationDialogueBox;
     protected GameObject remarkDialogueBox;
+    protected DialogueClampToScreen conversationDialogueBoxClampToScreen;
+    protected DialogueClampToScreen remarkDialogueBoxClampToScreen;
+    [SerializeField] protected Texture conversationDialogueArrow;
+    [SerializeField] protected Texture conversationDialogue;
+    [SerializeField] protected Texture remarkDialogueArrow;
+    [SerializeField] protected Texture remarkDialogue;
     protected TextMeshProUGUI conversationDialogueText;
     protected TextMeshProUGUI remarkDialogueText;
     protected TextMeshProUGUI dialogueText;
@@ -109,9 +115,18 @@ public class DialogueSystem : MonoBehaviour
             dialogueCanvasRT = dialogueCanvasComponent.GetComponent<RectTransform>(); ;
             conversationDialogueBox = GameObject.FindWithTag("ConvoSpeechBubble");
             remarkDialogueBox = GameObject.FindWithTag("RemarkSpeechBubble");
+
+            conversationDialogueBoxClampToScreen = conversationDialogueBox.GetComponent<DialogueClampToScreen>();
+            remarkDialogueBoxClampToScreen = remarkDialogueBox.GetComponent<DialogueClampToScreen>();
+
             conversationDialogueText = conversationDialogueBox.GetComponentInChildren<TextMeshProUGUI>();
             remarkDialogueText = remarkDialogueBox.GetComponentInChildren<TextMeshProUGUI>();
-            
+
+            conversationDialogueBoxClampToScreen.OnClamped += ChangeConversationDialogueBoxSprite;
+            conversationDialogueBoxClampToScreen.OnUnclamped += ChangeConversationDialogueBoxSprite;
+
+            remarkDialogueBoxClampToScreen.OnClamped += ChangeConversationDialogueBoxSprite;
+            remarkDialogueBoxClampToScreen.OnUnclamped += ChangeConversationDialogueBoxSprite;
 
             dialogueCanvas.SetActive(false);
         }
@@ -134,6 +149,12 @@ public class DialogueSystem : MonoBehaviour
             nextConversation.performed -= nextConversation_performed;
             nextConversation = null;
         }
+
+        conversationDialogueBoxClampToScreen.OnClamped -= ChangeConversationDialogueBoxSprite;
+        conversationDialogueBoxClampToScreen.OnUnclamped -= ChangeConversationDialogueBoxSprite;
+
+        remarkDialogueBoxClampToScreen.OnClamped -= ChangeConversationDialogueBoxSprite;
+        remarkDialogueBoxClampToScreen.OnUnclamped -= ChangeConversationDialogueBoxSprite;
     }
 
     protected void nextConversation_performed(InputAction.CallbackContext context)
@@ -402,6 +423,32 @@ public class DialogueSystem : MonoBehaviour
         if (currentRedgiePosition != redgiePosition)
         {
             redgiePosition = currentRedgiePosition;
+        }
+    }
+
+    private void ChangeConversationDialogueBoxSprite(bool isClamped)
+    {
+        if (dialogueType[dialogueState] == "Conversation")
+        {
+            if (isClamped)
+            {
+                conversationDialogueBox.GetComponent<RawImage>().texture = conversationDialogue;
+            }
+            else
+            {
+                conversationDialogueBox.GetComponent<RawImage>().texture = conversationDialogueArrow;
+            }
+        }
+        else if (dialogueType[dialogueState] == "Remark")
+        {
+            if (isClamped)
+            {
+                remarkDialogueBox.GetComponent<RawImage>().texture = remarkDialogue;
+            }
+            else
+            {
+                remarkDialogueBox.GetComponent<RawImage>().texture = remarkDialogueArrow;
+            }
         }
     }
 }

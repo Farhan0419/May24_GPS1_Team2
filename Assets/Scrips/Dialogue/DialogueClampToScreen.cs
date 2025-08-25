@@ -13,6 +13,11 @@ public class DialogueClampToScreen : MonoBehaviour
 
     private RectTransform rectTransform;
 
+    public delegate void ClampEventHandler(bool isClamped);
+
+    public event ClampEventHandler OnClamped;
+    public event ClampEventHandler OnUnclamped;
+
     private void Start()
     {
         cam = Camera.main;
@@ -57,9 +62,19 @@ public class DialogueClampToScreen : MonoBehaviour
         cameraMinEdge += widgetMinOffset;
         cameraMaxEdge -= widgetMaxOffset;
 
-        desiredPosition.x = Mathf.Clamp(desiredPosition.x, cameraMinEdge.x - horizontalOffset, cameraMaxEdge.x + horizontalOffset);
-        desiredPosition.y = Mathf.Clamp(desiredPosition.y, cameraMinEdge.y - verticalOffset, cameraMaxEdge.y + verticalOffset);
+        Vector3 clampedPosition = desiredPosition;
+        clampedPosition.x = Mathf.Clamp(desiredPosition.x, cameraMinEdge.x - horizontalOffset, cameraMaxEdge.x + horizontalOffset);
+        clampedPosition.y = Mathf.Clamp(desiredPosition.y, cameraMinEdge.y - verticalOffset, cameraMaxEdge.y + verticalOffset);
 
-        transform.position = desiredPosition;
+        transform.position = clampedPosition;
+
+        if(desiredPosition != clampedPosition)
+        {
+            OnClamped?.Invoke(true);
+        }
+        else
+        {
+            OnUnclamped?.Invoke(false);
+        }
     }
 }

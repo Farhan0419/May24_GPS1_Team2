@@ -89,8 +89,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   target: {fileID: 0}
   spawnYOffset: 2.5
-  horizontalOffset: 1
-  verticalOffset: 0.5
+  horizontalOffset: 1.7
+  verticalOffset: 0.85
 --- !u!1 &407715898699539707
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,8 +315,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   target: {fileID: 0}
   spawnYOffset: 2.5
-  horizontalOffset: 1
-  verticalOffset: 0.5
+  horizontalOffset: 1.7
+  verticalOffset: 0.85
 --- !u!1 &4470063809039251394
 GameObject:
   m_ObjectHideFlags: 0

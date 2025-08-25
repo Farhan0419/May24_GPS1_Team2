@@ -45,6 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueCanvas: {fileID: 0}
+  conversationDialogueArrow: {fileID: 2800000, guid: ebf4a071ee1110549aab3f2bfe556ed1, type: 3}
+  conversationDialogue: {fileID: 2800000, guid: 1963a03ed12110845ab8475204cca4e0, type: 3}
+  remarkDialogueArrow: {fileID: 2800000, guid: bc5e0647b4cb9ca4f885e74ce7078fcc, type: 3}
+  remarkDialogue: {fileID: 2800000, guid: 39a86377ba594ce449a448e9266ba47a, type: 3}
   delayBetweenWords: 0.05
   delayBetweenRemarks: 3
   endScale: {x: 1, y: 1, z: 1.25}
