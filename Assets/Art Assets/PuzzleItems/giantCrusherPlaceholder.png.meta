@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      giantCrusherPlaceholder_0: 8101035650847848394
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

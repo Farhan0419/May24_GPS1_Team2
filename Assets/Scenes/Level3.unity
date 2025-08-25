@@ -197,6 +197,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7186338132560860150, guid: 9537d3df6bde11b41b74a93f7dc80333, type: 3}
   m_PrefabInstance: {fileID: 173989543}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &55372992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6699986192390760500, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
+  m_PrefabInstance: {fileID: 536589127}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &77251737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -818,6 +829,22 @@ PrefabInstance:
     - target: {fileID: 6573616852566740347, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673703806593931087, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
+      propertyPath: VolumeSlider
+      value: 
+      objectReference: {fileID: 55372992}
+    - target: {fileID: 6673703806593931087, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
+      propertyPath: volumeSlider
+      value: 
+      objectReference: {fileID: 55372992}
+    - target: {fileID: 6699986192390760500, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699986192390760500, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMasterVolume
       objectReference: {fileID: 0}
     - target: {fileID: 7115935087676872813, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
       propertyPath: m_AnchorMax.x

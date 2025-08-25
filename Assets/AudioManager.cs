@@ -1,52 +1,24 @@
 using UnityEngine;
-using UnityEngine.Audio;
-using System;
+using UnityEngine.UI;
 
-public class VolumeManager : MonoBehaviour
+public class MasterVolumeControl : MonoBehaviour
 {
-    public static VolumeManager Instance { get; private set; }
+    [SerializeField] private Slider volumeSlider; // assign your UI slider here
 
-    [SerializeField] private AudioMixer audioMixer;
-
-    private const string MasterVolumeKey = "MasterVolume";
-    private const float DefaultVolume = 0.8f;
-
-    public float CurrentVolume { get; private set; }
-
-    private void Awake()
+    void Start()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
-        LoadVolume();
+        // Load saved volume or set default to 1 (full volume)
+        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        AudioListener.volume = savedVolume;
+        volumeSlider.value = savedVolume;
+
+        // Listen for slider changes
+        volumeSlider.onValueChanged.AddListener(SetVolume);
     }
 
-    private void LoadVolume()
+    public void SetVolume(float volume)
     {
-        CurrentVolume = PlayerPrefs.GetFloat(MasterVolumeKey, DefaultVolume);
-        SetMasterVolume(CurrentVolume);
-    }
-
-    public void SetMasterVolume(float volume)
-    {
-        volume = Mathf.Clamp(volume, 0.0001f, 1f);
-        CurrentVolume = volume;
-
-        audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
-
-        PlayerPrefs.SetFloat(MasterVolumeKey, volume);
-        PlayerPrefs.Save();
-    }
-
-    public void SetVolumeFromSlider(float sliderValue)
-    {
-        SetMasterVolume(sliderValue);
+        AudioListener.volume = volume;
+        PlayerPrefs.SetFloat("MasterVolume", volume);
     }
 }
