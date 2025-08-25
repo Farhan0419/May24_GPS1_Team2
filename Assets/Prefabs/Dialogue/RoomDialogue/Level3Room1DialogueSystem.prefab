@@ -47,7 +47,7 @@ MonoBehaviour:
   dialogueCanvas: {fileID: 0}
   delayBetweenWords: 0.05
   delayBetweenRemarks: 3
-  endScale: {x: 1.2, y: 1.2, z: 1.5}
+  endScale: {x: 1, y: 1, z: 1.25}
   dialoguePopDuration: 0.4
   dialogueTypingSoundClip: {fileID: 0}
   stopAudioSource: 1
@@ -57,3 +57,7 @@ MonoBehaviour:
   isDebug: 1
   dialogueDetectionRadiusWidth: 5
   dialogueDetectionRadiusHeight: 5
+  dialogueDetectionPositionXOffset: 0
+  dialogueDetectionPositionYOffset: 0
+  yOffsetCamZone: {fileID: 0}
+  GiantCrusher: {fileID: 0}

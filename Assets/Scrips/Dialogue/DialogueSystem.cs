@@ -50,7 +50,7 @@ public class DialogueSystem : MonoBehaviour
 
     [Header("Dialogue Box")]
     protected Vector3 startScale = Vector3.zero;
-    [SerializeField] protected Vector3 endScale = new Vector3(1.2f, 1.2f, 1.5f);
+    [SerializeField] protected Vector3 endScale = new Vector3(1.0f, 1.0f, 1.25f);
     [SerializeField] protected float dialoguePopDuration = 0.4f;
     protected bool isDialogueReady = false;
     protected bool isDialogueBoxScalingTrigger = false;

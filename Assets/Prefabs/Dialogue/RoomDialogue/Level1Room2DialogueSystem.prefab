@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040ed87a408521d49907d0e701d98cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueCanvas: {fileID: 0}
   delayBetweenWords: 0.05
   delayBetweenRemarks: 3
-  endScale: {x: 1.2, y: 1.2, z: 1.5}
+  endScale: {x: 1, y: 1, z: 1.25}
   dialoguePopDuration: 0.4
   dialogueTypingSoundClip: {fileID: 8300000, guid: 38574aac79de6384689aa49ca6471156, type: 3}
   stopAudioSource: 1
