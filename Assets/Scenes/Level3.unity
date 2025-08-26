@@ -43942,6 +43942,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OneWayPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 5022359094853236282, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5779999485586274926, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_Size.x
       value: 3.0731373
@@ -44108,6 +44112,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OneWayPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 5022359094853236282, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5170515369249605533, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_UseColliderMask
       value: 1
@@ -44136,9 +44144,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.01
       objectReference: {fileID: 0}
+    - target: {fileID: 6478924025093730391, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
+      propertyPath: m_Size.x
+      value: 4.09
+      objectReference: {fileID: 0}
     - target: {fileID: 7959747509012320680, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.747
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 7959747509012320680, guid: 1f824a154a2f4094ebefa8d41174ec8c, type: 3}
       propertyPath: m_LocalPosition.y
