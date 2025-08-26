@@ -165,7 +165,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.020769477, y: -0.46579975}
+  m_Offset: {x: 0, y: -0.46579975}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.03}
@@ -313,6 +313,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f25fb393505c884bbd4d2cb1ad9055e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheckDistance: 0.02
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 320
+  rayOffset: 0.53
   debugMode: 1
 --- !u!1 &9171404854493019294
 GameObject:

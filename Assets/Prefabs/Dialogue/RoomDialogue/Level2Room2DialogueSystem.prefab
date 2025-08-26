@@ -59,4 +59,4 @@ MonoBehaviour:
   minPitch: 0.73
   maxPitch: 0.82
   isDebug: 1
-  dialogueDetectionRadius: 5
+  dialogueDetectionRadius: 2
