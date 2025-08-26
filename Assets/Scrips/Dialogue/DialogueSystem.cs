@@ -45,6 +45,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] protected float delayBetweenRemarks = 3f;
 
     protected Coroutine typingCoroutine;
+    protected Coroutine scaleCoroutine;
 
     protected bool nextRemarkDialogue = false;
 
@@ -287,6 +288,11 @@ public class DialogueSystem : MonoBehaviour
             StopCoroutine(typingCoroutine);
         }
 
+        if (scaleCoroutine != null)
+        {
+            StopCoroutine(scaleCoroutine);
+        }
+
         executedStates.Add(dialogueState);
         dialogueCounter = 0;
         dialogueCanvas.SetActive(true);
@@ -358,7 +364,7 @@ public class DialogueSystem : MonoBehaviour
     {
         isDialogueBoxScalingTrigger = false;
         if (isDialogueReady && condition == "popin") return;
-        StartCoroutine(ScaleDialogueBox(dialogueCanvasRT, startScale, endScale, dialoguePopDuration, condition));
+        scaleCoroutine = StartCoroutine(ScaleDialogueBox(dialogueCanvasRT, startScale, endScale, dialoguePopDuration, condition));
     }
 
     private float EaseInBack(float x)
