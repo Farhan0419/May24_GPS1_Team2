@@ -6,10 +6,12 @@ public class GiantCrusherScript : MonoBehaviour
     [SerializeField] private float pressSpeed = 4f;
     private GameObject player;
     private PlayerDeath playerDeath;
+    private PlayerMovement movement;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        movement = player.GetComponent<PlayerMovement>();
         playerDeath = player.GetComponent<PlayerDeath>();
     }
 
@@ -31,7 +33,7 @@ public class GiantCrusherScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && movement.GetIsGrounded)
         {
             playerDeath.PlayerDead("Crush");
             transform.position = new Vector2(transform.position.x, transform.position.y - .5f);
