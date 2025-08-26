@@ -4,13 +4,13 @@ public class GiantCrusherScript : MonoBehaviour
 {
     [SerializeField] private bool startPress = false;
     [SerializeField] private float pressSpeed = 4f;
-    private GameObject player;
+    [SerializeField] private GameObject player;
     private PlayerDeath playerDeath;
     private PlayerMovement movement;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        //player = GameObject.FindGameObjectWithTag("Player");
         movement = player.GetComponent<PlayerMovement>();
         playerDeath = player.GetComponent<PlayerDeath>();
     }

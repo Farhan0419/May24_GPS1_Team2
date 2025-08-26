@@ -246,7 +246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5525177236597630512, guid: 47132b74419a91c488b4dfa9f6f3c7a1, type: 3}
       propertyPath: m_Size.x
-      value: 160.35837
+      value: 145.51926
       objectReference: {fileID: 0}
     - target: {fileID: 5525177236597630512, guid: 47132b74419a91c488b4dfa9f6f3c7a1, type: 3}
       propertyPath: m_Size.y
@@ -254,7 +254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5525177236597630512, guid: 47132b74419a91c488b4dfa9f6f3c7a1, type: 3}
       propertyPath: m_Offset.x
-      value: 89.39383
+      value: 91.12723
       objectReference: {fileID: 0}
     - target: {fileID: 5525177236597630512, guid: 47132b74419a91c488b4dfa9f6f3c7a1, type: 3}
       propertyPath: m_Offset.y
@@ -689,6 +689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPress: 0
   pressSpeed: 0.12
+  player: {fileID: 635376716}
 --- !u!61 &592549198
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -805,6 +806,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1579223004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &635376716 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3265281061622752319, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
+  m_PrefabInstance: {fileID: 1453398346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &691120628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,6 +1710,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3160926460288319327, guid: 380f1e33ef56fb547b830b83a48a664a, type: 3}
+      propertyPath: m_Volume
+      value: 0.675
+      objectReference: {fileID: 0}
+    - target: {fileID: 3160926460288319327, guid: 380f1e33ef56fb547b830b83a48a664a, type: 3}
       propertyPath: m_Resource
       value: 
       objectReference: {fileID: 8300000, guid: 4cb83e926f7edc748adf419c59ce6253, type: 3}
@@ -1711,6 +1721,10 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 4cb83e926f7edc748adf419c59ce6253, type: 3}
+    - target: {fileID: 3800804018858389713, guid: 380f1e33ef56fb547b830b83a48a664a, type: 3}
+      propertyPath: maxVolume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7797768064825503151, guid: 380f1e33ef56fb547b830b83a48a664a, type: 3}
       propertyPath: m_Name
       value: MusicPlayer
@@ -2426,7 +2440,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7168779483956280351, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
   m_PrefabInstance: {fileID: 1453398346}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 635376716}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87686b88d188f614eb3f00959e102956, type: 3}
