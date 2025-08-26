@@ -29,6 +29,7 @@ public class PressurePlateScript : MonoBehaviour
         {
             isPressed = true;
             connectedElevator.UnlockDoor();
+            Debug.Log("Door unlocked");
             spriteRenderer.sprite = activated;
             audioSource.Play();
         }
