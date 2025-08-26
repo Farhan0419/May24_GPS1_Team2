@@ -13,7 +13,7 @@ public class IntroScript : MonoBehaviour
 
     private void Start()
     {
-        Screen.SetResolution(1280, 720, FullScreenMode.Windowed);
+        Screen.SetResolution(1280, 720, FullScreenMode.ExclusiveFullScreen);
         StartCoroutine(InitializeGame());
     }
 

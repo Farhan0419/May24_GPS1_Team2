@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -580,7 +577,7 @@ public class PlayerMovement : MonoBehaviour
     {
         BoxCollider2D platformCollider = OneWayPlatform.GetComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(PlayerCollider, platformCollider);
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSeconds(1.2f);
         Physics2D.IgnoreCollision(PlayerCollider, platformCollider, false);
     }
 

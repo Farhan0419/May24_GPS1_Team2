@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 5ec639181ead91c4e93d040325c532bc
+guid: 0ebd8873f33790941b493648b31f3710
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6746997297938295451
-    second: movingplat2_0
+      213: 5365186410741423780
+    second: Blue magnet platform Blue Player Hint_0
   - first:
-      213: -5428025914459585074
-    second: movingplat2_1
+      213: 8934255303994931291
+    second: Blue magnet platform Blue Player Hint_1
   - first:
-      213: -153222870282383393
-    second: movingplat2_2
+      213: -7191351970203900729
+    second: Blue magnet platform Blue Player Hint_2
   - first:
-      213: 54247798499154468
-    second: movingplat2_3
+      213: -5365552497389425918
+    second: Blue magnet platform Blue Player Hint_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 60
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: movingplat2_0
+      name: Blue magnet platform Blue Player Hint_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 21
-        width: 47
-        height: 74
+        x: 54
+        y: 132
+        width: 377
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b9ae12c9b4622ad50800000000000000
-      internalID: 6746997297938295451
+      spriteID: 4aedef55d98f47a40800000000000000
+      internalID: 5365186410741423780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movingplat2_1
+      name: Blue magnet platform Blue Player Hint_1
       rect:
         serializedVersion: 2
-        x: 97
-        y: 86
-        width: 96
-        height: 28
+        x: 124
+        y: 5
+        width: 45
+        height: 79
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ec585019037cba4b0800000000000000
-      internalID: -5428025914459585074
+      spriteID: b58744ffcd9dcfb70800000000000000
+      internalID: 8934255303994931291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movingplat2_2
+      name: Blue magnet platform Blue Player Hint_2
       rect:
         serializedVersion: 2
-        x: 91
-        y: 52
-        width: 28
-        height: 20
+        x: 187
+        y: 12
+        width: 108
+        height: 101
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fdf4a5d7c94afddf0800000000000000
-      internalID: -153222870282383393
+      spriteID: 7c4e0390c7f233c90800000000000000
+      internalID: -7191351970203900729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: movingplat2_3
+      name: Blue magnet platform Blue Player Hint_3
       rect:
         serializedVersion: 2
-        x: 135
-        y: 53
-        width: 30
-        height: 21
+        x: 305
+        y: 49
+        width: 45
+        height: 79
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,8 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 42a9367d51ab0c000800000000000000
-      internalID: 54247798499154468
+      spriteID: 20ba4697e6ab985b0800000000000000
+      internalID: -5365552497389425918
       vertices: []
       indices: 
       edges: []
@@ -210,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      movingplat2_0: 6746997297938295451
-      movingplat2_1: -5428025914459585074
-      movingplat2_2: -153222870282383393
-      movingplat2_3: 54247798499154468
+      Blue magnet platform Blue Player Hint_0: 5365186410741423780
+      Blue magnet platform Blue Player Hint_1: 8934255303994931291
+      Blue magnet platform Blue Player Hint_2: -7191351970203900729
+      Blue magnet platform Blue Player Hint_3: -5365552497389425918
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

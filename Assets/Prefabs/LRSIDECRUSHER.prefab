@@ -276,7 +276,7 @@ MonoBehaviour:
   waitTime: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 4160
+    m_Bits: 64
   rayDistance: 0.1
   CrusherParticle: {fileID: 4075437137658055165, guid: d6368400ebb479a4db735df89ffe8e27, type: 3}
   waitForBeforeStarting: 0

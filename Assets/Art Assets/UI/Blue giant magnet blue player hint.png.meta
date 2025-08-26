@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 62cfdb82f24129b4aa0fd58d432288b5
+guid: 0ddb58d36b1d30f4e8995790155f13ae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1269104125670798692
-    second: bluemag2_0
+      213: 1617286444849790538
+    second: Blue giant magnet blue player hint_0
   - first:
-      213: -8130003505861775793
-    second: bluemag2_1
+      213: 1789237889612908937
+    second: Blue giant magnet blue player hint_1
   - first:
-      213: -2819498795075360880
-    second: bluemag2_2
+      213: -8772073702213963628
+    second: Blue giant magnet blue player hint_2
   - first:
-      213: 6773646813863357141
-    second: bluemag2_3
+      213: -2740248795977897945
+    second: Blue giant magnet blue player hint_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 60
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bluemag2_0
+      name: Blue giant magnet blue player hint_0
       rect:
         serializedVersion: 2
-        x: 34
-        y: 105
-        width: 142
-        height: 45
+        x: 54
+        y: 132
+        width: 377
+        height: 170
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c9ac86e858c336ee0800000000000000
-      internalID: -1269104125670798692
+      spriteID: a4e735de371c17610800000000000000
+      internalID: 1617286444849790538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bluemag2_1
+      name: Blue giant magnet blue player hint_1
       rect:
         serializedVersion: 2
-        x: 65
-        y: 78
-        width: 23
-        height: 24
+        x: 199
+        y: 91
+        width: 19
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f4ead62d2ec6c2f80800000000000000
-      internalID: -8130003505861775793
+      spriteID: 9890c0d7166a4d810800000000000000
+      internalID: 1789237889612908937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bluemag2_2
+      name: Blue giant magnet blue player hint_2
       rect:
         serializedVersion: 2
-        x: 112
-        y: 75
-        width: 32
-        height: 28
+        x: 280
+        y: 92
+        width: 21
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 09724e2c8c02fd8d0800000000000000
-      internalID: -2819498795075360880
+      spriteID: 490bdfbb175534680800000000000000
+      internalID: -8772073702213963628
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bluemag2_3
+      name: Blue giant magnet blue player hint_3
       rect:
         serializedVersion: 2
-        x: 67
-        y: 40
-        width: 75
-        height: 27
+        x: 187
+        y: 23
+        width: 157
+        height: 71
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,8 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5da284e83e3d00e50800000000000000
-      internalID: 6773646813863357141
+      spriteID: 728ab8f0d3ea8f9d0800000000000000
+      internalID: -2740248795977897945
       vertices: []
       indices: 
       edges: []
@@ -210,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bluemag2_0: -1269104125670798692
-      bluemag2_1: -8130003505861775793
-      bluemag2_2: -2819498795075360880
-      bluemag2_3: 6773646813863357141
+      Blue giant magnet blue player hint_0: 1617286444849790538
+      Blue giant magnet blue player hint_1: 1789237889612908937
+      Blue giant magnet blue player hint_2: -8772073702213963628
+      Blue giant magnet blue player hint_3: -2740248795977897945
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

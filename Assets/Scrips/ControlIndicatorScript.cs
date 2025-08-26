@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 using System.Collections;
 using System.Linq;
 
@@ -36,14 +35,20 @@ public class ControlIndicatorScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StopCoroutine(StartFadeOut());
-        StartCoroutine(StartFadeIn());
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            StopCoroutine(StartFadeOut());
+            StartCoroutine(StartFadeIn());
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        StopCoroutine(StartFadeIn());
-        StartCoroutine(StartFadeOut());
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            StopCoroutine(StartFadeIn());
+            StartCoroutine(StartFadeOut());
+        }
     }
 
     private IEnumerator StartFadeIn()
