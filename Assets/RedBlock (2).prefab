@@ -317,7 +317,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 320
-  rayOffset: 0.53
+  rayOffset: 0.54
   debugMode: 1
 --- !u!1 &9171404854493019294
 GameObject:

@@ -14,16 +14,16 @@ public class Level1Script : MonoBehaviour
     private AudioSource aud;
     [SerializeField] AudioClip trash;
 
-    //private void Start()
-    //{
-    //    playerCollider = Player.GetComponent<BoxCollider2D>();
-    //    aud = GetComponent<AudioSource>();
-    //    playerMovement.DisablePlayerMovement();
-    //    destoryPlatform();
-    //    enableMovement();
-    //    //Player = GameObject.FindGameObjectWithTag("Player");
-    //    //playerMovement = Player.GetComponent<PlayerMovement>();
-    //}
+    private void Start()
+    {
+        //playerCollider = Player.GetComponent<BoxCollider2D>();
+        aud = GetComponent<AudioSource>();
+        //playerMovement.DisablePlayerMovement();
+        //destoryPlatform();
+        //enableMovement();
+        //Player = GameObject.FindGameObjectWithTag("Player");
+        //playerMovement = Player.GetComponent<PlayerMovement>();
+    }
     //private void destoryPlatform()
     //{
     //    StartCoroutine(platformDestroy());
