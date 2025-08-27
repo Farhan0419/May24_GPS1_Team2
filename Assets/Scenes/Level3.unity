@@ -44045,7 +44045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7168779483956280351, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: coyoteTime
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7168779483956280351, guid: a3ab5dfc0a82fa449acc33ee8c907812, type: 3}
       propertyPath: cameraSystem

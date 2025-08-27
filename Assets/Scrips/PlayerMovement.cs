@@ -116,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator MoveToLocationRoutine(Vector2 location, Action callback)
     {
         movementDisabled = true;
+        string trigger2 = "null";
 
         float targetX = location.x;
         float threshold = 0.05f;
@@ -161,11 +162,13 @@ public class PlayerMovement : MonoBehaviour
             if (formTransform.NearStationTag == "RedPaintStation")
             {
                 animator.SetTrigger("N2R");
+                trigger2 = "N2R2";
                 paintSplatColor = "Red";
             }
             else if (formTransform.NearStationTag == "BluePaintStation")
             {
                 animator.SetTrigger("N2B");
+                trigger2 = "N2B2";
                 paintSplatColor = "Blue";
             }
         }
@@ -174,11 +177,13 @@ public class PlayerMovement : MonoBehaviour
             if (formTransform.NearStationTag == "BluePaintStation")
             {
                 animator.SetTrigger("R2B");
+                trigger2 = "R2B2";
                 paintSplatColor = "Blue";
             }
             if (formTransform.NearStationTag == "GreyPaintStation")
             {
                 animator.SetTrigger("R2N");
+                trigger2 = "R2N2";
                 paintSplatColor = "Grey";
             }
         }
@@ -187,11 +192,13 @@ public class PlayerMovement : MonoBehaviour
             if (formTransform.NearStationTag == "RedPaintStation")
             {
                 animator.SetTrigger("B2R");
+                trigger2 = "B2R2";
                 paintSplatColor = "Red";
             }
             if (formTransform.NearStationTag == "GreyPaintStation")
             {
                 animator.SetTrigger("B2N");
+                trigger2 = "B2N2";
                 paintSplatColor = "Grey";
             }
         }
@@ -203,7 +210,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector2(Mathf.MoveTowards(transform.position.x, splatLocation, step2), yPos);
             yield return null;
         }
-        transform.position = new Vector2(splatLocation, transform.position.y);
+        transform.position = new Vector2(splatLocation, transform.position.y -.40f);
         if (paintSplatColor == "Red")
         {
             Instantiate(RedPaintSplat, transform.position, transform.rotation);
@@ -218,8 +225,11 @@ public class PlayerMovement : MonoBehaviour
         }
         paintSplatColor = "None";
         audioSource.PlayOneShot(splat);
+        //transform.position = new Vector2(transform.position.x, transform.position.y - yPos); // force landing
 
         //yield return new WaitForSeconds(1.2f); // Time for playing the splat animation -------------------------------------------------
+
+        animator.SetTrigger(trigger2);
 
         callback?.Invoke(); // Form transforming ---------------------------------------------------------------------------------------
         movementDisabled = false;
@@ -592,8 +602,8 @@ public class PlayerMovement : MonoBehaviour
             Gizmos.DrawLine(rightOrigin, rightOrigin + Vector3.down * 0.3f);
         }
     }
-    private float stepTimer = 0;
-    [SerializeField] float stepSpace = .5f;
+    //private float stepTimer = 0;
+    //[SerializeField] float stepSpace = .5f;
     private bool fallsfxplayed = false;
     private void Update()
     {
