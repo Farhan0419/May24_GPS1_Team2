@@ -4,6 +4,7 @@ public class MMOption : MonoBehaviour
 {
     [SerializeField] private CanvasGroup cvs;
     [SerializeField] private CanvasGroup pause;
+    [SerializeField] private CanvasGroup BGDim;
     public static bool isPaused = false;
     private void OptionSTART(CanvasGroup Menu, CanvasGroup cvs, bool visible)
     {
@@ -13,6 +14,7 @@ public class MMOption : MonoBehaviour
         cvs.alpha = visible ? 1 : 0;
         cvs.interactable = visible;
         cvs.blocksRaycasts = visible;
+        BGDim.alpha = visible ? 1 : 0;
         Time.timeScale = 0f;
         isPaused = true;
         Debug.Log("IT WORKS");

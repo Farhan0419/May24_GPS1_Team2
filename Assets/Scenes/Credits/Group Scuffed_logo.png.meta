@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Group Scuffed_logo_0: 1299579164130848448
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
