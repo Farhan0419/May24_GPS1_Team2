@@ -246,7 +246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5525177236597630512, guid: 47132b74419a91c488b4dfa9f6f3c7a1, type: 3}
       propertyPath: m_Size.x
-      value: 145.51926
+      value: 143.33249
       objectReference: {fileID: 0}
     - target: {fileID: 5525177236597630512, guid: 47132b74419a91c488b4dfa9f6f3c7a1, type: 3}
       propertyPath: m_Size.y
@@ -254,7 +254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5525177236597630512, guid: 47132b74419a91c488b4dfa9f6f3c7a1, type: 3}
       propertyPath: m_Offset.x
-      value: 91.12723
+      value: 90.033844
       objectReference: {fileID: 0}
     - target: {fileID: 5525177236597630512, guid: 47132b74419a91c488b4dfa9f6f3c7a1, type: 3}
       propertyPath: m_Offset.y
@@ -2464,7 +2464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3658231265657834001, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
       propertyPath: nextSceneName
-      value: MainMenu
+      value: CreditsScenes
       objectReference: {fileID: 0}
     - target: {fileID: 4379693248320581475, guid: 3e840372ec102814785bee6ff955d4f9, type: 3}
       propertyPath: m_LocalPosition.x

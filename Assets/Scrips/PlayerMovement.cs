@@ -210,7 +210,8 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector2(Mathf.MoveTowards(transform.position.x, splatLocation, step2), yPos);
             yield return null;
         }
-        transform.position = new Vector2(splatLocation, transform.position.y -.40f);
+        transform.position = new Vector2(splatLocation, transform.position.y - .40f);
+        isGrounded = true;
         if (paintSplatColor == "Red")
         {
             Instantiate(RedPaintSplat, transform.position, transform.rotation);
@@ -387,7 +388,7 @@ public class PlayerMovement : MonoBehaviour
             //audioSource.loop = false;
         }
         //Jumping
-        if (IsGrounded() == true)
+        if (isGrounded == true)
         {
             animator.SetBool("isGrounded", true);
         }
@@ -490,12 +491,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("RedPad") && IsGrounded() && formTransform.CurrentForm == FormTransform.formState.red)
+        if (other.gameObject.layer == LayerMask.NameToLayer("RedPad") && formTransform.CurrentForm == FormTransform.formState.red)
         {
-            if (!IsLaunching())
-            {
-                JumpPadLaunch();
-            }
+            JumpPadLaunch();
         }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("YoffsetZone"))

@@ -19,7 +19,7 @@ public class IntroScript : MonoBehaviour
 
     private IEnumerator InitializeGame()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         LoadNextScene("MainMenu");
     }
 }
