@@ -866,6 +866,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8239925989749848611, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8817803819836907687, guid: 59bee8093203ade4fbb98fd7efb69282, type: 3}
       propertyPath: m_Name
       value: PAUSESCREEN
