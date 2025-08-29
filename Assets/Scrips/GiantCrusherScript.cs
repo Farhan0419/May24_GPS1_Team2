@@ -31,12 +31,12 @@ public class GiantCrusherScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && movement.GetIsGrounded)
         {
             playerDeath.PlayerDead("Crush");
-            transform.position = new Vector2(transform.position.x, transform.position.y - .5f);
+            //transform.position = new Vector2(transform.position.x, transform.position.y - .5f);
         }
         if (collision.gameObject.CompareTag("TopRedgie"))
         {
