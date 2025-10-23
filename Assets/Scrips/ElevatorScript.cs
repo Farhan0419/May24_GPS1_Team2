@@ -1,7 +1,8 @@
+using EasyTransition;
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
-using EasyTransition;
 
 public class ElevatorScript : MonoBehaviour
 {
@@ -66,6 +67,9 @@ public class ElevatorScript : MonoBehaviour
             {
                 playerIn = true;
                 PlayerObject.MoveToElevator(CenterPos);
+
+                PlayerPrefs.SetInt("Checkpoint", 0); // RESET CHECKPOINT ---------------------------------------------
+                PlayerPrefs.Save();
             }
         }
     }

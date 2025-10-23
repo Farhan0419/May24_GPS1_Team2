@@ -19,6 +19,12 @@ public class MainMenuScript : MonoBehaviour
 
     private bool Started = false;
 
+    private void Start()
+    {
+        PlayerPrefs.SetInt("Checkpoint", 0); // RESET CHECKPOINT ---------------------------------------------
+        PlayerPrefs.Save();
+    }
+
     public void LoadNextScene(string sceneName)
     {
         TransitionManager.Instance().Transition(sceneName, transition, 2f);

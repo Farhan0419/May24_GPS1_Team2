@@ -59,6 +59,9 @@ public class Pause : MonoBehaviour
 
     public void Home()
     {
+        PlayerPrefs.SetInt("Checkpoint", 0); // RESET CHECKPOINT ---------------------------------------------
+        PlayerPrefs.Save();
+
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1f;
     }
@@ -73,6 +76,14 @@ public class Pause : MonoBehaviour
     }
 
     public void Restart()
+    {
+        PlayerPrefs.SetInt("Checkpoint", 0); // RESET CHECKPOINT ---------------------------------------------
+        PlayerPrefs.Save();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
+    }
+    public void RestartCheckpoint()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;

@@ -256,7 +256,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4428814987873944872}
         m_TargetAssemblyTypeName: Pause, Assembly-CSharp
-        m_MethodName: Restart
+        m_MethodName: RestartCheckpoint
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
