@@ -76,7 +76,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,6 +126,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -133,10 +146,10 @@ TextureImporter:
       name: Spacebar_and_jump_control_0
       rect:
         serializedVersion: 2
-        x: 159
+        x: 160
         y: 261
-        width: 1123
-        height: 281
+        width: 1677
+        height: 280
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,10 +168,10 @@ TextureImporter:
       name: Spacebar_and_jump_control_1
       rect:
         serializedVersion: 2
-        x: 1575
+        x: 1577
         y: 398
-        width: 262
-        height: 144
+        width: 258
+        height: 143
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,10 +190,10 @@ TextureImporter:
       name: Spacebar_and_jump_control_2
       rect:
         serializedVersion: 2
-        x: 1599
-        y: 309
-        width: 239
-        height: 139
+        x: 1600
+        y: 310
+        width: 237
+        height: 137
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,9 +213,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 598
-        y: 132
+        y: 131
         width: 66
-        height: 74
+        height: 75
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,9 +235,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 673
-        y: 132
+        y: 131
         width: 55
-        height: 53
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,9 +257,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 735
-        y: 132
-        width: 31
-        height: 74
+        y: 131
+        width: 30
+        height: 75
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,10 +278,10 @@ TextureImporter:
       name: Spacebar_and_jump_control_6
       rect:
         serializedVersion: 2
-        x: 766
-        y: 132
-        width: 55
-        height: 74
+        x: 765
+        y: 131
+        width: 56
+        height: 75
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -309,10 +322,10 @@ TextureImporter:
       name: Spacebar_and_jump_control_8
       rect:
         serializedVersion: 2
-        x: 1644
+        x: 1645
         y: 146
-        width: 51
-        height: 53
+        width: 50
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,10 +344,10 @@ TextureImporter:
       name: Spacebar_and_jump_control_9
       rect:
         serializedVersion: 2
-        x: 1705
+        x: 1704
         y: 146
         width: 80
-        height: 53
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -356,7 +369,7 @@ TextureImporter:
         x: 1794
         y: 128
         width: 55
-        height: 71
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
