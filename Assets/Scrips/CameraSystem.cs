@@ -52,6 +52,8 @@ public class CameraSystem : MonoBehaviour
         {
             AimedOffset = -2.5f;
         }
+
+        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
     }
 
     void FixedUpdate()
