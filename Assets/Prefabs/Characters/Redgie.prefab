@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.55995333
       objectReference: {fileID: 0}
+    - target: {fileID: 1815120008324910874, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
+      propertyPath: rayOffset
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1949669451092068806, guid: 1103463f24cf13d4d91e42259981b242, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
