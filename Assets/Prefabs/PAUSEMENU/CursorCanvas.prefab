@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3481052680238840013}
   - component: {fileID: 7545539336956618666}
   - component: {fileID: 4861883177476022415}
+  - component: {fileID: 1804566739510350698}
   m_Layer: 5
   m_Name: CursorCanvas
   m_TagString: Untagged
@@ -116,6 +117,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 8571135715137074099}
+--- !u!225 &1804566739510350698
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138559081589104804}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &6871835921610495358
 PrefabInstance:
   m_ObjectHideFlags: 0
