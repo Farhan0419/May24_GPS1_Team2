@@ -237,6 +237,53 @@ public class PlayerMovement : MonoBehaviour
         isMoving = false;
         rb.linearVelocityX = 0;
         horizontal = 0;
+
+        AnimatorSafetyTrigger();
+    }
+
+    private void AnimatorSafetyTrigger()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (formTransform.CurrentForm == FormTransform.formState.neutral)
+        {
+            if (stateInfo.IsName("Blue_Splat"))
+            {
+                Debug.LogWarning("ANIMATION FIXED");
+                animator.SetTrigger("B2N2");
+            }
+            else if (stateInfo.IsName("RedSplat"))
+            {
+                Debug.LogWarning("ANIMATION FIXED");
+                animator.SetTrigger("R2N2");
+            }
+        }
+        else if (formTransform.CurrentForm == FormTransform.formState.red)
+        {
+            if (stateInfo.IsName("NeutralSplat"))
+            {
+                Debug.LogWarning("ANIMATION FIXED");
+                animator.SetTrigger("N2R2");
+            }
+            else if (stateInfo.IsName("Blue_Splat 0"))
+            {
+                Debug.LogWarning("ANIMATION FIXED");
+                animator.SetTrigger("B2R2");
+            }
+        }
+        else if (formTransform.CurrentForm == FormTransform.formState.blue)
+        {
+            if (stateInfo.IsName("RedSplat 0"))
+            {
+                Debug.LogWarning("ANIMATION FIXED");
+                animator.SetTrigger("R2B2");
+            }
+            else if (stateInfo.IsName("NeutralSplat 0"))
+            {
+                Debug.LogWarning("ANIMATION FIXED");
+                animator.SetTrigger("N2B2");
+            }
+        }
     }
     // -- Move to paint station shenanigans --(End)--//
 

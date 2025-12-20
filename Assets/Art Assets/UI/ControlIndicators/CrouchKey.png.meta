@@ -1,0 +1,728 @@
+fileFormatVersion: 2
+guid: a39729fe7e0d4e9418d0b691233bf38b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 224525826786476789
+    second: CrouchKey_0
+  - first:
+      213: 1055217749555620943
+    second: CrouchKey_1
+  - first:
+      213: 2844367139189408127
+    second: CrouchKey_2
+  - first:
+      213: 7986257823426331405
+    second: CrouchKey_3
+  - first:
+      213: -8741661659238484721
+    second: CrouchKey_4
+  - first:
+      213: 8867866946353762136
+    second: CrouchKey_5
+  - first:
+      213: -6730397202245124869
+    second: CrouchKey_6
+  - first:
+      213: -275724897251716737
+    second: CrouchKey_7
+  - first:
+      213: 4269745063694255679
+    second: CrouchKey_8
+  - first:
+      213: -8901354666803263926
+    second: CrouchKey_9
+  - first:
+      213: -1210196310816812351
+    second: CrouchKey_10
+  - first:
+      213: 4373939380387637333
+    second: CrouchKey_11
+  - first:
+      213: -3429585501627315263
+    second: CrouchKey_12
+  - first:
+      213: -1292031207444007477
+    second: CrouchKey_13
+  - first:
+      213: -4160937511267303144
+    second: CrouchKey_14
+  - first:
+      213: -1083594416683764191
+    second: CrouchKey_15
+  - first:
+      213: -7387862354760052606
+    second: CrouchKey_16
+  - first:
+      213: -5322029242930031692
+    second: CrouchKey_17
+  - first:
+      213: 7657945556332398457
+    second: CrouchKey_18
+  - first:
+      213: 935140029321755241
+    second: CrouchKey_19
+  - first:
+      213: -7718605969210545344
+    second: CrouchKey_20
+  - first:
+      213: -7469392809758196626
+    second: CrouchKey_21
+  - first:
+      213: 5070916628625666119
+    second: CrouchKey_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CrouchKey_0
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 242
+        width: 159
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f24284cc0dad1300800000000000000
+      internalID: 224525826786476789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_1
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 338
+        width: 136
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4c23f2d3f2e4ae00800000000000000
+      internalID: 1055217749555620943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_2
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 187
+        width: 467
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f71cd2ec7d8397720800000000000000
+      internalID: 2844367139189408127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_3
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 266
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d03c20a6d23e4de60800000000000000
+      internalID: 7986257823426331405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_4
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 159
+        width: 6
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f05307649016fa680800000000000000
+      internalID: -8741661659238484721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_5
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 153
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85f08d4f00ef01b70800000000000000
+      internalID: 8867866946353762136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_6
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 142
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfc75ea5763d892a0800000000000000
+      internalID: -6730397202245124869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_7
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 162
+        width: 23
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f719493baad6c2cf0800000000000000
+      internalID: -275724897251716737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_8
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3649fa638e214b30800000000000000
+      internalID: 4269745063694255679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_9
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 136
+        width: 18
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a460d698719087480800000000000000
+      internalID: -8901354666803263926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_10
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 153
+        width: 6
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c296410ed4843fe0800000000000000
+      internalID: -1210196310816812351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_11
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 113
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 558e81d31ba53bc30800000000000000
+      internalID: 4373939380387637333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_12
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 100
+        width: 21
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cb8ca0382aa760d0800000000000000
+      internalID: -3429585501627315263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_13
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 105
+        width: 13
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc5b4995678c11ee0800000000000000
+      internalID: -1292031207444007477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_14
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 95
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 811805c01616146c0800000000000000
+      internalID: -4160937511267303144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_15
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 74
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 126b7f08e9c46f0f0800000000000000
+      internalID: -1083594416683764191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_16
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 88
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 280db07b45a097990800000000000000
+      internalID: -7387862354760052606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_17
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 70
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b31ae2d99a5426b0800000000000000
+      internalID: -5322029242930031692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_18
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 55
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9774972f8ec764a60800000000000000
+      internalID: 7657945556332398457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_19
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 54
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96ab8fee6e84afc00800000000000000
+      internalID: 935140029321755241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_20
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 66
+        width: 11
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04beef314c002e490800000000000000
+      internalID: -7718605969210545344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_21
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 8
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6c718660d2675890800000000000000
+      internalID: -7469392809758196626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchKey_22
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 9
+        width: 33
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 740bade8ec38f5640800000000000000
+      internalID: 5070916628625666119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CrouchKey_0: 224525826786476789
+      CrouchKey_1: 1055217749555620943
+      CrouchKey_10: -1210196310816812351
+      CrouchKey_11: 4373939380387637333
+      CrouchKey_12: -3429585501627315263
+      CrouchKey_13: -1292031207444007477
+      CrouchKey_14: -4160937511267303144
+      CrouchKey_15: -1083594416683764191
+      CrouchKey_16: -7387862354760052606
+      CrouchKey_17: -5322029242930031692
+      CrouchKey_18: 7657945556332398457
+      CrouchKey_19: 935140029321755241
+      CrouchKey_2: 2844367139189408127
+      CrouchKey_20: -7718605969210545344
+      CrouchKey_21: -7469392809758196626
+      CrouchKey_22: 5070916628625666119
+      CrouchKey_3: 7986257823426331405
+      CrouchKey_4: -8741661659238484721
+      CrouchKey_5: 8867866946353762136
+      CrouchKey_6: -6730397202245124869
+      CrouchKey_7: -275724897251716737
+      CrouchKey_8: 4269745063694255679
+      CrouchKey_9: -8901354666803263926
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
