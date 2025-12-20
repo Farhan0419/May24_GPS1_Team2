@@ -567,7 +567,6 @@ MonoBehaviour:
   splat: {fileID: 8300000, guid: d6c699b04863ecc4d9152eeb0afd8eb5, type: 3}
   PullingSFX: {fileID: 8300000, guid: 9a5db2ad602c09840a1ca25b746f2f4c, type: 3}
   PushingSFX: {fileID: 8300000, guid: 0adfd9c142479d04d8d7bde6c79c2218, type: 3}
-  stepSpace: 0.3
 --- !u!114 &3021878682728651252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,11 +583,11 @@ MonoBehaviour:
   neutralCharSprite: {fileID: -6308607571057329287, guid: f72d46c6f4b22be4d8735ffa63a2778f, type: 3}
   redCharSprite: {fileID: 1645000667433708828, guid: e48ce59391f0d844d8663cc534062a94, type: 3}
   blueCharSprite: {fileID: -8052081215970942740, guid: 68a565505c3d55648bb7cab807740f21, type: 3}
-  fControls: {fileID: 5555912421142601800, guid: f98d881539af8d04f9446e960626ba17, type: 3}
+  fControls: {fileID: 4433147090180848340, guid: 8f4e17b99d68d0f4a8b65db40944b96d, type: 3}
   indicatorYOffset: -2.5
   indicatorXOffsetFromLeft: 1.55
   indicatorXOffsetFromRight: -1.45
-  debugMode: 1
+  debugMode: 0
 --- !u!114 &453048144763993658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,10 +605,10 @@ MonoBehaviour:
   speedOfPushPullObjects: 3
   circleCastSize: 0.01
   velocityThreshold: 0.01
-  eControls: {fileID: 5521508550200204032, guid: 877c3889ef049d34496c49421ea1c2e7, type: 3}
+  eControls: {fileID: 5632009464162706603, guid: 5a8bd088d927f4d47a3f39ac8f76314b, type: 3}
   indicatorYOffset: -2.5
   indicatorXOffset: 0
-  debugMode: 1
+  debugMode: 0
 --- !u!114 &1989905575637046773
 MonoBehaviour:
   m_ObjectHideFlags: 0

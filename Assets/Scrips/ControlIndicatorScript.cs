@@ -7,6 +7,7 @@ public class ControlIndicatorScript : MonoBehaviour
 {
     private GameObject controllerSprite;
     private GameObject keyboardSprite;
+    [SerializeField] private bool alwaysActive = false;
     private CanvasGroup canvasGroup;
     private SpriteRenderer[] childSprites;
     [SerializeField] private float waitB4Fade = 1.0f;
@@ -18,8 +19,16 @@ public class ControlIndicatorScript : MonoBehaviour
         controllerSprite = transform.GetChild(1).gameObject;
         childSprites = GetComponentsInChildren<SpriteRenderer>();
 
-        SetAlpha(keyboardSprite, 0f);
-        SetAlpha(controllerSprite, 0f);
+        if (!alwaysActive)
+        {
+            SetAlpha(keyboardSprite, 0f);
+            SetAlpha(controllerSprite, 0f);
+        }
+        else
+        {
+            SetAlpha(keyboardSprite, 1f);
+            SetAlpha(controllerSprite, 1f);
+        }
     }
 
     void SetAlpha(GameObject obj, float alpha)
@@ -35,6 +44,7 @@ public class ControlIndicatorScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (alwaysActive) return;
         if (collision.gameObject.CompareTag("Player"))
         {
             StopCoroutine(StartFadeOut());
@@ -44,6 +54,7 @@ public class ControlIndicatorScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (alwaysActive) return;
         if (collision.gameObject.CompareTag("Player"))
         {
             StopCoroutine(StartFadeIn());

@@ -1,0 +1,754 @@
+fileFormatVersion: 2
+guid: 6fb6d67f0171fdf4ab9581721684b2ab
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7323042123326586207
+    second: CrouchCon_0
+  - first:
+      213: 7652424481075656351
+    second: CrouchCon_1
+  - first:
+      213: 1796204357141844261
+    second: CrouchCon_2
+  - first:
+      213: -4595451623665093168
+    second: CrouchCon_3
+  - first:
+      213: 8956520322025985781
+    second: CrouchCon_4
+  - first:
+      213: -4921518320851098637
+    second: CrouchCon_5
+  - first:
+      213: 1775991004711895201
+    second: CrouchCon_6
+  - first:
+      213: -6532651934992786582
+    second: CrouchCon_7
+  - first:
+      213: 8175160607317651110
+    second: CrouchCon_8
+  - first:
+      213: 8762662990302579423
+    second: CrouchCon_9
+  - first:
+      213: -6105987608681747906
+    second: CrouchCon_10
+  - first:
+      213: 2053786662402762078
+    second: CrouchCon_11
+  - first:
+      213: -5884029082913287631
+    second: CrouchCon_12
+  - first:
+      213: 1455096835642851325
+    second: CrouchCon_13
+  - first:
+      213: -401006500469906137
+    second: CrouchCon_14
+  - first:
+      213: 5237041071428211992
+    second: CrouchCon_15
+  - first:
+      213: 7203232280637228083
+    second: CrouchCon_16
+  - first:
+      213: 2671233818520474506
+    second: CrouchCon_17
+  - first:
+      213: -8512896497343853186
+    second: CrouchCon_18
+  - first:
+      213: 301947196204341367
+    second: CrouchCon_19
+  - first:
+      213: 1250425223097865806
+    second: CrouchCon_20
+  - first:
+      213: -6559830432889315279
+    second: CrouchCon_21
+  - first:
+      213: -5190789358212839714
+    second: CrouchCon_22
+  - first:
+      213: -141369688623191846
+    second: CrouchCon_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CrouchCon_0
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 242
+        width: 159
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5d7a14130ca0a560800000000000000
+      internalID: 7323042123326586207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_1
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 341
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f967401758fd23a60800000000000000
+      internalID: 7652424481075656351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_2
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 366
+        width: 31
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 521d27b98566de810800000000000000
+      internalID: 1796204357141844261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_3
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 187
+        width: 467
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d533f4981da930c0800000000000000
+      internalID: -4595451623665093168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_4
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 266
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f61de977c3fb4c70800000000000000
+      internalID: 8956520322025985781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_5
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 159
+        width: 6
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f3e71a992143bbb0800000000000000
+      internalID: -4921518320851098637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_6
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 153
+        width: 17
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a04420c86695a810800000000000000
+      internalID: 1775991004711895201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_7
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 142
+        width: 27
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6b9c753dab5755a0800000000000000
+      internalID: -6532651934992786582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_8
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 162
+        width: 23
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ae6fec2241047170800000000000000
+      internalID: 8175160607317651110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_9
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 156
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fda8277209b3b9970800000000000000
+      internalID: 8762662990302579423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_10
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 136
+        width: 18
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3a669dee9c234ba0800000000000000
+      internalID: -6105987608681747906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_11
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 153
+        width: 6
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e55a3f88614808c10800000000000000
+      internalID: 2053786662402762078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_12
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 113
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 132d2e859bab75ea0800000000000000
+      internalID: -5884029082913287631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_13
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 100
+        width: 21
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dff7942dcda813410800000000000000
+      internalID: 1455096835642851325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_14
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 105
+        width: 13
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7256ed266b65f6af0800000000000000
+      internalID: -401006500469906137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_15
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 95
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8151c908b15bda840800000000000000
+      internalID: 5237041071428211992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_16
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 74
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 334420a489507f360800000000000000
+      internalID: 7203232280637228083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_17
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 88
+        width: 44
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a835ce05101221520800000000000000
+      internalID: 2671233818520474506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_18
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 70
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7d072a2dbd1cd980800000000000000
+      internalID: -8512896497343853186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_19
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 55
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7785faa006bb03400800000000000000
+      internalID: 301947196204341367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_20
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 54
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e46dfe88d176a5110800000000000000
+      internalID: 1250425223097865806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_21
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 66
+        width: 11
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 130e5dc0afcc6f4a0800000000000000
+      internalID: -6559830432889315279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_22
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 8
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed688d7a49c96f7b0800000000000000
+      internalID: -5190789358212839714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CrouchCon_23
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 9
+        width: 33
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad86b976401c90ef0800000000000000
+      internalID: -141369688623191846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CrouchCon_0: 7323042123326586207
+      CrouchCon_1: 7652424481075656351
+      CrouchCon_10: -6105987608681747906
+      CrouchCon_11: 2053786662402762078
+      CrouchCon_12: -5884029082913287631
+      CrouchCon_13: 1455096835642851325
+      CrouchCon_14: -401006500469906137
+      CrouchCon_15: 5237041071428211992
+      CrouchCon_16: 7203232280637228083
+      CrouchCon_17: 2671233818520474506
+      CrouchCon_18: -8512896497343853186
+      CrouchCon_19: 301947196204341367
+      CrouchCon_2: 1796204357141844261
+      CrouchCon_20: 1250425223097865806
+      CrouchCon_21: -6559830432889315279
+      CrouchCon_22: -5190789358212839714
+      CrouchCon_23: -141369688623191846
+      CrouchCon_3: -4595451623665093168
+      CrouchCon_4: 8956520322025985781
+      CrouchCon_5: -4921518320851098637
+      CrouchCon_6: 1775991004711895201
+      CrouchCon_7: -6532651934992786582
+      CrouchCon_8: 8175160607317651110
+      CrouchCon_9: 8762662990302579423
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
