@@ -61,6 +61,8 @@ public class Level3room1DialogueSystem : DialogueSystem
         DialogueTools.LoadDialogueAsset(ref usableDialogue, ref dialogueType, scriptableObjectFile, isDebug);
 
         base.Start();
+
+        executedStates.Remove(0);
     }
 
     // Update is called once per frame
@@ -93,7 +95,6 @@ public class Level3room1DialogueSystem : DialogueSystem
         {
             dialogueState = 0;
             initializeDialogueValues();
-            SaveHashSet();
         }
     }
 
