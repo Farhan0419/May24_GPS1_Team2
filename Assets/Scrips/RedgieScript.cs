@@ -18,6 +18,8 @@ public class RedgieScript : MonoBehaviour
     private MagnetAbilities magnetAbilities;
     private FormTransform formTransform;
     private MagneticObjectTooClose motc;
+    private AudioSource aud;
+    [SerializeField] private AudioClip launch;
 
     private Vector2 currentPosition;
     private Vector2 lastPosition;
@@ -68,6 +70,7 @@ public class RedgieScript : MonoBehaviour
         OriginalPos = transform.position;
         groundCheck = GetComponentInChildren<RedgieGroundCheck>();
         rb = GetComponent<Rigidbody2D>();
+        aud = GetComponent<AudioSource>();
 
         player = GameObject.FindWithTag("Player");
         playerRB = player.GetComponent<Rigidbody2D>();
@@ -90,6 +93,7 @@ public class RedgieScript : MonoBehaviour
         }
         if (other.gameObject.layer == LayerMask.NameToLayer("RedPad"))
         {
+            aud.PlayOneShot(launch);
             if (transform.parent == null)
             {
                 StartCoroutine(JumpRoutine(new Vector2(0f, LaunchPower)));
