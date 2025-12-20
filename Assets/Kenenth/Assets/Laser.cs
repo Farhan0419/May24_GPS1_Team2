@@ -49,7 +49,7 @@ public class Laser : MonoBehaviour
 
                 //Destroy(hit.collider.gameObject);
                 deathScript.PlayerDead("Laser");
-                Debug.Log("HIT");
+                //Debug.Log("HIT");
             }
         }
         //if (hit.collider != null)

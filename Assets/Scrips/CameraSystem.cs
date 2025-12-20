@@ -28,7 +28,8 @@ public class CameraSystem : MonoBehaviour
     [SerializeField] private float offsetTransitionSpeed = 6f;
     [SerializeField] private float YoffsetTransitionSpeed = 1.2f;
 
-    void Start()
+
+    private void Awake()
     {
         mainCamera = GetComponent<Camera>();
         if (mainCamera == null)
@@ -37,6 +38,10 @@ public class CameraSystem : MonoBehaviour
             return;
         }
         mainCamera.orthographic = true;
+    }
+    void Start()
+    {
+       
         targetZoom = defaultZoom;
         if (boundary == null)
         {

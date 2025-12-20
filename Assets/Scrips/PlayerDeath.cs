@@ -40,7 +40,7 @@ public class PlayerDeath : MonoBehaviour
         MovementScript.DisablePlayerMovement();
         if (causeOfDeath == "Laser")
         {
-            Debug.Log("Player Died from laser");
+            //Debug.Log("Player Died from laser");
             animator.SetTrigger("Melt");
         }
         else if (causeOfDeath == "Crush")
