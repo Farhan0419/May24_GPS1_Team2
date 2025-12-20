@@ -168,7 +168,7 @@ public class RedgieScript : MonoBehaviour
         {
             rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
         }
-        else if (magnetAbilities.IsInteracting && groundCheck.IsGrounded)
+        else if (magnetAbilities.IsInteracting)
         {
             if (groundCheck.OnBlueMagneticPlatform)
             {

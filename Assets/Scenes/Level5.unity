@@ -44762,7 +44762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1151607151045324231, guid: afbf2e87b41b5864bb1fa85e427f712c, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 8.562194
+      value: 9.802087
       objectReference: {fileID: 0}
     - target: {fileID: 3170045928121730470, guid: afbf2e87b41b5864bb1fa85e427f712c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44964,7 +44964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5309587305695351086, guid: c7aec1cc1bc795d4983a99d4d684feb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.76
+      value: -19.833
       objectReference: {fileID: 0}
     - target: {fileID: 5309587305695351086, guid: c7aec1cc1bc795d4983a99d4d684feb6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44972,7 +44972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5309587305695351086, guid: c7aec1cc1bc795d4983a99d4d684feb6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.44
+      value: 0.467
       objectReference: {fileID: 0}
     - target: {fileID: 5309587305695351086, guid: c7aec1cc1bc795d4983a99d4d684feb6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -45555,7 +45555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5309587305695351086, guid: c7aec1cc1bc795d4983a99d4d684feb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.768
+      value: -19.841
       objectReference: {fileID: 0}
     - target: {fileID: 5309587305695351086, guid: c7aec1cc1bc795d4983a99d4d684feb6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -45563,7 +45563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5309587305695351086, guid: c7aec1cc1bc795d4983a99d4d684feb6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.44
+      value: 0.467
       objectReference: {fileID: 0}
     - target: {fileID: 5309587305695351086, guid: c7aec1cc1bc795d4983a99d4d684feb6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -45810,10 +45810,10 @@ Transform:
   - {fileID: 1497175190}
   - {fileID: 1798321014}
   - {fileID: 559241499}
+  - {fileID: 231572528}
   - {fileID: 1920797945}
   - {fileID: 1958515675}
   - {fileID: 36500314}
-  - {fileID: 231572528}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1998374049 stripped
