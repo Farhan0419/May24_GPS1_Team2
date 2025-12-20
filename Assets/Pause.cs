@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEditor;
+using System;
 
 public class Pause : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class Pause : MonoBehaviour
     private InputAction PauseButton;
     public bool OptionButton = false;
 
+    public static event Action<bool> pauseEvent;
+
     private void Start()
     {
-        PauseButton = InputSystem.actions.FindAction("Escape Button");
+        PauseButton = InputSystem.actions.FindAction("Pause");
         if (PauseButton == null)
         {
             Debug.Log("NO ESC BUTTON FOUND");
@@ -36,10 +39,12 @@ public class Pause : MonoBehaviour
     {
         if (isPaused)
         {
+            pauseEvent?.Invoke(false);
             Resume();
         }
         else
         {
+            pauseEvent?.Invoke(true);
             PauseB(pause, true);
         }
     }
