@@ -92,6 +92,7 @@ public class Level1room3DialogueSystem : DialogueSystem
         {
             dialogueState = 0;
             initializeDialogueValues();
+            SaveHashSet();
         }
     }
 
@@ -103,6 +104,7 @@ public class Level1room3DialogueSystem : DialogueSystem
         {
             dialogueState = 1;
             initializeDialogueValues();
+            SaveHashSet();
         }
     }
 }

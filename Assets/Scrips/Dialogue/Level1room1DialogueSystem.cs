@@ -1,10 +1,11 @@
-using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.InputSystem;
-using TMPro;
-using UnityEngine.UI;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Level1room1DialogueSystem : DialogueSystem
 {
@@ -63,6 +64,7 @@ public class Level1room1DialogueSystem : DialogueSystem
         {
             dialogueState = 0;
             initializeDialogueValues();
+            SaveHashSet();
         }
     }
 
@@ -74,6 +76,7 @@ public class Level1room1DialogueSystem : DialogueSystem
         {
             dialogueState = 1;
             initializeDialogueValues();
+            SaveHashSet();
         }
     }
 
@@ -86,6 +89,7 @@ public class Level1room1DialogueSystem : DialogueSystem
         {
             dialogueState = 2;
             initializeDialogueValues();
+            SaveHashSet();
         }
     }
 

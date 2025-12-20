@@ -81,6 +81,7 @@ public class Level2room2DialogueSystem : DialogueSystem
         {
             dialogueState = 0;
             initializeDialogueValues();
+            SaveHashSet();
         }
     }
 
@@ -92,6 +93,7 @@ public class Level2room2DialogueSystem : DialogueSystem
         {
             dialogueState = 1;
             initializeDialogueValues();
+            SaveHashSet();
         }
     }
 

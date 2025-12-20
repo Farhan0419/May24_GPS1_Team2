@@ -67,6 +67,9 @@ public class Pause : MonoBehaviour
         PlayerPrefs.SetInt("Checkpoint", 0); // RESET CHECKPOINT ---------------------------------------------
         PlayerPrefs.Save();
 
+        PlayerPrefs.SetString("DialogueExecutedStateHashSet", "");
+        PlayerPrefs.Save();
+
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1f;
     }
@@ -83,6 +86,9 @@ public class Pause : MonoBehaviour
     public void Restart()
     {
         PlayerPrefs.SetInt("Checkpoint", 0); // RESET CHECKPOINT ---------------------------------------------
+        PlayerPrefs.Save();
+
+        PlayerPrefs.SetString("DialogueExecutedStateHashSet", "");
         PlayerPrefs.Save();
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

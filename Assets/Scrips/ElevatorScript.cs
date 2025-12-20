@@ -70,6 +70,9 @@ public class ElevatorScript : MonoBehaviour
 
                 PlayerPrefs.SetInt("Checkpoint", 0); // RESET CHECKPOINT ---------------------------------------------
                 PlayerPrefs.Save();
+
+                PlayerPrefs.SetString("DialogueExecutedStateHashSet", "");
+                PlayerPrefs.Save();
             }
         }
     }

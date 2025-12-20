@@ -9,7 +9,7 @@ using Unity.Mathematics;
 
 public class DialogueSystem : MonoBehaviour
 {
-	protected int dialogueState = 0;
+    protected int dialogueState = 0;
     protected Dictionary<int, string[]> usableDialogue = new Dictionary<int, string[]>();
     //protected Dictionary<int, int[]> indexKeywordsUsableDialogue = new Dictionary<int, int[]>();
     protected List<string> dialogueType = new List<string>();
@@ -105,10 +105,6 @@ public class DialogueSystem : MonoBehaviour
         playerMovement = GameObject.FindWithTag("Player").GetComponentInChildren<PlayerMovement>();
         redgiePosition = GameObject.FindWithTag("Redgie").transform.position;
 
-        //if(dialogueCanvas == null)
-        //{
-        //    dialogueCanvas = GameObject.FindWithTag("DialogueCanvas");
-        //}
 
         if (dialogueCanvas != null)
         {
@@ -131,6 +127,8 @@ public class DialogueSystem : MonoBehaviour
 
             dialogueCanvas.SetActive(false);
         }
+
+        LoadHashSet();
 
     }
 
@@ -177,7 +175,7 @@ public class DialogueSystem : MonoBehaviour
 
             if (dialogueType[dialogueState] == "Conversation")
             {
-                if(!isLineFullyShown)
+                if (!isLineFullyShown)
                 {
                     dialogueText.maxVisibleCharacters = currentLine.Length;
                     isLineFullyShown = true;
@@ -237,7 +235,7 @@ public class DialogueSystem : MonoBehaviour
                     ShowNextLine(ref usableDialogue, ref typingCoroutine, ref dialogueCounter, ref dialogueText, ref dialogueState,
                         ref dialogueCanvas, delayBetweenWords, ToTypeLetters, ToScaleDialogueBox);
                 }
-            }  
+            }
         }
     }
 
@@ -299,7 +297,7 @@ public class DialogueSystem : MonoBehaviour
         isDialogueBoxScalingTrigger = true;
         setValuesBasedOnDialogueType();
 
-        if(dialogueType[dialogueState] == "Conversation")
+        if (dialogueType[dialogueState] == "Conversation")
         {
             dialogueText = conversationDialogueText;
         }
@@ -343,7 +341,7 @@ public class DialogueSystem : MonoBehaviour
         for (int i = 0; i < actualLineLength; i++)
         {
             PlayDialogueSound(i, frequencyValue);
-            dialogueText.maxVisibleCharacters = i+1;
+            dialogueText.maxVisibleCharacters = i + 1;
 
             yield return new WaitForSeconds(delayBetweenWords);
         }
@@ -454,6 +452,27 @@ public class DialogueSystem : MonoBehaviour
             else
             {
                 remarkDialogueBox.GetComponent<RawImage>().texture = remarkDialogueArrow;
+            }
+        }
+    }
+
+    protected void SaveHashSet()
+    {
+        string data = string.Join(",", executedStates);
+        PlayerPrefs.SetString("DialogueExecutedStateHashSet", data);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadHashSet()
+    {
+        string data = PlayerPrefs.GetString("DialogueExecutedStateHashSet", "");
+        executedStates = new HashSet<int>();
+
+        foreach (string s in data.Split(','))
+        {
+            if (int.TryParse(s, out int value))
+            {
+                executedStates.Add(value);
             }
         }
     }
